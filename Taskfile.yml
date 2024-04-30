@@ -20,3 +20,7 @@ tasks:
           --include='*/package.json' \
           --exclude='*' \
           apps/ dist/
+
+  dev:
+    cmds:
+      - bun --bun "--filter=@w3yz-app/*" run dev
