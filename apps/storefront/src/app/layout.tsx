@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { FurnitureProvider } from "@w3yz/core/export/ui/furniture/provider";
+import { Header } from "@w3yz/core/export/ui/furniture/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <FurnitureProvider>{children}</FurnitureProvider>
+        <FurnitureProvider>
+          <Header />
+          {children}
+        </FurnitureProvider>
       </body>
     </html>
   );
