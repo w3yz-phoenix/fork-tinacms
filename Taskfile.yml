@@ -5,10 +5,14 @@ tasks:
     cmds:
       - bun install
 
-  build:
+  build-apps:
     deps: [install]
     cmds:
-      # - bun --bun "--filter=@w3yz-app/*" run build
+      - bun --bun "--filter=@w3yz-app/*" run build
+
+  build:
+    deps: [build-apps]
+    cmds:
       - rm -rf dist/
       - |
         rsync -avm \
