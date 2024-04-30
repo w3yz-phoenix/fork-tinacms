@@ -11,16 +11,17 @@ tasks:
       - bun --bun "--filter=@w3yz-app/*" run build
 
   build:
-    deps: [build-apps]
+    # deps: [build-apps]
     cmds:
       - rm -rf dist/
       - |
         rsync -avm \
-          --exclude='*' \
-          --include='./package.json' \
-          --include='./apps/**/.next/**' \
-          --include='./apps/**/package.json' \
-          --include='./apps/**/public/**' \
+          --include='*/' \
+          --include='package.json' \
+          --include='apps/**/.next/**' \
+          --include='apps/**/package.json' \
+          --include='apps/**/public/**' \
           --exclude='**/node_modules/**' \
           --exclude='**/dist/**' \
+          --exclude='*' \
           . ./dist
