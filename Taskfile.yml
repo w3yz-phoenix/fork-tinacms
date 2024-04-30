@@ -1,8 +1,8 @@
 version: "3"
 
-vars:
-  APP_PATH: "{{ .USER_WORKING_DIR }}"
-  OUT_PATH: "{{.USER_WORKING_DIR}}/dist"
+# vars:
+#   APP_PATH: "{{ .USER_WORKING_DIR }}"
+#   OUT_PATH: "{{.USER_WORKING_DIR}}/dist"
 
 tasks:
   default:
@@ -18,17 +18,19 @@ tasks:
       - bun --bun "--filter=@w3yz-app/*" run build
 
   build:
-    deps: [build-apps]
+    # deps: [build-apps]
+    vars:
+      APP_PATH: "{{.USER_WORKING_DIR}}"
+      OUT_PATH: "{{.USER_WORKING_DIR}}/dist"
+    requires:
+      vars: [APP_PATH, OUT_PATH]
     cmds:
-      - rm -rf "{{.OUT_PATH}}"/
+      - rm -rf "{{.OUT_PATH}}"
       - |
         rsync -avm \
           --include='*/' \
-          --include='package.json' \
-          --include='apps/**/.next/**' \
-          --include='apps/**/package.json' \
-          --include='apps/**/public/**' \
-          --exclude='**/node_modules/**' \
-          --exclude='**/dist/**' \
+          --include='**/package.json' \
+          --include='**/.next' \
+          --include='**/public' \
           --exclude='*' \
-          . "{{.OUT_PATH}}"
+          {{.APP_PATH}} "{{.OUT_PATH}}"

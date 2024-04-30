@@ -3,13 +3,11 @@
 FROM oven/bun:1-alpine AS base
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache bash curl \
+RUN apk add --no-cache rsync bash curl \
   && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/bin
 
 # this will cache the manifest files
 FROM base AS collect-files
-
-RUN apk add --no-cache rsync bash
 
 # copy all project files into the image
 COPY . /temp/all-files
