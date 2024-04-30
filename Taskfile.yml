@@ -1,6 +1,13 @@
 version: "3"
 
+vars:
+  APP_PATH: "{{ .USER_WORKING_DIR }}"
+  OUT_PATH: "{{.USER_WORKING_DIR}}/dist"
+
 tasks:
+  default:
+    dir: "{{.APP_PATH}}"
+
   install:
     cmds:
       - bun install
@@ -11,9 +18,9 @@ tasks:
       - bun --bun "--filter=@w3yz-app/*" run build
 
   build:
-    # deps: [build-apps]
+    deps: [build-apps]
     cmds:
-      - rm -rf dist/
+      - rm -rf "{{.OUT_PATH}}"/
       - |
         rsync -avm \
           --include='*/' \
@@ -24,4 +31,4 @@ tasks:
           --exclude='**/node_modules/**' \
           --exclude='**/dist/**' \
           --exclude='*' \
-          . ./dist
+          . "{{.OUT_PATH}}"

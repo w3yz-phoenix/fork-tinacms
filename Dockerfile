@@ -1,9 +1,10 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1-alpine as base
+FROM oven/bun:1-alpine AS base
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache just bash
+RUN apk add --no-cache bash curl \
+  && sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/bin
 
 # this will cache the manifest files
 FROM base AS collect-files
@@ -44,16 +45,11 @@ RUN mv /temp/dev/node_modules /temp/export/node_modules.prod
 FROM base AS prerelease
 
 COPY . .
-# COPY --from=install /temp/export/node_modules.dev ./node_modules
+COPY --from=install /temp/export/node_modules.dev ./node_modules
 
-# # [optional] tests & build
-# ENV NODE_ENV=production
-# RUN bun --bun test
-# RUN bun --bun run build
+ENV NODE_ENV=production
 
-# RUN mkdir -p /temp/export
-
-# WORKDIR /temp/export
+RUN APP_PATH=/usr/src/app OUT_PATH=/temp/export task build
 
 # RUN mkdir -p /temp/export \
 #   && cd /temp/export \
