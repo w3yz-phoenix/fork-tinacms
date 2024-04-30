@@ -1,0 +1,22 @@
+version: "3"
+
+tasks:
+  install:
+    cmds:
+      - bun install
+
+  build:
+    deps: [install]
+    cmds:
+      # - bun --bun "--filter=@w3yz-app/*" run build
+      - rm -rf dist/
+      - |
+        rsync -avm \
+          --exclude='*' \
+          --include='./package.json' \
+          --include='./apps/**/.next/**' \
+          --include='./apps/**/package.json' \
+          --include='./apps/**/public/**' \
+          --exclude='**/node_modules/**' \
+          --exclude='**/dist/**' \
+          . ./dist

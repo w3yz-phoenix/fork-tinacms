@@ -17,8 +17,12 @@
           mkShell {
             name = "w3yz";
             buildInputs = [
+              fish
+              rsync
               alejandra
               go-task
+              nodejs_20
+              bun
             ];
             shellHook = ''
               echo "Welcome in $name"
