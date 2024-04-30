@@ -1,0 +1,38 @@
+{
+  "header": {
+    "icon": {
+      "name": "Tina",
+      "color": "red",
+      "style": "float"
+    },
+    "name": "hello",
+    "color": "primary",
+    "nav": [
+      {
+        "href": "",
+        "label": "Home"
+      },
+      {
+        "href": "about",
+        "label": "About"
+      },
+      {
+        "href": "posts",
+        "label": "Blog"
+      }
+    ]
+  },
+  "footer": {
+    "color": "",
+    "social": {
+      "facebook": "/",
+      "twitter": "/",
+      "instagram": "/"
+    }
+  },
+  "theme": {
+    "color": "blue",
+    "font": "nunito",
+    "darkMode": "light"
+  }
+}
