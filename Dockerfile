@@ -47,22 +47,18 @@ COPY --from=install /temp/export/node_modules.dev ./node_modules
 
 ENV NODE_ENV=production
 
-RUN APP_PATH=/usr/src/app OUT_PATH=/temp/export task build
-
-# RUN mkdir -p /temp/export \
-#   && cd /temp/export \
-#   && cp /usr/src/app/package.json ./package.json \
-#   && cp -r /usr/src/app/public ./public \
-#   && cp -r /usr/src/app/.next ./.next \
-#   && rm -rf /usr/src/app/
+RUN task build \
+  && mkdir -p /temp/ \
+  && mv dist/ /temp/export \
+  && rm -rf /usr/src/app
 
 # copy production dependencies and source code into final image
 FROM base AS release
 
-COPY --from=prerelease /temp/export/ .
+COPY --from=prerelease /temp/export/storefront .
 COPY --from=install /temp/export/node_modules.prod ./node_modules
 
 # run the app
 USER bun
 EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "--bun", "run", "start" ]
+CMD [ "bun", "--bun", "run", "start" ]

@@ -23,6 +23,7 @@
               go-task
               nodejs_20
               bun
+              tree
             ];
             shellHook = ''
               echo "Welcome in $name"

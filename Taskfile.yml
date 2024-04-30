@@ -1,36 +1,22 @@
 version: "3"
 
-# vars:
-#   APP_PATH: "{{ .USER_WORKING_DIR }}"
-#   OUT_PATH: "{{.USER_WORKING_DIR}}/dist"
-
 tasks:
-  default:
-    dir: "{{.APP_PATH}}"
-
   install:
     cmds:
       - bun install
 
   build-apps:
-    deps: [install]
     cmds:
       - bun --bun "--filter=@w3yz-app/*" run build
 
   build:
-    # deps: [build-apps]
-    vars:
-      APP_PATH: "{{.USER_WORKING_DIR}}"
-      OUT_PATH: "{{.USER_WORKING_DIR}}/dist"
-    requires:
-      vars: [APP_PATH, OUT_PATH]
+    deps: [build-apps]
     cmds:
-      - rm -rf "{{.OUT_PATH}}"
+      - rm -rf ./dist && mkdir -p ./dist
       - |
-        rsync -avm \
-          --include='*/' \
-          --include='**/package.json' \
-          --include='**/.next' \
-          --include='**/public' \
+        rsync -avm --include='*/' \
+          --include='*/.next/***' \
+          --include='*/public/***' \
+          --include='*/package.json' \
           --exclude='*' \
-          {{.APP_PATH}} "{{.OUT_PATH}}"
+          apps/ dist/

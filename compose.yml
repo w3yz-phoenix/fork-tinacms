@@ -2,5 +2,6 @@ services:
   storefront:
     build:
       context: .
-      dockerfile: Dockerfile
-      target: prerelease
+      target: release
+    ports:
+      - 3000:3000
