@@ -1,0 +1,6 @@
+services:
+  storefront:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: install
