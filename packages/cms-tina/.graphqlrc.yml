@@ -1,0 +1,140 @@
+$schema: https://the-guild.dev/graphql/codegen/config.schema.json
+
+config: &defaultConfig
+  useTypeImports: true
+  strictScalars: true
+  dedupeFragments: true
+  enumAsTypes: true
+  futureProofEnums: true
+  namingConvention: change-case#pascalCase
+  transformUnderscore: true
+  enumPrefix: true
+  wrapFieldDefinitions: true
+  typesPrefix: "I"
+
+ignoreNoDocuments: true
+projects:
+  saleor:
+    schema:
+      - src/vendor/*.graphql
+    documents:
+      - src/graphql/**/*.graphql
+    extensions:
+      codegen:
+        hooks:
+          afterAllFileWrite:
+            - prettier --write src/generated/gql/**/*.ts
+        overwrite: true
+        generates:
+          src/generated/gql/types.gen.ts:
+            plugins:
+              - add:
+                  content: |
+                    /* c8 ignore start */
+                    /* eslint-disable */
+                    import type { CustomScalars } from 'src/types';
+              - typescript
+            config: &saleorConfig # documentMode: "string"
+              <<: *defaultConfig
+              typesPrefix: "SaleorGraphql_"
+              documentPrefix: "SaleorGraphql_"
+              fragmentPrefix: "SaleorGraphql_"
+              documentVariablePrefix: "SaleorGraphql_"
+              fragmentVariablePrefix: "SaleorGraphql_"
+              scalars: &saleorScalars
+                _Any: 'CustomScalars["AnyObject"]'
+                Date: "string"
+                DateTime: "string"
+                Day: "number"
+                Decimal: "number"
+                GenericScalar: 'CustomScalars["JSONValue"]'
+                JSON: 'CustomScalars["JSONValue"]'
+                JSONString: "string"
+                Metadata: "Record<string, string>"
+                Minute: "number"
+                PositiveDecimal: "number"
+                Upload: 'CustomScalars["AnyObject"]'
+                UUID: "string"
+                WeightScalar: "number"
+                ID: "string"
+          src/graphql/:
+            preset: near-operation-file
+            plugins:
+              - add:
+                  content: |
+                    /* c8 ignore start */
+                    /* eslint-disable */
+                    import type { CustomScalars } from 'src/types';
+              - typescript-operations:
+                  skipTypeNameForRoot: true
+                  exportFragmentSpreadSubTypes: true
+                  onlyOperationTypes: true
+              - typescript-react-query: &reactQuery
+                  exposeDocument: true
+                  exposeQueryKeys: true
+                  exposeQueryRootKeys: true
+                  exposeMutationKeys: true
+                  exposeFetcher: true
+                  addInfiniteQuery: true
+                  addSuspenseQuery: true
+                  reactQueryVersion: 5
+                  experimentalFragmentVariables: true
+                  legacyMode: false
+                  useTypeImports: false
+                  fetcher: "src/lib/fetchers#saleorFetcher"
+            config: *saleorConfig
+            presetConfig:
+              baseTypesPath: "../generated/gql/types.gen.ts"
+              folder: "generated"
+              extension: ".gen.ts"
+          src/generated/gql/validation.gen.ts:
+            plugins:
+              - typescript-validation-schema
+            config:
+              <<: *saleorConfig
+              schema: "zod"
+              importFrom: "./types.gen"
+              useTypeImports: false
+              scalars: *saleorScalars
+          src/generated/gql/schema.gen.graphql:
+            plugins:
+              - schema-ast
+  tinacms:
+    schema:
+      - tina/__generated__/schema.gql
+    documents:
+      - tina/__generated__/frags.gql
+      - tina/__generated__/queries.gql
+    extensions:
+      codegen:
+        generates:
+          src/generated/gql/tinacms.gen.ts:
+            plugins:
+              - add:
+                  content: |
+                    /* c8 ignore start */
+                    /* eslint-disable */
+                    import type { CustomScalars } from 'src/types';
+              - typescript
+              - typescript-operations:
+                  skipTypeNameForRoot: true
+                  exportFragmentSpreadSubTypes: true
+                  onlyOperationTypes: true
+              - typescript-react-query:
+                  <<: *reactQuery
+                  fetcher: "src/lib/fetchers#tinaFetcher"
+            config: &tinaConfig
+              <<: *defaultConfig
+              typesPrefix: "TinaGraphql_"
+              documentPrefix: "TinaGraphql_"
+              fragmentPrefix: "TinaGraphql_"
+              documentVariablePrefix: "TinaGraphql_"
+              fragmentVariablePrefix: "TinaGraphql_"
+              scalars: &tinaScalars
+                ID: "string"
+                String: "string"
+                Boolean: "boolean"
+                Int: "number"
+                Float: "number"
+                Reference: 'CustomScalars["AnyObject"]'
+                JSON: 'CustomScalars["JSONValue"]'

@@ -1,0 +1,27 @@
+{
+  "name": "@w3yz/tool-graphql",
+  "type": "module",
+  "module": "./export.ts",
+  "main": "./export.ts",
+  "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "graphql-config": "^5.0.3",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.5",
+    "@graphql-codegen/introspection": "^4.0.3",
+    "@graphql-codegen/near-operation-file-preset": "^3.0.0",
+    "@graphql-codegen/schema-ast": "^4.0.2",
+    "@graphql-codegen/typed-document-node": "^5.0.6",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-operations": "^4.2.0",
+    "@graphql-codegen/typescript-react-query": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

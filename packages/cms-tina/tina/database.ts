@@ -10,7 +10,7 @@ const branch =
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
-export default isLocal
+export const databaseClient = isLocal
   ? createLocalDatabase()
   : createDatabase({
       gitProvider: new GitHubProvider({

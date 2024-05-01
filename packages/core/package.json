@@ -2,6 +2,7 @@
   "name": "@w3yz/core",
   "type": "module",
   "scripts": {
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev",
     "generate": "bun generate:saleor; bun generate:tinacms",
     "generate:all": "bun generate:fetch-saleor-schema; bun generate:saleor; bun generate:tinacms",
     "generate:saleor": "graphql-codegen -p saleor",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@w3yz/eslint-config-eslint": "workspace:*",
+    "@w3yz/tool-graphql": "workspace:*",
     "@types/bun": "latest",
     "@types/node": "^20.12.7",
     "@tinacms/cli": "^1.5.43"

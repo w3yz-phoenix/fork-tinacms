@@ -9,12 +9,24 @@
       "path": "../apps/storefront",
     },
     {
+      "name": "@w3yz/cms-tina",
+      "path": "../packages/cms-tina",
+    },
+    {
       "name": "@w3yz/core",
       "path": "../packages/core",
     },
     {
       "name": "@w3yz/eslint-config-eslint",
       "path": "../packages/eslint-config-eslint",
+    },
+    {
+      "name": "@w3yz/tool-graphql",
+      "path": "../packages/tool-graphql",
+    },
+    {
+      "name": "@w3yz/types",
+      "path": "../packages/types",
     },
   ],
   "settings": {
