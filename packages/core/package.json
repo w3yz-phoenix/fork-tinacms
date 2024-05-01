@@ -1,6 +1,13 @@
 {
   "name": "@w3yz/core",
   "type": "module",
+  "scripts": {
+    "generate": "bun generate:saleor; bun generate:tinacms",
+    "generate:all": "bun generate:fetch-saleor-schema; bun generate:saleor; bun generate:tinacms",
+    "generate:saleor": "graphql-codegen -p saleor",
+    "generate:tinacms": "graphql-codegen -p tinacms",
+    "generate:fetch-saleor-schema": "mkdir -p src/vendor; curl -L https://raw.githubusercontent.com/saleor/saleor/${npm_package_saleor_schemaVersion}/saleor/graphql/schema.graphql -o src/vendor/saleor.graphql"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

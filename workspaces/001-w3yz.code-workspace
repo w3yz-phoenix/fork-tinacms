@@ -1,0 +1,74 @@
+{
+  "folders": [
+    {
+      "name": "000-w3yz-monorepo-000",
+      "path": "..",
+    },
+    {
+      "name": "@w3yz-app/storefront",
+      "path": "../apps/storefront",
+    },
+    {
+      "name": "@w3yz/core",
+      "path": "../packages/core",
+    },
+    {
+      "name": "@w3yz/eslint-config-eslint",
+      "path": "../packages/eslint-config-eslint",
+    },
+  ],
+  "settings": {
+    "debug.javascript.pickAndAttachOptions": {
+      "autoAttachChildProcesses": true,
+    },
+    "tailwindCSS.classAttributes": [
+      "class",
+      "className",
+      "ngClass",
+      ".*Styles.*",
+    ],
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "eslint.enable": true,
+    "eslint.codeActionsOnSave.mode": "all",
+    "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+    "eslint.lintTask.enable": true,
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    ],
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "git.mergeEditor": true,
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/node_modules": true,
+      "**/.direnv": true,
+      "**/*.git": true,
+      "**/apps": true,
+      "**/packages": true,
+    },
+    "explorerExclude.backup": {},
+  },
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "editorconfig.editorconfig",
+      "github.copilot",
+      "github.vscode-pull-request-github",
+      "eamodio.gitlens",
+      "bradlc.vscode-tailwindcss",
+      "GraphQL.vscode-graphql",
+    ],
+  },
+}
