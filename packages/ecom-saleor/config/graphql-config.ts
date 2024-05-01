@@ -21,13 +21,13 @@ const config = {
 
 export const getSaleorGraphqlConfig = () => {
   return defineGraphqlProject("@w3yz/ecom-saleor", {
-    schema: [resolvePath("../vendor/*.graphql")],
-    documents: [resolvePath("../graphql/**/*.graphql")],
+    schema: [resolvePath("../src/vendor/*.graphql")],
+    documents: [resolvePath("../src/graphql/**/*.graphql")],
     extensions: {
       codegen: defineCodegenConfig({
         config,
         generates: {
-          [`${resolvePath("../generated/gql.gen.ts")}`]: {
+          [`${resolvePath("../src/generated/gql.gen.ts")}`]: {
             plugins: [
               {
                 add: {

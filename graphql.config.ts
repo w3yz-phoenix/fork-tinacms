@@ -1,8 +1,6 @@
 import { defineGraphqlConfig } from "@w3yz/tool-graphql";
-import { getTinaGraphqlConfig } from "@w3yz/cms-tina";
-import { getSaleorGraphqlConfig } from "@w3yz/ecom-saleor";
-
-debugger;
+import { getTinaGraphqlConfig } from "@w3yz/cms-tina/config/graphql-config";
+import { getSaleorGraphqlConfig } from "@w3yz/ecom-saleor/config/graphql-config";
 
 const config = defineGraphqlConfig({
   projects: {
@@ -10,7 +8,5 @@ const config = defineGraphqlConfig({
     ...getSaleorGraphqlConfig(),
   },
 });
-
-console.log("config: ", config);
 
 export default config;

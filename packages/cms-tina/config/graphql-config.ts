@@ -21,16 +21,16 @@ const config = {
 
 export const getTinaGraphqlConfig = () => {
   return defineGraphqlProject("@w3yz/cms-tina", {
-    schema: [resolvePath("../../tina/__generated__/schema.gql")],
+    schema: [resolvePath("../tina/__generated__/schema.gql")],
     documents: [
-      resolvePath("../../tina/__generated__/frags.gql"),
-      resolvePath("../../tina/__generated__/queries.gql"),
+      resolvePath("../tina/__generated__/frags.gql"),
+      resolvePath("../tina/__generated__/queries.gql"),
     ],
     extensions: {
       codegen: defineCodegenConfig({
         config,
         generates: {
-          [resolvePath("../generated/tinacms.gen.ts")]: {
+          [resolvePath("../src/generated/tinacms.gen.ts")]: {
             plugins: [
               templates.eslintDisable,
               templates.customScalars,
