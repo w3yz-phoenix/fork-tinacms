@@ -24,3 +24,37 @@ tasks:
   dev:
     cmds:
       - bun --bun "--filter=@w3yz-app/*" run dev
+
+  fetch-schema:
+    vars:
+      SALEOR_SCHEMA_VERSION: "3.19"
+    cmds:
+      - rm -rf packages/ecom-saleor/src/vendor;
+      - mkdir -p packages/ecom-saleor/src/vendor;
+      - curl -L https://raw.githubusercontent.com/saleor/saleor/{{.SALEOR_SCHEMA_VERSION}}/saleor/graphql/schema.graphql -o packages/ecom-saleor/src/vendor/saleor.graphql
+
+  generate-tina:
+    sources:
+      - packages/cms-tina/**/*.ts
+      - packages/cms-tina/**/*.tsx
+      - exclude: packages/cms-tina/src/generated/**/*.ts
+    generates:
+      - packages/cms-tina/src/generated/tinacms.gen.ts
+    cmds:
+      - bun -b x graphql-codegen -p '@w3yz/cms-tina'
+
+  generate-saleor:
+    sources:
+      - packages/ecom-saleor/**/*.graphql
+      - packages/ecom-saleor/**/*.ts
+      - packages/ecom-saleor/**/*.tsx
+      - exclude: packages/ecom-saleor/src/generated/**/*.ts
+    generates:
+      - packages/ecom-saleor/src/generated/**/*.ts
+    cmds:
+      - bun -b x graphql-codegen -p '@w3yz/ecom-saleor'
+
+  generate:
+    cmds:
+      - task: generate-tina
+      - task: generate-saleor

@@ -1,0 +1,19 @@
+{
+  "name": "@w3yz/ecom-saleor",
+  "module": "./export.ts",
+  "main": "./export.ts",
+  "type": "module",
+  "dependencies": {
+    "@w3yz/tool-graphql": "workspace:*",
+    "@w3yz/types": "workspace:*",
+    "@tanstack/react-query": "^5.32.0",
+    "@tanstack/react-query-devtools": "^5.32.0",
+    "@tanstack/react-query-next-experimental": "^5.32.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

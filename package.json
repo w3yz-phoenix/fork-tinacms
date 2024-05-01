@@ -1,11 +1,8 @@
 {
-  "name": "000-w3yz-monorepo-000",
+  "name": "000-w3yz-bun2-000",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "scripts": {
-    "generate": "graphql-codegen -p '@w3yz/cms-tina'"
-  }
+  ]
 }

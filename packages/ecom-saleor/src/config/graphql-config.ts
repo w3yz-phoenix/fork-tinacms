@@ -10,7 +10,7 @@ export const resolvePath = (relativePath: string) => {
   return path.resolve(__dirname, relativePath);
 };
 
-const typePrefix = "TinaGraphql_";
+const typePrefix = "SaleorGraphql_";
 const config = {
   typesPrefix: typePrefix,
   documentPrefix: typePrefix,
@@ -19,19 +19,21 @@ const config = {
   fragmentVariablePrefix: typePrefix,
 };
 
-export const getTinaGraphqlConfig = () => {
-  return defineGraphqlProject("@w3yz/cms-tina", {
-    schema: [resolvePath("../../tina/__generated__/schema.gql")],
-    documents: [
-      resolvePath("../../tina/__generated__/frags.gql"),
-      resolvePath("../../tina/__generated__/queries.gql"),
-    ],
+export const getSaleorGraphqlConfig = () => {
+  return defineGraphqlProject("@w3yz/ecom-saleor", {
+    schema: [resolvePath("../vendor/*.graphql")],
+    documents: [resolvePath("../graphql/**/*.graphql")],
     extensions: {
       codegen: defineCodegenConfig({
         config,
         generates: {
-          [resolvePath("../generated/tinacms.gen.ts")]: {
+          [`${resolvePath("../generated/gql.gen.ts")}`]: {
             plugins: [
+              {
+                add: {
+                  content: "// @ts-nocheck",
+                },
+              },
               templates.eslintDisable,
               templates.customScalars,
               "typescript",

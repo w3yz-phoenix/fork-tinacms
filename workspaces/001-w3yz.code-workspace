@@ -1,7 +1,7 @@
 {
   "folders": [
     {
-      "name": "000-w3yz-monorepo-000",
+      "name": "000-w3yz-bun2-000",
       "path": "..",
     },
     {
@@ -15,6 +15,10 @@
     {
       "name": "@w3yz/core",
       "path": "../packages/core",
+    },
+    {
+      "name": "@w3yz/ecom-saleor",
+      "path": "../packages/ecom-saleor",
     },
     {
       "name": "@w3yz/eslint-config-eslint",

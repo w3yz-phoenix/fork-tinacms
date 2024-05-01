@@ -24,6 +24,7 @@ export const defineCodegenConfig = (
   config: Partial<CodegenConfig>
 ): CodegenConfig => {
   return {
+    overwrite: true,
     ...config,
     config: {
       ...defaultConfig,
@@ -80,7 +81,7 @@ const defaultScalars = {
   ID: "string",
   String: "string",
   Boolean: "boolean",
-  Int: "number",
+  // Int: "number",
   Float: "number",
   Reference: 'CustomScalars["AnyObject"]',
 } as const;

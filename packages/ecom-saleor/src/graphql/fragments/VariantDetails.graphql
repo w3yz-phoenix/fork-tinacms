@@ -1,0 +1,33 @@
+fragment VariantDetails on ProductVariant {
+  id
+  name
+  quantityAvailable
+  sku
+  media {
+    id
+    url
+    alt
+  }
+  attributes(variantSelection: VARIANT_SELECTION) {
+    values {
+      slug
+      name
+    }
+    attribute {
+      slug
+      name
+    }
+  }
+  pricing {
+    price {
+      net {
+        currency
+        amount
+      }
+      gross {
+        currency
+        amount
+      }
+    }
+  }
+}
