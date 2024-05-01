@@ -8,8 +8,17 @@
     "generate:tinacms": "graphql-codegen -p tinacms",
     "generate:fetch-saleor-schema": "mkdir -p src/vendor; curl -L https://raw.githubusercontent.com/saleor/saleor/${npm_package_saleor_schemaVersion}/saleor/graphql/schema.graphql -o src/vendor/saleor.graphql"
   },
+  "dependencies": {
+    "tinacms": "^1.6.2",
+    "tinacms-authjs": "^2.0.2",
+    "tinacms-gitprovider-github": "^1.0.4",
+    "mongodb-level": "^0.0.4"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@w3yz/eslint-config-eslint": "workspace:*",
+    "@types/bun": "latest",
+    "@types/node": "^20.12.7",
+    "@tinacms/cli": "^1.5.43"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
