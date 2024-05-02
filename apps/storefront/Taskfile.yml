@@ -21,7 +21,7 @@ tasks:
       NODE_ENV: development
       TINA_PUBLIC_IS_LOCAL: true
     cmds:
-      - bun -b x tinacms dev -c "next dev"
+      - bun -b x tinacms dev -c "bun -b x next dev"
 
   start:
     cmds:

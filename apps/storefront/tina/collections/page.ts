@@ -4,7 +4,7 @@ export const PageCollection: Collection = {
   name: "page",
   label: "Page",
   path: "content/pages",
-  format: "md",
+  format: "mdx",
   ui: {
     router: () => "/",
   },
@@ -39,6 +39,30 @@ export const PageCollection: Collection = {
         { type: "string", name: "header" },
         { type: "string", name: "description" },
         { type: "string", name: "url" },
+      ],
+    },
+    {
+      type: "rich-text",
+      label: "Page Body",
+      name: "body",
+      isBody: true,
+      templates: [
+        {
+          name: "NewsletterSignup",
+          label: "Newsletter Sign Up",
+          fields: [
+            {
+              name: "children",
+              label: "CTA",
+              type: "rich-text",
+            },
+            {
+              name: "buttonText",
+              label: "Button Text",
+              type: "string",
+            },
+          ],
+        },
       ],
     },
   ],

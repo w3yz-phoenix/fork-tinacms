@@ -1,12 +1,34 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
+import { publicEnvironment } from "src/lib/environment";
+import { cn } from "src/lib/utils";
+import { Providers } from "src/lib/providers/providers";
 
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Self Hosted Tina App",
-  description: "A Next.js app with TinaCMS",
-};
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+export async function generateMetadata(): Promise<Metadata> {
+  const storefront = publicEnvironment.storefront;
+
+  return {
+    title: storefront.name,
+    description: storefront.name,
+    metadataBase: storefront.url ? new URL(storefront.url) : undefined,
+  };
+}
+
+export async function generateViewport(): Promise<Viewport> {
+  return {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  };
+}
 
 export default function RootLayout({
   children,
@@ -14,8 +36,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

@@ -188,10 +188,20 @@ export type TinaGraphql_Page = TinaGraphql_Document & TinaGraphql_Node & {
   __typename?: 'Page';
   _sys: FieldWrapper<TinaGraphql_SystemInfo>;
   _values: FieldWrapper<Scalars['JSON']['output']>;
+  body?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   header?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   id: FieldWrapper<Scalars['ID']['output']>;
   links?: Maybe<Array<Maybe<FieldWrapper<TinaGraphql_PageLinks>>>>;
   logo?: Maybe<FieldWrapper<TinaGraphql_PageLogo>>;
+};
+
+export type TinaGraphql_PageBodyFilter = {
+  NewsletterSignup?: InputMaybe<TinaGraphql_PageBodyNewsletterSignupFilter>;
+};
+
+export type TinaGraphql_PageBodyNewsletterSignupFilter = {
+  buttonText?: InputMaybe<TinaGraphql_StringFilter>;
+  children?: InputMaybe<TinaGraphql_RichTextFilter>;
 };
 
 export type TinaGraphql_PageConnection = TinaGraphql_Connection & {
@@ -208,6 +218,7 @@ export type TinaGraphql_PageConnectionEdges = {
 };
 
 export type TinaGraphql_PageFilter = {
+  body?: InputMaybe<TinaGraphql_PageBodyFilter>;
   header?: InputMaybe<TinaGraphql_StringFilter>;
   links?: InputMaybe<TinaGraphql_PageLinksFilter>;
   logo?: InputMaybe<TinaGraphql_PageLogoFilter>;
@@ -257,6 +268,7 @@ export type TinaGraphql_PageLogoMutation = {
 };
 
 export type TinaGraphql_PageMutation = {
+  body?: InputMaybe<Scalars['JSON']['input']>;
   header?: InputMaybe<Scalars['String']['input']>;
   links?: InputMaybe<Array<InputMaybe<TinaGraphql_PageLinksMutation>>>;
   logo?: InputMaybe<TinaGraphql_PageLogoMutation>;
@@ -332,6 +344,12 @@ export type TinaGraphql_QueryUserConnectionArgs = {
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TinaGraphql_RichTextFilter = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TinaGraphql_StringFilter = {
@@ -422,7 +440,7 @@ export type TinaGraphql_UserUsersPasswordMutation = {
 
 export type TinaGraphql_UserPartsFragment = { __typename: 'User', users?: Array<{ __typename: 'UserUsers', username: string, name?: string | null, email?: string | null, password: { __typename?: 'UserUsersPassword', value: string, passwordChangeRequired?: boolean | null } } | null> | null };
 
-export type TinaGraphql_PagePartsFragment = { __typename: 'Page', header?: string | null, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null };
+export type TinaGraphql_PagePartsFragment = { __typename: 'Page', header?: string | null, body?: CustomScalars["JSONValue"] | null, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null };
 
 export type TinaGraphql_UserQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -448,7 +466,7 @@ export type TinaGraphql_PageQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_PageQuery = { page: { __typename: 'Page', id: string, header?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } };
+export type TinaGraphql_PageQuery = { page: { __typename: 'Page', id: string, header?: string | null, body?: CustomScalars["JSONValue"] | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } };
 
 export type TinaGraphql_PageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -460,7 +478,7 @@ export type TinaGraphql_PageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_PageConnectionQuery = { pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, header?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } | null } | null> | null } };
+export type TinaGraphql_PageConnectionQuery = { pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, header?: string | null, body?: CustomScalars["JSONValue"] | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } | null } | null> | null } };
 
 
 export const TinaGraphql_UserPartsFragmentDoc = `
@@ -493,6 +511,7 @@ export const TinaGraphql_PagePartsFragmentDoc = `
     description
     url
   }
+  body
 }
     `;
 export const TinaGraphql_UserDocument = `
