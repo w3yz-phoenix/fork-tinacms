@@ -5,10 +5,6 @@
       "path": "..",
     },
     {
-      "name": "@w3yz-app/cms",
-      "path": "../apps/cms",
-    },
-    {
       "name": "@w3yz-app/storefront",
       "path": "../apps/storefront",
     },
