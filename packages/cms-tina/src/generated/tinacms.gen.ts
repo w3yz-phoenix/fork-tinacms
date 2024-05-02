@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useQuery, useSuspenseQuery, useInfiniteQuery, useSuspenseInfiniteQuery, UseQueryOptions, UseSuspenseQueryOptions, UseInfiniteQueryOptions, InfiniteData, UseSuspenseInfiniteQueryOptions } from '@tanstack/react-query';
 import { fetcher } from '../fetcher';
 
@@ -80,16 +81,19 @@ export type TinaGraphql_DocumentConnectionEdges = {
 };
 
 export type TinaGraphql_DocumentFilter = {
+  page?: InputMaybe<TinaGraphql_PageFilter>;
   user?: InputMaybe<TinaGraphql_UserFilter>;
 };
 
 export type TinaGraphql_DocumentMutation = {
+  page?: InputMaybe<TinaGraphql_PageMutation>;
   user?: InputMaybe<TinaGraphql_UserMutation>;
 };
 
-export type TinaGraphql_DocumentNode = TinaGraphql_Folder | TinaGraphql_User;
+export type TinaGraphql_DocumentNode = TinaGraphql_Folder | TinaGraphql_Page | TinaGraphql_User;
 
 export type TinaGraphql_DocumentUpdateMutation = {
+  page?: InputMaybe<TinaGraphql_PageMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
   user?: InputMaybe<TinaGraphql_UserMutation>;
 };
@@ -100,13 +104,22 @@ export type TinaGraphql_Folder = {
   path: FieldWrapper<Scalars['String']['output']>;
 };
 
+export type TinaGraphql_ImageFilter = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type TinaGraphql_Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: FieldWrapper<TinaGraphql_DocumentNode>;
   createDocument: FieldWrapper<TinaGraphql_DocumentNode>;
+  createPage: FieldWrapper<TinaGraphql_Page>;
   createUser: FieldWrapper<TinaGraphql_User>;
   deleteDocument: FieldWrapper<TinaGraphql_DocumentNode>;
   updateDocument: FieldWrapper<TinaGraphql_DocumentNode>;
+  updatePage: FieldWrapper<TinaGraphql_Page>;
   updatePassword: FieldWrapper<Scalars['Boolean']['output']>;
   updateUser: FieldWrapper<TinaGraphql_User>;
 };
@@ -122,6 +135,12 @@ export type TinaGraphql_MutationAddPendingDocumentArgs = {
 export type TinaGraphql_MutationCreateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']['input']>;
   params: TinaGraphql_DocumentMutation;
+  relativePath: Scalars['String']['input'];
+};
+
+
+export type TinaGraphql_MutationCreatePageArgs = {
+  params: TinaGraphql_PageMutation;
   relativePath: Scalars['String']['input'];
 };
 
@@ -145,6 +164,12 @@ export type TinaGraphql_MutationUpdateDocumentArgs = {
 };
 
 
+export type TinaGraphql_MutationUpdatePageArgs = {
+  params: TinaGraphql_PageMutation;
+  relativePath: Scalars['String']['input'];
+};
+
+
 export type TinaGraphql_MutationUpdatePasswordArgs = {
   password: Scalars['String']['input'];
 };
@@ -159,12 +184,82 @@ export type TinaGraphql_Node = {
   id: FieldWrapper<Scalars['ID']['output']>;
 };
 
+export type TinaGraphql_Page = TinaGraphql_Document & TinaGraphql_Node & {
+  __typename?: 'Page';
+  _sys: FieldWrapper<TinaGraphql_SystemInfo>;
+  _values: FieldWrapper<Scalars['JSON']['output']>;
+  header?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  id: FieldWrapper<Scalars['ID']['output']>;
+  links?: Maybe<Array<Maybe<FieldWrapper<TinaGraphql_PageLinks>>>>;
+  logo?: Maybe<FieldWrapper<TinaGraphql_PageLogo>>;
+};
+
+export type TinaGraphql_PageConnection = TinaGraphql_Connection & {
+  __typename?: 'PageConnection';
+  edges?: Maybe<Array<Maybe<FieldWrapper<TinaGraphql_PageConnectionEdges>>>>;
+  pageInfo: FieldWrapper<TinaGraphql_PageInfo>;
+  totalCount: FieldWrapper<Scalars['Float']['output']>;
+};
+
+export type TinaGraphql_PageConnectionEdges = {
+  __typename?: 'PageConnectionEdges';
+  cursor: FieldWrapper<Scalars['String']['output']>;
+  node?: Maybe<FieldWrapper<TinaGraphql_Page>>;
+};
+
+export type TinaGraphql_PageFilter = {
+  header?: InputMaybe<TinaGraphql_StringFilter>;
+  links?: InputMaybe<TinaGraphql_PageLinksFilter>;
+  logo?: InputMaybe<TinaGraphql_PageLogoFilter>;
+};
+
 export type TinaGraphql_PageInfo = {
   __typename?: 'PageInfo';
   endCursor: FieldWrapper<Scalars['String']['output']>;
   hasNextPage: FieldWrapper<Scalars['Boolean']['output']>;
   hasPreviousPage: FieldWrapper<Scalars['Boolean']['output']>;
   startCursor: FieldWrapper<Scalars['String']['output']>;
+};
+
+export type TinaGraphql_PageLinks = {
+  __typename?: 'PageLinks';
+  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  header?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  url?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+};
+
+export type TinaGraphql_PageLinksFilter = {
+  description?: InputMaybe<TinaGraphql_StringFilter>;
+  header?: InputMaybe<TinaGraphql_StringFilter>;
+  url?: InputMaybe<TinaGraphql_StringFilter>;
+};
+
+export type TinaGraphql_PageLinksMutation = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  header?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TinaGraphql_PageLogo = {
+  __typename?: 'PageLogo';
+  alt?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  url?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+};
+
+export type TinaGraphql_PageLogoFilter = {
+  alt?: InputMaybe<TinaGraphql_StringFilter>;
+  url?: InputMaybe<TinaGraphql_ImageFilter>;
+};
+
+export type TinaGraphql_PageLogoMutation = {
+  alt?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TinaGraphql_PageMutation = {
+  header?: InputMaybe<Scalars['String']['input']>;
+  links?: InputMaybe<Array<InputMaybe<TinaGraphql_PageLinksMutation>>>;
+  logo?: InputMaybe<TinaGraphql_PageLogoMutation>;
 };
 
 export type TinaGraphql_Query = {
@@ -176,6 +271,8 @@ export type TinaGraphql_Query = {
   document: FieldWrapper<TinaGraphql_DocumentNode>;
   getOptimizedQuery?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   node: FieldWrapper<TinaGraphql_Node>;
+  page: FieldWrapper<TinaGraphql_Page>;
+  pageConnection: FieldWrapper<TinaGraphql_PageConnection>;
   user: FieldWrapper<TinaGraphql_User>;
   userConnection: FieldWrapper<TinaGraphql_UserConnection>;
 };
@@ -205,6 +302,21 @@ export type TinaGraphql_QueryGetOptimizedQueryArgs = {
 
 export type TinaGraphql_QueryNodeArgs = {
   id?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type TinaGraphql_QueryPageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type TinaGraphql_QueryPageConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TinaGraphql_PageFilter>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -310,6 +422,8 @@ export type TinaGraphql_UserUsersPasswordMutation = {
 
 export type TinaGraphql_UserPartsFragment = { __typename: 'User', users?: Array<{ __typename: 'UserUsers', username: string, name?: string | null, email?: string | null, password: { __typename?: 'UserUsersPassword', value: string, passwordChangeRequired?: boolean | null } } | null> | null };
 
+export type TinaGraphql_PagePartsFragment = { __typename: 'Page', header?: string | null, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null };
+
 export type TinaGraphql_UserQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
@@ -329,6 +443,25 @@ export type TinaGraphql_UserConnectionQueryVariables = Exact<{
 
 export type TinaGraphql_UserConnectionQuery = { userConnection: { __typename?: 'UserConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'UserConnectionEdges', cursor: string, node?: { __typename: 'User', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, users?: Array<{ __typename: 'UserUsers', username: string, name?: string | null, email?: string | null, password: { __typename?: 'UserUsersPassword', value: string, passwordChangeRequired?: boolean | null } } | null> | null } | null } | null> | null } };
 
+export type TinaGraphql_PageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type TinaGraphql_PageQuery = { page: { __typename: 'Page', id: string, header?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } };
+
+export type TinaGraphql_PageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TinaGraphql_PageFilter>;
+}>;
+
+
+export type TinaGraphql_PageConnectionQuery = { pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, header?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } | null } | null> | null } };
+
 
 export const TinaGraphql_UserPartsFragmentDoc = `
     fragment UserParts on User {
@@ -342,6 +475,23 @@ export const TinaGraphql_UserPartsFragmentDoc = `
       value
       passwordChangeRequired
     }
+  }
+}
+    `;
+export const TinaGraphql_PagePartsFragmentDoc = `
+    fragment PageParts on Page {
+  __typename
+  header
+  logo {
+    __typename
+    url
+    alt
+  }
+  links {
+    __typename
+    header
+    description
+    url
   }
 }
     `;
@@ -587,3 +737,246 @@ useSuspenseInfiniteUserConnectionQuery.rootKey = 'userConnection.infinite';
 
 
 useUserConnectionQuery.fetcher = (variables?: TinaGraphql_UserConnectionQueryVariables, options?: RequestInit['headers']) => fetcher<TinaGraphql_UserConnectionQuery, TinaGraphql_UserConnectionQueryVariables>(TinaGraphql_UserConnectionDocument, variables, options);
+
+export const TinaGraphql_PageDocument = `
+    query page($relativePath: String!) {
+  page(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...PageParts
+  }
+}
+    ${TinaGraphql_PagePartsFragmentDoc}`;
+
+export const usePageQuery = <
+      TData = TinaGraphql_PageQuery,
+      TError = unknown
+    >(
+      variables: TinaGraphql_PageQueryVariables,
+      options?: Omit<UseQueryOptions<TinaGraphql_PageQuery, TError, TData>, 'queryKey'> & { queryKey?: UseQueryOptions<TinaGraphql_PageQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useQuery<TinaGraphql_PageQuery, TError, TData>(
+      {
+    queryKey: ['page', variables],
+    queryFn: fetcher<TinaGraphql_PageQuery, TinaGraphql_PageQueryVariables>(TinaGraphql_PageDocument, variables),
+    ...options
+  }
+    )};
+
+usePageQuery.document = TinaGraphql_PageDocument;
+
+usePageQuery.getKey = (variables: TinaGraphql_PageQueryVariables) => ['page', variables];
+
+usePageQuery.rootKey = 'page';
+
+export const useSuspensePageQuery = <
+      TData = TinaGraphql_PageQuery,
+      TError = unknown
+    >(
+      variables: TinaGraphql_PageQueryVariables,
+      options?: Omit<UseSuspenseQueryOptions<TinaGraphql_PageQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseQueryOptions<TinaGraphql_PageQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseQuery<TinaGraphql_PageQuery, TError, TData>(
+      {
+    queryKey: ['pageSuspense', variables],
+    queryFn: fetcher<TinaGraphql_PageQuery, TinaGraphql_PageQueryVariables>(TinaGraphql_PageDocument, variables),
+    ...options
+  }
+    )};
+
+useSuspensePageQuery.document = TinaGraphql_PageDocument;
+
+useSuspensePageQuery.getKey = (variables: TinaGraphql_PageQueryVariables) => ['pageSuspense', variables];
+
+useSuspensePageQuery.rootKey = 'page';
+
+export const useInfinitePageQuery = <
+      TData = InfiniteData<TinaGraphql_PageQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_PageQueryVariables,
+      options: Omit<UseInfiniteQueryOptions<TinaGraphql_PageQuery, TError, TData>, 'queryKey'> & { queryKey?: UseInfiniteQueryOptions<TinaGraphql_PageQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useInfiniteQuery<TinaGraphql_PageQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? ['page.infinite', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_PageQuery, TinaGraphql_PageQueryVariables>(TinaGraphql_PageDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useInfinitePageQuery.getKey = (variables: TinaGraphql_PageQueryVariables) => ['page.infinite', variables];
+
+useInfinitePageQuery.rootKey = 'page.infinite';
+
+export const useSuspenseInfinitePageQuery = <
+      TData = InfiniteData<TinaGraphql_PageQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_PageQueryVariables,
+      options: Omit<UseSuspenseInfiniteQueryOptions<TinaGraphql_PageQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseInfiniteQueryOptions<TinaGraphql_PageQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseInfiniteQuery<TinaGraphql_PageQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? ['page.infiniteSuspense', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_PageQuery, TinaGraphql_PageQueryVariables>(TinaGraphql_PageDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useSuspenseInfinitePageQuery.getKey = (variables: TinaGraphql_PageQueryVariables) => ['page.infiniteSuspense', variables];
+
+useSuspenseInfinitePageQuery.rootKey = 'page.infinite';
+
+
+usePageQuery.fetcher = (variables: TinaGraphql_PageQueryVariables, options?: RequestInit['headers']) => fetcher<TinaGraphql_PageQuery, TinaGraphql_PageQueryVariables>(TinaGraphql_PageDocument, variables, options);
+
+export const TinaGraphql_PageConnectionDocument = `
+    query pageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PageFilter) {
+  pageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...PageParts
+      }
+    }
+  }
+}
+    ${TinaGraphql_PagePartsFragmentDoc}`;
+
+export const usePageConnectionQuery = <
+      TData = TinaGraphql_PageConnectionQuery,
+      TError = unknown
+    >(
+      variables?: TinaGraphql_PageConnectionQueryVariables,
+      options?: Omit<UseQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useQuery<TinaGraphql_PageConnectionQuery, TError, TData>(
+      {
+    queryKey: variables === undefined ? ['pageConnection'] : ['pageConnection', variables],
+    queryFn: fetcher<TinaGraphql_PageConnectionQuery, TinaGraphql_PageConnectionQueryVariables>(TinaGraphql_PageConnectionDocument, variables),
+    ...options
+  }
+    )};
+
+usePageConnectionQuery.document = TinaGraphql_PageConnectionDocument;
+
+usePageConnectionQuery.getKey = (variables?: TinaGraphql_PageConnectionQueryVariables) => variables === undefined ? ['pageConnection'] : ['pageConnection', variables];
+
+usePageConnectionQuery.rootKey = 'pageConnection';
+
+export const useSuspensePageConnectionQuery = <
+      TData = TinaGraphql_PageConnectionQuery,
+      TError = unknown
+    >(
+      variables?: TinaGraphql_PageConnectionQueryVariables,
+      options?: Omit<UseSuspenseQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseQuery<TinaGraphql_PageConnectionQuery, TError, TData>(
+      {
+    queryKey: variables === undefined ? ['pageConnectionSuspense'] : ['pageConnectionSuspense', variables],
+    queryFn: fetcher<TinaGraphql_PageConnectionQuery, TinaGraphql_PageConnectionQueryVariables>(TinaGraphql_PageConnectionDocument, variables),
+    ...options
+  }
+    )};
+
+useSuspensePageConnectionQuery.document = TinaGraphql_PageConnectionDocument;
+
+useSuspensePageConnectionQuery.getKey = (variables?: TinaGraphql_PageConnectionQueryVariables) => variables === undefined ? ['pageConnectionSuspense'] : ['pageConnectionSuspense', variables];
+
+useSuspensePageConnectionQuery.rootKey = 'pageConnection';
+
+export const useInfinitePageConnectionQuery = <
+      TData = InfiniteData<TinaGraphql_PageConnectionQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_PageConnectionQueryVariables,
+      options: Omit<UseInfiniteQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseInfiniteQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useInfiniteQuery<TinaGraphql_PageConnectionQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? variables === undefined ? ['pageConnection.infinite'] : ['pageConnection.infinite', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_PageConnectionQuery, TinaGraphql_PageConnectionQueryVariables>(TinaGraphql_PageConnectionDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useInfinitePageConnectionQuery.getKey = (variables?: TinaGraphql_PageConnectionQueryVariables) => variables === undefined ? ['pageConnection.infinite'] : ['pageConnection.infinite', variables];
+
+useInfinitePageConnectionQuery.rootKey = 'pageConnection.infinite';
+
+export const useSuspenseInfinitePageConnectionQuery = <
+      TData = InfiniteData<TinaGraphql_PageConnectionQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_PageConnectionQueryVariables,
+      options: Omit<UseSuspenseInfiniteQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseInfiniteQueryOptions<TinaGraphql_PageConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseInfiniteQuery<TinaGraphql_PageConnectionQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? variables === undefined ? ['pageConnection.infiniteSuspense'] : ['pageConnection.infiniteSuspense', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_PageConnectionQuery, TinaGraphql_PageConnectionQueryVariables>(TinaGraphql_PageConnectionDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useSuspenseInfinitePageConnectionQuery.getKey = (variables?: TinaGraphql_PageConnectionQueryVariables) => variables === undefined ? ['pageConnection.infiniteSuspense'] : ['pageConnection.infiniteSuspense', variables];
+
+useSuspenseInfinitePageConnectionQuery.rootKey = 'pageConnection.infinite';
+
+
+usePageConnectionQuery.fetcher = (variables?: TinaGraphql_PageConnectionQueryVariables, options?: RequestInit['headers']) => fetcher<TinaGraphql_PageConnectionQuery, TinaGraphql_PageConnectionQueryVariables>(TinaGraphql_PageConnectionDocument, variables, options);
