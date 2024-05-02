@@ -1,2 +1,3 @@
 export * from "./src/generated/tinacms.gen";
-export * from "./src/hooks/index.ts";
+export * from "./src/hooks";
+export * from "./src/collections";

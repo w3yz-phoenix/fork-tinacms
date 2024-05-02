@@ -3,7 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import { publicEnvironment, W3YZProvider } from "@w3yz/core";
 import { cn } from "@w3yz/ui";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 const fontSans = FontSans({
   subsets: ["latin"],

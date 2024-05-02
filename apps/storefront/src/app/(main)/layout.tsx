@@ -1,23 +1,22 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { useGlobal_ConfigQuery } from "@w3yz/cms-tina";
 import { getQueryClient } from "@w3yz/core";
 
 export default async function MainLayout(props: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: useLayoutQuery.getKey({
+    queryKey: useGlobal_ConfigQuery.getKey({
       relativePath: "main.json",
     }),
-    queryFn: useLayoutQuery.fetcher({
+    queryFn: useGlobal_ConfigQuery.fetcher({
       relativePath: "main.json",
     }),
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Layout>
-        <div>{props.children}</div>
-      </Layout>
+      <div>{props.children}</div>
     </HydrationBoundary>
   );
 }

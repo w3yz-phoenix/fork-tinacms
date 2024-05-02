@@ -1,9 +1,6 @@
-import { redirect } from "next/navigation";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-
-import { PageContainer } from "src/components/tina/page-container";
-import { getQueryClient } from "src/lib/providers/tanstack-query";
-import { usePageQuery } from "src/generated/gql/tinacms.gen";
+import { usePageQuery } from "@w3yz/cms-tina";
+import { getQueryClient } from "@w3yz/core";
 
 export default async function TinaPage({
   params,
@@ -12,13 +9,7 @@ export default async function TinaPage({
 }) {
   const queryClient = getQueryClient();
 
-  const filenameParameter = params.slugs?.join("/") ?? "home";
-
-  if (filenameParameter === "admin") {
-    return redirect("/admin/index.html");
-  }
-
-  const relativePath = `${filenameParameter ?? "home"}.md`;
+  const relativePath = `${params.slugs?.join("/")}.md`;
 
   await queryClient.prefetchQuery({
     queryKey: usePageQuery.getKey({
@@ -31,7 +22,7 @@ export default async function TinaPage({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <PageContainer relativePath={relativePath} />
+      <div>Page content goes here</div>
     </HydrationBoundary>
   );
 }

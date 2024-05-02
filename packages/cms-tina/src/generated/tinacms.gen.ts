@@ -81,18 +81,21 @@ export type TinaGraphql_DocumentConnectionEdges = {
 };
 
 export type TinaGraphql_DocumentFilter = {
+  global_config?: InputMaybe<TinaGraphql_Global_ConfigFilter>;
   page?: InputMaybe<TinaGraphql_PageFilter>;
   user?: InputMaybe<TinaGraphql_UserFilter>;
 };
 
 export type TinaGraphql_DocumentMutation = {
+  global_config?: InputMaybe<TinaGraphql_Global_ConfigMutation>;
   page?: InputMaybe<TinaGraphql_PageMutation>;
   user?: InputMaybe<TinaGraphql_UserMutation>;
 };
 
-export type TinaGraphql_DocumentNode = TinaGraphql_Folder | TinaGraphql_Page | TinaGraphql_User;
+export type TinaGraphql_DocumentNode = TinaGraphql_Folder | TinaGraphql_Global_Config | TinaGraphql_Page | TinaGraphql_User;
 
 export type TinaGraphql_DocumentUpdateMutation = {
+  global_config?: InputMaybe<TinaGraphql_Global_ConfigMutation>;
   page?: InputMaybe<TinaGraphql_PageMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
   user?: InputMaybe<TinaGraphql_UserMutation>;
@@ -104,21 +107,45 @@ export type TinaGraphql_Folder = {
   path: FieldWrapper<Scalars['String']['output']>;
 };
 
-export type TinaGraphql_ImageFilter = {
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  startsWith?: InputMaybe<Scalars['String']['input']>;
+export type TinaGraphql_Global_Config = TinaGraphql_Document & TinaGraphql_Node & {
+  __typename?: 'Global_config';
+  _sys: FieldWrapper<TinaGraphql_SystemInfo>;
+  _values: FieldWrapper<Scalars['JSON']['output']>;
+  globalTitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  id: FieldWrapper<Scalars['ID']['output']>;
+};
+
+export type TinaGraphql_Global_ConfigConnection = TinaGraphql_Connection & {
+  __typename?: 'Global_configConnection';
+  edges?: Maybe<Array<Maybe<FieldWrapper<TinaGraphql_Global_ConfigConnectionEdges>>>>;
+  pageInfo: FieldWrapper<TinaGraphql_PageInfo>;
+  totalCount: FieldWrapper<Scalars['Float']['output']>;
+};
+
+export type TinaGraphql_Global_ConfigConnectionEdges = {
+  __typename?: 'Global_configConnectionEdges';
+  cursor: FieldWrapper<Scalars['String']['output']>;
+  node?: Maybe<FieldWrapper<TinaGraphql_Global_Config>>;
+};
+
+export type TinaGraphql_Global_ConfigFilter = {
+  globalTitle?: InputMaybe<TinaGraphql_StringFilter>;
+};
+
+export type TinaGraphql_Global_ConfigMutation = {
+  globalTitle?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TinaGraphql_Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: FieldWrapper<TinaGraphql_DocumentNode>;
   createDocument: FieldWrapper<TinaGraphql_DocumentNode>;
+  createGlobal_config: FieldWrapper<TinaGraphql_Global_Config>;
   createPage: FieldWrapper<TinaGraphql_Page>;
   createUser: FieldWrapper<TinaGraphql_User>;
   deleteDocument: FieldWrapper<TinaGraphql_DocumentNode>;
   updateDocument: FieldWrapper<TinaGraphql_DocumentNode>;
+  updateGlobal_config: FieldWrapper<TinaGraphql_Global_Config>;
   updatePage: FieldWrapper<TinaGraphql_Page>;
   updatePassword: FieldWrapper<Scalars['Boolean']['output']>;
   updateUser: FieldWrapper<TinaGraphql_User>;
@@ -135,6 +162,12 @@ export type TinaGraphql_MutationAddPendingDocumentArgs = {
 export type TinaGraphql_MutationCreateDocumentArgs = {
   collection?: InputMaybe<Scalars['String']['input']>;
   params: TinaGraphql_DocumentMutation;
+  relativePath: Scalars['String']['input'];
+};
+
+
+export type TinaGraphql_MutationCreateGlobal_ConfigArgs = {
+  params: TinaGraphql_Global_ConfigMutation;
   relativePath: Scalars['String']['input'];
 };
 
@@ -164,6 +197,12 @@ export type TinaGraphql_MutationUpdateDocumentArgs = {
 };
 
 
+export type TinaGraphql_MutationUpdateGlobal_ConfigArgs = {
+  params: TinaGraphql_Global_ConfigMutation;
+  relativePath: Scalars['String']['input'];
+};
+
+
 export type TinaGraphql_MutationUpdatePageArgs = {
   params: TinaGraphql_PageMutation;
   relativePath: Scalars['String']['input'];
@@ -188,20 +227,8 @@ export type TinaGraphql_Page = TinaGraphql_Document & TinaGraphql_Node & {
   __typename?: 'Page';
   _sys: FieldWrapper<TinaGraphql_SystemInfo>;
   _values: FieldWrapper<Scalars['JSON']['output']>;
-  body?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  header?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   id: FieldWrapper<Scalars['ID']['output']>;
-  links?: Maybe<Array<Maybe<FieldWrapper<TinaGraphql_PageLinks>>>>;
-  logo?: Maybe<FieldWrapper<TinaGraphql_PageLogo>>;
-};
-
-export type TinaGraphql_PageBodyFilter = {
-  NewsletterSignup?: InputMaybe<TinaGraphql_PageBodyNewsletterSignupFilter>;
-};
-
-export type TinaGraphql_PageBodyNewsletterSignupFilter = {
-  buttonText?: InputMaybe<TinaGraphql_StringFilter>;
-  children?: InputMaybe<TinaGraphql_RichTextFilter>;
+  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type TinaGraphql_PageConnection = TinaGraphql_Connection & {
@@ -218,10 +245,7 @@ export type TinaGraphql_PageConnectionEdges = {
 };
 
 export type TinaGraphql_PageFilter = {
-  body?: InputMaybe<TinaGraphql_PageBodyFilter>;
-  header?: InputMaybe<TinaGraphql_StringFilter>;
-  links?: InputMaybe<TinaGraphql_PageLinksFilter>;
-  logo?: InputMaybe<TinaGraphql_PageLogoFilter>;
+  title?: InputMaybe<TinaGraphql_StringFilter>;
 };
 
 export type TinaGraphql_PageInfo = {
@@ -232,46 +256,8 @@ export type TinaGraphql_PageInfo = {
   startCursor: FieldWrapper<Scalars['String']['output']>;
 };
 
-export type TinaGraphql_PageLinks = {
-  __typename?: 'PageLinks';
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  header?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  url?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-};
-
-export type TinaGraphql_PageLinksFilter = {
-  description?: InputMaybe<TinaGraphql_StringFilter>;
-  header?: InputMaybe<TinaGraphql_StringFilter>;
-  url?: InputMaybe<TinaGraphql_StringFilter>;
-};
-
-export type TinaGraphql_PageLinksMutation = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  header?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type TinaGraphql_PageLogo = {
-  __typename?: 'PageLogo';
-  alt?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  url?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-};
-
-export type TinaGraphql_PageLogoFilter = {
-  alt?: InputMaybe<TinaGraphql_StringFilter>;
-  url?: InputMaybe<TinaGraphql_ImageFilter>;
-};
-
-export type TinaGraphql_PageLogoMutation = {
-  alt?: InputMaybe<Scalars['String']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type TinaGraphql_PageMutation = {
-  body?: InputMaybe<Scalars['JSON']['input']>;
-  header?: InputMaybe<Scalars['String']['input']>;
-  links?: InputMaybe<Array<InputMaybe<TinaGraphql_PageLinksMutation>>>;
-  logo?: InputMaybe<TinaGraphql_PageLogoMutation>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TinaGraphql_Query = {
@@ -282,6 +268,8 @@ export type TinaGraphql_Query = {
   collections: Array<FieldWrapper<TinaGraphql_Collection>>;
   document: FieldWrapper<TinaGraphql_DocumentNode>;
   getOptimizedQuery?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  global_config: FieldWrapper<TinaGraphql_Global_Config>;
+  global_configConnection: FieldWrapper<TinaGraphql_Global_ConfigConnection>;
   node: FieldWrapper<TinaGraphql_Node>;
   page: FieldWrapper<TinaGraphql_Page>;
   pageConnection: FieldWrapper<TinaGraphql_PageConnection>;
@@ -309,6 +297,21 @@ export type TinaGraphql_QueryDocumentArgs = {
 
 export type TinaGraphql_QueryGetOptimizedQueryArgs = {
   queryString: Scalars['String']['input'];
+};
+
+
+export type TinaGraphql_QueryGlobal_ConfigArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type TinaGraphql_QueryGlobal_ConfigConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TinaGraphql_Global_ConfigFilter>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -344,12 +347,6 @@ export type TinaGraphql_QueryUserConnectionArgs = {
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type TinaGraphql_RichTextFilter = {
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TinaGraphql_StringFilter = {
@@ -440,7 +437,9 @@ export type TinaGraphql_UserUsersPasswordMutation = {
 
 export type TinaGraphql_UserPartsFragment = { __typename: 'User', users?: Array<{ __typename: 'UserUsers', username: string, name?: string | null, email?: string | null, password: { __typename?: 'UserUsersPassword', value: string, passwordChangeRequired?: boolean | null } } | null> | null };
 
-export type TinaGraphql_PagePartsFragment = { __typename: 'Page', header?: string | null, body?: CustomScalars["JSONValue"] | null, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null };
+export type TinaGraphql_PagePartsFragment = { __typename: 'Page', title?: string | null };
+
+export type TinaGraphql_Global_ConfigPartsFragment = { __typename: 'Global_config', globalTitle?: string | null };
 
 export type TinaGraphql_UserQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -466,7 +465,7 @@ export type TinaGraphql_PageQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_PageQuery = { page: { __typename: 'Page', id: string, header?: string | null, body?: CustomScalars["JSONValue"] | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } };
+export type TinaGraphql_PageQuery = { page: { __typename: 'Page', id: string, title?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type TinaGraphql_PageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -478,7 +477,26 @@ export type TinaGraphql_PageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_PageConnectionQuery = { pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, header?: string | null, body?: CustomScalars["JSONValue"] | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, logo?: { __typename: 'PageLogo', url?: string | null, alt?: string | null } | null, links?: Array<{ __typename: 'PageLinks', header?: string | null, description?: string | null, url?: string | null } | null> | null } | null } | null> | null } };
+export type TinaGraphql_PageConnectionQuery = { pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, title?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type TinaGraphql_Global_ConfigQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type TinaGraphql_Global_ConfigQuery = { global_config: { __typename: 'Global_config', id: string, globalTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type TinaGraphql_Global_ConfigConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TinaGraphql_Global_ConfigFilter>;
+}>;
+
+
+export type TinaGraphql_Global_ConfigConnectionQuery = { global_configConnection: { __typename?: 'Global_configConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Global_configConnectionEdges', cursor: string, node?: { __typename: 'Global_config', id: string, globalTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 
 export const TinaGraphql_UserPartsFragmentDoc = `
@@ -499,19 +517,13 @@ export const TinaGraphql_UserPartsFragmentDoc = `
 export const TinaGraphql_PagePartsFragmentDoc = `
     fragment PageParts on Page {
   __typename
-  header
-  logo {
-    __typename
-    url
-    alt
-  }
-  links {
-    __typename
-    header
-    description
-    url
-  }
-  body
+  title
+}
+    `;
+export const TinaGraphql_Global_ConfigPartsFragmentDoc = `
+    fragment Global_configParts on Global_config {
+  __typename
+  globalTitle
 }
     `;
 export const TinaGraphql_UserDocument = `
@@ -999,3 +1011,246 @@ useSuspenseInfinitePageConnectionQuery.rootKey = 'pageConnection.infinite';
 
 
 usePageConnectionQuery.fetcher = (variables?: TinaGraphql_PageConnectionQueryVariables, options?: RequestInit['headers']) => fetcher<TinaGraphql_PageConnectionQuery, TinaGraphql_PageConnectionQueryVariables>(TinaGraphql_PageConnectionDocument, variables, options);
+
+export const TinaGraphql_Global_ConfigDocument = `
+    query global_config($relativePath: String!) {
+  global_config(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Global_configParts
+  }
+}
+    ${TinaGraphql_Global_ConfigPartsFragmentDoc}`;
+
+export const useGlobal_ConfigQuery = <
+      TData = TinaGraphql_Global_ConfigQuery,
+      TError = unknown
+    >(
+      variables: TinaGraphql_Global_ConfigQueryVariables,
+      options?: Omit<UseQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>, 'queryKey'> & { queryKey?: UseQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useQuery<TinaGraphql_Global_ConfigQuery, TError, TData>(
+      {
+    queryKey: ['global_config', variables],
+    queryFn: fetcher<TinaGraphql_Global_ConfigQuery, TinaGraphql_Global_ConfigQueryVariables>(TinaGraphql_Global_ConfigDocument, variables),
+    ...options
+  }
+    )};
+
+useGlobal_ConfigQuery.document = TinaGraphql_Global_ConfigDocument;
+
+useGlobal_ConfigQuery.getKey = (variables: TinaGraphql_Global_ConfigQueryVariables) => ['global_config', variables];
+
+useGlobal_ConfigQuery.rootKey = 'global_config';
+
+export const useSuspenseGlobal_ConfigQuery = <
+      TData = TinaGraphql_Global_ConfigQuery,
+      TError = unknown
+    >(
+      variables: TinaGraphql_Global_ConfigQueryVariables,
+      options?: Omit<UseSuspenseQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseQuery<TinaGraphql_Global_ConfigQuery, TError, TData>(
+      {
+    queryKey: ['global_configSuspense', variables],
+    queryFn: fetcher<TinaGraphql_Global_ConfigQuery, TinaGraphql_Global_ConfigQueryVariables>(TinaGraphql_Global_ConfigDocument, variables),
+    ...options
+  }
+    )};
+
+useSuspenseGlobal_ConfigQuery.document = TinaGraphql_Global_ConfigDocument;
+
+useSuspenseGlobal_ConfigQuery.getKey = (variables: TinaGraphql_Global_ConfigQueryVariables) => ['global_configSuspense', variables];
+
+useSuspenseGlobal_ConfigQuery.rootKey = 'global_config';
+
+export const useInfiniteGlobal_ConfigQuery = <
+      TData = InfiniteData<TinaGraphql_Global_ConfigQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_Global_ConfigQueryVariables,
+      options: Omit<UseInfiniteQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>, 'queryKey'> & { queryKey?: UseInfiniteQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useInfiniteQuery<TinaGraphql_Global_ConfigQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? ['global_config.infinite', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_Global_ConfigQuery, TinaGraphql_Global_ConfigQueryVariables>(TinaGraphql_Global_ConfigDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useInfiniteGlobal_ConfigQuery.getKey = (variables: TinaGraphql_Global_ConfigQueryVariables) => ['global_config.infinite', variables];
+
+useInfiniteGlobal_ConfigQuery.rootKey = 'global_config.infinite';
+
+export const useSuspenseInfiniteGlobal_ConfigQuery = <
+      TData = InfiniteData<TinaGraphql_Global_ConfigQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_Global_ConfigQueryVariables,
+      options: Omit<UseSuspenseInfiniteQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseInfiniteQueryOptions<TinaGraphql_Global_ConfigQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseInfiniteQuery<TinaGraphql_Global_ConfigQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? ['global_config.infiniteSuspense', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_Global_ConfigQuery, TinaGraphql_Global_ConfigQueryVariables>(TinaGraphql_Global_ConfigDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useSuspenseInfiniteGlobal_ConfigQuery.getKey = (variables: TinaGraphql_Global_ConfigQueryVariables) => ['global_config.infiniteSuspense', variables];
+
+useSuspenseInfiniteGlobal_ConfigQuery.rootKey = 'global_config.infinite';
+
+
+useGlobal_ConfigQuery.fetcher = (variables: TinaGraphql_Global_ConfigQueryVariables, options?: RequestInit['headers']) => fetcher<TinaGraphql_Global_ConfigQuery, TinaGraphql_Global_ConfigQueryVariables>(TinaGraphql_Global_ConfigDocument, variables, options);
+
+export const TinaGraphql_Global_ConfigConnectionDocument = `
+    query global_configConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Global_configFilter) {
+  global_configConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Global_configParts
+      }
+    }
+  }
+}
+    ${TinaGraphql_Global_ConfigPartsFragmentDoc}`;
+
+export const useGlobal_ConfigConnectionQuery = <
+      TData = TinaGraphql_Global_ConfigConnectionQuery,
+      TError = unknown
+    >(
+      variables?: TinaGraphql_Global_ConfigConnectionQueryVariables,
+      options?: Omit<UseQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useQuery<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>(
+      {
+    queryKey: variables === undefined ? ['global_configConnection'] : ['global_configConnection', variables],
+    queryFn: fetcher<TinaGraphql_Global_ConfigConnectionQuery, TinaGraphql_Global_ConfigConnectionQueryVariables>(TinaGraphql_Global_ConfigConnectionDocument, variables),
+    ...options
+  }
+    )};
+
+useGlobal_ConfigConnectionQuery.document = TinaGraphql_Global_ConfigConnectionDocument;
+
+useGlobal_ConfigConnectionQuery.getKey = (variables?: TinaGraphql_Global_ConfigConnectionQueryVariables) => variables === undefined ? ['global_configConnection'] : ['global_configConnection', variables];
+
+useGlobal_ConfigConnectionQuery.rootKey = 'global_configConnection';
+
+export const useSuspenseGlobal_ConfigConnectionQuery = <
+      TData = TinaGraphql_Global_ConfigConnectionQuery,
+      TError = unknown
+    >(
+      variables?: TinaGraphql_Global_ConfigConnectionQueryVariables,
+      options?: Omit<UseSuspenseQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseQuery<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>(
+      {
+    queryKey: variables === undefined ? ['global_configConnectionSuspense'] : ['global_configConnectionSuspense', variables],
+    queryFn: fetcher<TinaGraphql_Global_ConfigConnectionQuery, TinaGraphql_Global_ConfigConnectionQueryVariables>(TinaGraphql_Global_ConfigConnectionDocument, variables),
+    ...options
+  }
+    )};
+
+useSuspenseGlobal_ConfigConnectionQuery.document = TinaGraphql_Global_ConfigConnectionDocument;
+
+useSuspenseGlobal_ConfigConnectionQuery.getKey = (variables?: TinaGraphql_Global_ConfigConnectionQueryVariables) => variables === undefined ? ['global_configConnectionSuspense'] : ['global_configConnectionSuspense', variables];
+
+useSuspenseGlobal_ConfigConnectionQuery.rootKey = 'global_configConnection';
+
+export const useInfiniteGlobal_ConfigConnectionQuery = <
+      TData = InfiniteData<TinaGraphql_Global_ConfigConnectionQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_Global_ConfigConnectionQueryVariables,
+      options: Omit<UseInfiniteQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseInfiniteQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useInfiniteQuery<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? variables === undefined ? ['global_configConnection.infinite'] : ['global_configConnection.infinite', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_Global_ConfigConnectionQuery, TinaGraphql_Global_ConfigConnectionQueryVariables>(TinaGraphql_Global_ConfigConnectionDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useInfiniteGlobal_ConfigConnectionQuery.getKey = (variables?: TinaGraphql_Global_ConfigConnectionQueryVariables) => variables === undefined ? ['global_configConnection.infinite'] : ['global_configConnection.infinite', variables];
+
+useInfiniteGlobal_ConfigConnectionQuery.rootKey = 'global_configConnection.infinite';
+
+export const useSuspenseInfiniteGlobal_ConfigConnectionQuery = <
+      TData = InfiniteData<TinaGraphql_Global_ConfigConnectionQuery>,
+      TError = unknown
+    >(
+      variables: TinaGraphql_Global_ConfigConnectionQueryVariables,
+      options: Omit<UseSuspenseInfiniteQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>, 'queryKey'> & { queryKey?: UseSuspenseInfiniteQueryOptions<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useSuspenseInfiniteQuery<TinaGraphql_Global_ConfigConnectionQuery, TError, TData>(
+      (() => {
+    const { queryKey: optionsQueryKey, ...restOptions } = options;
+    return {
+      queryKey: optionsQueryKey ?? variables === undefined ? ['global_configConnection.infiniteSuspense'] : ['global_configConnection.infiniteSuspense', variables],
+      queryFn: (metaData) => fetcher<TinaGraphql_Global_ConfigConnectionQuery, TinaGraphql_Global_ConfigConnectionQueryVariables>(TinaGraphql_Global_ConfigConnectionDocument, {...variables, ...(metaData.pageParam ?? {})})(),
+      ...restOptions
+    }
+  })()
+    )};
+
+useSuspenseInfiniteGlobal_ConfigConnectionQuery.getKey = (variables?: TinaGraphql_Global_ConfigConnectionQueryVariables) => variables === undefined ? ['global_configConnection.infiniteSuspense'] : ['global_configConnection.infiniteSuspense', variables];
+
+useSuspenseInfiniteGlobal_ConfigConnectionQuery.rootKey = 'global_configConnection.infinite';
+
+
+useGlobal_ConfigConnectionQuery.fetcher = (variables?: TinaGraphql_Global_ConfigConnectionQueryVariables, options?: RequestInit['headers']) => fetcher<TinaGraphql_Global_ConfigConnectionQuery, TinaGraphql_Global_ConfigConnectionQueryVariables>(TinaGraphql_Global_ConfigConnectionDocument, variables, options);
