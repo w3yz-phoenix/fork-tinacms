@@ -1,5 +1,15 @@
 version: "3"
 
+interval: 500ms
+
+includes:
+  core:
+    taskfile: ./packages/core/Taskfile.yml
+    dir: ./packages/core
+  storefront:
+    taskfile: ./apps/storefront/Taskfile.yml
+    dir: ./apps/storefront
+
 tasks:
   install:
     cmds:
@@ -56,14 +66,10 @@ tasks:
   generate:
     deps: [generate-tina, generate-saleor]
 
-  storefront:
-    run: once
-    cmds:
-      - bun -b "--filter=@w3yz-app/storefront" run dev
-
   watch:
     watch: true
     deps: [generate]
 
   dev:
-    deps: [storefront]
+    cmds:
+      - task: storefront:dev

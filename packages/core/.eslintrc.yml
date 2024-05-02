@@ -1,2 +1,2 @@
 extends:
-  - "@w3yz/eslint/nextjs"
+  - "@w3yz/eslint/recommended"

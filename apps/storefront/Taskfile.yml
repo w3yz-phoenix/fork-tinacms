@@ -1,0 +1,28 @@
+version: "3"
+
+tasks:
+  lint:
+    cmds:
+      - bun x eslint .
+
+  build-tina:
+    cmds:
+      - bun -b x tinacms build
+
+  build-next:
+    cmds:
+      - bun -b x next build
+
+  build:
+    deps: [build-tina, build-next]
+
+  dev:
+    env:
+      NODE_ENV: development
+      TINA_PUBLIC_IS_LOCAL: true
+    cmds:
+      - bun -b x tinacms dev -c "next dev"
+
+  start:
+    cmds:
+      - bun -b x next start

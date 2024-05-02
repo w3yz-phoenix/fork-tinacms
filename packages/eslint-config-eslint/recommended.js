@@ -3,9 +3,7 @@
 const typescriptProject = [
   "./tsconfig.json",
   "./packages/*/tsconfig.json",
-  "./apps/custom/*/tsconfig.json",
-  "./apps/storefront/*/tsconfig.json",
-  "./apps/saleor/*/tsconfig.json",
+  "./apps/*/tsconfig.json",
 ];
 
 const config = {
