@@ -29,13 +29,5 @@ export default isLocal
         repo,
         token,
       }),
-      databaseAdapter: new RedisLevel<string, Record<string, any>>({
-        redis: {
-          url:
-            (process.env.KV_REST_API_URL as string) || "http://localhost:8079",
-          token: (process.env.KV_REST_API_TOKEN as string) || "example_token",
-        },
-        debug: process.env.DEBUG === "true" || false,
-      }),
       namespace: branch,
     });
