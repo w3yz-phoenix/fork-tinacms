@@ -21,7 +21,7 @@ export const useTinaQuery = <
   const layoutProperties = {
     query: useHook.document,
     variables: variables,
-    data: myQuery.data,
+    data: myQuery.data ?? {},
   };
 
   const tinaResponse = useTina(layoutProperties as any);

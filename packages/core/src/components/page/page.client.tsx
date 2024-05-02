@@ -12,8 +12,6 @@ export const PageClient = (props: { relativePath: string }) => {
     relativePath: props.relativePath,
   });
 
-  console.log(pageProperties);
-
   return (
     <div>
       <h1>

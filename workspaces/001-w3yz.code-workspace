@@ -42,6 +42,7 @@
     },
   ],
   "settings": {
+    "bun.debugTerminal.enabled": false,
     "debug.javascript.pickAndAttachOptions": {
       "autoAttachChildProcesses": true,
       "continueOnAttach": true,
