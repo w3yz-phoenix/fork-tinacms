@@ -1,7 +1,7 @@
 {
   "name": "@w3yz/types",
+  "version": "0.0.0",
   "type": "module",
-  "module": "./export.ts",
   "main": "./export.ts",
   "devDependencies": {
     "@types/bun": "latest"

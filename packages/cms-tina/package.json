@@ -1,6 +1,6 @@
 {
   "name": "@w3yz/cms-tina",
-  "module": "./export.ts",
+  "version": "0.0.0",
   "main": "./export.ts",
   "type": "module",
   "dependencies": {

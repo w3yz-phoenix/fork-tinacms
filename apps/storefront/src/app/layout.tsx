@@ -1,8 +1,7 @@
 import "./globals.css";
 import { Inter as FontSans } from "next/font/google";
-import { publicEnvironment } from "src/lib/environment";
-import { cn } from "src/lib/utils";
-import { Providers } from "src/lib/providers/providers";
+import { publicEnvironment, W3YZProvider } from "@w3yz/core";
+import { cn } from "@w3yz/ui";
 
 import type { Metadata } from "next";
 
@@ -44,7 +43,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Providers>{children}</Providers>
+        <W3YZProvider>{children}</W3YZProvider>
       </body>
     </html>
   );

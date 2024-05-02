@@ -1,8 +1,8 @@
 {
   "name": "@w3yz/ui-furniture",
+  "version": "0.0.0",
   "type": "module",
   "main": "./export.ts",
-  "module": "./export.ts",
   "dependencies": {
     "next": "14.2.3",
     "react": "^18",

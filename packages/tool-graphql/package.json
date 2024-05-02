@@ -1,7 +1,7 @@
 {
   "name": "@w3yz/tool-graphql",
+  "version": "0.0.0",
   "type": "module",
-  "module": "./export.ts",
   "main": "./export.ts",
   "dependencies": {
     "@graphql-codegen/cli": "^5.0.2",

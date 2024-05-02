@@ -1,5 +1,6 @@
 {
   "name": "@w3yz/core",
+  "version": "0.0.0",
   "type": "module",
   "main": "./export.ts",
   "module": "./export.ts",

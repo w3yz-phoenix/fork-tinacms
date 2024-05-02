@@ -1,8 +1,12 @@
 {
   "name": "000-w3yz-bun2-000",
+  "version": "0.0.0",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2"
+  }
 }

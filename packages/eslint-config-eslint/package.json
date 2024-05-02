@@ -1,5 +1,6 @@
 {
   "name": "@w3yz/eslint-config-eslint",
+  "version": "0.0.0",
   "type": "commonjs",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.8.0",

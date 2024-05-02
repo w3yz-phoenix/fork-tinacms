@@ -1,8 +1,5 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-
-import { Layout } from "src/components/tina/demo/layout";
-import { useLayoutQuery } from "src/generated/gql/tinacms.gen";
-import { getQueryClient } from "src/lib/providers/tanstack-query";
+import { getQueryClient } from "@w3yz/core";
 
 export default async function MainLayout(props: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
