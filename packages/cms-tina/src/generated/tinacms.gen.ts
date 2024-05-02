@@ -227,6 +227,7 @@ export type TinaGraphql_Page = TinaGraphql_Document & TinaGraphql_Node & {
   __typename?: 'Page';
   _sys: FieldWrapper<TinaGraphql_SystemInfo>;
   _values: FieldWrapper<Scalars['JSON']['output']>;
+  body?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   id: FieldWrapper<Scalars['ID']['output']>;
   title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
@@ -245,6 +246,7 @@ export type TinaGraphql_PageConnectionEdges = {
 };
 
 export type TinaGraphql_PageFilter = {
+  body?: InputMaybe<TinaGraphql_RichTextFilter>;
   title?: InputMaybe<TinaGraphql_StringFilter>;
 };
 
@@ -257,6 +259,7 @@ export type TinaGraphql_PageInfo = {
 };
 
 export type TinaGraphql_PageMutation = {
+  body?: InputMaybe<Scalars['JSON']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -349,6 +352,12 @@ export type TinaGraphql_QueryUserConnectionArgs = {
   sort?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type TinaGraphql_RichTextFilter = {
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type TinaGraphql_StringFilter = {
   eq?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -437,7 +446,7 @@ export type TinaGraphql_UserUsersPasswordMutation = {
 
 export type TinaGraphql_UserPartsFragment = { __typename: 'User', users?: Array<{ __typename: 'UserUsers', username: string, name?: string | null, email?: string | null, password: { __typename?: 'UserUsersPassword', value: string, passwordChangeRequired?: boolean | null } } | null> | null };
 
-export type TinaGraphql_PagePartsFragment = { __typename: 'Page', title?: string | null };
+export type TinaGraphql_PagePartsFragment = { __typename: 'Page', title?: string | null, body?: CustomScalars["JSONValue"] | null };
 
 export type TinaGraphql_GlobalConfigPartsFragment = { __typename: 'GlobalConfig', globalTitle?: string | null };
 
@@ -465,7 +474,7 @@ export type TinaGraphql_PageQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_PageQuery = { page: { __typename: 'Page', id: string, title?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type TinaGraphql_PageQuery = { page: { __typename: 'Page', id: string, title?: string | null, body?: CustomScalars["JSONValue"] | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type TinaGraphql_PageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -477,7 +486,7 @@ export type TinaGraphql_PageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_PageConnectionQuery = { pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, title?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type TinaGraphql_PageConnectionQuery = { pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, title?: string | null, body?: CustomScalars["JSONValue"] | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type TinaGraphql_GlobalConfigQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -518,6 +527,7 @@ export const TinaGraphql_PagePartsFragmentDoc = `
     fragment PageParts on Page {
   __typename
   title
+  body
 }
     `;
 export const TinaGraphql_GlobalConfigPartsFragmentDoc = `
