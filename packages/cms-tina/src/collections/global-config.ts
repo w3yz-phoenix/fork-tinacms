@@ -2,8 +2,8 @@ import type { Collection } from "tinacms";
 
 export const GlobalConfigCollection: Collection = {
   label: "Global Configurations",
-  name: "global_config",
-  path: "content/global_config",
+  name: "globalConfig",
+  path: "content/global-config",
   format: "yml",
   ui: {
     global: true,

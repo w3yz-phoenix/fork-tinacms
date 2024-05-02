@@ -1,8 +1,8 @@
 export const Header = () => {
   return (
-    <div className="bg-blue-500 flex flex-1">
+    <div className="flex flex-1 bg-blue-500">
       <h1 className="text-red-600">Header</h1>
-      <div className="mt-3 bg-white text-cyan-600 text-xl">Another test</div>
+      <div className="mt-3 bg-white text-xl text-cyan-600">Another test</div>
     </div>
   );
 };

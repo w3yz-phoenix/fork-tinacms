@@ -5,7 +5,7 @@ import * as React from "react";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { getQueryClient } from "./tanstack-query";
+import { getQueryClient } from "../../lib/tanstack-query";
 
 export function W3YZProvider(props: { children: React.ReactNode }) {
   // NOTE: Avoid useState when initializing the query client if you don't

@@ -1,6 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
 
-import { isClient } from "../../lib/utils";
+import { isClient } from "./utils";
 
 function makeQueryClient() {
   return new QueryClient({
