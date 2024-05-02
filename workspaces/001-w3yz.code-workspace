@@ -32,6 +32,10 @@
       "name": "@w3yz/types",
       "path": "../packages/types",
     },
+    {
+      "name": "@w3yz/ui-furniture",
+      "path": "../packages/ui-furniture",
+    },
   ],
   "settings": {
     "debug.javascript.pickAndAttachOptions": {

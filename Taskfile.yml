@@ -31,9 +31,14 @@ tasks:
 
   generate-tina:
     sources:
-      - packages/cms-tina/config/**/*.ts
-      - packages/cms-tina/content/**/*
-      - packages/cms-tina/tina/**/*
+      - apps/storefront/config/**/*.ts
+      - apps/storefront/content/**/*
+      - apps/storefront/tina/**/*
+      - apps/storefront/public/**/*
+      - packages/core/**/*.tsx
+      - packages/core/**/*.ts
+      - packages/cms-tina/**/*
+      - exclude: packages/cms-tina/node_modules/**/*
       - exclude: packages/cms-tina/src/generated/**/*
     generates:
       - packages/cms-tina/src/generated/tinacms.gen.ts
@@ -41,9 +46,8 @@ tasks:
 
   generate-saleor:
     sources:
-      - packages/ecom-saleor/**/*.graphql
-      - packages/ecom-saleor/**/*.ts
-      - packages/ecom-saleor/**/*.tsx
+      - packages/ecom-saleor/**/*
+      - exclude: packages/ecom-saleor/node_modules/**/*
       - exclude: packages/ecom-saleor/src/generated/**/*.ts
     generates:
       - packages/ecom-saleor/src/generated/**/*.ts

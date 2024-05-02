@@ -1,2 +1,2 @@
 export * from "./src/generated/tinacms.gen";
-export * from "./tina/database";
+export * from "./src/hooks/index.ts";
