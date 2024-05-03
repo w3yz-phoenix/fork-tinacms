@@ -25,7 +25,7 @@ export const getIconSchema = () => {
             <SelectContent>
               {Object.entries(RadixIcons).map(([iconName, Icon]) => (
                 <SelectItem key={iconName} value={iconName}>
-                  <Icon className="size-6" />
+                  {iconName}
                 </SelectItem>
               ))}
             </SelectContent>
