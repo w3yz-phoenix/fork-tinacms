@@ -40,6 +40,10 @@
       "name": "@w3yz/ui-shadcn",
       "path": "../packages/ui-shadcn",
     },
+    {
+      "name": "@w3yz/ui-tina",
+      "path": "../packages/ui-tina",
+    },
   ],
   "settings": {
     "tailwindCSS.experimental.configFile": "../apps/storefront/tailwind.config.ts",

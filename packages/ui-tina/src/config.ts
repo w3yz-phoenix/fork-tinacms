@@ -3,11 +3,12 @@ import {
   TinaUserCollection,
 } from "tinacms-authjs/dist/tinacms";
 import { defineConfig, LocalAuthProvider } from "tinacms";
-import { GlobalConfigCollection, PageCollection } from "@w3yz/ui-core";
+
+import { GlobalConfigCollection, PageCollection } from "./collections";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
-export default defineConfig({
+export const tinaConfig = defineConfig({
   authProvider: isLocal
     ? new LocalAuthProvider()
     : new UsernamePasswordAuthJSProvider(),

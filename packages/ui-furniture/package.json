@@ -4,9 +4,6 @@
   "type": "module",
   "main": "./export.ts",
   "dependencies": {
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
     "@tanstack/react-query": "^5.32.0",
     "@tanstack/react-query-devtools": "^5.32.0",
     "@tanstack/react-query-next-experimental": "^5.32.0",
@@ -21,6 +18,9 @@
     "@w3yz/tool-graphql": "workspace:*"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18"
   }
 }

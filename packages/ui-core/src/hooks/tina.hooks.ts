@@ -1,5 +1,7 @@
 import { useTina, useEditState } from "tinacms/dist/react";
 
+export { tinaField } from "tinacms/dist/react";
+
 export const useTinaQuery = <
   TData,
   THook extends {
