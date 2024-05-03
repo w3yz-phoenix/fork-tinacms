@@ -3,7 +3,7 @@
 import { usePageQuery } from "@w3yz/gql-tina";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
-import { getQueryClient, prefetchQuery } from "../../lib";
+import { getQueryClient, prefetchQuery } from "../../lib/tanstack-query";
 
 import { PageClient } from "./page.client";
 

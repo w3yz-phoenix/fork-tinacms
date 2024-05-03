@@ -1,12 +1,10 @@
 "use client";
 
-import {
-  tinaField,
-  usePageQuery,
-  useTinaQuery,
-  type TinaGraphql_PageQuery,
-} from "@w3yz/gql-tina";
+import { usePageQuery, type TinaGraphql_PageQuery } from "@w3yz/gql-tina";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { tinaField } from "tinacms/dist/react";
+
+import { useTinaQuery } from "../../hooks";
 
 export const PageClient = (props: { relativePath: string }) => {
   const { page } = useTinaQuery<TinaGraphql_PageQuery>(usePageQuery, {

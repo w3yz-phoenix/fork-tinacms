@@ -3,8 +3,7 @@ import {
   TinaUserCollection,
 } from "tinacms-authjs/dist/tinacms";
 import { defineConfig, LocalAuthProvider } from "tinacms";
-
-import { GlobalConfigCollection, PageCollection } from "@w3yz/gql-tina";
+import { GlobalConfigCollection, PageCollection } from "@w3yz/ui-core";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
@@ -19,7 +18,7 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "",
+      mediaRoot: "uploads",
       publicFolder: "public",
       static: true,
     },

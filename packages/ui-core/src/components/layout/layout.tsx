@@ -1,9 +1,13 @@
 "use server";
 
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { defaultGlobalConfig, useGlobalConfigQuery } from "@w3yz/gql-tina";
+import { useGlobalConfigQuery } from "@w3yz/gql-tina";
 
-import { getQueryClient, prefetchQuery } from "@w3yz/ui-core";
+import {
+  defaultGlobalConfig,
+  getQueryClient,
+  prefetchQuery,
+} from "@w3yz/ui-core";
 
 import { Header } from "./header";
 import { Footer } from "./footer";

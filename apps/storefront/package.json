@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@w3yz/gql-tina": "workspace:*",
     "@w3yz/ui-core": "workspace:*",
-    "@w3yz/ui-shadcn": "workspace:*",
     "@w3yz/ui-furniture": "workspace:*",
+    "@w3yz/ui-shadcn": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "mongodb-level": "^0.0.4",

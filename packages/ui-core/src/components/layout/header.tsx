@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  tinaField,
   useGlobalConfigQuery,
-  useTinaQuery,
   type TinaGraphql_GlobalConfigQuery,
 } from "@w3yz/gql-tina";
 import Image from "next/image";
 import Link from "next/link";
+
+import { useTinaQuery } from "../../hooks";
 
 export const Header = ({ globalConfigPath }: { globalConfigPath: string }) => {
   const { globalConfig } = useTinaQuery<TinaGraphql_GlobalConfigQuery>(
