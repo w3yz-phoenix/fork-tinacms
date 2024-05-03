@@ -4,7 +4,7 @@ import {
 } from "tinacms-authjs/dist/tinacms";
 import { defineConfig, LocalAuthProvider } from "tinacms";
 
-import { GlobalConfigCollection, PageCollection } from "./collections";
+import { GlobalConfigCollection, PageCollection } from "../src/collections";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
