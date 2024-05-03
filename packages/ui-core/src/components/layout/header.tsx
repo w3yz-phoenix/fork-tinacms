@@ -14,8 +14,10 @@ import { tinaField, useTinaQuery } from "../../hooks";
 
 const ImageComponent = ({
   image,
+  "data-tina-field": dataTinaField,
 }: {
   image?: Maybe<Get<TinaGraphql_GlobalConfigQuery, "globalConfig.header.logo">>;
+  "data-tina-field"?: string;
 }) => {
   const imageElement = (
     <Image
@@ -25,11 +27,12 @@ const ImageComponent = ({
       alt={image?.alt ?? "W3YZ"}
     />
   );
-  return image?.link ? (
+  const content = image?.link ? (
     <Link href={image?.link._sys.filename}>{imageElement}</Link>
   ) : (
     imageElement
   );
+  return <div data-tina-field={dataTinaField}>{content}</div>;
 };
 
 export const Header = ({ globalConfigPath }: { globalConfigPath: string }) => {
@@ -49,7 +52,10 @@ export const Header = ({ globalConfigPath }: { globalConfigPath: string }) => {
     >
       <div className="hidden w-full flex-col lg:flex">
         <div className="flex items-center justify-between bg-white px-[60px] py-8">
-          <ImageComponent image={header?.logo} />
+          <ImageComponent
+            data-tina-field={tinaField(header as any, "logo")}
+            image={header?.logo}
+          />
           <div className="flex items-center gap-x-6 text-base font-normal text-[#292929] lg:gap-x-12 2xl:gap-x-[90px] 2xl:text-xl">
             {header?.links?.map((link, index) => (
               <Link
