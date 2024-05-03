@@ -19,7 +19,7 @@ export const getIconSchema = () => {
       component: () => {
         return (
           <Select>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Icon" />
             </SelectTrigger>
             <SelectContent>

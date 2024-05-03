@@ -42,6 +42,7 @@
     },
   ],
   "settings": {
+    "tailwindCSS.experimental.configFile": "../apps/storefront/tailwind.config.ts",
     "bun.debugTerminal.enabled": false,
     "debug.javascript.pickAndAttachOptions": {
       "autoAttachChildProcesses": true,
