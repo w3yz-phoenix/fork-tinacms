@@ -1,4 +1,18 @@
+import { icons } from "@tabler/icons-react";
+
+import type { StringField } from "@tinacms/schema-tools";
 import type { Collection } from "tinacms";
+
+export const iconSchema: StringField = {
+  type: "string",
+  label: "Icon",
+  name: "icon",
+  searchable: true,
+  options: Object.entries(icons).map(([name]) => ({
+    value: name,
+    label: name,
+  })),
+};
 
 export const defaultGlobalConfig = "main.yml";
 
@@ -18,6 +32,7 @@ export const GlobalConfigCollection: Collection = {
       name: "globalTitle",
       label: "Global Title",
     },
+    iconSchema,
     // {
     //   name: "header",
     //   label: "Header",

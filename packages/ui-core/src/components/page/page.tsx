@@ -1,6 +1,6 @@
 "use server";
 
-import { usePageQuery } from "@w3yz/cms-tina";
+import { usePageQuery } from "@w3yz/gql-tina";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { getQueryClient, prefetchQuery } from "../../lib";

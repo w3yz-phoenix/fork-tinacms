@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
-    "@w3yz/cms-tina": "workspace:*",
+    "@w3yz/gql-tina": "workspace:*",
     "@w3yz/ui-core": "workspace:*",
     "@w3yz/ui-shadcn": "workspace:*",
     "@w3yz/ui-furniture": "workspace:*",

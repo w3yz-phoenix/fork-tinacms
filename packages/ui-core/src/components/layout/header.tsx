@@ -5,7 +5,7 @@ import {
   useGlobalConfigQuery,
   useTinaQuery,
   type TinaGraphql_GlobalConfigQuery,
-} from "@w3yz/cms-tina";
+} from "@w3yz/gql-tina";
 import Image from "next/image";
 import Link from "next/link";
 

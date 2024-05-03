@@ -20,7 +20,7 @@ const config = {
 };
 
 export const getSaleorGraphqlConfig = () => {
-  return defineGraphqlProject("@w3yz/ecom-saleor", {
+  return defineGraphqlProject("@w3yz/gql-saleor", {
     schema: [resolvePath("../src/vendor/*.graphql")],
     documents: [resolvePath("../src/graphql/**/*.graphql")],
     extensions: {

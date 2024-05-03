@@ -52,7 +52,7 @@ tasks:
       - exclude: packages/cms-tina/src/generated/**/*
     generates:
       - packages/cms-tina/src/generated/tinacms.gen.ts
-    cmd: bun -b x graphql-codegen -p '@w3yz/cms-tina' {{.CLI_ARGS}}
+    cmd: bun -b x graphql-codegen -p '@w3yz/gql-tina' {{.CLI_ARGS}}
 
   generate-saleor:
     sources:
@@ -61,7 +61,7 @@ tasks:
       - exclude: packages/ecom-saleor/src/generated/**/*.ts
     generates:
       - packages/ecom-saleor/src/generated/**/*.ts
-    cmd: bun -b x graphql-codegen -p '@w3yz/ecom-saleor' {{.CLI_ARGS}}
+    cmd: bun -b x graphql-codegen -p '@w3yz/gql-saleor' {{.CLI_ARGS}}
 
   generate-ci:
     deps: [generate-tina, generate-saleor]

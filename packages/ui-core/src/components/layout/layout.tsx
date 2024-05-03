@@ -1,7 +1,7 @@
 "use server";
 
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { defaultGlobalConfig, useGlobalConfigQuery } from "@w3yz/cms-tina";
+import { defaultGlobalConfig, useGlobalConfigQuery } from "@w3yz/gql-tina";
 
 import { getQueryClient, prefetchQuery } from "@w3yz/ui-core";
 

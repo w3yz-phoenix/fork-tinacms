@@ -9,16 +9,16 @@
       "path": "../apps/storefront",
     },
     {
-      "name": "@w3yz/cms-tina",
-      "path": "../packages/cms-tina",
-    },
-    {
-      "name": "@w3yz/ecom-saleor",
-      "path": "../packages/ecom-saleor",
-    },
-    {
       "name": "@w3yz/eslint-config-eslint",
       "path": "../packages/eslint-config-eslint",
+    },
+    {
+      "name": "@w3yz/gql-saleor",
+      "path": "../packages/gql-saleor",
+    },
+    {
+      "name": "@w3yz/gql-tina",
+      "path": "../packages/gql-tina",
     },
     {
       "name": "@w3yz/tool-graphql",

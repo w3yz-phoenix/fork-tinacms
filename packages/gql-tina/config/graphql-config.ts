@@ -20,7 +20,7 @@ const config = {
 };
 
 export const getTinaGraphqlConfig = () => {
-  return defineGraphqlProject("@w3yz/cms-tina", {
+  return defineGraphqlProject("@w3yz/gql-tina", {
     schema: [
       resolvePath("../../../apps/storefront/tina/__generated__/schema.gql"),
     ],

@@ -5,7 +5,7 @@ import {
   usePageQuery,
   useTinaQuery,
   type TinaGraphql_PageQuery,
-} from "@w3yz/cms-tina";
+} from "@w3yz/gql-tina";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 export const PageClient = (props: { relativePath: string }) => {

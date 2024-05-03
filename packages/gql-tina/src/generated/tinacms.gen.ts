@@ -112,6 +112,7 @@ export type TinaGraphql_GlobalConfig = TinaGraphql_Document & TinaGraphql_Node &
   _sys: FieldWrapper<TinaGraphql_SystemInfo>;
   _values: FieldWrapper<Scalars['JSON']['output']>;
   globalTitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  icon?: Maybe<FieldWrapper<TinaGraphql_GlobalConfigIcon>>;
   id: FieldWrapper<Scalars['ID']['output']>;
 };
 
@@ -130,10 +131,25 @@ export type TinaGraphql_GlobalConfigConnectionEdges = {
 
 export type TinaGraphql_GlobalConfigFilter = {
   globalTitle?: InputMaybe<TinaGraphql_StringFilter>;
+  icon?: InputMaybe<TinaGraphql_GlobalConfigIconFilter>;
+};
+
+export type TinaGraphql_GlobalConfigIcon = {
+  __typename?: 'GlobalConfigIcon';
+  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+};
+
+export type TinaGraphql_GlobalConfigIconFilter = {
+  name?: InputMaybe<TinaGraphql_StringFilter>;
+};
+
+export type TinaGraphql_GlobalConfigIconMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TinaGraphql_GlobalConfigMutation = {
   globalTitle?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<TinaGraphql_GlobalConfigIconMutation>;
 };
 
 export type TinaGraphql_Mutation = {
@@ -448,7 +464,7 @@ export type TinaGraphql_UserPartsFragment = { __typename: 'User', users?: Array<
 
 export type TinaGraphql_PagePartsFragment = { __typename: 'Page', title?: string | null, body?: CustomScalars["JSONValue"] | null };
 
-export type TinaGraphql_GlobalConfigPartsFragment = { __typename: 'GlobalConfig', globalTitle?: string | null };
+export type TinaGraphql_GlobalConfigPartsFragment = { __typename: 'GlobalConfig', globalTitle?: string | null, icon?: { __typename: 'GlobalConfigIcon', name?: string | null } | null };
 
 export type TinaGraphql_UserQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -493,7 +509,7 @@ export type TinaGraphql_GlobalConfigQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_GlobalConfigQuery = { globalConfig: { __typename: 'GlobalConfig', id: string, globalTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type TinaGraphql_GlobalConfigQuery = { globalConfig: { __typename: 'GlobalConfig', id: string, globalTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, icon?: { __typename: 'GlobalConfigIcon', name?: string | null } | null } };
 
 export type TinaGraphql_GlobalConfigConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -505,7 +521,7 @@ export type TinaGraphql_GlobalConfigConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TinaGraphql_GlobalConfigConnectionQuery = { globalConfigConnection: { __typename?: 'GlobalConfigConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GlobalConfigConnectionEdges', cursor: string, node?: { __typename: 'GlobalConfig', id: string, globalTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type TinaGraphql_GlobalConfigConnectionQuery = { globalConfigConnection: { __typename?: 'GlobalConfigConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GlobalConfigConnectionEdges', cursor: string, node?: { __typename: 'GlobalConfig', id: string, globalTitle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, icon?: { __typename: 'GlobalConfigIcon', name?: string | null } | null } | null } | null> | null } };
 
 
 export const TinaGraphql_UserPartsFragmentDoc = `
@@ -534,6 +550,10 @@ export const TinaGraphql_GlobalConfigPartsFragmentDoc = `
     fragment GlobalConfigParts on GlobalConfig {
   __typename
   globalTitle
+  icon {
+    __typename
+    name
+  }
 }
     `;
 export const TinaGraphql_UserDocument = `

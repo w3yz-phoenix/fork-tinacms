@@ -1,4 +1,4 @@
-# @w3yz/cms-tina
+# @w3yz/gql-tina
 
 To install dependencies:
 
