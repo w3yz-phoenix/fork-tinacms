@@ -131,7 +131,7 @@ dist
 
 .direnv
 
-generated/
-__generated__/
+generated/**/*
+__generated__/**/*
 !generated/.gitkeep
 !__generated__/.gitkeep
