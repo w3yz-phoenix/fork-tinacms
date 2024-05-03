@@ -130,3 +130,6 @@ dist
 .pnp.*
 
 .direnv
+
+generated/
+__generated__/

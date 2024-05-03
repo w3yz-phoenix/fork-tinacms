@@ -1,7 +1,5 @@
 import type { Collection } from "tinacms";
 
-import { getIconSchema } from "../components";
-
 export const defaultGlobalConfig = "main.yml";
 
 export const GlobalConfigCollection: Collection = {
@@ -20,6 +18,5 @@ export const GlobalConfigCollection: Collection = {
       name: "globalTitle",
       label: "Global Title",
     },
-    getIconSchema(),
   ],
 };
