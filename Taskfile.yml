@@ -63,7 +63,11 @@ tasks:
       - packages/ecom-saleor/src/generated/**/*.ts
     cmd: bun -b x graphql-codegen -p '@w3yz/ecom-saleor' {{.CLI_ARGS}}
 
+  generate-ci:
+    deps: [generate-tina, generate-saleor]
+
   generate:
+    watch: true
     deps: [generate-tina, generate-saleor]
 
   watch:
