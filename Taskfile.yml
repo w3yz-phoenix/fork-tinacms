@@ -3,12 +3,16 @@ version: "3"
 interval: 500ms
 
 includes:
-  core:
+  ui-core:
     taskfile: ./packages/ui-core/Taskfile.yml
     dir: ./packages/ui-core
   storefront:
     taskfile: ./apps/storefront/Taskfile.yml
     dir: ./apps/storefront
+  gql-tina:
+    taskfile: ./packages/gql-tina/Taskfile.yml
+  gql-saleor:
+    taskfile: ./packages/gql-saleor/Taskfile.yml
 
 tasks:
   install:
@@ -39,36 +43,8 @@ tasks:
       - mkdir -p packages/ecom-saleor/src/vendor;
       - curl -L https://raw.githubusercontent.com/saleor/saleor/{{.SALEOR_SCHEMA_VERSION}}/saleor/graphql/schema.graphql -o packages/ecom-saleor/src/vendor/saleor.graphql
 
-  generate-tina:
-    sources:
-      - apps/storefront/config/**/*.ts
-      - apps/storefront/content/**/*
-      - apps/storefront/tina/**/*
-      - apps/storefront/public/**/*
-      - packages/ui-core/**/*.tsx
-      - packages/ui-core/**/*.ts
-      - packages/cms-tina/**/*
-      - exclude: packages/cms-tina/node_modules/**/*
-      - exclude: packages/cms-tina/src/generated/**/*
-    generates:
-      - packages/cms-tina/src/generated/tinacms.gen.ts
-    cmd: bun -b x graphql-codegen -p '@w3yz/gql-tina' {{.CLI_ARGS}}
-
-  generate-saleor:
-    sources:
-      - packages/ecom-saleor/**/*
-      - exclude: packages/ecom-saleor/node_modules/**/*
-      - exclude: packages/ecom-saleor/src/generated/**/*.ts
-    generates:
-      - packages/ecom-saleor/src/generated/**/*.ts
-    cmd: bun -b x graphql-codegen -p '@w3yz/gql-saleor' {{.CLI_ARGS}}
-
-  generate-ci:
-    deps: [generate-tina, generate-saleor]
-
   generate:
-    watch: true
-    deps: [generate-tina, generate-saleor]
+    deps: [gql-tina:generate, gql-saleor:generate]
 
   watch:
     watch: true

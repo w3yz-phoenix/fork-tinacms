@@ -1,0 +1,11 @@
+version: "3"
+
+tasks:
+  generate:
+    sources:
+      - apps/storefront/tina/**/*
+      - packages/gql-tina/**/*
+      - exclude: packages/gql-tina/src/generated/**/*
+    generates:
+      - packages/gql-tina/src/generated/tinacms.gen.ts
+    cmd: bun -b x graphql-codegen -p '@w3yz/gql-tina' {{.CLI_ARGS}}

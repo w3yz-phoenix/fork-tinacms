@@ -1,12 +1,14 @@
+import path from "node:path";
+
 import {
   defineCodegenConfig,
   defineGraphqlProject,
   defineReactQueryPlugin,
   templates,
 } from "@w3yz/tool-graphql";
-import path from "path";
 
 export const resolvePath = (relativePath: string) => {
+  // eslint-disable-next-line unicorn/prefer-module
   return path.resolve(__dirname, relativePath);
 };
 

@@ -1,0 +1,11 @@
+version: "3"
+
+tasks:
+  generate:
+    sources:
+      - packages/gql-saleor/graphql/**/*
+      - packages/gql-saleor/vendor/**/*
+      - exclude: packages/gql-saleor/src/generated/**/*.ts
+    generates:
+      - packages/gql-saleor/src/generated/**/*.ts
+    cmd: bun -b x graphql-codegen -p '@w3yz/gql-saleor' {{.CLI_ARGS}}
