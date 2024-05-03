@@ -26,7 +26,26 @@ export const GlobalConfigCollection: Collection = {
         {
           name: "logo",
           label: "Logo",
-          type: "image",
+          type: "object",
+          fields: [
+            {
+              name: "src",
+              label: "Image",
+              type: "image",
+              required: true,
+            },
+            {
+              name: "alt",
+              label: "Alt",
+              type: "string",
+            },
+            {
+              name: "link",
+              label: "Link",
+              type: "reference",
+              collections: [PageCollection.name],
+            },
+          ],
         },
         {
           type: "object",

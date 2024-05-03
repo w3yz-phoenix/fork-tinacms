@@ -14,7 +14,8 @@
     "@tanstack/react-query-devtools": "^5.32.0",
     "@tanstack/react-query-next-experimental": "^5.32.0",
     "@w3yz/types": "workspace:*",
-    "@w3yz/ui-shadcn": "workspace:*"
+    "@w3yz/ui-shadcn": "workspace:*",
+    "type-fest": "^4.18.1"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -22,8 +23,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@w3yz/eslint-config-eslint": "workspace:*",
-    "@w3yz/tool-graphql": "workspace:*",
+    "@w3yz/gql-saleor": "workspace:*",
     "@w3yz/gql-tina": "workspace:*",
-    "@w3yz/gql-saleor": "workspace:*"
+    "@w3yz/tool-graphql": "workspace:*"
   }
 }

@@ -20,6 +20,9 @@ export const PageCollection: Collection = {
       type: "string",
       name: "uuid",
       label: "ID",
+      uid: true,
+      required: true,
+      indexed: true,
       ui: {
         component: "hidden",
       },
