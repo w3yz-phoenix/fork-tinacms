@@ -142,6 +142,7 @@ const config = {
     "**/.graphqlrc.ts",
     "**/gql/**",
     "**/generated/**",
+    "**/__generated__/**",
     "**/*.snap",
     "**/*.svg",
     "**/*.tsbuildinfo",

@@ -11,7 +11,7 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@w3yz/ui",
-    "utils": "@w3yz/ui"
+    "components": "@w3yz/ui-shadcn",
+    "utils": "@w3yz/ui-shadcn"
   }
 }

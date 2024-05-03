@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Inter as FontSans } from "next/font/google";
-import { publicEnvironment, W3YZProvider } from "@w3yz/core";
-import { cn } from "@w3yz/ui";
+import { publicEnvironment, W3YZProvider } from "@w3yz/ui-core";
+import { cn } from "@w3yz/ui-shadcn";
 
 import type { Metadata, Viewport } from "next";
 

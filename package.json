@@ -6,7 +6,14 @@
     "apps/*",
     "packages/*"
   ],
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2"
+  "resolutions": {
+    "typescript": "^5.0.0",
+    "graphql": "15.8.0",
+    "graphql-config": "5.0.3",
+    "graphql-tag": "2.12.6",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "@graphql-typed-document-node/core": "3.2"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "name": "@w3yz/gql-saleor",
+  "version": "0.0.0",
+  "main": "./export.ts",
+  "type": "module",
+  "dependencies": {
+    "@tanstack/react-query": "^5.32.0",
+    "@tanstack/react-query-devtools": "^5.32.0",
+    "@tanstack/react-query-next-experimental": "^5.32.0",
+    "@w3yz/tool-graphql": "workspace:*",
+    "@w3yz/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

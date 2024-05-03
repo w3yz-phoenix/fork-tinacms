@@ -1,0 +1,21 @@
+version: "3"
+
+tasks:
+  update:
+    vars:
+      SALEOR_SCHEMA_VERSION: "3.19"
+    cmds:
+      - rm -rf packages/ecom-saleor/src/vendor;
+      - mkdir -p packages/ecom-saleor/src/vendor;
+      - curl -L https://raw.githubusercontent.com/saleor/saleor/{{.SALEOR_SCHEMA_VERSION}}/saleor/graphql/schema.graphql -o packages/ecom-saleor/src/vendor/saleor.graphql
+
+  generate:
+    sources:
+      - packages/gql-saleor/graphql/**/*
+      - packages/gql-saleor/vendor/**/*
+      - exclude: packages/gql-saleor/src/__generated__/**/*.ts
+    generates:
+      - packages/gql-saleor/src/__generated__/**/*.ts
+    cmds:
+      - mkdir -p packages/gql-saleor/src/__generated__
+      - bun -b x graphql-codegen -p '@w3yz/gql-saleor' {{.CLI_ARGS}}

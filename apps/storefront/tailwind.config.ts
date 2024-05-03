@@ -1,13 +1,21 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
+import path from "path";
+import packageJson from "./package.json";
+
+const extraContent = Object.keys(packageJson.dependencies)
+  .filter((n) => n.startsWith("@w3yz/ui"))
+  .map((pkg) => path.dirname(require.resolve(pkg)))
+  .map((pkgPath) => path.resolve(pkgPath, "./src/**/*.{ts,tsx}"));
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    ...extraContent,
+  ],
   prefix: "",
   theme: {
     container: {
@@ -75,6 +83,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

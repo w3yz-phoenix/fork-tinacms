@@ -18,8 +18,11 @@ tasks:
 
   dev:
     env:
-      NODE_ENV: development
+      NODE_ENV: "development"
       TINA_PUBLIC_IS_LOCAL: true
+      NEXT_PUBLIC_SALEOR_API_URL: "https://dev-shop-api.w3yz.dev/graphql/"
+      NEXT_PUBLIC_STOREFRONT_URL: "http://localhost:3000"
+      NEXTAUTH_SECRET: "changeme"
     cmds:
       - bun -b x tinacms dev -c "bun -b x next dev"
 
@@ -29,4 +32,4 @@ tasks:
 
   add-component:
     cmds:
-      - bun -b x shadcn-ui@latest add -p ../../packages/ui/src/components/ui/ -o -y {{.CLI_ARGS}}
+      - bun -b x shadcn-ui@latest add -p ../../packages/ui-shadcn/src/components/ui/ -o -y {{.CLI_ARGS}}
