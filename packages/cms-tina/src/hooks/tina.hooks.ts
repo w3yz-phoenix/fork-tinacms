@@ -1,4 +1,4 @@
-import { useTina } from "tinacms/dist/react";
+import { useTina, useEditState } from "tinacms/dist/react";
 
 export const useTinaQuery = <
   TData,
@@ -24,7 +24,10 @@ export const useTinaQuery = <
     data: myQuery.data ?? {},
   };
 
+  const editState = useEditState();
   const tinaResponse = useTina(layoutProperties as any);
 
-  return (tinaResponse?.data ?? {}) as TData;
+  const data = editState.edit ? tinaResponse.data : myQuery.data;
+
+  return (data ?? {}) as TData;
 };
