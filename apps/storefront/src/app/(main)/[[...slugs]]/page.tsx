@@ -1,4 +1,4 @@
-import { Layout, Page } from "@w3yz/core";
+import { Layout, Page } from "@w3yz/ui-core";
 
 export default async function TinaPage({
   params,

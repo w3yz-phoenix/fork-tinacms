@@ -3,7 +3,7 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { defaultGlobalConfig, useGlobalConfigQuery } from "@w3yz/cms-tina";
 
-import { getQueryClient, prefetchQuery } from "@w3yz/core";
+import { getQueryClient, prefetchQuery } from "@w3yz/ui-core";
 
 import { Header } from "./header";
 import { Footer } from "./footer";

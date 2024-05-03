@@ -13,10 +13,6 @@
       "path": "../packages/cms-tina",
     },
     {
-      "name": "@w3yz/core",
-      "path": "../packages/core",
-    },
-    {
       "name": "@w3yz/ecom-saleor",
       "path": "../packages/ecom-saleor",
     },
@@ -33,12 +29,16 @@
       "path": "../packages/types",
     },
     {
-      "name": "@w3yz/ui-shadcn",
-      "path": "../packages/ui",
+      "name": "@w3yz/ui-core",
+      "path": "../packages/ui-core",
     },
     {
       "name": "@w3yz/ui-furniture",
       "path": "../packages/ui-furniture",
+    },
+    {
+      "name": "@w3yz/ui-shadcn",
+      "path": "../packages/ui-shadcn",
     },
   ],
   "settings": {

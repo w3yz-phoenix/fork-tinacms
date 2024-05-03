@@ -4,8 +4,8 @@ interval: 500ms
 
 includes:
   core:
-    taskfile: ./packages/core/Taskfile.yml
-    dir: ./packages/core
+    taskfile: ./packages/ui-core/Taskfile.yml
+    dir: ./packages/ui-core
   storefront:
     taskfile: ./apps/storefront/Taskfile.yml
     dir: ./apps/storefront
@@ -45,8 +45,8 @@ tasks:
       - apps/storefront/content/**/*
       - apps/storefront/tina/**/*
       - apps/storefront/public/**/*
-      - packages/core/**/*.tsx
-      - packages/core/**/*.ts
+      - packages/ui-core/**/*.tsx
+      - packages/ui-core/**/*.ts
       - packages/cms-tina/**/*
       - exclude: packages/cms-tina/node_modules/**/*
       - exclude: packages/cms-tina/src/generated/**/*

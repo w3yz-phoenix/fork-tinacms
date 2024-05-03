@@ -1,5 +1,5 @@
 {
-  "name": "@w3yz/core",
+  "name": "@w3yz/ui-core",
   "version": "0.0.0",
   "type": "module",
   "main": "./export.ts",

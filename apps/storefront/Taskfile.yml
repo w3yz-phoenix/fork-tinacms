@@ -29,4 +29,4 @@ tasks:
 
   add-component:
     cmds:
-      - bun -b x shadcn-ui@latest add -p ../../packages/ui/src/components/ui/ -o -y {{.CLI_ARGS}}
+      - bun -b x shadcn-ui@latest add -p ../../packages/ui-shadcn/src/components/ui/ -o -y {{.CLI_ARGS}}

@@ -1,4 +1,4 @@
-# @w3yz/core
+# @w3yz/ui-core
 
 To install dependencies:
 
