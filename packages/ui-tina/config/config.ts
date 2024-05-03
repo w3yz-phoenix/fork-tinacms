@@ -19,7 +19,7 @@ export const tinaConfig = defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "uploads",
+      mediaRoot: "",
       publicFolder: "public",
       static: true,
     },

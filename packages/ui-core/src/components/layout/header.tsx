@@ -17,6 +17,8 @@ export const Header = ({ globalConfigPath }: { globalConfigPath: string }) => {
     }
   );
 
+  console.log(globalConfig);
+
   return (
     <div className="flex w-full flex-col">
       <div className="hidden w-full flex-col lg:flex">
