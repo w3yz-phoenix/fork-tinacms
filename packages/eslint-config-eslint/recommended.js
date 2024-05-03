@@ -72,20 +72,7 @@ const config = {
         ignore: [],
       },
     ],
-    "unicorn/prevent-abbreviations": [
-      "error",
-      {
-        allowList: {
-          getInitialProps: true,
-          props: true,
-          generateStaticParams: true,
-          env: true,
-          req: true,
-          res: true,
-          ref: true,
-        },
-      },
-    ],
+    "unicorn/prevent-abbreviations": "off",
     "unicorn/no-array-callback-reference": "off",
     "unicorn/no-await-expression-member": "off",
 

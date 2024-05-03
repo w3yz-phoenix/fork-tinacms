@@ -1,8 +1,8 @@
 "use client";
 
 import { usePageQuery, type TinaGraphql_PageQuery } from "@w3yz/gql-tina";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { tinaField } from "tinacms/dist/react";
+import dynamic from "next/dynamic";
+import { Component as FeaturesBlock } from "@w3yz/block-features/block";
 
 import { useTinaQuery } from "../../hooks";
 
@@ -11,20 +11,20 @@ export const PageClient = (props: { relativePath: string }) => {
     relativePath: props.relativePath,
   });
 
-  const bodyAsArray = page?.body as any;
-
   return (
     <div>
-      <div>
-        <h1>Reference Header</h1>
-      </div>
-      <h1>
-        Welcome to
-        <span data-tina-field={tinaField(page, "title")}>{page?.title}</span>
-      </h1>
-      <div data-tina-field={tinaField(page, "body")}>
-        {bodyAsArray && <TinaMarkdown content={bodyAsArray} />}
-      </div>
+      {page?.blocks?.map((block, index) => {
+        if (!block) return null;
+
+        switch (block.__typename) {
+          case "PageBlocksFeatures": {
+            return <FeaturesBlock key={index} block={block} />;
+          }
+          default: {
+            return null;
+          }
+        }
+      })}
     </div>
   );
 };

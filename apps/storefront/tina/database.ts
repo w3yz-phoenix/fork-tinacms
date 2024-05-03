@@ -1,3 +1,3 @@
-import { databaseClient } from "@w3yz/ui-tina/config/database";
+import { databaseClient } from "@w3yz/ui-tina/database";
 
 export default databaseClient;

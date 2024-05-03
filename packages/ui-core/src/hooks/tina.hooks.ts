@@ -1,16 +1,6 @@
-import { useTina, useEditState, tinaField } from "tinacms/dist/react";
+import { useEditState, useTina } from "tinacms/dist/react";
 
 export { tinaField } from "tinacms/dist/react";
-
-import type { SetReturnType } from "type-fest";
-
-// eslint-disable-next-line unicorn/prevent-abbreviations
-export const tinaFieldProps: SetReturnType<
-  typeof tinaField,
-  { "data-tina-field": string }
-> = (data, field) => {
-  return { "data-tina-field": tinaField(data, field) };
-};
 
 export const useTinaQuery = <
   TData,

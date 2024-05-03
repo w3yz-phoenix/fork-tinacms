@@ -1,5 +1,8 @@
+/* eslint-disable unicorn/prefer-module */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { type Collection } from "tinacms";
 import { v5 } from "uuid";
+import { schema as blockFeaturesSchema } from "@w3yz/block-features/schema";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -29,16 +32,22 @@ export const PageCollection: Collection = {
     },
     {
       type: "string",
-      name: "title",
       label: "Title",
+      name: "title",
+      description:
+        "The title of the page. This is used to display the title in the CMS",
       isTitle: true,
       required: true,
     },
     {
-      type: "rich-text",
-      name: "body",
-      label: "Content",
-      isBody: true,
+      type: "object",
+      list: true,
+      name: "blocks",
+      label: "Sections",
+      ui: {
+        visualSelector: true,
+      },
+      templates: [blockFeaturesSchema],
     },
   ],
 };

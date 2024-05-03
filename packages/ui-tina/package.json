@@ -2,12 +2,17 @@
   "name": "@w3yz/ui-tina",
   "version": "0.0.0",
   "type": "module",
-  "main": "./export.ts",
-  "module": "./export.ts",
+  "exports": {
+    ".": "./main.ts",
+    "./config": "./config/config.ts",
+    "./database": "./config/database.ts",
+    "./utils": "./src/lib/tina.utils.ts"
+  },
   "dependencies": {
     "@w3yz/types": "workspace:*",
     "@w3yz/gql-tina": "workspace:*",
     "@w3yz/gql-saleor": "workspace:*",
+    "@w3yz/block-features": "workspace:*",
     "tinacms": "^1.6.2",
     "tinacms-authjs": "^2.0.2",
     "tinacms-gitprovider-github": "^1.0.4",
