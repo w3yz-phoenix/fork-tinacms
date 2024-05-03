@@ -133,3 +133,5 @@ dist
 
 generated/
 __generated__/
+!generated/.gitkeep
+!__generated__/.gitkeep
