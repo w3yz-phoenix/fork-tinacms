@@ -1,5 +1,5 @@
 {
-  "name": "@w3yz/ui",
+  "name": "@w3yz/ui-shadcn",
   "version": "0.0.0",
   "type": "module",
   "main": "./export.ts",

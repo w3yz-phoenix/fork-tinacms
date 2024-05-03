@@ -33,7 +33,7 @@
       "path": "../packages/types",
     },
     {
-      "name": "@w3yz/ui",
+      "name": "@w3yz/ui-shadcn",
       "path": "../packages/ui",
     },
     {

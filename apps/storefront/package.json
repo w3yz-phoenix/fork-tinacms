@@ -12,7 +12,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@w3yz/cms-tina": "workspace:*",
     "@w3yz/core": "workspace:*",
-    "@w3yz/ui": "workspace:*",
+    "@w3yz/ui-shadcn": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "mongodb-level": "^0.0.4",
