@@ -5,7 +5,9 @@ tasks:
     sources:
       - apps/storefront/tina/**/*
       - packages/gql-tina/**/*
-      - exclude: packages/gql-tina/src/generated/**/*
+      - exclude: packages/gql-tina/src/__generated__/**/*
     generates:
-      - packages/gql-tina/src/generated/tinacms.gen.ts
-    cmd: bun -b x graphql-codegen -p '@w3yz/gql-tina' {{.CLI_ARGS}}
+      - packages/gql-tina/src/__generated__/**/*
+    cmds:
+      - mkdir -p packages/gql-tina/src/__generated__
+      - bun -b x graphql-codegen -p '@w3yz/gql-tina' {{.CLI_ARGS}}

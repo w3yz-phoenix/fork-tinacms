@@ -8,10 +8,12 @@
     "@w3yz/types": "workspace:*",
     "@w3yz/gql-tina": "workspace:*",
     "@w3yz/gql-saleor": "workspace:*",
-    "typescript": "^5.0.0",
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18"
+    "@tinacms/cli": "^1.5.43",
+    "tinacms": "^1.6.2",
+    "tinacms-authjs": "^2.0.2",
+    "tinacms-gitprovider-github": "^1.0.4",
+    "upstash-redis-level": "^1.1.1",
+    "@tinacms/schema-tools": "1.4.15"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -19,5 +21,11 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@w3yz/eslint-config-eslint": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18"
   }
 }

@@ -1,1 +1,1 @@
-export * from "./src/generated/tinacms.gen";
+export * from "./src/__generated__/tinacms";

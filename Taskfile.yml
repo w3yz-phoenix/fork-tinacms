@@ -35,14 +35,6 @@ tasks:
           --exclude='*' \
           apps/ dist/
 
-  fetch-schema:
-    vars:
-      SALEOR_SCHEMA_VERSION: "3.19"
-    cmds:
-      - rm -rf packages/ecom-saleor/src/vendor;
-      - mkdir -p packages/ecom-saleor/src/vendor;
-      - curl -L https://raw.githubusercontent.com/saleor/saleor/{{.SALEOR_SCHEMA_VERSION}}/saleor/graphql/schema.graphql -o packages/ecom-saleor/src/vendor/saleor.graphql
-
   generate:
     deps: [gql-tina:generate, gql-saleor:generate]
 

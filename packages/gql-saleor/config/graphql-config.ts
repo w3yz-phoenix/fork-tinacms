@@ -27,7 +27,7 @@ export const getSaleorGraphqlConfig = () => {
       codegen: defineCodegenConfig({
         config,
         generates: {
-          [`${resolvePath("../src/generated/gql.gen.ts")}`]: {
+          [`${resolvePath("../src/__generated__/gql.ts")}`]: {
             plugins: [
               {
                 add: {

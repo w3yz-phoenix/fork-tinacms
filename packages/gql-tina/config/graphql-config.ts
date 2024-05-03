@@ -34,7 +34,7 @@ export const getTinaGraphqlConfig = () => {
       codegen: defineCodegenConfig({
         config,
         generates: {
-          [resolvePath("../src/generated/tinacms.gen.ts")]: {
+          [resolvePath("../src/__generated__/tinacms.ts")]: {
             plugins: [
               {
                 add: {
