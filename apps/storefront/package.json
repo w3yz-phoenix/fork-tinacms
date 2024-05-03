@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@w3yz/gql-saleor": "workspace:*",
     "@w3yz/gql-tina": "workspace:*",
     "@w3yz/ui-core": "workspace:*",
     "@w3yz/ui-furniture": "workspace:*",
@@ -16,11 +17,21 @@
     "@w3yz/ui-tina": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "graphql": "^16.8.1",
+    "graphql-config": "^5.0.3",
+    "graphql-tag": "^2.12.6",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "@graphql-typed-document-node/core": "3.2",
+    "@tinacms/cli": "^1.5.43",
+    "tinacms": "^1.6.2",
+    "tinacms-authjs": "^2.0.2",
+    "tinacms-gitprovider-github": "^1.0.4",
+    "upstash-redis-level": "^1.1.1",
+    "@tinacms/schema-tools": "1.4.15"
   },
   "devDependencies": {
     "@types/bun": "^1.1.1",
