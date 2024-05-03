@@ -10,6 +10,10 @@ export const GlobalConfigCollection: Collection = {
   path: "content/global-config",
   format: "yml",
   ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+    },
     global: true,
     router: () => "/",
   },
@@ -29,6 +33,18 @@ export const GlobalConfigCollection: Collection = {
           list: true,
           name: "links",
           label: "Links",
+          ui: {
+            itemProps: (item) => {
+              return {
+                key: item.label,
+                label: item.label,
+              };
+            },
+            defaultItem: () => ({
+              label: "Isimsiz",
+              page: "content/pages/coming-soon.mdx",
+            }),
+          },
           fields: [
             {
               name: "label",

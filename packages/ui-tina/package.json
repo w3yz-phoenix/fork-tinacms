@@ -12,15 +12,17 @@
     "tinacms-authjs": "^2.0.2",
     "tinacms-gitprovider-github": "^1.0.4",
     "upstash-redis-level": "^1.1.1",
-    "@tinacms/schema-tools": "1.4.15"
+    "@tinacms/schema-tools": "1.4.15",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@types/bun": "latest",
+    "@types/bun": "^1.1.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@w3yz/eslint-config-eslint": "workspace:*",
-    "@tinacms/cli": "^1.5.43"
+    "@tinacms/cli": "^1.5.43",
+    "@types/uuid": "9.0.8"
   },
   "peerDependencies": {
     "typescript": "^5.0.0",

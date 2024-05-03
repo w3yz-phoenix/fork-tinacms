@@ -12,16 +12,15 @@ export const tinaConfig = defineConfig({
   authProvider: isLocal
     ? new LocalAuthProvider()
     : new UsernamePasswordAuthJSProvider(),
-  contentApiUrlOverride: "/api/tina/gql",
+
   build: {
     publicFolder: "public",
     outputFolder: "admin",
   },
   media: {
     tina: {
-      mediaRoot: "",
       publicFolder: "public",
-      static: true,
+      mediaRoot: "uploads",
     },
   },
   schema: {
