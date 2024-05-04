@@ -7,5 +7,5 @@ export const eslintDisable = defineTemplate(
 
 export const customScalars = defineTemplate(
   "common-scalars",
-  `import type { CustomScalars } from '@w3yz/types';`
+  `import type { CustomScalars } from '@w3yz/tools/types';`
 );

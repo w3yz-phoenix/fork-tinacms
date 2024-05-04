@@ -3,7 +3,11 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "./graphql": "./exports/graphql.ts"
+    "./graphql": "./exports/graphql.ts",
+    "./types": "./exports/types.ts"
+  },
+  "dependencies": {
+    "@w3yz/tools": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",
