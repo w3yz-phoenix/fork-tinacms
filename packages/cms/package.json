@@ -1,0 +1,27 @@
+{
+  "name": "@w3yz/cms",
+  "type": "module",
+  "version": "1.0.0",
+  "exports": {
+    "./math": "./exports/math.ts",
+    "./string": "./exports/string.ts"
+  },
+  "scripts": {
+    "dev": "tinacms dev -c 'bun dev:server'",
+    "dev:server": "bun --hot run src/server.ts"
+  },
+  "dependencies": {
+    "elysia": "^1.0.16",
+    "tinacms": "^1.6.3"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.5.45",
+    "@types/bun": "latest",
+    "@types/node": "^20.12.8",
+    "@w3yz/eslint-config-eslint": "workspace:*",
+    "@w3yz/tools": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
