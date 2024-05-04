@@ -3,6 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
+    "./blocks": "./exports/blocks.ts",
+    "./collections": "./exports/collections.ts",
     "./fetcher": "./exports/fetcher.ts",
     "./config": "./exports/config.ts",
     "./api": "./exports/api.ts"

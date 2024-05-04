@@ -1,4 +1,6 @@
-import type { Collection } from "tinacms";
+import { type Collection } from "tinacms";
+
+import { featuresBlockSchema } from "@w3yz/cms/blocks";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -6,7 +8,7 @@ export const PageCollection: Collection = {
   path: "content/pages",
   format: "mdx",
   ui: {
-    router: ({ document }) => `/preview/${document._sys.breadcrumbs.join("/")}`,
+    router: ({ document }) => `/${document._sys.breadcrumbs.join("/")}`,
   },
   fields: [
     {
@@ -19,9 +21,14 @@ export const PageCollection: Collection = {
       required: true,
     },
     {
-      type: "rich-text",
-      label: "Content",
-      name: "content",
+      type: "object",
+      list: true,
+      name: "blocks",
+      label: "Sections",
+      ui: {
+        visualSelector: true,
+      },
+      templates: [featuresBlockSchema],
     },
   ],
 };
