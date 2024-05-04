@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "tinacms dev -c 'bun dev:server'",
-    "dev:server": "bun --hot run src/server.ts"
+    "dev:server": "bun --hot run server.ts"
   },
   "dependencies": {
     "elysia": "^1.0.16",
