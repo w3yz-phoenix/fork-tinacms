@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "graphql": "./exports/graphql.ts"
+    "./graphql": "./exports/graphql.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

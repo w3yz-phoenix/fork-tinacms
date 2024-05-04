@@ -2,7 +2,14 @@ version: "3"
 
 interval: 500ms
 
+includes:
+  ecom:
+    taskfile: ./packages/ecom/Taskfile.yml
+
 tasks:
   install:
     cmds:
       - bun install
+
+  generate:
+    deps: [ecom:generate]

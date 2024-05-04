@@ -1,0 +1,10 @@
+mutation CurrentUserAddressCreate($address: AddressInput!) {
+  accountAddressCreate(input: $address) {
+    errors {
+      field
+    }
+    address {
+      id
+    }
+  }
+}

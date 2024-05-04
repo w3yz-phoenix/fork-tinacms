@@ -3,8 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "math": "./exports/math.ts",
-    "string": "./exports/string.ts"
+    "./math": "./exports/math.ts",
+    "./string": "./exports/string.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

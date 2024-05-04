@@ -1,10 +1,8 @@
-import { defineGraphqlConfig } from "@w3yz/tool-graphql";
-import { getTinaGraphqlConfig } from "@w3yz/gql-tina/config/graphql-config";
-import { getSaleorGraphqlConfig } from "@w3yz/gql-saleor/config/graphql-config";
+import { graphqlConfigTools } from "@w3yz/tools/graphql";
+import { getSaleorGraphqlConfig } from "@w3yz/ecom/config";
 
-const config = defineGraphqlConfig({
+const config = graphqlConfigTools.defineGraphqlConfig({
   projects: {
-    ...getTinaGraphqlConfig(),
     ...getSaleorGraphqlConfig(),
   },
 });
