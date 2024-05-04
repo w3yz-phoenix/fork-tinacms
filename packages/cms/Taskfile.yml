@@ -4,3 +4,14 @@ tasks:
   lint:
     cmds:
       - bun x eslint .
+
+  generate:
+    sources:
+      - packages/tools/src/graphql/**/*
+      - packages/cms/**/*
+      - exclude: packages/cms/src/__generated__/**/*
+    generates:
+      - packages/cms/src/__generated__/**/*
+    cmds:
+      - mkdir -p packages/cms/src/__generated__
+      - bun -b x graphql-codegen -p '@w3yz/cms' {{.CLI_ARGS}}

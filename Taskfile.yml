@@ -5,6 +5,8 @@ interval: 500ms
 includes:
   ecom:
     taskfile: ./packages/ecom/Taskfile.yml
+  cms:
+    taskfile: ./packages/cms/Taskfile.yml
 
 tasks:
   install:
@@ -12,4 +14,4 @@ tasks:
       - bun install
 
   generate:
-    deps: [ecom:generate]
+    deps: [ecom:generate, cms:generate]

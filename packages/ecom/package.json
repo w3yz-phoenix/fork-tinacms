@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "exports": {
     "./config": "./exports/config.ts",
-    "./fetcher": "./exports/fetcher.ts"
+    "./fetcher": "./exports/fetcher.ts",
+    "./api": "./exports/api.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
