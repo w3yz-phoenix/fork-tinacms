@@ -1,7 +1,0 @@
-services:
-  storefront:
-    build:
-      context: .
-      target: release
-    ports:
-      - 3000:3000
