@@ -6,6 +6,9 @@ tasks:
       - bun x eslint .
 
   update:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f packages/ecom/package.json
     vars:
       SALEOR_SCHEMA_VERSION: "3.19"
     cmds:
@@ -14,6 +17,9 @@ tasks:
       - curl -L https://raw.githubusercontent.com/saleor/saleor/{{.SALEOR_SCHEMA_VERSION}}/saleor/graphql/schema.graphql -o packages/ecom/src/vendor/saleor.graphql
 
   generate:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f packages/ecom/package.json
     sources:
       - packages/ecom/graphql/**/*
       - packages/ecom/vendor/**/*

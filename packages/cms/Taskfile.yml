@@ -6,6 +6,9 @@ tasks:
       - bun x eslint .
 
   generate:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f packages/cms/package.json
     sources:
       - packages/tools/src/graphql/**/*
       - packages/cms/**/*
