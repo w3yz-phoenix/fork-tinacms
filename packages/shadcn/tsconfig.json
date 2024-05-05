@@ -27,7 +27,8 @@
     // Paths
     "baseUrl": ".",
     "paths": {
-      "@ui/*": ["./src/*"]
+      "@shadcn/*": ["./src/*"],
+      "@web/*": ["../../apps/web/src/*"]
     }
   }
 }
