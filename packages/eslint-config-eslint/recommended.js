@@ -123,7 +123,7 @@ const config = {
     "**/tmp/**",
     "**/.next/**",
     "**/next.config.mjs",
-    "**/postcss.config.cjs",
+    "**/*.mjs",
     "**/tailwind.config.ts",
     "**/.graphqlrc.ts",
     "**/gql/**",
