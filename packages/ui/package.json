@@ -3,7 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "./ui/*": "./src/ui/*"
+    "./components": "./exports/components.ts",
+    "./tailwind": "./tailwind.config.ts"
   },
   "scripts": {
     "shadcn": "bun -b x shadcn-ui@latest"
