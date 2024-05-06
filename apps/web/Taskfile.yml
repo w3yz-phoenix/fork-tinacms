@@ -21,7 +21,7 @@ tasks:
       NEXT_PUBLIC_STOREFRONT_URL: "http://localhost:3000"
       NEXTAUTH_SECRET: "changeme"
     cmds:
-      - bun -b x next dev
+      - bun -b x next dev -p 3200
 
   start:
     dir: apps/web

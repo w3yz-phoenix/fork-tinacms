@@ -23,11 +23,11 @@ app.use(express.static("public"));
 app.use(
   "/",
   createProxyMiddleware({
-    target: "http://localhost:3000/",
+    target: "http://localhost:3200/",
     changeOrigin: true,
   })
 );
 
-const server = app.listen(3200, () => {
-  console.log(`Server is listening on http://localhost:3200/admin`);
+const server = app.listen(3000, () => {
+  console.log(`Server is listening on http://localhost:3000/admin`);
 });
