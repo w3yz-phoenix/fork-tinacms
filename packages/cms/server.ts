@@ -18,8 +18,6 @@ app.get("/blocks/:block/preview.png", (req, res) => {
   });
 });
 
-app.use(express.static("public"));
-
 app.use(
   "/",
   createProxyMiddleware({
