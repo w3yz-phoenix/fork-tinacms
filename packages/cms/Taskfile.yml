@@ -1,0 +1,35 @@
+version: "3"
+
+tasks:
+  lint:
+    dir: packages/cms
+    cmds:
+      - bun x eslint .
+
+  generate:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f packages/cms/package.json
+    sources:
+      - packages/tools/src/graphql/**/*
+      - packages/cms/**/*
+      - exclude: packages/cms/src/__generated__/**/*
+    generates:
+      - packages/cms/src/__generated__/**/*
+    cmds:
+      - mkdir -p packages/cms/src/__generated__
+      - bun -b x graphql-codegen -p '@w3yz/cms' {{.CLI_ARGS}}
+
+  dev-tina:
+    dir: packages/cms
+    cmds:
+      - bun -b x tinacms dev
+
+  dev-server:
+    dir: packages/cms
+    cmds:
+      - bun -b --hot run server.ts
+
+  dev:
+    dir: packages/cms
+    deps: [dev-tina, dev-server]

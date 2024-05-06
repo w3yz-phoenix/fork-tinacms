@@ -5,52 +5,47 @@
       "path": "..",
     },
     {
-      "name": "@w3yz-app/storefront",
-      "path": "../apps/storefront",
+      "name": "web",
+      "path": "../apps/web",
+    },
+    {
+      "name": "package-template",
+      "path": "../packages/_template",
+    },
+    {
+      "name": "@w3yz/cms",
+      "path": "../packages/cms",
+    },
+    {
+      "name": "@w3yz/ecom",
+      "path": "../packages/ecom",
     },
     {
       "name": "@w3yz/eslint-config-eslint",
       "path": "../packages/eslint-config-eslint",
     },
     {
-      "name": "@w3yz/gql-saleor",
-      "path": "../packages/gql-saleor",
+      "name": "@w3yz/shadcn",
+      "path": "../packages/shadcn",
     },
     {
-      "name": "@w3yz/gql-tina",
-      "path": "../packages/gql-tina",
+      "name": "@w3yz/tools",
+      "path": "../packages/tools",
     },
     {
-      "name": "@w3yz/tool-graphql",
-      "path": "../packages/tool-graphql",
-    },
-    {
-      "name": "@w3yz/types",
-      "path": "../packages/types",
-    },
-    {
-      "name": "@w3yz/ui-core",
-      "path": "../packages/ui-core",
-    },
-    {
-      "name": "@w3yz/ui-furniture",
-      "path": "../packages/ui-furniture",
-    },
-    {
-      "name": "@w3yz/ui-shadcn",
-      "path": "../packages/ui-shadcn",
-    },
-    {
-      "name": "@w3yz/ui-tina",
-      "path": "../packages/ui-tina",
+      "name": "@w3yz/ui",
+      "path": "../packages/ui",
     },
   ],
   "settings": {
-    "tailwindCSS.experimental.configFile": "../apps/storefront/tailwind.config.ts",
-    "bun.debugTerminal.enabled": false,
+    "tailwindCSS.experimental.configFile": "../apps/web/tailwind.config.ts",
+    "bun.debugTerminal.enabled": true,
     "debug.javascript.pickAndAttachOptions": {
       "autoAttachChildProcesses": true,
+      "attachExistingChildren": true,
       "continueOnAttach": true,
+      "restart": true,
+      "cascadeTerminateToConfigurations": ["node", "bun"],
     },
     "tailwindCSS.classAttributes": [
       "class",
@@ -62,7 +57,7 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "javascript.preferences.importModuleSpecifier": "shortest",
     "typescript.preferences.importModuleSpecifier": "shortest",
-    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.tsdk": "../node_modules/typescript/lib",
     "eslint.enable": true,
     "eslint.codeActionsOnSave.mode": "all",
     "editor.codeActionsOnSave": ["source.fixAll.eslint"],

@@ -39,3 +39,9 @@ Run the server:
 ```bash
 bun dev
 ```
+
+## TODOS
+
+- [ ] Remove path alias for @@shadcn and actually use the package
+- [ ] Remove path alias for @@web and make sure noone depends on web package
+- [ ] Remove path alias for @@ui and actually use the package

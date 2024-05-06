@@ -3,45 +3,24 @@ version: "3"
 interval: 500ms
 
 includes:
-  ui-core:
-    taskfile: ./packages/ui-core/Taskfile.yml
-    dir: ./packages/ui-core
-  storefront:
-    taskfile: ./apps/storefront/Taskfile.yml
-    dir: ./apps/storefront
-  gql-tina:
-    taskfile: ./packages/gql-tina/Taskfile.yml
-  gql-saleor:
-    taskfile: ./packages/gql-saleor/Taskfile.yml
+  ecom:
+    taskfile: ./packages/ecom/Taskfile.yml
+  cms:
+    taskfile: ./packages/cms/Taskfile.yml
+  web:
+    taskfile: ./apps/web/Taskfile.yml
 
 tasks:
   install:
     cmds:
       - bun install
 
-  build-apps:
-    cmds:
-      - bun --bun "--filter=@w3yz-app/*" run build
-
-  build:
-    deps: [build-apps]
-    cmds:
-      - rm -rf ./dist && mkdir -p ./dist
-      - |
-        rsync -avm --include='*/' \
-          --include='*/.next/***' \
-          --include='*/public/***' \
-          --include='*/package.json' \
-          --exclude='*' \
-          apps/ dist/
-
   generate:
-    deps: [gql-tina:generate, gql-saleor:generate]
+    deps: [ecom:generate, cms:generate]
 
   watch:
     watch: true
     deps: [generate]
 
   dev:
-    cmds:
-      - task: storefront:dev
+    deps: [web:dev, cms:dev]

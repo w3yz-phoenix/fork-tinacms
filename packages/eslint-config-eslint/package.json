@@ -1,7 +1,10 @@
 {
   "name": "@w3yz/eslint-config-eslint",
   "version": "0.0.0",
-  "type": "commonjs",
+  "exports": {
+    "./nextjs": "./config/nextjs.js",
+    "./recommended": "./config/recommended.js"
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",

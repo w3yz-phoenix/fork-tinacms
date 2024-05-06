@@ -1,0 +1,31 @@
+version: "3"
+
+tasks:
+  lint:
+    cmds:
+      - bun x eslint .
+
+  update:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f packages/ecom/package.json
+    vars:
+      SALEOR_SCHEMA_VERSION: "3.19"
+    cmds:
+      - rm -rf packages/ecom/src/vendor;
+      - mkdir -p packages/ecom/src/vendor;
+      - curl -L https://raw.githubusercontent.com/saleor/saleor/{{.SALEOR_SCHEMA_VERSION}}/saleor/graphql/schema.graphql -o packages/ecom/src/vendor/saleor.graphql
+
+  generate:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f packages/ecom/package.json
+    sources:
+      - packages/ecom/graphql/**/*
+      - packages/ecom/vendor/**/*
+      - exclude: packages/ecom/src/__generated__/**/*.ts
+    generates:
+      - packages/ecom/src/__generated__/**/*.ts
+    cmds:
+      - mkdir -p packages/ecom/src/__generated__
+      - bun -b x graphql-codegen -p '@w3yz/ecom' {{.CLI_ARGS}}
