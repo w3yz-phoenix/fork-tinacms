@@ -2,9 +2,6 @@
   "name": "@w3yz/cms",
   "type": "module",
   "version": "1.0.0",
-  "scripts": {
-    "dev": "bun -b --hot run server.ts"
-  },
   "exports": {
     "./fetcher": "./exports/fetcher.ts",
     "./config": "./exports/config.ts",

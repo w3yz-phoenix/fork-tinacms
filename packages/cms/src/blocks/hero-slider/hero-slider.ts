@@ -38,7 +38,8 @@ export const heroSliderBlockSchema = defineTinaTemplate({
       ui: {
         itemProps: (item: any) => {
           return {
-            label: item?.image,
+            label: item?.alt,
+            key: item?.image,
           };
         },
         defaultItem: {
@@ -50,13 +51,13 @@ export const heroSliderBlockSchema = defineTinaTemplate({
           type: "string",
           name: "alt",
           label: "Alt Text",
+          isTitle: true,
           required: true,
         },
         {
           type: "image",
           name: "image",
           label: "Image",
-          isTitle: true,
           required: true,
         },
       ],
