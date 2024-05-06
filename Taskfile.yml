@@ -23,4 +23,4 @@ tasks:
     deps: [generate]
 
   dev:
-    deps: [web:dev, cms:dev]
+    deps: [install, web:dev, cms:dev]

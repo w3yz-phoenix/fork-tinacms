@@ -1,14 +1,14 @@
 header:
   logo:
-    src: /uploads/furniture-logo.svg
+    src: /uploads/ocean-560.png
     alt: Furniture
     link: content/pages/home.mdx
   links:
-    - label: Indirim
-      page: content/pages/coming-soon.mdx
     - label: Magaza
       page: content/pages/coming-soon.mdx
     - label: Iletisim
+      page: content/pages/about.mdx
+    - label: Indirim
       page: content/pages/about.mdx
     - label: Blog
       page: content/pages/coming-soon.mdx

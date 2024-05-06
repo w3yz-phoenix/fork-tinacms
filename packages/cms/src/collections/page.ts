@@ -2,6 +2,8 @@ import { type Collection } from "tinacms";
 
 import { featuresBlockSchema } from "@w3yz/cms/blocks";
 
+import { demoFeaturesBlockSchema } from "../blocks/demo-features/demo-features";
+
 export const PageCollection: Collection = {
   name: "page",
   label: "Page",
@@ -28,7 +30,7 @@ export const PageCollection: Collection = {
       ui: {
         visualSelector: true,
       },
-      templates: [featuresBlockSchema],
+      templates: [featuresBlockSchema, demoFeaturesBlockSchema],
     },
   ],
 };
