@@ -19,6 +19,17 @@ app.get("/blocks/:block/preview.png", (req, res) => {
 });
 
 app.use(
+  "/api/tina/gql",
+  createProxyMiddleware({
+    target: "http://localhost:4001",
+    changeOrigin: true,
+    pathRewrite: {
+      ".*": "/graphql",
+    },
+  })
+);
+
+app.use(
   "/",
   createProxyMiddleware({
     target: "http://localhost:3200/",
