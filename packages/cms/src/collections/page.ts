@@ -8,7 +8,7 @@ export const PageCollection: Collection = {
   path: "content/pages",
   format: "mdx",
   ui: {
-    router: ({ document }) => `/${document._sys.breadcrumbs.join("/")}`,
+    router: ({ document }) => `/preview/${document._sys.breadcrumbs.join("/")}`,
   },
   fields: [
     {
