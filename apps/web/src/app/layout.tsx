@@ -1,6 +1,6 @@
 import "../shadcn.css";
 import { Inter } from "next/font/google";
-import { Button } from "@/shadcn/components/button";
+import { Button } from "@@shadcn/components/button";
 
 import type { Metadata } from "next";
 

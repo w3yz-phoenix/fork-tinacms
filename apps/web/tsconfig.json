@@ -18,8 +18,8 @@
       }
     ],
     "paths": {
-      "@/web/*": ["./src/*"],
-      "@/shadcn/*": ["../../packages/shadcn/src/*"]
+      "@@web/*": ["./src/*"],
+      "@@shadcn/*": ["../../packages/shadcn/src/*"]
     }
   },
   "include": [
