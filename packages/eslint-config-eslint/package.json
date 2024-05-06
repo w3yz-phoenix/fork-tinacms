@@ -1,9 +1,9 @@
 {
   "name": "@w3yz/eslint-config-eslint",
   "version": "0.0.0",
-  "type": "module",
   "exports": {
-    "./*": "./config/*.js"
+    "./nextjs": "./config/nextjs.js",
+    "./recommended": "./config/recommended.js"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.8.0",
