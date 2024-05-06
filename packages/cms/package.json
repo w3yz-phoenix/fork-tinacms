@@ -2,6 +2,9 @@
   "name": "@w3yz/cms",
   "type": "module",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "bun -b --hot run server.ts"
+  },
   "exports": {
     "./blocks": "./exports/blocks.ts",
     "./collections": "./exports/collections.ts",
@@ -9,18 +12,17 @@
     "./config": "./exports/config.ts",
     "./api": "./exports/api.ts"
   },
-  "scripts": {
-    "dev": "tinacms dev -c 'bun dev:server'",
-    "dev:server": "bun --hot run server.ts"
-  },
   "dependencies": {
+    "@w3yz/tools": "workspace:*",
     "elysia": "^1.0.16",
-    "tinacms": "^1.6.3",
-    "@w3yz/tools": "workspace:*"
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0",
+    "tinacms": "^1.6.3"
   },
   "devDependencies": {
     "@tinacms/cli": "^1.5.45",
     "@types/bun": "latest",
+    "@types/express": "^4.17.21",
     "@types/node": "^20.12.8",
     "@w3yz/eslint-config-eslint": "workspace:*"
   },

@@ -19,7 +19,8 @@
     ],
     "paths": {
       "@@web/*": ["./src/*"],
-      "@@shadcn/*": ["../../packages/shadcn/src/*"]
+      "@@shadcn/*": ["../../packages/shadcn/src/*"],
+      "@@ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [

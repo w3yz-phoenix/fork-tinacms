@@ -2,9 +2,6 @@
   "name": "@w3yz/shadcn",
   "type": "module",
   "version": "1.0.0",
-  "exports": {
-    "./*": "./src/*"
-  },
   "scripts": {
     "shadcn": "bun -b x shadcn-ui@latest"
   },

@@ -1,0 +1,16 @@
+header:
+  logo:
+    src: /uploads/furniture-logo.svg
+    alt: Furniture
+    link: content/pages/home.mdx
+  links:
+    - label: Indirim
+      page: content/pages/coming-soon.mdx
+    - label: Magaza
+      page: content/pages/coming-soon.mdx
+    - label: Iletisim
+      page: content/pages/about.mdx
+    - label: Blog
+      page: content/pages/coming-soon.mdx
+    - label: Hakkimizda
+      page: content/pages/coming-soon.mdx

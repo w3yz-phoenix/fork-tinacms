@@ -1,2 +1,11 @@
 /** @type {import('next').NextConfig} */
-export default {};
+export default {
+  async rewrites() {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+      },
+    ];
+  },
+};

@@ -1,19 +1,33 @@
-import { Elysia } from "elysia";
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable unicorn/prefer-module */
+import express from "express";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
-new Elysia()
-  .get("/admin", Bun.file("./public/admin/index.html"))
-  .get("/admin/index.html", Bun.file("./public/admin/index.html"))
-  .get("/blocks/:block/preview.png", ({ params }) =>
-    Bun.file(`./src/blocks/${params.block}/preview.png`)
-  )
-  .get("/preview/*", ({ redirect, path }) => {
-    return redirect(`http://localhost:3000" + ${path}`, 301);
+const app = express();
+
+app.get("/admin", (req, res) => {
+  res.sendFile("public/admin/index.html", { root: __dirname });
+});
+app.get("/admin/index.html", (req, res) => {
+  res.sendFile("public/admin/index.html", { root: __dirname });
+});
+
+app.get("/blocks/:block/preview.png", (req, res) => {
+  res.sendFile(`src/blocks/${req.params.block}/preview.png`, {
+    root: __dirname,
+  });
+});
+
+app.use(express.static("public"));
+
+app.use(
+  "/",
+  createProxyMiddleware({
+    target: "http://localhost:3000/",
+    changeOrigin: true,
   })
-  .get("/*", ({ path }) => {
-    console.log("path:", path);
-    return Bun.file(`./public${path}`);
-  })
-  .onStart(({ server }) => {
-    console.log(`Server is listening on ${new URL(`${server?.url}admin`)}`);
-  })
-  .listen(3200);
+);
+
+const server = app.listen(3200, () => {
+  console.log(`Server is listening on http://localhost:3200/admin`);
+});
