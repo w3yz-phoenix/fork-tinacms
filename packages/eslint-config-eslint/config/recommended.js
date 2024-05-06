@@ -5,7 +5,7 @@ const typescriptProject = [
   "./apps/*/tsconfig.json",
 ];
 
-const config = {
+module.exports = {
   env: {
     node: true,
   },
@@ -142,5 +142,3 @@ const config = {
     "**/tina/**",
   ],
 };
-
-module.exports = config;
