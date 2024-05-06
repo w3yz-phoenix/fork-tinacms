@@ -16,7 +16,7 @@ tasks:
       - bun install
 
   generate:
-    deps: [ecom:generate, cms:generate]
+    deps: [install, ecom:generate, cms:generate]
 
   watch:
     watch: true
