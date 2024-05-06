@@ -1,8 +1,7 @@
 import { type Collection } from "tinacms";
 
-import { featuresBlockSchema } from "@w3yz/cms/blocks";
-
-import { demoFeaturesBlockSchema } from "../blocks/demo-features/demo-features";
+import { heroSliderBlockSchema } from "../blocks/hero-slider/hero-slider";
+import { featuresBlockSchema } from "../blocks/features/features";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -30,7 +29,7 @@ export const PageCollection: Collection = {
       ui: {
         visualSelector: true,
       },
-      templates: [featuresBlockSchema, demoFeaturesBlockSchema],
+      templates: [featuresBlockSchema, heroSliderBlockSchema],
     },
   ],
 };

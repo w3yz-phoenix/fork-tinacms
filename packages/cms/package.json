@@ -6,8 +6,6 @@
     "dev": "bun -b --hot run server.ts"
   },
   "exports": {
-    "./blocks": "./exports/blocks.ts",
-    "./collections": "./exports/collections.ts",
     "./fetcher": "./exports/fetcher.ts",
     "./config": "./exports/config.ts",
     "./api": "./exports/api.ts"

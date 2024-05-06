@@ -3,7 +3,7 @@
 import { usePageQuery, type TinaGraphql_PageQuery } from "@w3yz/cms/api";
 
 import { FeaturesBlock } from "@@ui/furniture/blocks/features/features";
-import { DemoFeaturesBlock } from "@@ui/furniture/blocks/features/demo-features";
+import { HeroSliderBlock } from "@@ui/furniture/blocks/hero-slider/hero-slider";
 
 import { useTinaQuery } from "../../hooks";
 
@@ -21,11 +21,15 @@ export const PageClient = (props: { relativePath: string }) => {
           case "PageBlocksFeatures": {
             return <FeaturesBlock key={index} block={block} />;
           }
-          case "PageBlocksDemoFeatures": {
-            return <DemoFeaturesBlock key={index} block={block} />;
+          case "PageBlocksHeroSlider": {
+            return <HeroSliderBlock key={index} block={block} />;
           }
           default: {
-            return null;
+            return (
+              <div>
+                <pre>{JSON.stringify(block, null, 2)}</pre>
+              </div>
+            );
           }
         }
       })}
