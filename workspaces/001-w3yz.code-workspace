@@ -40,11 +40,11 @@
   "settings": {
     "tailwindCSS.experimental.configFile": "../apps/web/tailwind.config.ts",
     "bun.debugTerminal.enabled": true,
+    "bun.debugTerminal.stopOnEntry": true,
     "debug.javascript.pickAndAttachOptions": {
       "autoAttachChildProcesses": true,
       "attachExistingChildren": true,
       "continueOnAttach": true,
-      "restart": true,
       "cascadeTerminateToConfigurations": ["node", "bun"],
     },
     "tailwindCSS.classAttributes": [
