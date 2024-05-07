@@ -1,17 +1,30 @@
-query CategoryList($first: Int!, $after: String) {
-  categories(first: $first, after: $after) {
+query CategoryList($first: Int = 10, $after: String) {
+  categories(
+    first: $first
+    after: $after
+    sortBy: { field: NAME, direction: ASC }
+  ) {
+    pageInfo {
+      hasNextPage
+      startCursor
+      endCursor
+    }
     totalCount
     edges {
       node {
         id
-        slug
         name
+        slug
+        ancestors(first: 100) {
+          edges {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
       }
-      cursor
-    }
-    pageInfo {
-      endCursor
-      hasNextPage
     }
   }
 }

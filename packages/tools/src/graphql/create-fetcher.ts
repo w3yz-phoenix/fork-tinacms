@@ -4,13 +4,15 @@ export const createFetcher =
     query: string,
     variables?: TVariables,
     headers?: RequestInit["headers"]
-  ): (() => Promise<TData>) => {
-    return async () => {
+  ): ((requestParameters?: RequestInit) => Promise<TData>) => {
+    return async (requestParameters?: RequestInit) => {
       const res = await fetch(endpoint, {
         method: "POST",
+        ...requestParameters,
         headers: {
           "Content-Type": "application/json",
           ...headers,
+          ...requestParameters?.headers,
         },
         body: JSON.stringify({
           query,

@@ -4,10 +4,12 @@
   "version": "1.0.0",
   "exports": {
     "./graphql": "./exports/graphql.ts",
-    "./types": "./exports/types.ts"
+    "./types": "./exports/types.ts",
+    "./lib": "./exports/lib.ts"
   },
   "dependencies": {
-    "@w3yz/tools": "workspace:*"
+    "@w3yz/tools": "workspace:*",
+    "tiny-invariant": "^1.3.3"
   },
   "devDependencies": {
     "@types/bun": "latest",

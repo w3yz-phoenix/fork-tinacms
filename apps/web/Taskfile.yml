@@ -4,12 +4,12 @@ tasks:
   lint:
     dir: apps/web
     cmds:
-      - bun -b x next lint
+      - bun x next lint
 
   build:
     dir: apps/web
     cmds:
-      - bun -b x next build
+      - bun x next build
 
   dev:
     dir: apps/web
@@ -21,9 +21,9 @@ tasks:
       NEXT_PUBLIC_STOREFRONT_URL: "http://localhost:3000"
       NEXTAUTH_SECRET: "changeme"
     cmds:
-      - bun -b x next dev -p 3200
+      - bun x next dev -p 3200
 
   start:
     dir: apps/web
     cmds:
-      - bun -b x next start
+      - bun x next start

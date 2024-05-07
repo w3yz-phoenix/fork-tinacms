@@ -21,11 +21,13 @@ tasks:
       - msg: "This task should be run from the root of the monorepo"
         sh: test -f packages/ecom/package.json
     sources:
-      - packages/ecom/graphql/**/*
-      - packages/ecom/vendor/**/*
+      - packages/ecom/config/**/*
+      - packages/tools/src/**/*
+      - packages/ecom/src/graphql/**/*
+      - packages/ecom/src/vendor/**/*
       - exclude: packages/ecom/src/__generated__/**/*.ts
     generates:
       - packages/ecom/src/__generated__/**/*.ts
     cmds:
       - mkdir -p packages/ecom/src/__generated__
-      - bun -b x graphql-codegen -p '@w3yz/ecom' {{.CLI_ARGS}}
+      - bun x graphql-codegen -p '@w3yz/ecom' {{.CLI_ARGS}}

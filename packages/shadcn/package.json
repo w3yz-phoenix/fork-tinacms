@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "shadcn": "bun -b x shadcn-ui@latest"
+    "shadcn": "bun x shadcn-ui@latest"
   },
   "devDependencies": {
     "@types/bun": "latest",

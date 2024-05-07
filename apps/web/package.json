@@ -8,7 +8,10 @@
     "react": "^18",
     "react-dom": "^18",
     "@w3yz/shadcn": "workspace:*",
-    "@w3yz/ui": "workspace:*"
+    "@w3yz/ui": "workspace:*",
+    "@w3yz/tools": "workspace:*",
+    "@w3yz/ecom": "workspace:*",
+    "@w3yz/cms": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",

@@ -1,0 +1,30 @@
+query AddressValidationRules(
+  $cityArea: String = ""
+  $countryArea: String = ""
+  $city: String = ""
+) {
+  addressValidationRules(
+    countryCode: TR
+    countryArea: $countryArea
+    cityArea: $cityArea
+    city: $city
+  ) {
+    countryAreaType
+    cityType
+    cityAreaType
+    requiredFields
+
+    countryAreaChoices {
+      raw
+      verbose
+    }
+    cityAreaChoices {
+      raw
+      verbose
+    }
+    cityChoices {
+      raw
+      verbose
+    }
+  }
+}
