@@ -1,45 +1,4 @@
-import { publicEnvironment } from "@@ui/core/lib/environment";
-import { cookies, headers } from "next/headers";
-
 import type { z } from "zod";
-
-export const setCookie = (name: string, value?: string) => {
-  if (!value) {
-    cookies().delete(name);
-    return;
-  }
-
-  cookies().set(name, value, {
-    secure: publicEnvironment.https,
-    sameSite: "lax",
-    httpOnly: true,
-    maxAge: 60 * 60 * 24 * 365 * 10,
-  });
-};
-
-export const getCookie = (name: string) => {
-  return cookies().get(name)?.value;
-};
-
-export async function getIPAddress() {
-  return headers().get("x-forwarded-for");
-}
-
-type ActionState<T, E = unknown> =
-  | {
-      success: true;
-      data: T;
-      error: null;
-      iteration?: number;
-    }
-  | {
-      success: false;
-      data: null;
-      error: E;
-      iteration?: number;
-    }
-  | null
-  | undefined;
 
 export type FieldErrors<
   Fields extends Record<string, unknown> = Record<string, unknown>,
@@ -71,6 +30,22 @@ export class ValidationError<
       .join("\n");
   }
 }
+
+type ActionState<T, E = unknown> =
+  | { state: "initial"; iteration: 0 }
+  | {
+      state: "success";
+      data: T;
+      error: null;
+      iteration: number;
+    }
+  | {
+      state: "error";
+      error: E;
+      iteration: number;
+    };
+
+export const initialActionState = { state: "initial", iteration: 0 } as const;
 
 export const createAction =
   <

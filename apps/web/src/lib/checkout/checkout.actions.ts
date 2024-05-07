@@ -6,13 +6,14 @@ import {
 } from "@w3yz/ecom/api";
 import { invariant } from "@w3yz/tools/lib";
 import { cookies } from "next/headers";
+import { publicEnvironment } from "@@ui/core/lib/environment";
 
-import { createAction, setCookie } from "../actions/actions.utils";
+import { createAction } from "../actions/actions.utils";
 
 import { findCheckout } from "./checkout.query";
 import { AddItemToCartSchema } from "./checkout.schema";
 
-export const createCheckout = async () => {
+const createCheckout = async () => {
   const response = await useCheckoutCreateMutation.fetcher({})({
     cache: "no-cache",
   });
@@ -39,7 +40,12 @@ export const addItemToCart = createAction(
 
     invariant(checkout?.id, "Checkout ID is not defined");
 
-    setCookie("checkoutId", checkout.id);
+    cookies().set("checkoutId", checkout.id, {
+      secure: publicEnvironment.https,
+      sameSite: "lax",
+      httpOnly: true,
+      maxAge: 60 * 60 * 24 * 365 * 10,
+    });
 
     invariant(parameters?.quantity > 0, "Quantity must be greater than 0");
     invariant(parameters?.product, "Product must be defined");

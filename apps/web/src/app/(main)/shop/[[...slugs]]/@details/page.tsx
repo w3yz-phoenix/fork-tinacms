@@ -27,7 +27,7 @@ import { DangerousSaleorRichText } from "../../../../../components/dangerous-sal
 import { getShopPageData } from "../../../../../lib/shop.api";
 import { Breadcrumbs } from "../../../../../components/breadcrumbs";
 
-// import { AddToCartButton } from "./add-to-cart-button";
+import { AddToCartButton } from "./add-to-cart-button";
 
 const getNonEmptyString = (value: string | null | undefined) =>
   value && value.length > 0 ? value : undefined;
@@ -370,13 +370,13 @@ export default async function ProductDetailPage(props: {
                   </div>
                 </div>
 
-                {/* <AddToCartButton
+                <AddToCartButton
                   disabled={!isAvailable}
                   productId={product.id}
                   variantId={variant?.id}
                   quantity={pageState.quantity}
                   cartela={selectedCartela?.slug}
-                /> */}
+                />
               </div>
             </div>
           </div>

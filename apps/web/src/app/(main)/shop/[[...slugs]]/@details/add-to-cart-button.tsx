@@ -1,10 +1,11 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { useActionState } from "react";
+import { useFormState } from "react-dom";
 
 import { SubmitButton } from "@@web/components/submit-button";
 import { addItemToCart } from "@@web/lib/checkout/checkout.actions";
+import { initialActionState } from "@@web/lib/actions/actions.utils";
 
 type AddToCartButtonProperties = {
   productId: string;
@@ -21,9 +22,12 @@ export const AddToCartButton = ({
   disabled,
   cartela,
 }: AddToCartButtonProperties) => {
-  const [formState, formAction] = useActionState(addItemToCart, undefined);
+  const [formState, formAction] = useFormState(
+    addItemToCart,
+    initialActionState
+  );
 
-  if (formState?.success) {
+  if (formState?.state === "success") {
     return redirect("/checkout/cart");
   }
 
