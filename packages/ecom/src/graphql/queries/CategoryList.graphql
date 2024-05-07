@@ -1,0 +1,30 @@
+query CategoryList($first: Int = 10, $after: String) {
+  categories(
+    first: $first
+    after: $after
+    sortBy: { field: NAME, direction: ASC }
+  ) {
+    pageInfo {
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      node {
+        id
+        name
+        slug
+        ancestors(first: 100) {
+          edges {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}

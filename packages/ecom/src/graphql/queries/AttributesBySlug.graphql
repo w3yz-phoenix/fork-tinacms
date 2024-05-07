@@ -1,0 +1,20 @@
+query AttributesBySlug($slug: String!) {
+  attribute(slug: $slug) {
+    id
+    name
+    slug
+    choices(first: 100) {
+      edges {
+        node {
+          id
+          name
+          slug
+          file {
+            url
+            contentType
+          }
+        }
+      }
+    }
+  }
+}

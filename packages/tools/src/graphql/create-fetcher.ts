@@ -4,8 +4,9 @@ export const createFetcher =
     query: string,
     variables?: TVariables,
     headers?: RequestInit["headers"]
-  ): (() => Promise<TData>) => {
+  ): ((requestParameters?: RequestInit) => Promise<TData>) => {
     return async () => {
+      console.log("fetching:", endpoint);
       const res = await fetch(endpoint, {
         method: "POST",
         headers: {

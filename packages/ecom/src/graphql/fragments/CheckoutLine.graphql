@@ -1,0 +1,45 @@
+fragment CheckoutLineFragment on CheckoutLine {
+  id
+  quantity
+  cartela: metafield(key: "cartela")
+  totalPrice {
+    net {
+      amount
+      currency
+    }
+    tax {
+      amount
+      currency
+    }
+    gross {
+      amount
+      currency
+    }
+  }
+
+  variant {
+    product {
+      id
+      name
+      slug
+      thumbnail(size: 512, format: WEBP) {
+        url
+        alt
+      }
+      category {
+        name
+      }
+    }
+
+    pricing {
+      price {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+    name
+    id
+  }
+}

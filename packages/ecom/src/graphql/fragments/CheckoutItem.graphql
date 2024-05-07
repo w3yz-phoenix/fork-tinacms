@@ -1,0 +1,67 @@
+fragment CheckoutItemFragment on Checkout {
+  id
+  email
+  token
+
+  lines {
+    id
+    ...CheckoutLineFragment
+  }
+
+  deliveryMethod {
+    ... on ShippingMethod {
+      id
+      name
+    }
+    ... on Warehouse {
+      id
+      name
+    }
+  }
+
+  shippingMethods {
+    active
+    id
+    message
+    name
+    price {
+      amount
+      currency
+    }
+    minimumDeliveryDays
+    maximumDeliveryDays
+  }
+
+  subtotalPrice {
+    gross {
+      amount
+      currency
+    }
+  }
+
+  shippingPrice {
+    gross {
+      amount
+      currency
+    }
+  }
+
+  totalPrice {
+    tax {
+      amount
+      currency
+    }
+    gross {
+      amount
+      currency
+    }
+  }
+
+  shippingAddress {
+    ...Address
+  }
+
+  billingAddress {
+    ...Address
+  }
+}

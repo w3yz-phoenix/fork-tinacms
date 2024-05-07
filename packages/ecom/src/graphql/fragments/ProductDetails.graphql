@@ -1,0 +1,77 @@
+fragment ProductDetails on Product {
+  id
+  name
+  slug
+  description
+  seoTitle
+  seoDescription
+  attributes {
+    values {
+      slug
+      name
+      richText
+      plainText
+      value
+      file {
+        url
+        contentType
+      }
+    }
+    attribute {
+      slug
+      name
+    }
+  }
+  cartelaImage: attribute(slug: "cartela-image") {
+    values {
+      slug
+      file {
+        url
+        contentType
+      }
+    }
+  }
+  thumbnail(size: 1024, format: WEBP) {
+    url
+    alt
+  }
+  media {
+    id
+    url
+    alt
+  }
+  category {
+    id
+    name
+    slug
+    ancestors(first: 100) {
+      edges {
+        node {
+          id
+          slug
+          name
+        }
+      }
+    }
+  }
+  variants {
+    id
+    quantityAvailable
+  }
+  pricing {
+    priceRange {
+      start {
+        gross {
+          amount
+          currency
+        }
+      }
+      stop {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
+}

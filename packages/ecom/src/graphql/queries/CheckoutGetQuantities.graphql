@@ -1,0 +1,8 @@
+query CheckoutGetQuantities($id: ID!) {
+  checkout(id: $id) {
+    id
+    lines {
+      quantity
+    }
+  }
+}

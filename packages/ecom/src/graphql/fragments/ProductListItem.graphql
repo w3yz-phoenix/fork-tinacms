@@ -1,6 +1,7 @@
 fragment ProductListItem on Product {
   id
   name
+  rating
   slug
   pricing {
     priceRange {
@@ -37,6 +38,6 @@ fragment ProductListItem on Product {
     alt
   }
   variants {
-    ...VariantDetails
+    ...ProductVariantDetails
   }
 }

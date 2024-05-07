@@ -18,17 +18,17 @@ tasks:
       - packages/cms/src/__generated__/**/*
     cmds:
       - mkdir -p packages/cms/src/__generated__
-      - bun -b x graphql-codegen -p '@w3yz/cms' {{.CLI_ARGS}}
+      - bun x graphql-codegen -p '@w3yz/cms' {{.CLI_ARGS}}
 
   dev-tina:
     dir: packages/cms
     cmds:
-      - bun -b x tinacms dev
+      - bun x tinacms dev
 
   dev-server:
     dir: packages/cms
     cmds:
-      - bun -b --hot run server.ts
+      - bun --hot run server.ts
 
   dev:
     dir: packages/cms

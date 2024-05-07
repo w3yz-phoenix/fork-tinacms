@@ -26,6 +26,7 @@ export const defineCodegenConfig = (
 ): CodegenConfig => {
   return {
     overwrite: true,
+    ignoreNoDocuments: true,
     ...config,
     config: {
       ...defaultConfig,

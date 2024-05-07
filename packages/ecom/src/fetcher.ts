@@ -1,5 +1,4 @@
 import { fetchers } from "@w3yz/tools/graphql";
+import { publicEnvironment } from "@w3yz/tools/lib";
 
-export const fetcher = fetchers.createFetcher(
-  process.env.NEXT_PUBLIC_SALEOR_API_URL ?? ""
-);
+export const fetcher = fetchers.createFetcher(publicEnvironment.ecom.api);

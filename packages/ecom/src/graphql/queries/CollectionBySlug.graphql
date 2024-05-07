@@ -1,0 +1,23 @@
+query CollectionBySlug($slug: String!) {
+  collection(slug: $slug) {
+    name
+    description
+    slug
+    metadata {
+      key
+      value
+    }
+    backgroundImage {
+      alt
+      url
+    }
+    products(first: 100) {
+      edges {
+        node {
+          id
+          ...ProductListItem
+        }
+      }
+    }
+  }
+}

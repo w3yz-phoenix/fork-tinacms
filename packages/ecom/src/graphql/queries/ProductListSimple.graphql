@@ -1,0 +1,31 @@
+query ProductListSimple($first: Int = 10, $after: String) {
+  products(
+    first: $first
+    after: $after
+    sortBy: { field: NAME, direction: ASC }
+    channel: "tr"
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        name
+        slug
+        category {
+          name
+          slug
+          ancestors(first: 100) {
+            edges {
+              node {
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

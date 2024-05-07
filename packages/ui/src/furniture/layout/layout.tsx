@@ -22,8 +22,12 @@ export async function Layout({
     relativePath: globalConfigPath,
   });
 
+  const state = dehydrate(queryClient);
+
+  console.log("layout-state:", state);
+
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationBoundary state={state}>
       <Header globalConfigPath={globalConfigPath} />
       <div>{children}</div>
       <Footer />

@@ -1,0 +1,6 @@
+query ProductBySlug($slug: String!) {
+  product(slug: $slug, channel: "tr") {
+    id
+    name
+  }
+}

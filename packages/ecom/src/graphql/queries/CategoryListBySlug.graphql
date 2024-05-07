@@ -1,0 +1,11 @@
+query CategoryListBySlug($slugs: [String!]!) {
+  categories(first: 100, filter: { slugs: $slugs }) {
+    edges {
+      node {
+        id
+        name
+        slug
+      }
+    }
+  }
+}
