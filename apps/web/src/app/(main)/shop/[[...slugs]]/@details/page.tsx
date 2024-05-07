@@ -22,12 +22,11 @@ import {
   getProductStateLinkGenerator,
 } from "@@web/lib/product/product.utils";
 import { ProductInfo } from "@@web/components/product-info/product-info";
+import { Breadcrumbs } from "@@web/components/breadcrumbs";
+import { DangerousSaleorRichText } from "@@web/components/dangerous-saleor-rich-text";
+import { getShopPageData } from "@@web/lib/shop.api";
 
-import { DangerousSaleorRichText } from "../../../../../components/dangerous-saleor-rich-text";
-import { getShopPageData } from "../../../../../lib/shop.api";
-import { Breadcrumbs } from "../../../../../components/breadcrumbs";
-
-import { AddToCartButton } from "./add-to-cart-button";
+import { AddToCartButton } from "../components/add-to-cart-button";
 
 const getNonEmptyString = (value: string | null | undefined) =>
   value && value.length > 0 ? value : undefined;
