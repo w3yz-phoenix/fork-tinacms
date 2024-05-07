@@ -7,11 +7,7 @@ import { invariant } from "@w3yz/tools/lib";
 async function findProductBySlug(slug: string) {
   const response = await useProductBySlugQuery.fetcher({
     slug: decodeURIComponent(slug),
-  })({
-    next: {
-      revalidate: 60,
-    },
-  });
+  })();
 
   return response.product;
 }
@@ -19,11 +15,7 @@ async function findProductBySlug(slug: string) {
 async function findCategoriesBySlug(slugs: string[]) {
   const response = await useCategoryListBySlugQuery.fetcher({
     slugs: slugs.map((s) => decodeURIComponent(s)),
-  })({
-    next: {
-      revalidate: 60,
-    },
-  });
+  })();
 
   return response.categories?.edges.map((edge) => edge.node) ?? [];
 }

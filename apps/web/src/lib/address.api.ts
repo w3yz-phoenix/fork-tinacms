@@ -6,9 +6,7 @@ import {
 export const getAddressValidationRules = async () => {
   const response = await useAddressValidationRulesQuery.fetcher({
     countryArea: SaleorGraphql_CountryCode.Tr,
-  })({
-    next: { revalidate: 60 },
-  });
+  })();
 
   const countryAreaChoices =
     response?.addressValidationRules?.countryAreaChoices?.map((choice) => ({

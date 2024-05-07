@@ -1,5 +1,4 @@
 import { fetchers } from "@w3yz/tools/graphql";
+import { publicEnvironment } from "@w3yz/tools/lib";
 
-export const fetcher = fetchers.createFetcher(
-  "http://localhost:3000/api/tina/gql"
-);
+export const fetcher = fetchers.createFetcher(publicEnvironment.cms.api);

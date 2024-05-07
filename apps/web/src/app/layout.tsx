@@ -1,8 +1,8 @@
 import "../shadcn.css";
 import { Inter as FontSans } from "next/font/google";
-import { publicEnvironment } from "@@ui/core/lib/environment";
 import { cn } from "@@shadcn/lib/utils";
 import { W3YZProvider } from "@@ui/core/components/w3yz-provider/w3yz-provider";
+import { publicEnvironment } from "@w3yz/tools/lib";
 
 import type { Metadata, Viewport } from "next";
 
@@ -12,7 +12,7 @@ const fontSans = FontSans({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const storefront = publicEnvironment.storefront;
+  const storefront = publicEnvironment.ecom;
 
   return {
     title: storefront.name,

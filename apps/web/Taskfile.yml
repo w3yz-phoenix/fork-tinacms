@@ -13,13 +13,6 @@ tasks:
 
   dev:
     dir: apps/web
-    env:
-      NODE_ENV: "development"
-      TINA_PUBLIC_IS_LOCAL: true,
-      NEXT_PUBLIC_URL: "http://localhost:3000"
-      NEXT_PUBLIC_SALEOR_API_URL: "https://dev-shop-api.w3yz.dev/graphql/"
-      NEXT_PUBLIC_STOREFRONT_URL: "http://localhost:3000"
-      NEXTAUTH_SECRET: "changeme"
     cmds:
       - bun x next dev -p 3200
 

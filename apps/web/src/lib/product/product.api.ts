@@ -13,9 +13,7 @@ import {
 export async function fetchAvailableCartelaChoices(slug: string) {
   const response = await useAttributesBySlugQuery.fetcher({
     slug,
-  })({
-    next: { revalidate: 60 },
-  });
+  })();
 
   if (!response.attribute) return [];
 
@@ -29,9 +27,7 @@ export async function fetchAvailableCartelaChoices(slug: string) {
 export async function fetchProductDetails(id: string) {
   const response = await useProductDetailsQuery.fetcher({
     id: decodeURIComponent(id),
-  })({
-    next: { revalidate: 60 },
-  });
+  })();
 
   const product = response.product;
 
@@ -75,9 +71,7 @@ export async function fetchProductDetails(id: string) {
 export async function fetchProductVariantDetails(id?: string) {
   const response = await useProductVariantDetailsQuery.fetcher({
     id: id ?? "",
-  })({
-    next: { revalidate: 60 },
-  });
+  })();
 
   return response.productVariant;
 }
@@ -132,7 +126,7 @@ export async function getProductsByCategory(categorySlug: "all" | string) {
   if (categorySlug === "all") {
     const response = await useProductListQuery.fetcher({
       first: 100,
-    })({ next: { revalidate: 60 } });
+    })();
 
     const products =
       response?.products?.edges?.map((edge) => mapProduct(edge.node)) ?? [];
@@ -145,7 +139,7 @@ export async function getProductsByCategory(categorySlug: "all" | string) {
 
   const response = await useProductListByCategoryQuery.fetcher({
     slug: categorySlug,
-  })({ next: { revalidate: 60 } });
+  })();
 
   if (!response.category?.name) {
     return;

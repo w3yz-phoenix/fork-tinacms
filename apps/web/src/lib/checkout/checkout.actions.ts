@@ -4,9 +4,9 @@ import {
   useCheckoutAddLineMutation,
   useCheckoutCreateMutation,
 } from "@w3yz/ecom/api";
-import { invariant } from "@w3yz/tools/lib";
+import { invariant, publicEnvironment } from "@w3yz/tools/lib";
 import { cookies } from "next/headers";
-import { publicEnvironment } from "@@ui/core/lib/environment";
+import { unstable_noStore } from "next/cache";
 
 import { createAction } from "../actions/actions.utils";
 
@@ -14,9 +14,8 @@ import { findCheckout } from "./checkout.query";
 import { AddItemToCartSchema } from "./checkout.schema";
 
 const createCheckout = async () => {
-  const response = await useCheckoutCreateMutation.fetcher({})({
-    cache: "no-cache",
-  });
+  unstable_noStore();
+  const response = await useCheckoutCreateMutation.fetcher({})();
   return response.checkoutCreate?.checkout?.id;
 };
 
@@ -34,6 +33,8 @@ async function findOrCreateCheckout(inputCheckoutId?: string) {
 export const addItemToCart = createAction(
   AddItemToCartSchema,
   async (parameters) => {
+    unstable_noStore();
+
     const checkout = await findOrCreateCheckout(
       cookies().get("checkoutId")?.value
     );
@@ -41,7 +42,7 @@ export const addItemToCart = createAction(
     invariant(checkout?.id, "Checkout ID is not defined");
 
     cookies().set("checkoutId", checkout.id, {
-      secure: publicEnvironment.https,
+      secure: publicEnvironment.ecom.https,
       sameSite: "lax",
       httpOnly: true,
       maxAge: 60 * 60 * 24 * 365 * 10,
@@ -56,7 +57,7 @@ export const addItemToCart = createAction(
       productVariantId: decodeURIComponent(parameters.variant),
       quantity: parameters.quantity,
       cartela: parameters.cartela ?? "yok",
-    })({ cache: "no-cache" });
+    })();
 
     return checkout.id;
   }

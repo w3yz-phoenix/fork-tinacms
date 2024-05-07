@@ -7,8 +7,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { type Product, type WithContext } from "schema-dts";
 import { z } from "zod";
-import { formatMoney, invariant } from "@w3yz/tools/lib";
-import { publicEnvironment } from "@@ui/core/lib/environment";
+import { formatMoney, invariant, publicEnvironment } from "@w3yz/tools/lib";
 
 import {
   fetchAvailableCartelaChoices,
@@ -82,8 +81,8 @@ export async function generateMetadata(
     }`,
     description: product.seoDescription || productNameAndVariant,
     alternates: {
-      canonical: publicEnvironment.storefront
-        ? publicEnvironment.storefront + product.internalMeta.canonicalPath
+      canonical: publicEnvironment.ecom
+        ? publicEnvironment.ecom + product.internalMeta.canonicalPath
         : undefined,
     },
     openGraph: product.thumbnail
