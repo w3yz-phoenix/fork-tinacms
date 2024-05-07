@@ -20,6 +20,8 @@ export const useTinaQuery = <
 ) => {
   const myQuery = useHook(variables);
 
+  console.log("react-query:", myQuery.data);
+
   const layoutProperties = {
     query: useHook.document,
     variables: variables,
@@ -28,6 +30,8 @@ export const useTinaQuery = <
 
   const editState = useEditState();
   const tinaResponse = useTina(layoutProperties as any);
+
+  console.log("tina-response:", tinaResponse.data);
 
   const data = editState.edit ? tinaResponse.data : myQuery.data;
 

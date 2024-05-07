@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { Layout } from "@@ui/furniture/layout/layout";
 
 import { getShopPageData } from "../../../../lib/shop.api";
 
@@ -14,19 +15,13 @@ export default async function ShopCatchAllLayout(props: {
     return notFound();
   }
 
-  return (
-    <>
-      {data.type === "product" ? (
-        <Suspense>{props.details}</Suspense>
-      ) : (
-        props.details
-      )}
+  const showList = data.type === "all" || data.type === "category";
+  const showDetails = data.type === "product";
 
-      {data.type === "all" || data.type === "category" ? (
-        <Suspense>{props.list}</Suspense>
-      ) : (
-        props.list
-      )}
-    </>
+  return (
+    <Layout>
+      {showDetails && <Suspense>{props.details}</Suspense>}
+      {showList && <Suspense>{props.list}</Suspense>}
+    </Layout>
   );
 }
