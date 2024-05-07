@@ -8,12 +8,13 @@ import {
   invariant,
 } from "@w3yz/tools/lib";
 
+import { getProductsByCategory } from "@@web/lib/product/product.api";
+import { getShopPageData } from "@@web/lib/shop.api";
+
 import type { Metadata } from "next";
 
-import { getShopPageData } from "../lib/shop.api";
 import { Breadcrumbs } from "../components/breadcrumbs";
 import { ProductCard } from "../components/product-card";
-import { getProductsByCategory } from "../lib/product.api";
 
 export const generateMetadata = async (props: {
   params: { slugs?: string[] };

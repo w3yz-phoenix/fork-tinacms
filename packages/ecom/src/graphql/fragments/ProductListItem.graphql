@@ -38,6 +38,6 @@ fragment ProductListItem on Product {
     alt
   }
   variants {
-    ...VariantDetails
+    ...ProductVariantDetails
   }
 }

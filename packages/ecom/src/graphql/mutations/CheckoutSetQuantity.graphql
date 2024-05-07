@@ -1,0 +1,15 @@
+mutation CheckoutSetQuantity($lineId: ID!, $checkoutId: ID!, $quantity: Int!) {
+  checkoutLinesUpdate(
+    lines: { quantity: $quantity, lineId: $lineId }
+    checkoutId: $checkoutId
+  ) {
+    errors {
+      code
+      field
+      message
+    }
+    checkout {
+      id
+    }
+  }
+}

@@ -31,6 +31,10 @@ export const publicEnvironment = z
       name: data.NEXT_PUBLIC_STOREFRONT_NAME,
     },
   }))
+  .transform((data) => ({
+    ...data,
+    https: data.storefront.url.startsWith("https"),
+  }))
   .parse({
     NEXT_PUBLIC_SALEOR_API_URL: process.env.NEXT_PUBLIC_SALEOR_API_URL,
     NEXT_PUBLIC_STOREFRONT_URL: process.env.NEXT_PUBLIC_STOREFRONT_URL,

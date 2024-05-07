@@ -1,0 +1,5 @@
+query ProductVariantDetails($id: ID!) {
+  productVariant(id: $id, channel: "tr") {
+    ...ProductVariantDetails
+  }
+}

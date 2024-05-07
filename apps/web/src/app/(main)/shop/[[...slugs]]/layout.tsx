@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-import { getShopPageData } from "./lib/shop.api";
+import { getShopPageData } from "../../../../lib/shop.api";
 
 export default async function ShopCatchAllLayout(props: {
   params: { slugs?: string[] };

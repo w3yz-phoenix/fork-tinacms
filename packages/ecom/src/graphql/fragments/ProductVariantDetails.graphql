@@ -1,4 +1,4 @@
-fragment VariantDetails on ProductVariant {
+fragment ProductVariantDetails on ProductVariant {
   id
   name
   quantityAvailable

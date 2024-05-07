@@ -1,0 +1,22 @@
+fragment Address on Address {
+  id
+  firstName
+  lastName
+  companyName
+  streetAddress1
+  streetAddress2
+  city
+  postalCode
+  country {
+    code
+    country
+  }
+  countryArea
+  phone
+  email: metafield(key: "email")
+  taxNumber: metafield(key: "taxNumber")
+  taxOffice: metafield(key: "taxOffice")
+  title: metafield(key: "title")
+  addressType: metafield(key: "addressType")
+  storefrontUrl: metafield(key: "storefrontUrl")
+}

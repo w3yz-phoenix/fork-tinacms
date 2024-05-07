@@ -1,0 +1,8 @@
+fragment CheckoutError on CheckoutError {
+  field
+  message
+  code
+  variants
+  lines
+  addressType
+}
