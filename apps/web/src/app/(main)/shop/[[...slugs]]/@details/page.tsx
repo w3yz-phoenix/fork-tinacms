@@ -7,31 +7,27 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { type Product, type WithContext } from "schema-dts";
 import { z } from "zod";
-import { invariant } from "@w3yz/tools/lib";
+import { formatMoney, invariant } from "@w3yz/tools/lib";
 import { publicEnvironment } from "@@ui/core/lib/environment";
 
-import { SimilarProducts } from "@/ui/components/similar-products";
-import { formatMoney } from "@/zivella-ui/lib";
-import { ProductInfo } from "@/zivella-ui/storefront/product-info";
-import { ProductPath } from "@/zivella-ui/storefront/product-path";
-import { ProductPageStateSchema } from "@/zivella-ui/storefront/schema";
-
-import { getProductsByCategory } from "../../../../../lib/product/product.api";
-import { DangerousSaleorRichText } from "../components/dangerous-saleor-rich-text";
-import { getShopPageData } from "../../../../../lib/shop.api";
-
-import { AddToCartButton } from "./add-to-cart-button";
-import { getProductStateLinkGenerator } from "./common";
 import {
   fetchAvailableCartelaChoices,
   fetchProductDetails,
-  fetchVariantDetails,
-} from "./product-data/product.api";
+  fetchProductVariantDetails,
+  type DetailedProductType,
+  type DetailedProductVariantType,
+} from "@@web/lib/product/product.api";
 import {
-  DetailedProductType,
-  type DetailedVariantType,
-} from "./product-data/product.types";
-import { VariantSelector } from "./variant-selector";
+  ProductPageStateSchema,
+  getProductStateLinkGenerator,
+} from "@@web/lib/product/product.utils";
+import { ProductInfo } from "@@web/components/product-info/product-info";
+
+import { DangerousSaleorRichText } from "../../../../../components/dangerous-saleor-rich-text";
+import { getShopPageData } from "../../../../../lib/shop.api";
+import { Breadcrumbs } from "../../../../../components/breadcrumbs";
+
+import { AddToCartButton } from "./add-to-cart-button";
 
 const getNonEmptyString = (value: string | null | undefined) =>
   value && value.length > 0 ? value : undefined;
@@ -68,7 +64,7 @@ export async function generateMetadata(
 
   invariant(product?.id, "Product must be defined");
 
-  const variant = await fetchVariantDetails(
+  const variant = await fetchProductVariantDetails(
     props.searchParams.variant ?? product.variants?.[0]?.id
   );
 
@@ -109,7 +105,7 @@ const ProductJsonLd = ({
   variant,
 }: {
   product: Awaited<ReturnType<typeof fetchProductDetails>>;
-  variant: DetailedVariantType;
+  variant: DetailedProductVariantType;
 }) => {
   invariant(product?.id, "Product must be defined");
 
@@ -199,7 +195,7 @@ export default async function ProductDetailPage(props: {
 
   const variants = product.variants;
   const selectedVariantID = pageState?.variant ?? variants?.[0]?.id;
-  const variant = await fetchVariantDetails(selectedVariantID);
+  const variant = await fetchProductVariantDetails(selectedVariantID);
 
   if (!variant) {
     return notFound();
@@ -259,8 +255,6 @@ export default async function ProductDetailPage(props: {
     return redirect(link);
   }
 
-  const response = await getProductsByCategory(product.category.slug);
-
   const isAvailable = Boolean(
     variant.quantityAvailable && variant.quantityAvailable > 0
   );
@@ -269,7 +263,7 @@ export default async function ProductDetailPage(props: {
     <>
       <ProductJsonLd product={product} variant={variant} />
       <div className="mx-auto mt-3 max-w-screen-2xl px-4 sm:px-[52px]">
-        <ProductPath breadcrumbs={product.internalMeta.breadcrumbs} />
+        <Breadcrumbs breadcrumbs={product.internalMeta.breadcrumbs} />
 
         <div className="my-6 flex flex-col gap-7 xl:flex-row xl:gap-7">
           <div className="flex-1">
@@ -330,14 +324,6 @@ export default async function ProductDetailPage(props: {
                     )}
                   </div>
                 }
-              </div>
-
-              <div className="mt-4 flex gap-2">
-                <VariantSelector
-                  pageState={pageState}
-                  productId={product.id}
-                  selectedVariantId={variant.id}
-                />
               </div>
 
               <div className="flex items-end gap-x-5">
@@ -406,14 +392,14 @@ export default async function ProductDetailPage(props: {
             cartela={cartela}
             productInformation={
               productInformation.richText ? (
-                <RichText json={productInformation.richText} />
+                <DangerousSaleorRichText json={productInformation.richText} />
               ) : (
                 "Teknik bilgi yok"
               )
             }
             technicalInformation={
               technicalInformation.richText ? (
-                <RichText json={technicalInformation.richText} />
+                <DangerousSaleorRichText json={technicalInformation.richText} />
               ) : (
                 "Teknik bilgi yok"
               )
@@ -421,8 +407,6 @@ export default async function ProductDetailPage(props: {
             productWeight={`${productWeight.name ?? ""} kg`}
           />
         </div>
-
-        <SimilarProducts products={response?.products ?? []} />
       </div>
     </>
   );

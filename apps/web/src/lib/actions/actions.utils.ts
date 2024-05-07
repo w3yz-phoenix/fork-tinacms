@@ -1,4 +1,3 @@
-"use server";
 import { publicEnvironment } from "@@ui/core/lib/environment";
 import { cookies, headers } from "next/headers";
 
@@ -26,11 +25,21 @@ export async function getIPAddress() {
   return headers().get("x-forwarded-for");
 }
 
-type ActionState<T> = {
-  success: boolean;
-  message: T;
-  iteration?: number;
-};
+type ActionState<T, E = unknown> =
+  | {
+      success: true;
+      data: T;
+      error: null;
+      iteration?: number;
+    }
+  | {
+      success: false;
+      data: null;
+      error: E;
+      iteration?: number;
+    }
+  | null
+  | undefined;
 
 export type FieldErrors<
   Fields extends Record<string, unknown> = Record<string, unknown>,
@@ -76,7 +85,7 @@ export const createAction =
     inputSchema: T,
     actionFunction: AF & ((parameters: Parameters, ps: State) => Promise<RT>)
   ) =>
-  async (ps: State, formData: FormData) => {
+  async (ps: State, formData: FormData): Promise<State> => {
     try {
       const validationResult = await inputSchema.spa(
         Object.fromEntries(formData)
@@ -91,15 +100,17 @@ export const createAction =
       const response = await actionFunction(parameters, ps);
 
       return {
+        ...ps,
         success: true,
-        message: response,
+        data: response,
       };
     } catch (error: unknown) {
       console.error(error);
 
       return {
+        ...ps,
         success: false,
-        message: (error as any)?.message ?? "Something went wrong",
+        error: (error as any)?.message ?? "Something went wrong",
       };
     }
   };

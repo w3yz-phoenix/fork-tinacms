@@ -13,7 +13,7 @@ import { getShopPageData } from "@@web/lib/shop.api";
 
 import type { Metadata } from "next";
 
-import { Breadcrumbs } from "../components/breadcrumbs";
+import { Breadcrumbs } from "../../../../../components/breadcrumbs";
 import { ProductCard } from "../components/product-card";
 
 export const generateMetadata = async (props: {

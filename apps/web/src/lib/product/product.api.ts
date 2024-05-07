@@ -72,7 +72,7 @@ export async function fetchProductDetails(id: string) {
     },
   };
 }
-export async function fetchVariantDetails(id?: string) {
+export async function fetchProductVariantDetails(id?: string) {
   const response = await useProductVariantDetailsQuery.fetcher({
     id: id ?? "",
   })({
@@ -86,8 +86,8 @@ export type DetailedProductType = Awaited<
   ReturnType<typeof fetchProductDetails>
 >;
 
-export type DetailedVariantType = Awaited<
-  ReturnType<typeof fetchVariantDetails>
+export type DetailedProductVariantType = Awaited<
+  ReturnType<typeof fetchProductVariantDetails>
 >;
 
 export function mapProduct(product: SaleorGraphql_ProductListItemFragment) {
