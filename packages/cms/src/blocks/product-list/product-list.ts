@@ -2,6 +2,7 @@ import { defineTinaTemplate } from "../../lib/tina.utils";
 
 export const productListBlockDefaultItem = {
   title: "Urunler",
+  itemsPerRow: 3,
 };
 
 export const productListBlockSchema = defineTinaTemplate({
@@ -21,6 +22,12 @@ export const productListBlockSchema = defineTinaTemplate({
       description: "The title of the product list",
       required: true,
       isTitle: true,
+    },
+    {
+      type: "string",
+      label: "Items Per Row",
+      name: "itemsPerRow",
+      options: ["2", "3", "4", "5"],
     },
   ],
 });

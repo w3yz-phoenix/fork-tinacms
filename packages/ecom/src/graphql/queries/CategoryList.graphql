@@ -1,0 +1,17 @@
+query CategoryList($first: Int!, $after: String) {
+  categories(first: $first, after: $after) {
+    totalCount
+    edges {
+      node {
+        id
+        slug
+        name
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

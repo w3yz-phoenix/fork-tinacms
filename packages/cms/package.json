@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@w3yz/tools": "workspace:*",
+    "@w3yz/ecom": "workspace:*",
     "elysia": "^1.0.16",
     "express": "^4.19.2",
     "http-proxy-middleware": "^3.0.0",
