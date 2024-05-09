@@ -1,3 +1,5 @@
+import { privateEnvironment } from "../lib/environment";
+
 export const createFetcher =
   (endpoint: string) =>
   <TData, TVariables>(
@@ -6,8 +8,8 @@ export const createFetcher =
     headers?: RequestInit["headers"]
   ): ((requestParameters?: RequestInit) => Promise<TData>) => {
     return async () => {
-      console.log("fetching:", endpoint);
-      const res = await fetch(endpoint, {
+      const requestStart = performance.now();
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -18,8 +20,12 @@ export const createFetcher =
           variables,
         }),
       });
+      const requestEnd = performance.now();
+      const json = await response.json();
 
-      const json = await res.json();
+      if (privateEnvironment.isDevelopment) {
+        console.log(`POST ${endpoint} in ${requestEnd - requestStart}ms`);
+      }
 
       if (json.errors) {
         const { message } = json.errors[0] || {};

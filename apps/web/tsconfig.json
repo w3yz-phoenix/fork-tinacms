@@ -10,6 +10,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "downlevelIteration": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
@@ -18,9 +19,9 @@
       }
     ],
     "paths": {
-      "@@web/*": ["./src/*"],
-      "@@shadcn/*": ["../../packages/shadcn/src/*"],
-      "@@ui/*": ["../../packages/ui/src/*"]
+      "#web/*": ["./src/*"],
+      "#shadcn/*": ["../../packages/shadcn/src/*"],
+      "#ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [

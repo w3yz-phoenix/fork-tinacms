@@ -2,9 +2,9 @@
 
 import { usePageQuery, type TinaGraphql_PageQuery } from "@w3yz/cms/api";
 
-import { FeaturesBlock } from "@@ui/furniture/blocks/features/features";
-import { HeroSliderBlock } from "@@ui/furniture/blocks/hero-slider/hero-slider";
-import { ProductListBlock } from "@@ui/furniture/blocks/product-list/product-list";
+import { FeaturesBlock } from "#ui/furniture/blocks/features/features";
+import { HeroSliderBlock } from "#ui/furniture/blocks/hero-slider/hero-slider";
+import { ProductListBlock } from "#ui/furniture/blocks/product-list/product-list";
 
 import { useTinaQuery } from "../../hooks";
 

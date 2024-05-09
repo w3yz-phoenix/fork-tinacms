@@ -1,7 +1,7 @@
 import { tinaField } from "tinacms/dist/react";
 import Image from "next/image";
 
-import { ReactSlickSlider, type ReactSlick } from "@@ui/core/lib/slick";
+import { ReactSlickSlider, type ReactSlick } from "#ui/core/lib/slick";
 
 import type { TinaGraphql_PageBlocksHeroSlider } from "@w3yz/cms/api";
 

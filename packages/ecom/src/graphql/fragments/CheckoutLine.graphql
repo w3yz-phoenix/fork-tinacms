@@ -1,7 +1,6 @@
-fragment CheckoutLineFragment on CheckoutLine {
+fragment CheckoutLine on CheckoutLine {
   id
   quantity
-  cartela: metafield(key: "cartela")
   totalPrice {
     net {
       amount
@@ -22,6 +21,7 @@ fragment CheckoutLineFragment on CheckoutLine {
       id
       name
       slug
+      description
       thumbnail(size: 512, format: WEBP) {
         url
         alt

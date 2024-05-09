@@ -8,22 +8,24 @@ import { notFound, redirect } from "next/navigation";
 import { type Product, type WithContext } from "schema-dts";
 import { z } from "zod";
 import { formatMoney, invariant, publicEnvironment } from "@w3yz/tools/lib";
+import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 
 import {
-  fetchAvailableCartelaChoices,
   fetchProductDetails,
   fetchProductVariantDetails,
   type DetailedProductType,
   type DetailedProductVariantType,
-} from "@@web/lib/product/product.api";
+} from "#web/lib/product/product.api";
 import {
   ProductPageStateSchema,
   getProductStateLinkGenerator,
-} from "@@web/lib/product/product.utils";
-import { ProductInfo } from "@@web/components/product-info/product-info";
-import { Breadcrumbs } from "@@web/components/breadcrumbs";
-import { DangerousSaleorRichText } from "@@web/components/dangerous-saleor-rich-text";
-import { getShopPageData } from "@@web/lib/shop.api";
+} from "#web/lib/product/product.utils";
+import { ProductInfo } from "#web/components/product-info/product-info";
+import { Breadcrumbs } from "#web/components/breadcrumbs";
+import { DangerousSaleorRichText } from "#web/components/dangerous-saleor-rich-text";
+import { getShopPageData } from "#web/lib/shop.api";
+import { SubmitButton } from "#web/components/submit-button";
+import { addItemToCartFormAction } from "#web/lib/checkout/actions/add-to-cart/action";
 
 import { AddToCartButton } from "../components/add-to-cart-button";
 
@@ -171,21 +173,11 @@ export default async function ProductDetailPage(props: {
 
   invariant(product?.category, "Category must be defined");
 
-  const cartela = product?.cartelaImage?.values[0];
-
-  const availableCartelaChoices = cartela
-    ? await fetchAvailableCartelaChoices(cartela?.slug ?? "")
-    : [];
-
   const pageState = ProductPageStateSchema.parse({
     category: product.category.slug,
     slug: product.slug,
     ...props.searchParams,
   });
-
-  const selectedCartela = availableCartelaChoices.find(
-    (c) => c.slug === pageState.cartela
-  );
 
   const createStateLink = getProductStateLinkGenerator(
     product.internalMeta.canonicalPath
@@ -218,15 +210,6 @@ export default async function ProductDetailPage(props: {
         quantity: pageState?.quantity ?? 1,
         currentImageId: media[0]?.id,
         infoTab: "product-info",
-      }) ?? product.internalMeta.canonicalPath;
-
-    return redirect(link);
-  }
-
-  if (availableCartelaChoices.length > 0 && !selectedCartela) {
-    const link =
-      createStateLink(pageState, {
-        cartela: availableCartelaChoices[0]?.slug ?? "",
       }) ?? product.internalMeta.canonicalPath;
 
     return redirect(link);
@@ -368,13 +351,18 @@ export default async function ProductDetailPage(props: {
                   </div>
                 </div>
 
-                <AddToCartButton
-                  disabled={!isAvailable}
-                  productId={product.id}
-                  variantId={variant?.id}
-                  quantity={pageState.quantity}
-                  cartela={selectedCartela?.slug}
-                />
+                <ServerActionForm
+                  action={addItemToCartFormAction}
+                  fields={{
+                    product: product.id,
+                    variant: variant?.id,
+                    quantity: pageState.quantity,
+                  }}
+                >
+                  <SubmitButton disabled={!isAvailable} variant="secondary">
+                    Sepete Ekle
+                  </SubmitButton>
+                </ServerActionForm>
               </div>
             </div>
           </div>
@@ -387,7 +375,6 @@ export default async function ProductDetailPage(props: {
             warranty={`${warrantyTime.name ?? "36"} Ay`}
             pageState={pageState}
             canonicalPath={product.internalMeta.canonicalPath}
-            cartela={cartela}
             productInformation={
               productInformation.richText ? (
                 <DangerousSaleorRichText json={productInformation.richText} />

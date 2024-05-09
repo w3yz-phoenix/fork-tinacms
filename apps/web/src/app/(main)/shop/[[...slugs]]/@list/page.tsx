@@ -8,8 +8,8 @@ import {
   invariant,
 } from "@w3yz/tools/lib";
 
-import { getProductsByCategory } from "@@web/lib/product/product.api";
-import { getShopPageData } from "@@web/lib/shop.api";
+import { getProductsByCategory } from "#web/lib/product/product.api";
+import { getShopPageData } from "#web/lib/shop.api";
 
 import type { Metadata } from "next";
 

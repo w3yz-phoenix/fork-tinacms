@@ -4,13 +4,17 @@ header:
     alt: Furniture
     link: content/pages/home.mdx
   links:
-    - label: Magaza
-      page: content/pages/shop.mdx
     - label: Iletisim
       page: content/pages/coming-soon.mdx
-    - label: Indirim
-      page: content/pages/coming-soon.mdx
+      _template: link
+    - label: Magaza
+      page: content/pages/shop.mdx
+      _template: link
     - label: Blog
       page: content/pages/coming-soon.mdx
+      _template: link
     - label: Hakkimizda
       page: content/pages/coming-soon.mdx
+      _template: link
+    - badgeColor: '#EC4815'
+      _template: shoppingCart

@@ -8,9 +8,11 @@ import {
   type TinaGraphql_GlobalConfigQuery,
 } from "@w3yz/cms/api";
 
-import { tinaField, useTinaQuery } from "@@ui/core/hooks";
+import { tinaField, useTinaQuery } from "#ui/core/hooks";
 
 import type { Get } from "type-fest";
+
+import { CartIndicator } from "./cart-indicator";
 
 const ImageComponent = ({
   image,
@@ -27,15 +29,21 @@ const ImageComponent = ({
       alt={image?.alt ?? "W3YZ"}
     />
   );
+  const href = `/${image?.link?._sys?.breadcrumbs?.join("/") ?? ""}`;
   const content = image?.link ? (
-    <Link href={image?.link._sys.filename}>{imageElement}</Link>
+    <Link href={href}>{imageElement}</Link>
   ) : (
     imageElement
   );
   return <div data-tina-field={dataTinaField}>{content}</div>;
 };
 
-export const Header = ({ globalConfigPath }: { globalConfigPath: string }) => {
+type HeaderProps = {
+  globalConfigPath: string;
+  cartItemCount: number;
+};
+
+export const Header = ({ globalConfigPath, cartItemCount }: HeaderProps) => {
   const { globalConfig } = useTinaQuery<TinaGraphql_GlobalConfigQuery>(
     useGlobalConfigQuery,
     {
@@ -57,15 +65,37 @@ export const Header = ({ globalConfigPath }: { globalConfigPath: string }) => {
             image={header?.logo}
           />
           <div className="flex items-center gap-x-6 text-base font-normal text-[#292929] lg:gap-x-12 2xl:gap-x-[90px] 2xl:text-xl">
-            {header?.links?.map((link, index) => (
-              <Link
-                key={link?.label}
-                href={`/${link?.page?._sys?.filename ?? ""}`}
-                data-tina-field={tinaField(header, "links", index)}
-              >
-                {link?.label ?? ""}
-              </Link>
-            ))}
+            {header?.links?.map((link, index) => {
+              switch (link?.__typename) {
+                case "GlobalConfigHeaderLinksLink": {
+                  const href = `/${link?.page?._sys?.breadcrumbs?.join("/") ?? ""}`;
+                  return (
+                    <Link
+                      key={`${link?.label}-${index}`}
+                      href={href}
+                      data-tina-field={tinaField(header, "links", index)}
+                    >
+                      {link?.label ?? ""}
+                    </Link>
+                  );
+                }
+
+                case "GlobalConfigHeaderLinksShoppingCart": {
+                  return (
+                    <CartIndicator
+                      key={`cart-${index}`}
+                      data-tina-field={tinaField(header, "links", index)}
+                      block={link}
+                      cartItemCount={cartItemCount}
+                    />
+                  );
+                }
+
+                default: {
+                  return null;
+                }
+              }
+            })}
           </div>
         </div>
       </div>

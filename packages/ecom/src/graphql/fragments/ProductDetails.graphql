@@ -22,15 +22,6 @@ fragment ProductDetails on Product {
       name
     }
   }
-  cartelaImage: attribute(slug: "cartela-image") {
-    values {
-      slug
-      file {
-        url
-        contentType
-      }
-    }
-  }
   thumbnail(size: 1024, format: WEBP) {
     url
     alt

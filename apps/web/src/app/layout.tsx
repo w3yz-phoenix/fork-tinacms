@@ -1,8 +1,9 @@
 import "../shadcn.css";
 import { Inter as FontSans } from "next/font/google";
-import { cn } from "@@shadcn/lib/utils";
-import { W3YZProvider } from "@@ui/core/components/w3yz-provider/w3yz-provider";
+import { cn } from "#shadcn/lib/utils";
+import { W3YZProvider } from "#ui/core/components/w3yz-provider/w3yz-provider";
 import { publicEnvironment } from "@w3yz/tools/lib";
+import { Layout } from "#ui/furniture/layout/layout";
 
 import type { Metadata, Viewport } from "next";
 
@@ -30,13 +31,13 @@ export async function generateViewport(): Promise<Viewport> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head />
       <body
         className={cn(
@@ -44,7 +45,9 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <W3YZProvider>{children}</W3YZProvider>
+        <W3YZProvider>
+          <Layout>{children}</Layout>
+        </W3YZProvider>
       </body>
     </html>
   );

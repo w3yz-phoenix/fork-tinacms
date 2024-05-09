@@ -22,7 +22,7 @@ app.use(
   "/api/tina/gql",
   createProxyMiddleware({
     target: "http://localhost:4001",
-    changeOrigin: true,
+    changeOrigin: false,
     pathRewrite: {
       ".*": "/graphql",
     },
@@ -33,7 +33,7 @@ app.use(
   "/",
   createProxyMiddleware({
     target: "http://localhost:3200/",
-    changeOrigin: true,
+    changeOrigin: false,
   })
 );
 

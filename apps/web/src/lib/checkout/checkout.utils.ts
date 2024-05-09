@@ -1,14 +1,5 @@
 import { z } from "zod";
 
-import { ProductPageStateSchema } from "../product/product.utils";
-
-export const AddItemToCartSchema = ProductPageStateSchema.pick({
-  quantity: true,
-  variant: true,
-  product: true,
-  cartela: true,
-});
-
 export const GenericResponseSchema = z
   .object({
     success: z.boolean(),

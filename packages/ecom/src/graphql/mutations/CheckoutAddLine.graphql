@@ -1,18 +1,8 @@
-mutation CheckoutAddLine(
-  $id: ID!
-  $productVariantId: ID!
-  $quantity: Int = 1
-  $cartela: String = "yok"
-) {
+mutation CheckoutAddLine($id: ID!, $productVariantId: ID!, $quantity: Int = 1) {
   checkoutLinesAdd(
     id: $id
     lines: [
-      {
-        quantity: $quantity
-        variantId: $productVariantId
-        forceNewLine: true
-        metadata: [{ key: "cartela", value: $cartela }]
-      }
+      { quantity: $quantity, variantId: $productVariantId, forceNewLine: true }
     ]
   ) {
     checkout {

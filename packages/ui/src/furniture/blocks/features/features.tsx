@@ -1,4 +1,4 @@
-import { tinaField } from "@@ui/core/hooks";
+import { tinaField } from "#ui/core/hooks";
 
 import type { TinaGraphql_PageBlocksFeatures } from "@w3yz/cms/api";
 

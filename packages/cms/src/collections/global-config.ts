@@ -1,6 +1,61 @@
 import type { Collection } from "tinacms";
 
+import { defineTinaTemplate } from "../lib/tina.utils";
+
 import { PageCollection } from "./page";
+
+const linkTemplate = defineTinaTemplate({
+  name: "link",
+  label: "Link",
+  ui: {
+    itemProps: (item: any) => {
+      return {
+        label: item?.label,
+      };
+    },
+  },
+  fields: [
+    {
+      name: "label",
+      label: "Label",
+      type: "string",
+    },
+    {
+      name: "page",
+      label: "Page",
+      type: "reference",
+      collections: [PageCollection.name],
+    },
+  ],
+});
+
+const shoppingCartTemplate = defineTinaTemplate({
+  name: "shoppingCart",
+  label: "Shopping Cart",
+  ui: {
+    itemProps: () => {
+      return {
+        label: "Shopping Cart",
+      };
+    },
+    defaultItem: {
+      badgeColor: "#EC4815",
+    },
+  },
+  fields: [
+    {
+      name: "badgeColor",
+      label: "Badge Color",
+      type: "string",
+      ui: {
+        component: "color",
+        colorFormat: "hex",
+        colors: ["#EC4815", "#241748", "#B4F4E0", "#E6FAF8"],
+        widget: "sketch",
+      },
+    },
+  ],
+});
 
 export const GlobalConfigCollection: Collection = {
   label: "Global Configurations",
@@ -50,31 +105,7 @@ export const GlobalConfigCollection: Collection = {
           list: true,
           name: "links",
           label: "Links",
-          ui: {
-            itemProps: (item) => {
-              return {
-                key: item.label,
-                label: item.label,
-              };
-            },
-            defaultItem: () => ({
-              label: "Isimsiz",
-              page: "content/pages/coming-soon.mdx",
-            }),
-          },
-          fields: [
-            {
-              name: "label",
-              label: "Label",
-              type: "string",
-            },
-            {
-              name: "page",
-              label: "Page",
-              type: "reference",
-              collections: [PageCollection.name],
-            },
-          ],
+          templates: [linkTemplate, shoppingCartTemplate],
         },
       ],
     },

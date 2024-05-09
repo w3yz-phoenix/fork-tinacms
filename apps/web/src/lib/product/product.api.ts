@@ -5,24 +5,9 @@ import {
   type SaleorGraphql_ProductListItemFragment,
 } from "@w3yz/ecom/api";
 import {
-  useAttributesBySlugQuery,
   useProductDetailsQuery,
   useProductVariantDetailsQuery,
 } from "@w3yz/ecom/api";
-
-export async function fetchAvailableCartelaChoices(slug: string) {
-  const response = await useAttributesBySlugQuery.fetcher({
-    slug,
-  })();
-
-  if (!response.attribute) return [];
-
-  return (
-    response.attribute.choices?.edges
-      .map(({ node }) => node)
-      .filter(isPresent) ?? []
-  );
-}
 
 export async function fetchProductDetails(id: string) {
   const response = await useProductDetailsQuery.fetcher({

@@ -1,14 +1,9 @@
-import { Layout } from "@@ui/furniture/layout/layout";
-import { Page } from "@@ui/core/components/page/page";
+import { Page } from "#ui/core/components/page/page";
 
-export default async function TinaPage({
+export default function CatchAllPage({
   params,
 }: {
   params: { slugs?: string[] };
 }) {
-  return (
-    <Layout globalConfigPath="main.yml">
-      <Page relativePath={`${params.slugs?.join("/")}.mdx`} />
-    </Layout>
-  );
+  return <Page relativePath={`${params.slugs?.join("/")}.mdx`} />;
 }

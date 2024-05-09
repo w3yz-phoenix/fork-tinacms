@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { z } from "zod";
-import { cva, cn } from "@@shadcn/lib/utils";
+import { cva, cn } from "#shadcn/lib/utils";
 import { isPresent } from "@w3yz/tools/lib";
 
 import {
   ProductPageStateSchema,
   getProductStateLinkGenerator,
-} from "@@web/lib/product/product.utils";
+} from "#web/lib/product/product.utils";
 
 import installmentImg1 from "./images/bonus-card.png";
 import installmentImg2 from "./images/bankkart-card.png";
@@ -48,9 +48,7 @@ export const ProductInfoSchema = z.object({
   canonicalPath: z.string(),
 });
 
-export type ProductInfoProperties = z.infer<typeof ProductInfoSchema> & {
-  cartela: any;
-};
+export type ProductInfoProperties = z.infer<typeof ProductInfoSchema>;
 
 type TabbedInfoProperties = {
   defaultTab: string;
@@ -100,7 +98,6 @@ export function ProductInfo({
   technicalInformation,
   canonicalPath,
   pageState,
-  cartela,
 }: ProductInfoProperties) {
   const createStateLink = getProductStateLinkGenerator(canonicalPath);
   const currentTab = pageState.infoTab ?? "product-info";
@@ -157,19 +154,6 @@ export function ProductInfo({
           </table>
         </div>
       </div>
-    ),
-  };
-  const cartelaTab = {
-    slug: "cartela",
-    title: "Renk Seçenekleri",
-    link: createStateLink(pageState, { infoTab: "cartela" }),
-    render: () => (
-      <Image
-        src={cartela?.file?.url ?? ""}
-        alt="Kartela"
-        width={800}
-        height={2000}
-      />
     ),
   };
 
@@ -310,11 +294,7 @@ export function ProductInfo({
     <TabbedInfo
       currentTab={currentTab}
       defaultTab="product-info"
-      tabs={[
-        productInfoTab,
-        cartela ? cartelaTab : undefined,
-        productInstallmentTab,
-      ].filter(isPresent)}
+      tabs={[productInfoTab, productInstallmentTab].filter(isPresent)}
     />
   );
 }

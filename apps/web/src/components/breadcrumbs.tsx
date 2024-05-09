@@ -1,5 +1,6 @@
-import { cn } from "@@shadcn/lib/utils";
 import Link from "next/link";
+
+import { cn } from "#shadcn/lib/utils";
 
 type BreadcrumbsProperties = {
   className?: string;

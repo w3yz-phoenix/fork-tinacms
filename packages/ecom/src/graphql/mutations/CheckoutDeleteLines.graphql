@@ -1,5 +1,5 @@
-mutation CheckoutDeleteLines($checkoutId: ID!, $lineIds: [ID!]!) {
-  checkoutLinesDelete(id: $checkoutId, linesIds: $lineIds) {
+mutation CheckoutDeleteLines($checkoutId: ID!, $lines: [ID!]!) {
+  checkoutLinesDelete(id: $checkoutId, linesIds: $lines) {
     checkout {
       id
     }

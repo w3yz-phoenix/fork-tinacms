@@ -1,11 +1,11 @@
-fragment CheckoutItemFragment on Checkout {
+fragment CheckoutItem on Checkout {
   id
   email
   token
 
   lines {
     id
-    ...CheckoutLineFragment
+    ...CheckoutLine
   }
 
   deliveryMethod {
