@@ -134,3 +134,4 @@ dist
 generated
 __generated__
 *.gen.*
+.task
