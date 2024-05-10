@@ -24,6 +24,9 @@ export const blogCardHomeBlockSchema = defineTinaTemplate({
       name: "blogCards",
       label: "Blog Cards",
       list: true,
+      ui: {
+        max: 2,
+      },
       fields: [
         {
           type: "string",

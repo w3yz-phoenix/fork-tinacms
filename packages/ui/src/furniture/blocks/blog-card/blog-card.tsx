@@ -28,7 +28,7 @@ export const BlogCard = ({
                 width={650}
                 height={650}
                 alt={item?.image?.alt || ""}
-                className="max-h-[500px] w-full max-w-full object-cover"
+                className="h-[300px] w-full max-w-full object-cover lg:h-[500px]"
               />
             </Link>
             <Link

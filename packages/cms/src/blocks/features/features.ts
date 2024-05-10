@@ -21,6 +21,7 @@ export const featuresBlockSchema = defineTinaTemplate({
       name: "items",
       list: true,
       ui: {
+        max: 4,
         itemProps: (item: any) => {
           return {
             label: item?.title,

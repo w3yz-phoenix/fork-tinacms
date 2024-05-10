@@ -1,3 +1,5 @@
+import { imageField } from "../../fields/image";
+import { linkField } from "../../fields/link";
 import { defineTinaTemplate } from "../../lib/tina.utils";
 
 export const imageTextHeroBlockDefaultItem = {
@@ -34,43 +36,7 @@ export const imageTextHeroBlockSchema = defineTinaTemplate({
       name: "description",
       label: "description",
     },
-    {
-      type: "object",
-      name: "image",
-      label: "image",
-      fields: [
-        {
-          type: "image",
-          name: "src",
-          label: "src",
-          required: true,
-        },
-        {
-          type: "string",
-          name: "alt",
-          label: "alt",
-          required: true,
-        },
-      ],
-    },
-    {
-      type: "object",
-      name: "link",
-      label: "link",
-      fields: [
-        {
-          type: "string",
-          name: "href",
-          label: "name",
-          required: true,
-        },
-        {
-          type: "string",
-          name: "name",
-          label: "name",
-          required: true,
-        },
-      ],
-    },
+    imageField as any,
+    linkField as any,
   ],
 });

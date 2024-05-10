@@ -32,15 +32,17 @@ export const ImageTextHero = ({
         <label className="mb-5 block text-[32px] font-bold leading-tight text-[#292929] md:text-[50px]">
           {block.subTitle}
         </label>
-        <p className="text-[16px] text-[#656565] md:text-[20px]">
+        <p className="text-[16px] line-clamp-[10] text-[#656565] md:text-[20px]">
           {block.description}
         </p>
-        <Link
-          href={`${block.link?.href || "/"}`}
-          className="mt-4 block px-7 py-4 text-[16px] text-[#464646]"
-        >
-          {block.link?.name || "Devamı"}
-        </Link>
+        <div className="flex justify-center">
+          <Link
+            href={`${block.link?.href || "/"}`}
+            className="flex items-center justify-center mt-7 max-w-[230px] rounded-lg border border-[#D7DAE0] px-3 py-2 font-medium text-[#565E73] hover:border-[#8A94A6] hover:bg-[#F6F6F6] hover:text-[#24262D] hover:shadow-[0px_0px_0px_2px_rgba(215,218,224,0.80)]"
+          >
+            {block.link?.name || "Devamı"}
+          </Link>
+        </div>
       </div>
     </section>
   );

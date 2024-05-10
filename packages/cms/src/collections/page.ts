@@ -5,6 +5,8 @@ import { featuresBlockSchema } from "../blocks/features/features";
 import { productListBlockSchema } from "../blocks/product-list/product-list";
 import { imageTextHeroBlockSchema } from "../blocks/image-text-hero/image-text-hero";
 import { blogCardHomeBlockSchema } from "../blocks/blog-card-home/blog-card-home";
+import { TrioPhotoTextBlockSchema } from "../blocks/trio-photo-text/trio-photo-text";
+import { discountBlockSchema } from "../blocks/discount/discount";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -38,6 +40,8 @@ export const PageCollection: Collection = {
         productListBlockSchema,
         imageTextHeroBlockSchema,
         blogCardHomeBlockSchema,
+        TrioPhotoTextBlockSchema,
+        discountBlockSchema,
       ],
     },
   ],

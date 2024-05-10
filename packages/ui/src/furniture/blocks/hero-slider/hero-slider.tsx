@@ -49,7 +49,7 @@ export const HeroSliderBlock = ({
                 item && (
                   <div
                     key={index}
-                    className="relative flex w-full items-center px-1 outline-none"
+                    className="relative flex w-full items-center px-1 h-[500px] outline-none"
                     data-tina-field={tinaField(item)}
                   >
                     <Image
@@ -57,7 +57,7 @@ export const HeroSliderBlock = ({
                       width={1920}
                       height={637}
                       alt={item?.alt ?? ""}
-                      className="object-contain "
+                      className="object-cover"
                     />
                   </div>
                 )
