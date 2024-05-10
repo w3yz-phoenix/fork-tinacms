@@ -1,4 +1,5 @@
 extends:
   - "@w3yz/eslint/recommended"
 ignorePatterns:
-  - "src/components/"
+  - "src/components/**/*.tsx"
+  - "src/components/**/*.ts"

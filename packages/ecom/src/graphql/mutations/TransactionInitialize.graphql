@@ -1,0 +1,16 @@
+mutation TransactionInitialize($id: ID!, $paymentGatewayId: String!) {
+  transactionInitialize(id: $id, paymentGateway: { id: $paymentGatewayId }) {
+    data
+    transaction {
+      id
+    }
+    transactionEvent {
+      id
+    }
+    errors {
+      field
+      message
+      code
+    }
+  }
+}

@@ -1,7 +1,5 @@
-services:
-  storefront:
-    build:
-      context: .
-      target: release
-    ports:
-      - 3000:3000
+name: w3yz
+
+include:
+  - path: custom/postgres-state-city-api/compose.yml
+    project_directory: custom/postgres-state-city-api

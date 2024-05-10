@@ -3,9 +3,11 @@
 import {
   useCheckoutAddLineMutation,
   useCheckoutCreateMutation,
+  useCheckoutFindQuery,
 } from "@w3yz/ecom/api";
-import { invariant } from "@w3yz/tools/lib";
+import { getStringIfNotEmpty, invariant } from "@w3yz/tools/lib";
 import { unstable_noStore } from "next/cache";
+import { cookies } from "next/headers";
 
 import { setCookie } from "#web/lib/actions/actions.server";
 import { createAction } from "#web/lib/actions/actions.utils";
@@ -20,8 +22,22 @@ const createCheckout = async () => {
   return response.checkoutCreate?.checkout?.id;
 };
 
+async function safeGetCurrentCheckout() {
+  const checkoutId = getStringIfNotEmpty(cookies().get("checkoutId")?.value);
+
+  if (!checkoutId) {
+    return;
+  }
+
+  const response = await useCheckoutFindQuery.fetcher({
+    id: checkoutId,
+  })();
+
+  return response.checkout;
+}
+
 async function findOrCreateCheckout() {
-  const checkout = await getCurrentCheckout();
+  const checkout = await safeGetCurrentCheckout();
 
   if (checkout?.id) {
     return checkout;
@@ -30,7 +46,7 @@ async function findOrCreateCheckout() {
   setCookie("checkoutId", await createCheckout());
   const createdCheckout = await getCurrentCheckout();
 
-  invariant(createdCheckout?.id, "Checkout ID is not defined");
+  invariant(createdCheckout?.id, "Newly created checkout could not be found");
 
   return createdCheckout;
 }

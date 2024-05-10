@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import * as React from "react";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "#shadcn/components/toaster";
 
 import { getQueryClient } from "../../lib/tanstack-query";
 
@@ -20,6 +21,7 @@ export function W3YZProvider(props: { children: React.ReactNode }) {
         {props.children}
       </ReactQueryStreamedHydration>
       <ReactQueryDevtools initialIsOpen={false} />
+      <Toaster />
     </QueryClientProvider>
   );
 }

@@ -1,4 +1,4 @@
-fragment Address on Address {
+fragment AddressFragment on Address {
   id
   firstName
   lastName

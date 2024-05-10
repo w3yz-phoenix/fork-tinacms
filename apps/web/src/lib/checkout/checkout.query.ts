@@ -1,5 +1,5 @@
 import { useCheckoutFindQuery } from "@w3yz/ecom/api";
-import { getStringIfNotEmpty } from "@w3yz/tools/lib";
+import { getStringIfNotEmpty, invariant } from "@w3yz/tools/lib";
 import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -18,9 +18,13 @@ const fetchCheckout = unstable_cache(
 export async function getCurrentCheckout() {
   const checkoutId = getStringIfNotEmpty(cookies().get("checkoutId")?.value);
 
-  if (!checkoutId) return;
+  invariant(checkoutId, "Checkout ID is not defined");
 
-  return fetchCheckout(checkoutId);
+  const checkout = await fetchCheckout(checkoutId);
+
+  invariant(checkout?.id, "Checkout could not be found");
+
+  return checkout;
 }
 
 export function revalidateCheckout() {

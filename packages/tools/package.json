@@ -22,7 +22,8 @@
     "@graphql-codegen/typed-document-node": "^5.0.6",
     "@graphql-codegen/typescript": "^4.0.6",
     "@graphql-codegen/typescript-operations": "^4.2.0",
-    "@graphql-codegen/typescript-react-query": "^6.1.0"
+    "@graphql-codegen/typescript-react-query": "^6.1.0",
+    "graphql-codegen-typescript-validation-schema": "^0.14.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0",

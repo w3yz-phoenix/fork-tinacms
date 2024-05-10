@@ -5,11 +5,11 @@ import { getCurrentCheckout } from "#web/lib/checkout/checkout.query";
 import { CheckoutSummary } from "../components/checkout-summary";
 
 export default async function CheckoutLayout(props: {
-  children?: React.ReactNode;
-  step: React.ReactNode;
+  children: React.ReactNode;
 }) {
-  const checkout = await getCurrentCheckout();
-  if (!checkout?.id) {
+  try {
+    await getCurrentCheckout();
+  } catch {
     return notFound();
   }
 

@@ -1,0 +1,37 @@
+mutation CheckoutAddressUpdate(
+  $id: ID!
+  $shippingAddress: AddressInput!
+  $billingAddress: AddressInput!
+  $validate: Boolean = false
+) {
+  checkoutShippingAddressUpdate(
+    id: $id
+    shippingAddress: $shippingAddress
+    validationRules: { checkFieldsFormat: $validate }
+  ) {
+    checkout {
+      id
+      shippingAddress {
+        ...AddressFragment
+      }
+    }
+    errors {
+      ...CheckoutError
+    }
+  }
+  checkoutBillingAddressUpdate(
+    id: $id
+    billingAddress: $billingAddress
+    validationRules: { checkFieldsFormat: $validate }
+  ) {
+    checkout {
+      id
+      billingAddress {
+        ...AddressFragment
+      }
+    }
+    errors {
+      ...CheckoutError
+    }
+  }
+}

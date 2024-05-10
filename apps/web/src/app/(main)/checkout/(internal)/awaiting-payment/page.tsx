@@ -1,13 +1,23 @@
+/* eslint-disable unicorn/consistent-function-scoping */
+
 import { Button } from "#shadcn/components/button";
 import Link from "next/link";
 
-export default function CheckoutAwaitingPaymentPage() {
+import { CheckoutFormAccordion } from "../../components/checkout-form-accordion";
+
+export default async function CheckoutAwaitingPaymentPage() {
   return (
-    <div>
-      <p>Iletisim Bilgileri</p>
-      <Button asChild>
-        <Link href="/checkout/address">Geri</Link>
+    <CheckoutFormAccordion currentStep="awaiting-payment">
+      <div className="flex flex-col gap-11">
+        Tebrikler! Butun gerekli bilgileri doldurdunuz. Sag taraftan odemenizi
+        tamamlayabilirsiniz.
+      </div>
+
+      <Button type="button" variant="outline" asChild>
+        <Link className="mt-10" href="/checkout/address">
+          Bilgileri Gozden Gecir
+        </Link>
       </Button>
-    </div>
+    </CheckoutFormAccordion>
   );
 }

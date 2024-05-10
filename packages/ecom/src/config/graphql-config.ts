@@ -41,6 +41,11 @@ export const getSaleorGraphqlConfig = () => {
                   onlyOperationTypes: true,
                 },
               },
+              {
+                "typescript-validation-schema": {
+                  schema: "zod",
+                },
+              },
               graphqlConfigTools.defineReactQueryPlugin({
                 fetcher: "@w3yz/ecom/fetcher#fetcher",
               }),
