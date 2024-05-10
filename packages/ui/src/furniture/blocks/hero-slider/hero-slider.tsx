@@ -49,7 +49,7 @@ export const HeroSliderBlock = ({
                 item && (
                   <div
                     key={index}
-                    className="relative flex w-full items-center px-1 h-[500px] outline-none"
+                    className="relative flex h-[500px] w-full items-center px-1 outline-none"
                     data-tina-field={tinaField(item)}
                   >
                     <Image

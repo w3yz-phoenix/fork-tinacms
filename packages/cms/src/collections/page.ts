@@ -8,6 +8,7 @@ import { blogCardHomeBlockSchema } from "../blocks/blog-card-home/blog-card-home
 import { TrioPhotoTextBlockSchema } from "../blocks/trio-photo-text/trio-photo-text";
 import { discountBlockSchema } from "../blocks/discount/discount";
 import { policyBlockSchema } from "../blocks/policy/policy";
+import { productBlockSchema } from "../blocks/product/product";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -44,6 +45,7 @@ export const PageCollection: Collection = {
         TrioPhotoTextBlockSchema,
         discountBlockSchema,
         policyBlockSchema,
+        productBlockSchema,
       ],
     },
   ],

@@ -11,6 +11,8 @@ import { TrioPhotoText } from "#ui/furniture/blocks/trio-photo-text/trio-photo-t
 import { DiscountsBlock } from "#ui/furniture/blocks/discount/discount";
 // eslint-disable-next-line import/namespace
 import { PolicyBlock } from "#ui/furniture/blocks/policy/policy";
+// eslint-disable-next-line import/namespace
+import { ProductBlock } from "#ui/furniture/blocks/product/product";
 
 import { useTinaQuery } from "../../hooks";
 
@@ -48,6 +50,9 @@ export const PageClient = (props: { relativePath: string }) => {
           }
           case "PageBlocksPolicy": {
             return <PolicyBlock key={index} block={block} />;
+          }
+          case "PageBlocksProduct": {
+            return <ProductBlock key={index} block={block} />;
           }
           default: {
             return (
