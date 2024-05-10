@@ -4,17 +4,82 @@ header:
     alt: Furniture
     link: content/pages/home.mdx
   links:
-    - label: Iletisim
+    - label: İletişim
       page: content/pages/coming-soon.mdx
       _template: link
-    - label: Magaza
+    - label: Mağaza
       page: content/pages/shop.mdx
       _template: link
     - label: Blog
       page: content/pages/coming-soon.mdx
       _template: link
-    - label: Hakkimizda
+    - label: Hakkımızda
       page: content/pages/coming-soon.mdx
       _template: link
     - badgeColor: '#EC4815'
       _template: shoppingCart
+footer:
+  logo:
+    src: /uploads/FURniture.png
+    alt: sezer
+    link: content/pages/home.mdx
+  linksName:
+    - title: Ürünler
+      links:
+        - label: Outlet
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Çok Satan Ürünlerimize
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: İndirim
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Yeni Gelenler
+          page: content/pages/coming-soon.mdx
+          _template: link
+    - title: Mağaza
+      links:
+        - label: Hikayemiz
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Hakkımızda
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Politika
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Kariyer
+          page: content/pages/coming-soon.mdx
+          _template: link
+    - title: Müşteri Hizmetleri
+      links:
+        - label: Kargo
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: İade Politikası
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Mesafeli Satış Sözleşmesi
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: SSS
+          page: content/pages/coming-soon.mdx
+          _template: link
+    - title: Sosyal Medya
+      links:
+        - label: Tiktok
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Twitter
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Pinterest
+          page: content/pages/coming-soon.mdx
+          _template: link
+        - label: Instagram
+          page: content/pages/coming-soon.mdx
+          _template: link
+  odemelogo:
+    src: /uploads/odemesistemi.png
+    alt: sezer

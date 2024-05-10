@@ -109,5 +109,74 @@ export const GlobalConfigCollection: Collection = {
         },
       ],
     },
+    {
+      name: "footer",
+      label: "Footer",
+      type: "object",
+      fields: [
+        {
+          name: "logo",
+          label: "Logo",
+          type: "object",
+          fields: [
+            {
+              name: "src",
+              label: "Image",
+              type: "image",
+              required: true,
+            },
+            {
+              name: "alt",
+              label: "Alt",
+              type: "string",
+            },
+            {
+              name: "link",
+              label: "Link",
+              type: "reference",
+              collections: [PageCollection.name],
+            },
+          ],
+        },
+        {
+          type: "object",
+          list: true,
+          name: "linksName",
+          label: "Links Name",
+          ui: {
+            max: 4,
+          },
+          fields: [
+            { type: "string", name: "title", label: "title" },
+            {
+              type: "object",
+              list: true,
+              name: "links",
+              label: "Links",
+              ui: { max: 5 },
+              templates: [linkTemplate],
+            },
+          ],
+        },
+        {
+          name: "odemelogo",
+          label: "odemeLogo",
+          type: "object",
+          fields: [
+            {
+              name: "src",
+              label: "Image",
+              type: "image",
+              required: true,
+            },
+            {
+              name: "alt",
+              label: "Alt",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

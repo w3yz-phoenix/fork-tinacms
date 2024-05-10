@@ -55,7 +55,7 @@ export async function Layout({
           globalConfigPath={globalConfigPath}
         />
         <div>{children}</div>
-        <Footer />
+        <Footer globalConfigPath={globalConfigPath} />
       </HydrationBoundary>
     </CheckoutIdProvider>
   );
