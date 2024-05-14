@@ -1,8 +1,3 @@
-async function complex() {
-  const a = await 1;
-  const b = await 2;
-  return a + b;
-}
+import { z } from "npm:zod@latest";
 
-const result = await complex();
-console.log(result);
+console.log(`called with arguments: ${Deno.args.join(", ")}`);

@@ -36,6 +36,14 @@
       "name": "@w3yz/ui",
       "path": "../packages/ui",
     },
+    {
+      "name": "gitops",
+      "path": "../gitops",
+    },
+    {
+      "name": "tooling",
+      "path": "../tooling",
+    },
   ],
   "settings": {
     "vscode-graphql.cacheSchemaFileForLookup": true,

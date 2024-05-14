@@ -14,11 +14,11 @@
       {
         packages = {
           t = pkgs.writeScriptBin "t" ''
-            deno task -c "$DEVBOX_PROJECT_ROOT/tooling/deno.json" t -- "$@"
+            deno task -c "$DEVBOX_PROJECT_ROOT/tooling/deno.json" t "$@"
           '';
 
           td = pkgs.writeScriptBin "td" ''
-            deno task -c "$DEVBOX_PROJECT_ROOT/tooling/deno.json" td -- "$@"
+            deno task -c "$DEVBOX_PROJECT_ROOT/tooling/deno.json" td "$@"
           '';
         };
       });
