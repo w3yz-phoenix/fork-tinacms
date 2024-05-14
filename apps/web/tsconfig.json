@@ -13,20 +13,21 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "#web/*": ["./src/*"],
-      "#shadcn/*": ["./pkg/shadcn/*"],
-      "#ui/*": ["./pkg/ui/src/*"]
+      "#web/*": ["src/*"],
+      "#shadcn/*": ["pkg/shadcn/*"],
+      "#ui/*": ["pkg/ui/*"]
     }
   },
   "include": [
-    "./pkg/**/*.ts",
-    "./pkg/**/*.tsx",
+    "pkg/**/*.ts",
+    "pkg/**/*.tsx",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

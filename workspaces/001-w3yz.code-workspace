@@ -25,16 +25,8 @@
       "path": "../packages/eslint-config-eslint",
     },
     {
-      "name": "@w3yz/shadcn",
-      "path": "../packages/shadcn",
-    },
-    {
       "name": "@w3yz/tools",
       "path": "../packages/tools",
-    },
-    {
-      "name": "@w3yz/ui",
-      "path": "../packages/ui",
     },
     {
       "name": "gitops",

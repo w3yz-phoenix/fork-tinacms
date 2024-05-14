@@ -8,7 +8,6 @@
     "./lib": "./exports/lib.ts"
   },
   "dependencies": {
-    "@w3yz/tools": "workspace:*",
     "tiny-invariant": "^1.3.3"
   },
   "devDependencies": {
