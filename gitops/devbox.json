@@ -5,12 +5,6 @@
     "kustomize@latest",
     "deno@latest",
     "bun@latest",
-    "go-task@latest",
-    "nodejs_20@latest",
-    "fish@latest",
-    "rsync@latest",
-    "alejandra@latest",
-    "tree@latest",
     "path:./tooling#t",
     "path:./tooling#td"
   ],

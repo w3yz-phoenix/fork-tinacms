@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./../../base
+
+components:
+  - ./../../components/w3yz
+
+configMapGenerator:
+  - name: shop-config
+    literals:
+      - SHOP_NAME=baseline
+      - API_FQDN=api.baseline.rancher7.w3yz.dev
+      - DASHBOARD_FQDN=dashboard.baseline.rancher7.w3yz.dev
+      - STOREFRONT_FQDN=baseline.rancher7.w3yz.dev
+      - API_URL=https://api.baseline.rancher7.w3yz.dev
+      - DASHBOARD_URL=https://dashboard.baseline.rancher7.w3yz.dev
+      - STOREFRONT_URL=https://baseline.rancher7.w3yz.dev
+
+namespace: w3yz-shop-baseline

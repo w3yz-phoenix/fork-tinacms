@@ -1,0 +1,12 @@
+resources:
+  - ./postgres
+  - ./redis
+  - ./jaeger
+  - ./saleor
+  - namespace.yaml
+
+buildMetadata: [managedByLabel, originAnnotations, transformerAnnotations]
+
+labels:
+  - pairs:
+      component: saleor
