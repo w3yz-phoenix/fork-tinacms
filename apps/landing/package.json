@@ -12,6 +12,7 @@
     "predev": "cp -f .env.example .env"
   },
   "dependencies": {
+    "resend": "^3.2.0",
     "@graphql-tools/executor-http": "1.0.7",
     "@hookform/resolvers": "^3.3.4",
     "@saleor/auth-sdk": "1.0.1",
