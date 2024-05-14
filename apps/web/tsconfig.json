@@ -20,15 +20,13 @@
     ],
     "paths": {
       "#web/*": ["./src/*"],
-      "#shadcn/*": ["../../packages/shadcn/src/*"],
-      "#ui/*": ["../../packages/ui/src/*"]
+      "#shadcn/*": ["./pkg/shadcn/*"],
+      "#ui/*": ["./pkg/ui/src/*"]
     }
   },
   "include": [
-    "../../packages/shadcn/src/**/*.ts",
-    "../../packages/shadcn/src/**/*.tsx",
-    "../../packages/ui/src/**/*.ts",
-    "../../packages/ui/src/**/*.tsx",
+    "./pkg/**/*.ts",
+    "./pkg/**/*.tsx",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

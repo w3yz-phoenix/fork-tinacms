@@ -1,4 +1,4 @@
-import { IconShoppingBag } from "@w3yz/shadcn/tabler-icons";
+import { IconShoppingBag } from "@tabler/icons-react";
 import Link from "next/link";
 
 import type { TinaGraphql_GlobalConfigHeaderLinksShoppingCart } from "@w3yz/cms/api";

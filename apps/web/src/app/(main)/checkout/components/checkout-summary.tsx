@@ -1,5 +1,5 @@
 import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
-import { IconX } from "@w3yz/shadcn/tabler-icons";
+import { IconX } from "@tabler/icons-react";
 import { formatMoney } from "@w3yz/tools/lib";
 
 import { SubmitButton } from "#web/components/submit-button";
