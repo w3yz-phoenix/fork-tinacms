@@ -14,7 +14,8 @@
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
     "type-fest": "^4.18.1",
-    "tinacms": "^1.6.3"
+    "tinacms": "^1.6.3",
+    "@w3yz/tools": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -22,8 +23,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.13",
-    "@w3yz/eslint-config-eslint": "workspace:*",
-    "@w3yz/tools": "workspace:*"
+    "@w3yz/eslint-config-eslint": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

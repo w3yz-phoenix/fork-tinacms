@@ -3,9 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "exports": {
-    "./config": "./exports/config.ts",
-    "./fetcher": "./exports/fetcher.ts",
-    "./api": "./exports/api.ts"
+    "./config": "./exports/config",
+    "./fetcher": "./exports/fetcher",
+    "./api": "./exports/api"
   },
   "dependencies": {
     "@w3yz/tools": "workspace:*"

@@ -3,7 +3,6 @@ version: "3"
 interval: 500ms
 
 env:
-  NODE_ENV: "development"
   TINA_PUBLIC_IS_LOCAL: true,
   NEXT_PUBLIC_URL: "http://localhost:3000"
   NEXT_PUBLIC_ECOM_API_URL: "https://dev-shop-api.w3yz.dev/graphql/"
@@ -31,6 +30,9 @@ tasks:
   watch:
     watch: true
     deps: [generate]
+
+  build:
+    deps: [generate, web:build]
 
   dev:
     deps: [install, web:dev, cms:dev]

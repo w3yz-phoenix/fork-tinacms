@@ -27,6 +27,8 @@
   "include": [
     "../../packages/shadcn/src/**/*.ts",
     "../../packages/shadcn/src/**/*.tsx",
+    "../../packages/ui/src/**/*.ts",
+    "../../packages/ui/src/**/*.tsx",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

@@ -27,8 +27,6 @@ import { getShopPageData } from "#web/lib/shop.api";
 import { SubmitButton } from "#web/components/submit-button";
 import { addItemToCartFormAction } from "#web/lib/checkout/actions/add-to-cart/action";
 
-import { AddToCartButton } from "../components/add-to-cart-button";
-
 const getNonEmptyString = (value: string | null | undefined) =>
   value && value.length > 0 ? value : undefined;
 
