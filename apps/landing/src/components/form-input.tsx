@@ -4,8 +4,8 @@ import Image from "next/image";
 import { forwardRef, useState } from "react";
 
 import { cn } from "#landing/app/lib/utils";
-import eyeIcon from "/public/assets/visibility.svg";
-import closedEyeIcon from "/public/assets/visibility_off.svg";
+import eyeIcon from "#landing/../public/assets/visibility.svg";
+import closedEyeIcon from "#landing/../public/assets/visibility_off.svg";
 
 type FormInputProperties = {
   label: string;
