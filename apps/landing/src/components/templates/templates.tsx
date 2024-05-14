@@ -11,14 +11,22 @@ import template5 from "../../../public/assets/template5.png";
 import template6 from "../../../public/assets/template6.png";
 import template7 from "../../../public/assets/template7.png";
 import template8 from "../../../public/assets/template8.png";
+import content1 from "../../../public/assets/template1.webp";
+import content2 from "../../../public/assets/template2.webp";
+import content3 from "../../../public/assets/template3.webp";
+import content4 from "../../../public/assets/template4.webp";
+import content5 from "../../../public/assets/template5.webp";
+import content6 from "../../../public/assets/template6.webp";
+import content7 from "../../../public/assets/template7.webp";
+import content8 from "../../../public/assets/template8.webp";
 
 import { TemplateModal } from "./templates-modal";
 
 export function Templates() {
-  const [modalContent, setModalContent] = useState<string>("");
+  const [modalContent, setModalContent] = useState();
   const [isShow, setIsShow] = useState<boolean>(false);
 
-  const templateModal = (content: string) => {
+  const templateModal = (content: any) => {
     setModalContent(content);
     setIsShow(true);
   };
@@ -29,8 +37,10 @@ export function Templates() {
     >
       <div className="mx-auto mb-20 flex max-w-[1016px] flex-col gap-4 text-center font-medium text-[#030711]">
         <span className="text-[14px]">Temalar</span>
-        <label className="text-[64px]">İşinize Uygun Temaları Keşfedin</label>
-        <p className="text-[22px]">
+        <label className="text-[28px] md:text-[64px]">
+          İşinize Uygun Temaları Keşfedin
+        </label>
+        <p className="text-[16px] md:text-[22px]">
           İşinize uygun temayı seçerek istediğiniz gibi özelleştirebilirsiniz.
         </p>
       </div>
@@ -38,7 +48,7 @@ export function Templates() {
       <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content1)}
         >
           <Image
             src={template1}
@@ -50,7 +60,7 @@ export function Templates() {
         </div>
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content2)}
         >
           <Image
             src={template2}
@@ -62,7 +72,7 @@ export function Templates() {
         </div>
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content3)}
         >
           <Image
             src={template3}
@@ -74,7 +84,7 @@ export function Templates() {
         </div>
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content4)}
         >
           <Image
             src={template4}
@@ -86,7 +96,7 @@ export function Templates() {
         </div>
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content5)}
         >
           <Image
             src={template5}
@@ -98,7 +108,7 @@ export function Templates() {
         </div>
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content6)}
         >
           <Image
             src={template6}
@@ -110,7 +120,7 @@ export function Templates() {
         </div>
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content7)}
         >
           <Image
             src={template7}
@@ -122,7 +132,7 @@ export function Templates() {
         </div>
         <div
           className="cursor-pointer overflow-hidden rounded-xl border border-[#EDE8FF] transition-all hover:border-[#D0C3FF] hover:shadow-[0px_0px_10px_0px_#D0C3FF]"
-          onClick={() => templateModal("frame1")}
+          onClick={() => templateModal(content8)}
         >
           <Image
             src={template8}

@@ -136,7 +136,7 @@ export function Lcfooter() {
           </div>
           <div>
             <Image
-              src="/assets/odemesistemi.png"
+              src="/assets/odemesistemi2.png"
               width={397}
               height={34}
               alt="ödeme sistemi"

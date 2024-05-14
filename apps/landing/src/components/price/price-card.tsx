@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { cn } from "@/app/lib/utils";
+import { cn } from "#landing/app/lib/utils";
 
 import { ButtonGreen } from "../button";
 

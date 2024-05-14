@@ -1,4 +1,4 @@
-import { LandingCards } from "@/components/card/landing-cards";
+import { LandingCards } from "#landing/components/card/landing-cards";
 
 const cardListTop = [
   {
@@ -143,10 +143,10 @@ export const LandingCardSection = () => {
     <div className="flex flex-col items-center justify-center gap-[70px] p-4">
       <div className=" text-center font-medium text-[#030711]">
         <p className="text-lg leading-tight">ÖZELLİKLER</p>
-        <h3 className="mt-[5px] max-w-[826px] text-[64px] leading-[80px] ">
+        <h3 className="mt-[5px] max-w-[826px] text-[28px] md:text-[64px] md:leading-[80px] ">
           Dinamik, içerik odaklı siteler oluşturun.
         </h3>
-        <p className="mt-[22px] text-3xl leading-loose text-[#4B5563]">
+        <p className="mt-[22px] text-[16px] text-[#4B5563] md:text-3xl md:leading-loose">
           İşinizi en verimli şekilde organize etmek için sunduğumuz özelliklere
           göz atın.
         </p>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { getImageUri } from "@/app/api/strapi/image";
+import { getImageUri } from "#landing/app/api/strapi/image";
 
 export function BlogCard({ blogData }: any) {
   return (
@@ -24,10 +24,10 @@ export function BlogCard({ blogData }: any) {
         <div className="mt-6 text-sm text-[#525252]">
           {blogData?.attributes.date}
         </div>
-        <h5 className="mt-4 text-2xl text-[#292929]">
+        <h5 className="mt-4 line-clamp-2 h-[54px] text-2xl text-[#292929]">
           {blogData.attributes.title}
         </h5>
-        <p className="mt-3 text-lg text-[#656565]">
+        <p className="mt-3 line-clamp-4 text-lg text-[#656565]">
           {blogData.attributes.description}
         </p>
       </Link>

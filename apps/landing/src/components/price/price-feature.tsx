@@ -1,4 +1,4 @@
-import { IconFalse, IconOk } from "@/icons/price-section";
+import { IconFalse, IconOk } from "#landing/icons/price-section";
 
 export interface PriceFeatureProperties {
   feature: string;

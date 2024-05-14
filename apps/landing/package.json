@@ -4,22 +4,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "clean": "rm -rf .next/; pnpx kill-port 3500",
-    "dev": "pnpm clean; pnpm run generate:dev; next dev -p 3550",
+    "dev": "next dev -p 3550",
     "build": "next build",
     "start": "next start",
-    "start:debug": "NODE_OPTIONS='--inspect' pnpm start",
+    "start:debug": "NODE_OPTIONS='--inspect' bun start",
     "lint": "next lint --dir src",
-    "generate:dev": "cp -f .env.example .env; pnpm run generate",
-    "generate": "echo 'Nothing to generate'",
-    "lint:fix": "pnpm lint --fix"
+    "predev": "cp -f .env.example .env"
   },
   "dependencies": {
     "@graphql-tools/executor-http": "1.0.7",
     "@hookform/resolvers": "^3.3.4",
     "@saleor/auth-sdk": "1.0.1",
     "@tabler/icons-react": "^2.46.0",
-    "@w3yz/tailwind": "workspace:*",
+    "@tailwindcss/typography": "^0.5.13",
     "axios": "^1.6.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { PriceCard } from "@/components/price/price-card";
-import { PriceFeatureProperties } from "@/components/price/price-feature";
+import { PriceCard } from "#landing/components/price/price-card";
+import { PriceFeatureProperties } from "#landing/components/price/price-feature";
 
 import { Toggle } from "../switch-button";
 
@@ -50,7 +50,7 @@ export const PriceCardSection = () => {
           <p className="text-sm font-medium leading-none text-[#404040]">
             FİYATLAR
           </p>
-          <h3 className="text-center text-[64px] font-medium leading-[80px] text-[#0A0A0A]">
+          <h3 className="text-center text-[48px] font-medium leading-[80px] text-[#0A0A0A] md:text-[64px]">
             Planları keşfet
           </h3>
           <p className="text-center text-3xl font-normal leading-loose">

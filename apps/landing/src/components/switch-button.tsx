@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/app/lib/utils";
+import { cn } from "#landing/app/lib/utils";
 
 interface ToggleProperties {
   disabled?: boolean;

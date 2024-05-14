@@ -1,17 +1,14 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-import templateModal from "../../../public/assets/templateModal.png";
-
 interface Properties {
-  content: string;
+  content: any;
   visible: boolean;
   hide: any;
 }
 
 export function TemplateModal({ content, visible, hide }: Properties) {
   const reference = useRef<HTMLDivElement>(null);
-  console.log(content);
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
@@ -73,7 +70,7 @@ export function TemplateModal({ content, visible, hide }: Properties) {
       </div>
 
       <div className="size-full max-h-[1021px] rounded-lg border border-[#EDEEF1]">
-        <Image src={templateModal} width={1920} height={100} alt="" />
+        <Image src={content} width={1920} height={100} alt="" />
       </div>
     </div>
   );

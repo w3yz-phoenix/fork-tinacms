@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { getApiInstance } from "@/app/api/strapi/api";
-import { getImageUri } from "@/app/api/strapi/image";
+import { getApiInstance } from "#landing/app/api/strapi/api";
+import { getImageUri } from "#landing/app/api/strapi/image";
 
 async function getData() {
   const api = getApiInstance();
@@ -22,7 +22,7 @@ export default async function BlogDetail({ params }: any) {
   );
   const blogDetail = blogDetails[0].attributes;
   return (
-    <div className="my-[180px]">
+    <div className="mb-[180px]">
       <div className="relative h-[400px] w-full text-center">
         <Image
           src={getImageUri(blogDetail?.image?.data?.attributes?.url)}

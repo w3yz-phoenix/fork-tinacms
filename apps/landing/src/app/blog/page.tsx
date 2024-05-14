@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import { getApiInstance } from "@/app/api/strapi/api";
-import { BlogCard } from "@/components/blog/blog-card";
+import { getApiInstance } from "#landing/app/api/strapi/api";
+import { BlogCard } from "#landing/components/blog/blog-card";
 
 async function getData() {
   const api = getApiInstance();
@@ -22,7 +22,7 @@ export default async function BlogList() {
       <Head>
         <title>{blogData.data?.attributes?.seo?.metaTitle}</title>
       </Head>
-      <div className="mt-[180px] flex h-[200px] items-center justify-center bg-[#F6F6F6] ">
+      <div className="flex h-[200px] items-center justify-center bg-[#F6F6F6] ">
         <div className="text-center">
           <h1 className="mb-4 text-3xl font-bold text-[#292929] sm:text-4xl md:text-5xl xl:text-7xl">
             Blog

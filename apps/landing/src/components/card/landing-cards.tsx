@@ -1,4 +1,4 @@
-import { CardSectionLeft, CardSectionRight } from "@/icons/card-section";
+import { CardSectionLeft, CardSectionRight } from "#landing/icons/card-section";
 
 import { Card, CardProperties } from "./card";
 

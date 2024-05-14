@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Header } from "@/components/header/header";
+import { Header } from "#landing/components/header/header";
 
 export default function ComingSoonPage() {
   return (
