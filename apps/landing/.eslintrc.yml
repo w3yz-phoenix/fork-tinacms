@@ -1,0 +1,6 @@
+env:
+  node: true
+  browser: true
+extends:
+  - "next/core-web-vitals"
+  - "@w3yz/eslint/recommended"

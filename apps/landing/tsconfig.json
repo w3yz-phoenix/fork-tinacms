@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  "extends": "@w3yz/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "noErrorTruncation": true
+  },
+  "exclude": ["node_modules"],
+  "include": [
+    "./next-extra-environment.d.ts",
+    "./next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts",
+    ".eslintrc.cjs",
+    ".graphqlrc.ts"
+  ]
+}

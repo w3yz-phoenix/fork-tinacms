@@ -1,2 +1,0 @@
-extends:
-  - "@w3yz/eslint/recommended"
