@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable unicorn/prefer-module */
 const typescriptProject = [
+  "./tsconfig.json",
   "./packages/*/tsconfig.json",
   "./apps/*/tsconfig.json",
 ];

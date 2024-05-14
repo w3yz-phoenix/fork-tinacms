@@ -2,21 +2,33 @@ version: "3"
 
 tasks:
   lint:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
     dir: apps/web
     cmds:
       - bun x next lint
 
   build:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
     dir: apps/web
     cmds:
       - bun x next build
 
   dev:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
     dir: apps/web
     cmds:
       - bun x next dev -p 3200
 
   start:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
     dir: apps/web
     cmds:
       - bun x next start

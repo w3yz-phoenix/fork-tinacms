@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,11 +19,12 @@
     ],
     "paths": {
       "#landing/*": ["./src/*"]
-    }
+    },
+    "lib": ["dom", "dom.iterable", "esnext"]
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "typings/**/*.d.ts"
