@@ -16,8 +16,6 @@ import {
 import { completeCheckout } from "./actions";
 
 export async function CheckoutPaymentButton() {
-  const checkout = await getCurrentCheckout();
-
   async function submitForm(params: CheckoutPaymentButtonFormType) {
     "use server";
 

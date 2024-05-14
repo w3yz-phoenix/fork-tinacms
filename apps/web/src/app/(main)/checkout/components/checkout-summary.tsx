@@ -1,7 +1,7 @@
-import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 import { IconX } from "@tabler/icons-react";
 import { formatMoney } from "@w3yz/tools/lib";
 
+import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 import { SubmitButton } from "#web/components/submit-button";
 import { clearCheckoutFormAction } from "#web/lib/checkout/actions/clear-checkout/action";
 import { getCurrentCheckout } from "#web/lib/checkout/checkout.query";

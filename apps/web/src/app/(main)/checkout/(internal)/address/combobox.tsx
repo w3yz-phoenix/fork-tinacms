@@ -5,6 +5,8 @@ import {
   type Path,
   type UseFormReturn,
 } from "react-hook-form";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
+
 import { Button } from "#shadcn/components/button";
 import {
   Command,
@@ -27,7 +29,6 @@ import {
   PopoverTrigger,
 } from "#shadcn/components/popover";
 import { cn } from "#shadcn/lib/utils";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
 export function InputCombobox<
   const T extends FieldValues,

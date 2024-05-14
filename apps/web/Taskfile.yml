@@ -7,7 +7,7 @@ tasks:
         sh: test -f package.json
     dir: apps/web
     cmds:
-      - bun x next lint
+      - bun x next lint {{.CLI_ARGS}}
 
   build:
     preconditions:

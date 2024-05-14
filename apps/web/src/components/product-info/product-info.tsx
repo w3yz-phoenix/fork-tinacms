@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { z } from "zod";
-import { cva, cn } from "#shadcn/lib/utils";
 import { isPresent } from "@w3yz/tools/lib";
 
+import { cva, cn } from "#shadcn/lib/utils";
 import {
   ProductPageStateSchema,
   getProductStateLinkGenerator,

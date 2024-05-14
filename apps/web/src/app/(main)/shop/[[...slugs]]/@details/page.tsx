@@ -8,8 +8,8 @@ import { notFound, redirect } from "next/navigation";
 import { type Product, type WithContext } from "schema-dts";
 import { z } from "zod";
 import { formatMoney, invariant, publicEnvironment } from "@w3yz/tools/lib";
-import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 
+import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 import {
   fetchProductDetails,
   fetchProductVariantDetails,

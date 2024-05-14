@@ -1,7 +1,8 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 
-import { Button } from "#shadcn/components/button";
 import Link from "next/link";
+
+import { Button } from "#shadcn/components/button";
 
 import { CheckoutFormAccordion } from "../../components/checkout-form-accordion";
 

@@ -1,5 +1,6 @@
-import { Button } from "#shadcn/components/button";
 import Link from "next/link";
+
+import { Button } from "#shadcn/components/button";
 
 export default function CheckoutPage() {
   return (

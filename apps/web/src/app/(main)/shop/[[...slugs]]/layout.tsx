@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { Layout } from "#ui/furniture/layout/layout";
 
 import { getShopPageData } from "../../../../lib/shop.api";
 

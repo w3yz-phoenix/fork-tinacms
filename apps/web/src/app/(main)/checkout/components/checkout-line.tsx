@@ -1,8 +1,8 @@
 import { formatMoney, invariant } from "@w3yz/tools/lib";
 import Image from "next/image";
-import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 import { IconX } from "@tabler/icons-react";
 
+import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 import { DangerousSaleorRichText } from "#web/components/dangerous-saleor-rich-text";
 import { setCheckoutQuantityAction } from "#web/lib/checkout/actions/set-checkout-quantity/action";
 import { getCurrentCheckout } from "#web/lib/checkout/checkout.query";

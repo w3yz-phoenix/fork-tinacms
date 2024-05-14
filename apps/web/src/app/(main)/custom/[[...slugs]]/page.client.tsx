@@ -1,6 +1,5 @@
 "use client";
 
-import { tinaField, useTinaQuery } from "#ui/core/hooks";
 import {
   useCustomPageQuery,
   type TinaGraphql_CustomPageBodyFilter,
@@ -13,6 +12,8 @@ import {
   type Components,
   type TinaMarkdownContent,
 } from "tinacms/dist/rich-text";
+
+import { tinaField, useTinaQuery } from "#ui/core/hooks";
 
 const baseComponents: Components<object> = {
   h1: (props) => {

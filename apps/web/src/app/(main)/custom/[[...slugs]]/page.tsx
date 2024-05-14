@@ -1,8 +1,9 @@
 "use server";
 
-import { getQueryClient, prefetchQuery } from "#ui/core/lib/tanstack-query";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { useCustomPageQuery } from "@w3yz/cms/api";
+
+import { getQueryClient, prefetchQuery } from "#ui/core/lib/tanstack-query";
 
 import { CustomPageClient } from "./page.client";
 
