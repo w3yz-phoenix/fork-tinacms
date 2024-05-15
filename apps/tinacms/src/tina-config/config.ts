@@ -21,6 +21,8 @@ export const tinaConfig = defineConfig({
     outputFolder: "admin",
   },
 
+  localContentPath: tinaEnvironment.public.cms.contentRootPath,
+
   media: {
     tina: {
       mediaRoot: "uploads",
@@ -28,6 +30,8 @@ export const tinaConfig = defineConfig({
       static: true,
     },
   },
+
+  localContentPath
 
   schema: {
     collections: [

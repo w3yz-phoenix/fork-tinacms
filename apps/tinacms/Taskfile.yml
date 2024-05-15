@@ -33,8 +33,13 @@ tasks:
       - msg: "This task should be run from the root of the monorepo"
         sh: test -f package.json
     dir: apps/tinacms
+    env:
+      MONGODB_URI: "mongodb://localhost:27017/tina"
+      GITHUB_OWNER: w3yz-phoenix
+      GITHUB_REPO: live
+      GITHUB_BRANCH: main
     cmds:
-      - bun run dev:prod
+      - GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) bun run dev:prod
 
   start:
     preconditions:
