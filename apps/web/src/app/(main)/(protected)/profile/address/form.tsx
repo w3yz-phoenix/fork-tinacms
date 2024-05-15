@@ -19,22 +19,22 @@ import { Input } from "#shadcn/components/input";
 import { toast } from "#shadcn/components/use-toast";
 
 import {
-  CheckoutAddressFormMetadata,
-  CheckoutAddressFormSchema,
-  type CheckoutAddressFormType,
+  ProfileAddressFormMetadata,
+  ProfileAddressFormSchema,
+  ProfileAddressFormType,
 } from "./schemas";
 import { InputCombobox } from "./combobox";
 
-export function CheckoutAddressForm(props: {
-  values?: Partial<CheckoutAddressFormType>;
+export function ProfileAddressForm(props: {
+  values?: Partial<ProfileAddressFormType>;
   completeAction: (
-    data: CheckoutAddressFormType
+    data: ProfileAddressFormType
   ) => Promise<{ success?: boolean; error?: string } | undefined>;
   cancelAction: () => unknown;
 }) {
   const router = useRouter();
-  const form = useForm<z.infer<typeof CheckoutAddressFormSchema>>({
-    resolver: zodResolver(CheckoutAddressFormSchema),
+  const form = useForm<z.infer<typeof ProfileAddressFormSchema>>({
+    resolver: zodResolver(ProfileAddressFormSchema),
     defaultValues: {
       ...props.values,
     },
@@ -57,7 +57,7 @@ export function CheckoutAddressForm(props: {
             return;
           }
 
-          router.push("/checkout/awaiting-payment");
+          router.push("/profile/address");
         })}
         className="flex flex-col gap-5"
       >
@@ -68,18 +68,18 @@ export function CheckoutAddressForm(props: {
             render={({ field }) => (
               <FormItem className="w-1/2">
                 <FormLabel>
-                  {CheckoutAddressFormMetadata.firstName.label}
+                  {ProfileAddressFormMetadata.firstName.label}
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={
-                      CheckoutAddressFormMetadata.firstName.placeholder
+                      ProfileAddressFormMetadata.firstName.placeholder
                     }
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  {CheckoutAddressFormMetadata.firstName.description}
+                  {ProfileAddressFormMetadata.firstName.description}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -88,22 +88,60 @@ export function CheckoutAddressForm(props: {
 
           <FormField
             control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem className="w-1/2">
+                <FormLabel>{ProfileAddressFormMetadata.phone.label}</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={ProfileAddressFormMetadata.phone.placeholder}
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  {ProfileAddressFormMetadata.phone.description}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="w-1/2">
+                <FormLabel>{ProfileAddressFormMetadata.email.label}</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={ProfileAddressFormMetadata.email.placeholder}
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  {ProfileAddressFormMetadata.email.description}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="lastName"
             render={({ field }) => (
               <FormItem className="w-1/2">
                 <FormLabel>
-                  {CheckoutAddressFormMetadata.lastName.label}
+                  {ProfileAddressFormMetadata.lastName.label}
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={
-                      CheckoutAddressFormMetadata.lastName.placeholder
+                      ProfileAddressFormMetadata.lastName.placeholder
                     }
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  {CheckoutAddressFormMetadata.lastName.description}
+                  {ProfileAddressFormMetadata.lastName.description}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -117,13 +155,9 @@ export function CheckoutAddressForm(props: {
               <InputCombobox
                 name="countryArea"
                 form={form}
-                label={CheckoutAddressFormMetadata.countryArea.label}
-                placeholder={
-                  CheckoutAddressFormMetadata.countryArea.placeholder
-                }
-                description={
-                  CheckoutAddressFormMetadata.countryArea.description
-                }
+                label={ProfileAddressFormMetadata.countryArea.label}
+                placeholder={ProfileAddressFormMetadata.countryArea.placeholder}
+                description={ProfileAddressFormMetadata.countryArea.description}
                 notFoundMessage="Sehir bulunamadi"
                 items={[
                   { label: "Istanbul", value: "IST" },
@@ -139,9 +173,9 @@ export function CheckoutAddressForm(props: {
               <InputCombobox
                 name="district"
                 form={form}
-                label={CheckoutAddressFormMetadata.district.label}
-                placeholder={CheckoutAddressFormMetadata.district.placeholder}
-                description={CheckoutAddressFormMetadata.district.description}
+                label={ProfileAddressFormMetadata.district.label}
+                placeholder={ProfileAddressFormMetadata.district.placeholder}
+                description={ProfileAddressFormMetadata.district.description}
                 notFoundMessage="Sehir bulunamadi"
                 items={[
                   { label: "Istanbul", value: "IST" },
@@ -160,18 +194,18 @@ export function CheckoutAddressForm(props: {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>
-                  {CheckoutAddressFormMetadata.streetAddress1.label}
+                  {ProfileAddressFormMetadata.streetAddress1.label}
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={
-                      CheckoutAddressFormMetadata.streetAddress1.placeholder
+                      ProfileAddressFormMetadata.streetAddress1.placeholder
                     }
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  {CheckoutAddressFormMetadata.streetAddress1.description}
+                  {ProfileAddressFormMetadata.streetAddress1.description}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -186,18 +220,18 @@ export function CheckoutAddressForm(props: {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>
-                  {CheckoutAddressFormMetadata.streetAddress2.label}
+                  {ProfileAddressFormMetadata.streetAddress2.label}
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={
-                      CheckoutAddressFormMetadata.streetAddress2.placeholder
+                      ProfileAddressFormMetadata.streetAddress2.placeholder
                     }
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  {CheckoutAddressFormMetadata.streetAddress2.description}
+                  {ProfileAddressFormMetadata.streetAddress2.description}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -212,18 +246,18 @@ export function CheckoutAddressForm(props: {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>
-                  {CheckoutAddressFormMetadata.postalCode.label}
+                  {ProfileAddressFormMetadata.postalCode.label}
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={
-                      CheckoutAddressFormMetadata.postalCode.placeholder
+                      ProfileAddressFormMetadata.postalCode.placeholder
                     }
                     {...field}
                   />
                 </FormControl>
                 <FormDescription>
-                  {CheckoutAddressFormMetadata.postalCode.description}
+                  {ProfileAddressFormMetadata.postalCode.description}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -240,10 +274,10 @@ export function CheckoutAddressForm(props: {
             }}
             variant="outline"
           >
-            Geri
+            Vazgec
           </Button>
           <Button className="flex grow" type="submit">
-            Ileri
+            Kaydet
           </Button>
         </div>
       </form>

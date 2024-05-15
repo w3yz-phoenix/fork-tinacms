@@ -13,13 +13,13 @@ import {
 import { CheckoutFormAccordion } from "../../components/checkout-form-accordion";
 import { CheckoutContactFormSchema } from "../contact/schemas";
 
-import { CheckoutAddressForm } from "./form";
 import {
   CheckoutAddressFormSchema,
   FromSaleorCheckoutAddress,
   ToSaleorInputAddress as ToSaleorAddressInputSchema,
   type CheckoutAddressFormType,
 } from "./schemas";
+import { CheckoutAddressForm } from "./form";
 
 class SaleorGraphqlError extends Error {
   details: any;
