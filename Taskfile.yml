@@ -8,7 +8,7 @@ env:
   NEXT_PUBLIC_ECOM_API_URL: "https://dev-shop-api.w3yz.dev/graphql/"
   NEXT_PUBLIC_ECOM_NAME: "furniture"
   NEXT_PUBLIC_ECOM_URL: "http://localhost:3000"
-  NEXT_PUBLIC_CMS_API_URL: "http://localhost:3000/api/tina/gql"
+  NEXT_PUBLIC_CMS_API_URL: "http://localhost:4001/graphql"
   NEXTAUTH_SECRET: "changeme"
 
 includes:
