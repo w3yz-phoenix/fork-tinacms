@@ -1,0 +1,21 @@
+apiVersion: skaffold/v4beta10
+kind: Config
+metadata:
+  name: web-skaffold
+
+requires:
+  - path: ../../base
+build:
+  artifacts:
+    - image: web-image
+      context: ../../
+      docker:
+        dockerfile: apps/web/Dockerfile
+      requires:
+        - image: base-image
+          alias: BASE
+
+manifests:
+  kustomize:
+    paths:
+      - kustom
