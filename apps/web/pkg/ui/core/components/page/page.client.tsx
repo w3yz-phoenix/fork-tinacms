@@ -11,9 +11,12 @@ import { TrioPhotoText } from "#ui/furniture/blocks/trio-photo-text/trio-photo-t
 import { DiscountsBlock } from "#ui/furniture/blocks/discount/discount";
 // eslint-disable-next-line import/namespace
 import { PolicyBlock } from "#ui/furniture/blocks/policy/policy";
-// eslint-disable-next-line import/namespace
+// eslint-disable-next-line import/namespace, import/order
 import { ProductBlock } from "#ui/furniture/blocks/product/product";
+
+// eslint-disable-next-line import/no-unresolved
 import { ProfileAddressBlock } from "#ui/furniture/blocks/profile-address/profile-address";
+// eslint-disable-next-line import/no-unresolved
 import { ProfileNavigationBlock } from "#ui/furniture/blocks/profile-navigation/profile-navigation";
 import { ProfileResetPasswordBlock } from "#ui/furniture/blocks/profile-reset-password/profile-reset-password";
 import { ProfilePersonalInformationBlock } from "#ui/furniture/blocks/profile-personal-information/profile-personal-information";
