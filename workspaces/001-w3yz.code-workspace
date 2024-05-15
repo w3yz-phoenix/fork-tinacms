@@ -33,8 +33,8 @@
       "path": "../packages/tools",
     },
     {
-      "name": "gitops",
-      "path": "../gitops",
+      "name": "shop",
+      "path": "../shop",
     },
     {
       "name": "tooling",

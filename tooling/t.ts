@@ -1,3 +1,3 @@
-import { z } from "npm:zod@latest";
+import { mainCommand } from "./src/mod.ts";
 
-console.log(`called with arguments: ${Deno.args.join(", ")}`);
+await mainCommand.parse(Deno.args);

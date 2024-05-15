@@ -1,0 +1,18 @@
+apiVersion: skaffold/v4beta10
+kind: Config
+metadata:
+  name: w3yz
+
+build:
+  artifacts:
+    - image: w3yz-base
+      context: ../
+      docker:
+        dockerfile: docker/Dockerfile.base
+
+profiles:
+  - name: shop
+    manifests:
+      kustomize:
+        paths:
+          - ./kustomize/shop/current
