@@ -11,7 +11,7 @@ export const productBlockSchema = defineTinaTemplate({
   name: "product",
   label: "Product",
   ui: {
-    previewSrc: "/blocks/hero-slider/preview.png",
+    previewSrc: "/blocks/product/preview.png",
     defaultItem: {
       title: "Product Title",
       subtitle: "Product Subtitle",

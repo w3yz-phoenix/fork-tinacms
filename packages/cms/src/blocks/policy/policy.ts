@@ -9,7 +9,7 @@ export const policyBlockSchema = defineTinaTemplate({
   name: "Policy",
   label: "Policy",
   ui: {
-    previewSrc: "/blocks/blog-card-home/preview.png",
+    previewSrc: "/blocks/policy/preview.png",
   },
   fields: [
     {

@@ -13,6 +13,11 @@ import { DiscountsBlock } from "#ui/furniture/blocks/discount/discount";
 import { PolicyBlock } from "#ui/furniture/blocks/policy/policy";
 // eslint-disable-next-line import/namespace
 import { ProductBlock } from "#ui/furniture/blocks/product/product";
+import { ProfileAddressBlock } from "#ui/furniture/blocks/profile-address/profile-address";
+import { ProfileNavigationBlock } from "#ui/furniture/blocks/profile-navigation/profile-navigation";
+import { ProfileResetPasswordBlock } from "#ui/furniture/blocks/profile-reset-password/profile-reset-password";
+import { ProfilePersonalInformationBlock } from "#ui/furniture/blocks/profile-personal-information/profile-personal-information";
+import { ProfileOrdersBlock } from "#ui/furniture/blocks/profile-orders/profile-orders";
 
 import { useTinaQuery } from "../../hooks";
 
@@ -53,6 +58,23 @@ export const PageClient = (props: { relativePath: string }) => {
           }
           case "PageBlocksProduct": {
             return <ProductBlock key={index} block={block} />;
+          }
+          case "PageBlocksProfileAddress": {
+            return <ProfileAddressBlock key={index} block={block} />;
+          }
+          case "PageBlocksProfileNavigation": {
+            return <ProfileNavigationBlock key={index} block={block} />;
+          }
+          case "PageBlocksProfileResetPassword": {
+            return <ProfileResetPasswordBlock key={index} block={block} />;
+          }
+          case "PageBlocksProfilePersonalInformation": {
+            return (
+              <ProfilePersonalInformationBlock key={index} block={block} />
+            );
+          }
+          case "PageBlocksProfileOrders": {
+            return <ProfileOrdersBlock key={index} block={block} />;
           }
           default: {
             return (
