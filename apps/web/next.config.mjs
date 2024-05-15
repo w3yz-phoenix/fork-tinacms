@@ -14,8 +14,12 @@ export default {
         destination: "/home",
       },
       {
-        source: "/cms/:path*",
-        destination: `http://localhost:3200/:path*`,
+        source: "/admin/:path*",
+        destination: `http://localhost:3200/admin/:path*`,
+      },
+      {
+        source: "/api/tina/:path*",
+        destination: `http://localhost:3200/api/tina/:path*`,
       },
     ];
   },

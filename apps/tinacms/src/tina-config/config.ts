@@ -15,13 +15,12 @@ export const tinaConfig = defineConfig({
     : new UsernamePasswordAuthJSProvider(),
 
   contentApiUrlOverride: tinaEnvironment.public.cms.graphql,
+  localContentPath: tinaEnvironment.public.cms.contentRootPath,
 
   build: {
     publicFolder: "public",
     outputFolder: "admin",
   },
-
-  localContentPath: tinaEnvironment.public.cms.contentRootPath,
 
   media: {
     tina: {
@@ -30,8 +29,6 @@ export const tinaConfig = defineConfig({
       static: true,
     },
   },
-
-  localContentPath
 
   schema: {
     collections: [

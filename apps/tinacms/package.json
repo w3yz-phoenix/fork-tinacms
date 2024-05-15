@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NEXT_PUBLIC_TINA_IS_LOCAL='true' tinacms dev -c \"next dev -p 3200\"",
-    "dev:prod": "NEXT_PUBLIC_TINA_IS_LOCAL='false' tinacms dev -c \"next dev -p 3200\"",
+    "dev": "tinacms dev -c \"next dev -p 3200\"",
     "build": "tinacms build --partial-reindex && next build",
     "start": "next start",
     "lint": "next lint"

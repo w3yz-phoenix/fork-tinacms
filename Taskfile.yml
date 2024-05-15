@@ -3,10 +3,9 @@ version: "3"
 interval: 500ms
 
 env:
-  NEXT_PUBLIC_TINA_IS_LOCAL: "true"
   NEXT_PUBLIC_ECOM_API_URL: "https://dev-shop-api.w3yz.dev/graphql/"
   NEXT_PUBLIC_ECOM_NAME: "furniture"
-  NEXT_PUBLIC_CMS_BASE_URL: "http://localhost:3000/cms"
+  NEXT_PUBLIC_CMS_BASE_URL: "http://localhost:3000"
   NEXTAUTH_SECRET: "changeme"
 
 includes:

@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "name": "W3YZ Demo User",
+      "email": "demo@w3yz.com",
+      "username": "demo",
+      "password": {
+        "value": "demo",
+        "passwordChangeRequired": false
+      }
+    }
+  ]
+}

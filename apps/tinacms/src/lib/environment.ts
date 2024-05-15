@@ -23,7 +23,7 @@ const publicEnvironment = z
     NEXT_PUBLIC_ECOM_API_URL: z.string().url(),
     NEXT_PUBLIC_ECOM_NAME: z.string().default("W3YZ Shop"),
     NEXT_PUBLIC_CMS_BASE_URL: z.string().url(),
-    NEXT_PUBLIC_CMS_CONTENT_ROOT_PATH: z.string(),
+    NEXT_PUBLIC_CMS_CONTENT_ROOT_PATH: z.string().optional(),
     NEXT_PUBLIC_TINA_IS_LOCAL: z.string(),
   })
   .transform((data) => ({
