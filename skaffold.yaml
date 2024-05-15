@@ -1,14 +1,6 @@
 apiVersion: skaffold/v4beta10
 kind: Config
 
-build:
-  local:
-    useBuildkit: true
-    concurrency: 1
-    push: false
-    tryImportMissing: true
-    useDockerCLI: true
-
 requires:
   # - path: ./shop
   - path: ./apps/web
