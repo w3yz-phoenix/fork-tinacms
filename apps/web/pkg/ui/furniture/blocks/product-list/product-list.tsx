@@ -1,5 +1,6 @@
 import { useProductListQuery } from "@w3yz/ecom/api";
 import Image from "next/image";
+
 import { cn } from "#shadcn/lib/utils";
 
 import type { TinaGraphql_PageBlocksProductList } from "@w3yz/cms/api";

@@ -4,7 +4,6 @@ import { tinaField } from "tinacms/dist/react";
 import Link from "next/link";
 
 import type { TinaGraphql_PageBlocksProfileNavigation } from "@w3yz/cms/api";
-import React from "react";
 
 export const ProfileNavigationBlock = ({
   block,

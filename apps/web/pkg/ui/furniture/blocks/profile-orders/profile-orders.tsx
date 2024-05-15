@@ -1,12 +1,9 @@
-"use client";
-
 import { tinaField } from "tinacms/dist/react";
 
 import type { TinaGraphql_PageBlocksProfileOrders } from "@w3yz/cms/api";
 
 // eslint-disable-next-line import/namespace
-import { OrderItemCard } from "../profile-personal-information/order-card";
-import React from "react";
+import { OrderItemCard } from "./order-card";
 
 export const ProfileOrdersBlock = ({
   block,

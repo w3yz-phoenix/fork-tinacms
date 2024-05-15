@@ -6,7 +6,6 @@ import { useState } from "react";
 import type { TinaGraphql_PageBlocksProfileResetPassword } from "@w3yz/cms/api";
 
 import { ResetPasswordModal } from "./reset-password-modal";
-import React from "react";
 
 export const ProfileResetPasswordBlock = ({
   block,

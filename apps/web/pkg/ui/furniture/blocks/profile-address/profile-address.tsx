@@ -6,7 +6,6 @@ import { useState } from "react";
 import type { TinaGraphql_PageBlocksProfileAddress } from "@w3yz/cms/api";
 
 import { AddressModal } from "./address-modal";
-import React from "react";
 
 export const ProfileAddressBlock = ({
   block,

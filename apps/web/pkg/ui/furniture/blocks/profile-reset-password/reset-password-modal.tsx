@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useRef } from "react";
 
 export function ResetPasswordModal({ children, isOpen, setIsOpen }: any) {

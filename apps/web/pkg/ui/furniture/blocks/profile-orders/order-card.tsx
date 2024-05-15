@@ -1,7 +1,6 @@
 "use client";
 import { IconCheck, IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import Image from "next/image";
-import React from "react";
 import { useState } from "react";
 
 function OrderDetail() {

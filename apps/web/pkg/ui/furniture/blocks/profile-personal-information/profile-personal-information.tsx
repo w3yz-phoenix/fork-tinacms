@@ -4,7 +4,6 @@ import { tinaField } from "tinacms/dist/react";
 import { useState } from "react";
 
 import type { TinaGraphql_PageBlocksProfilePersonalInformation } from "@w3yz/cms/api";
-import React from "react";
 
 export const ProfilePersonalInformationBlock = ({
   block,
