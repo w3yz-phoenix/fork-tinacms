@@ -7,6 +7,8 @@ import { HeroSliderBlock } from "#ui/furniture/blocks/hero-slider/hero-slider";
 import { ProductListBlock } from "#ui/furniture/blocks/product-list/product-list";
 import { ImageTextHero } from "#ui/furniture/blocks/image-text-hero/image-text-hero";
 import { BlogCard } from "#ui/furniture/blocks/blog-card/blog-card";
+import { CommentSliderBlock } from "#ui/furniture/blocks/comment-slider/comment-slider";
+import { BlogCardSlider } from "#ui/furniture/blocks/blog-card-slider/blog-card-slider";
 import { TrioPhotoText } from "#ui/furniture/blocks/trio-photo-text/trio-photo-text";
 import { DiscountsBlock } from "#ui/furniture/blocks/discount/discount";
 // eslint-disable-next-line import/namespace
@@ -49,6 +51,12 @@ export const PageClient = (props: { relativePath: string }) => {
           }
           case "PageBlocksBlogCardHome": {
             return <BlogCard key={index} block={block} />;
+          }
+          case "PageBlocksCommentSlider": {
+            return <CommentSliderBlock key={index} block={block} />;
+          }
+          case "PageBlocksBlogCardSlider": {
+            return <BlogCardSlider key={index} block={block} />;
           }
           case "PageBlocksTrioPhotoText": {
             return <TrioPhotoText key={index} block={block} />;
