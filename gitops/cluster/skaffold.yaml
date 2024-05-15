@@ -1,0 +1,11 @@
+# nonk8s
+apiVersion: skaffold/v4beta10
+kind: Config
+
+requires:
+  - path: ./helm
+
+manifests:
+  kustomize:
+    paths:
+      - ./kustomize

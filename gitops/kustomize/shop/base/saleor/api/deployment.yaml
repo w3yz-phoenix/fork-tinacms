@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          tty: true
+          image: ghcr.io/saleor/saleor:3.19
+
+          env:
+            - name: DEMO_MODE
+              value: "false"
+            - name: ALLOWED_CLIENT_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-config
+                  key: API_ALLOWED_CLIENT_HOSTS
+            - name: ALLOWED_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-config
+                  key: API_ALLOWED_HOSTS
+            - name: PUBLIC_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-config
+                  key: API_URL
+            - name: DASHBOARD_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-config
+                  key: DASHBOARD_URL
+            - name: STOREFRONT_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-config
+                  key: STOREFRONT_URL
+          ports:
+            - containerPort: 8000
+              name: http
+          volumeMounts:
+            - name: api-pv
+              mountPath: /app/media
+      initContainers:
+        - name: init-api
+          image: ghcr.io/saleor/saleor:3.19
+          command:
+            - /bin/sh
+            - -c
+            - |
+              python3 manage.py migrate --noinput;
+              python3 manage.py populatedb --createsuperuser --superuser_password=demo --staff_password=demo --user_password=demo;
+              # python3 manage.py createsuperuser --noinput --email demo@w3yz.dev || true;
+          tty: true
+          volumeMounts:
+            - name: api-pv
+              mountPath: /app/media
+      volumes:
+        - name: api-pv
+          persistentVolumeClaim:
+            claimName: saleor-media-pvc

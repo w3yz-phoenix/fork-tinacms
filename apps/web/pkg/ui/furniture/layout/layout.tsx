@@ -2,7 +2,6 @@
 
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { useGlobalConfigQuery } from "@w3yz/cms/api";
-import { defaultGlobalConfig } from "@w3yz/cms/config";
 import { useCheckoutGetQuantitiesQuery } from "@w3yz/ecom/api";
 import { getStringIfNotEmpty } from "@w3yz/tools/lib";
 import { cookies } from "next/headers";
@@ -32,7 +31,7 @@ async function getCheckoutItemCount() {
 }
 
 export async function Layout({
-  globalConfigPath = defaultGlobalConfig,
+  globalConfigPath = "main.yml",
   children,
 }: {
   globalConfigPath?: string;

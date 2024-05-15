@@ -3,12 +3,10 @@ version: "3"
 interval: 500ms
 
 env:
-  TINA_PUBLIC_IS_LOCAL: true,
-  NEXT_PUBLIC_URL: "http://localhost:3000"
+  NEXT_PUBLIC_TINA_IS_LOCAL: "true"
   NEXT_PUBLIC_ECOM_API_URL: "https://dev-shop-api.w3yz.dev/graphql/"
   NEXT_PUBLIC_ECOM_NAME: "furniture"
-  NEXT_PUBLIC_ECOM_URL: "http://localhost:3000"
-  NEXT_PUBLIC_CMS_API_URL: "http://localhost:4001/graphql"
+  NEXT_PUBLIC_CMS_BASE_URL: "http://localhost:3000/cms"
   NEXTAUTH_SECRET: "changeme"
 
 includes:
@@ -18,6 +16,8 @@ includes:
     taskfile: ./packages/cms/Taskfile.yml
   web:
     taskfile: ./apps/web/Taskfile.yml
+  tinacms:
+    taskfile: ./apps/tinacms/Taskfile.yml
 
 tasks:
   install:
@@ -32,7 +32,10 @@ tasks:
     deps: [generate]
 
   build:
-    deps: [generate, web:build]
+    deps: [generate, tinacms:build, web:build, generate]
 
   dev:
-    deps: [install, web:dev, cms:dev]
+    deps: [install, web:dev, tinacms:dev]
+
+  dev:prod:
+    deps: [install, web:dev:prod, tinacms:dev:prod]

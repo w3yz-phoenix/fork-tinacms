@@ -1,0 +1,41 @@
+{
+  "name": "@w3yz-app/tinacms",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NEXT_PUBLIC_TINA_IS_LOCAL='true' tinacms dev -c \"next dev -p 3200\"",
+    "dev:prod": "NEXT_PUBLIC_TINA_IS_LOCAL='false' tinacms dev -c \"next dev -p 3200\"",
+    "build": "tinacms build --partial-reindex && next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/react": "18.2.7",
+    "@types/react-dom": "18.2.4",
+    "autoprefixer": "^10.4.16",
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.4",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
+  },
+  "dependencies": {
+    "@tinacms/cli": "^1.5.34",
+    "@tinacms/datalayer": "^1.2.34",
+    "@w3yz/ecom": "workspace:*",
+    "elysia": "^1.0.16",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0",
+    "mini-css-extract-plugin": "^2.9.0",
+    "mongodb-level": "^0.0.4",
+    "next": "^14.0.3",
+    "next-auth": "^4.24.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tinacms": "^1.6.3",
+    "tinacms-authjs": "^2.0.3",
+    "tinacms-gitprovider-github": "^1.0.5",
+    "typescript": "5.0.4",
+    "upstash-redis-level": "^1.1.1"
+  }
+}

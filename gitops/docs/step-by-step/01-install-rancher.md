@@ -12,25 +12,23 @@ Following this tutorial to use cert-manager in rancher
 Make sure of the following:
 
 ```
-65.109.169.241 rancher7.w3yz.dev
-65.109.169.241 *.rancher7.w3yz.dev
+65.109.169.241 rancher8.w3yz.dev
+65.109.169.241 *.rancher8.w3yz.dev
 ```
 
 Then make sure your SSH is working
 
 ```bash
-ssh-keygen -R rancher7.w3yz.dev
-ssh-keygen -R 65.109.169.241
-ssh root@rancher7.w3yz.dev
+ssh-keygen -R rancher8.w3yz.dev
+ssh-keygen -R 65.21.52.120
+ssh root@rancher8.w3yz.dev
 ```
 
-[Dashboard](https://dash.rancher7.w3yz.dev)
+[Dashboard](https://dash.rancher8.w3yz.dev)
 
 ### Install required tools
 
 ```bash
-snap install kubectl --classic
-snap install helm --classic
 curl -sfL https://get.rke2.io | sh -
 systemctl enable rke2-server.service
 systemctl start rke2-server.service
@@ -39,6 +37,8 @@ systemctl start rke2-server.service
 ### Make configurations and watch the pods
 
 ```bash
+snap install kubectl --classic
+snap install helm --classic
 mkdir ~/.kube
 cp /etc/rancher/rke2/rke2.yaml ~/.kube/config
 chown $USER:$USER ~/.kube/config
@@ -49,7 +49,7 @@ watch kubectl get pods -A
 Then open up another terminal tab and continue:
 
 ```bash
-ssh root@rancher7.w3yz.dev
+ssh root@rancher8.w3yz.dev
 ```
 
 ### Install cert-manager
@@ -74,7 +74,7 @@ spec:
   acme:
     # Staging environment URL
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: yasin@w3yz.com  # Replace with your email address
+    email: project@w3yz.com  # Replace with your email address
     privateKeySecretRef:
       name: letsencrypt-staging-private-key
     solvers:
@@ -96,7 +96,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: yasin@w3yz.com
+    email: project@w3yz.com
     privateKeySecretRef:
       name: letsencrypt-prod-private-key
     solvers:
@@ -112,12 +112,12 @@ EOF
 kubectl create ns cattle-system
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
 helm repo update
-helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=rancher7.w3yz.dev --set bootstrapPassword=i-am-very-much-secure --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=yasin@w3yz.com --set letsEncrypt.ingress.class=nginx
+helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=rancher8.w3yz.dev --set bootstrapPassword=i-am-very-much-secure --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=project@w3yz.com --set letsEncrypt.ingress.class=nginx
 kubectl -n cattle-system rollout status deploy/rancher
 ```
 
 > Note: You might need to double check your password
 
 ```bash
-echo https://rancher7.w3yz.dev/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
+echo https://rancher8.w3yz.dev/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
 ```

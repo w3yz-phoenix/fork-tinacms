@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./../../base
+
+components:
+  - ./../../components/w3yz
+
+configMapGenerator:
+  - name: shop-config
+    literals:
+      - SHOP_NAME=baseline2
+      - API_ALLOWED_CLIENT_HOSTS="localhost,127.0.0.1,dashboard.baseline2.rancher8.w3yz.dev,baseline2.rancher8.w3yz.dev"
+      - API_ALLOWED_HOSTS="api,localhost,127.0.0.1,api.baseline2.rancher8.w3yz.dev"
+      - API_FQDN=api.baseline2.rancher8.w3yz.dev
+      - DASHBOARD_FQDN=dashboard.baseline2.rancher8.w3yz.dev
+      - STOREFRONT_FQDN=baseline2.rancher8.w3yz.dev
+      - API_URL=https://api.baseline2.rancher8.w3yz.dev
+      - API_GRAPHQL_URL="https://api.baseline2.rancher8.w3yz.dev/graphql/"
+      - DASHBOARD_URL=https://dashboard.baseline2.rancher8.w3yz.dev
+      - STOREFRONT_URL=https://baseline2.rancher8.w3yz.dev
+
+namespace: w3yz-shop-baseline2

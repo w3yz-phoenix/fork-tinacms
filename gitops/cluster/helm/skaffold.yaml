@@ -1,0 +1,26 @@
+# nonk8s
+apiVersion: skaffold/v4beta10
+kind: Config
+
+manifests:
+  helm:
+    releases:
+      - name: cert-manager
+        repo: https://charts.jetstack.io
+        remoteChart: cert-manager
+        setValues:
+          installCRDs: true
+        namespace: cert-manager
+        createNamespace: true
+        version: v1.14.5
+      - name: rancher
+        repo: https://releases.rancher.com/server-charts/latest
+        remoteChart: rancher
+        namespace: cattle-system
+        createNamespace: true
+        setValues:
+          hostname: rancher.w3yz.local
+          bootstrapPassword: change-me
+          ingress.tls.source: letsEncrypt
+          letsEncrypt.email: project@w3yz.com
+          letsEncrypt.ingress.class: nginx

@@ -19,12 +19,14 @@ const config = {
   fragmentVariablePrefix: typePrefix,
 };
 
+const TINA_FOLDER = "../../../../apps/tinacms/tina/";
+
 export const getTinaGraphqlConfig = () => {
   return defineGraphqlProject("@w3yz/cms", {
-    schema: [resolvePath("../../tina/__generated__/schema.gql")],
+    schema: [resolvePath(`${TINA_FOLDER}/__generated__/schema.gql`)],
     documents: [
-      resolvePath("../../tina/__generated__/frags.gql"),
-      resolvePath("../../tina/__generated__/queries.gql"),
+      resolvePath(`${TINA_FOLDER}/__generated__/frags.gql`),
+      resolvePath(`${TINA_FOLDER}/__generated__/queries.gql`),
     ],
     extensions: {
       codegen: defineCodegenConfig({

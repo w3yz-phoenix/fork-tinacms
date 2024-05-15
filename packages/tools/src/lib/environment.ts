@@ -19,26 +19,31 @@ export const privateEnvironment = z
 
 export const publicEnvironment = z
   .object({
+    NEXT_PUBLIC_URL: z.string().url(),
     NEXT_PUBLIC_ECOM_API_URL: z.string().url(),
-    NEXT_PUBLIC_ECOM_URL: z.string().url(),
     NEXT_PUBLIC_ECOM_NAME: z.string().default("W3YZ Shop"),
-    NEXT_PUBLIC_CMS_API_URL: z.string().url(),
+    NEXT_PUBLIC_CMS_BASE_URL: z.string().url(),
+    NEXT_PUBLIC_TINA_IS_LOCAL: z.string(),
   })
   .transform((data) => ({
     _env: data,
     ecom: {
-      url: data.NEXT_PUBLIC_ECOM_URL,
+      url: data.NEXT_PUBLIC_URL,
       name: data.NEXT_PUBLIC_ECOM_NAME,
       api: data.NEXT_PUBLIC_ECOM_API_URL,
-      https: data.NEXT_PUBLIC_ECOM_URL.startsWith("https"),
+      https: data.NEXT_PUBLIC_URL.startsWith("https"),
     },
     cms: {
-      api: data.NEXT_PUBLIC_CMS_API_URL,
+      base: data.NEXT_PUBLIC_CMS_BASE_URL,
+      admin: `${data.NEXT_PUBLIC_CMS_BASE_URL}/admin`,
+      graphql: `${data.NEXT_PUBLIC_CMS_BASE_URL}/api/tina/gql`,
+      isLocal: data.NEXT_PUBLIC_TINA_IS_LOCAL === "true",
     },
   }))
   .parse({
+    NEXT_PUBLIC_TINA_IS_LOCAL: process.env.NEXT_PUBLIC_TINA_IS_LOCAL,
+    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
     NEXT_PUBLIC_ECOM_API_URL: process.env.NEXT_PUBLIC_ECOM_API_URL,
-    NEXT_PUBLIC_ECOM_URL: process.env.NEXT_PUBLIC_ECOM_URL,
     NEXT_PUBLIC_ECOM_NAME: process.env.NEXT_PUBLIC_ECOM_NAME,
-    NEXT_PUBLIC_CMS_API_URL: process.env.NEXT_PUBLIC_CMS_API_URL,
+    NEXT_PUBLIC_CMS_BASE_URL: process.env.NEXT_PUBLIC_CMS_BASE_URL,
   });

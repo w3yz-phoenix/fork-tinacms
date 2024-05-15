@@ -1,0 +1,38 @@
+version: "3"
+
+env:
+  LIMACTL_INSTANCE: default
+  LIMA_INSTANCE: default
+
+tasks:
+  ssh:
+    cmds:
+      - ssh -F $HOME/.lima/default/ssh.config lima-default
+
+  init:
+    cmds:
+      - limactl delete default --force || true
+      - |
+        limactl start \
+          --tty=false \
+          --name=default \
+          --cpus=4 \
+          --memory=8 \
+          # --vm-type=vz \
+          # --mount-type=virtiofs \
+          --mount-writable \
+          template://ubuntu
+      - limactl --tty=false shell default bash -c "./scripts/lima-init.sh"
+
+  print:
+    cmds:
+      - skaffold -v trace render -p shop-baseline {{.CLI_ARGS}} | code -
+
+  redeploy:
+    cmds:
+      - skaffold delete -p shop-baseline
+      - skaffold deploy -p shop-baseline
+
+  run:
+    cmds:
+      - skaffold run -p shop-baseline

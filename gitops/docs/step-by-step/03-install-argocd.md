@@ -17,7 +17,7 @@ We will assume that you have a Kubernetes cluster up and running.
 And you can connect to the server with ssh:
 
 ```bash
-ssh root@rancher7.w3yz.dev
+ssh root@rancher8.w3yz.dev
 ```
 
 ## Setting up ArgoCD
@@ -28,16 +28,6 @@ ssh root@rancher7.w3yz.dev
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
-
-### Fetch Password
-
-```bash
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-```
-
-> Save the password somewhere safe
-> My password during the creation of this tutorial
-> Mrqayy8yyBAlPRtK
 
 ### Create Ingress
 
@@ -58,7 +48,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: argocd.rancher7.w3yz.dev
+  - host: argocd.rancher8.w3yz.dev
     http:
       paths:
       - path: /
@@ -70,7 +60,7 @@ spec:
               name: https
   tls:
   - hosts:
-    - argocd.rancher7.w3yz.dev
+    - argocd.rancher8.w3yz.dev
     secretName: argocd-server-tls # as expected by argocd-server
 EOF
 ```
@@ -90,16 +80,30 @@ spec:
     name: letsencrypt-prod  # Change to letsencrypt-staging if using the staging environment
     kind: ClusterIssuer
   dnsNames:
-  - argocd.rancher7.w3yz.dev
+  - argocd.rancher8.w3yz.dev
 EOF
 ```
 
 ### Access ArgoCD
 
-Then open up your browser and go to [https://argocd.rancher7.w3yz.dev](https://argocd.rancher7.w3yz.dev)
+Acquire password
+
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
+Then open up your browser and go to [https://argocd.rancher8.w3yz.dev](https://argocd.rancher8.w3yz.dev)
 
 - Username: admin
-- Password: Mrqayy8yyBAlPRtK
+- Password: 7rDji5S1lPlPQLkW
+
+### Install argocd CLI
+
+```bash
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+```
 
 ### Connect Repository
 

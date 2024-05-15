@@ -1,5 +1,8 @@
 version: "3"
 
+env:
+  NEXT_PUBLIC_URL: "http://localhost:3000"
+
 tasks:
   lint:
     preconditions:
@@ -23,7 +26,15 @@ tasks:
         sh: test -f package.json
     dir: apps/web
     cmds:
-      - bun x next dev -p 3200
+      - bun x next dev
+
+  dev:prod:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
+    dir: apps/web
+    cmds:
+      - bun x next dev
 
   start:
     preconditions:

@@ -13,6 +13,10 @@ export default {
         source: "/",
         destination: "/home",
       },
+      {
+        source: "/cms/:path*",
+        destination: `http://localhost:3200/:path*`,
+      },
     ];
   },
 };

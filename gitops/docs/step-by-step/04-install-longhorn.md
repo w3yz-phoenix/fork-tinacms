@@ -4,13 +4,12 @@ Make sure you are using bash
 
 ```bash
 argocd login --core
-kubectl config set-context --current --namespace=argocd
 ```
 
 Install longhorn
 
 ```bash
-cat > longhorn-application.yaml <<EOF
+cat <<EOF | kubectl -n argocd apply -f -
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -33,7 +32,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
 EOF
-kubectl apply -f longhorn-application.yaml
 ```
 
 Sync longhorn

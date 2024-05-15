@@ -3,6 +3,9 @@
   "packages": [
     "kubectl@latest",
     "kustomize@latest",
+    "k3d@latest",
+    "skaffold@latest",
+    "kubernetes-helm@latest",
     "deno@latest",
     "bun@latest",
     "go-task@latest",
@@ -11,7 +14,6 @@
     "rsync@latest",
     "alejandra@latest",
     "tree@latest",
-    "skaffold@latest",
     "path:./tooling#t",
     "path:./tooling#td"
   ],
