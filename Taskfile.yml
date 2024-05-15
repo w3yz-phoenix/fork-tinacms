@@ -24,17 +24,33 @@ tasks:
       - bun install
 
   generate:
-    deps: [install, ecom:generate, cms:generate]
+    deps: [ecom:generate, cms:generate]
 
   watch:
     watch: true
     deps: [generate]
 
+  build-apps:
+    cmds:
+      - bun "--filter=@w3yz-app/tinacms" run build
+      - task: generate
+      - bun "--filter=@w3yz-app/tinacms" run start
+      - bun "--filter=@w3yz-app/web" run build
+
   build:
-    deps: [generate, tinacms:build, web:build, generate]
+    deps: [build-apps]
+    cmds:
+      - rm -rf ./dist && mkdir -p ./dist
+      - |
+        rsync -avm --include='*/' \
+          --include='*/.next/***' \
+          --include='*/public/***' \
+          --include='*/package.json' \
+          --exclude='*' \
+          apps/ dist/
 
   dev:
-    deps: [install, web:dev, tinacms:dev]
+    deps: [web:dev, tinacms:dev]
 
   dev:prod:
-    deps: [install, web:dev:prod, tinacms:dev:prod]
+    deps: [web:dev:prod, tinacms:dev:prod]

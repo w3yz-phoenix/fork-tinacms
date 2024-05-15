@@ -2,7 +2,23 @@ apiVersion: skaffold/v4beta10
 kind: Config
 build:
   artifacts:
-    - image: base-image
+    - image: base-devbox
       context: ../
       docker:
         dockerfile: base/Dockerfile.devbox
+    - image: install-image
+      context: ../
+      docker:
+        dockerfile: base/Dockerfile
+        target: install
+      requires:
+        - image: base-devbox
+          alias: DEVBOX_IMAGE
+    - image: prerelease-image
+      context: ../
+      docker:
+        dockerfile: base/Dockerfile
+        target: prerelease
+      requires:
+        - image: base-devbox
+          alias: DEVBOX_IMAGE

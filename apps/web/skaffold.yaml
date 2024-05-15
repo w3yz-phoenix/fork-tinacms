@@ -12,8 +12,10 @@ build:
       docker:
         dockerfile: apps/web/Dockerfile
       requires:
-        - image: base-image
-          alias: BASE
+        - image: install-image
+          alias: INSTALL_IMAGE
+        - image: prerelease-image
+          alias: PRERELEASE_IMAGE
 
 manifests:
   kustomize:

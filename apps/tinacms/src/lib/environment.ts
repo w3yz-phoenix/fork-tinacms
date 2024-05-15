@@ -24,7 +24,8 @@ const publicEnvironment = z
     NEXT_PUBLIC_ECOM_NAME: z.string().default("W3YZ Shop"),
     NEXT_PUBLIC_CMS_BASE_URL: z.string().url(),
     NEXT_PUBLIC_CMS_CONTENT_ROOT_PATH: z.string().optional(),
-    NEXT_PUBLIC_TINA_IS_LOCAL: z.string(),
+    NEXT_PUBLIC_TINA_IS_LOCAL: z.string().optional(),
+    TINA_PUBLIC_IS_LOCAL: z.string().optional(),
   })
   .transform((data) => ({
     _env: data,
@@ -39,13 +40,16 @@ const publicEnvironment = z
       contentRootPath: data.NEXT_PUBLIC_CMS_CONTENT_ROOT_PATH,
       admin: `${data.NEXT_PUBLIC_CMS_BASE_URL}/admin`,
       graphql: `${data.NEXT_PUBLIC_CMS_BASE_URL}/api/tina/gql`,
-      isLocal: data.NEXT_PUBLIC_TINA_IS_LOCAL === "true",
+      isLocal:
+        data.NEXT_PUBLIC_TINA_IS_LOCAL === "true" ||
+        data.TINA_PUBLIC_IS_LOCAL === "true",
     },
   }))
   .parse({
     NEXT_PUBLIC_CMS_CONTENT_ROOT_PATH:
       process.env.NEXT_PUBLIC_CMS_CONTENT_ROOT_PATH,
     NEXT_PUBLIC_TINA_IS_LOCAL: process.env.NEXT_PUBLIC_TINA_IS_LOCAL,
+    TINA_PUBLIC_IS_LOCAL: process.env.TINA_PUBLIC_IS_LOCAL,
     NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
     NEXT_PUBLIC_ECOM_API_URL: process.env.NEXT_PUBLIC_ECOM_API_URL,
     NEXT_PUBLIC_ECOM_NAME: process.env.NEXT_PUBLIC_ECOM_NAME,

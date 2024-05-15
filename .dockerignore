@@ -14,3 +14,5 @@ helm-charts
 .idea
 coverage*
 compose.yml
+.devbox
+__generated__
