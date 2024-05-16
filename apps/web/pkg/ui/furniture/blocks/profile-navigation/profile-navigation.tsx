@@ -2,6 +2,9 @@
 
 import { tinaField } from "tinacms/dist/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { cn } from "#shadcn/lib/utils";
 
 import type { TinaGraphql_PageBlocksProfileNavigation } from "@w3yz/cms/api";
 
@@ -10,6 +13,7 @@ export const ProfileNavigationBlock = ({
 }: {
   block: TinaGraphql_PageBlocksProfileNavigation;
 }) => {
+  const pathName = usePathname();
   return (
     <div className="max-w-[400px]" data-tina-field={tinaField(block)}>
       <div className="flex flex-col items-start justify-center gap-3">
@@ -17,13 +21,34 @@ export const ProfileNavigationBlock = ({
           {block.mainTitle}
         </h3>
         <p className="text-base font-normal leading-normal text-[#656565]">
-          Hesabınıza ait temel verilerinizi düzenleyin
+          {block.subTitle}
         </p>
       </div>
-      <div>
-        <div className={"flex flex-col items-start justify-center gap-2 p-5"}>
+      <div className="mt-8">
+        <div
+          className={cn(
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
+            pathName === "/profile/personal-info" ? "bg-[#F5F6F6]" : ""
+          )}
+        >
           <Link
-            href={""}
+            href={"/profile/personal-info"}
+            className="w-full text-xl font-semibold leading-[38px] text-[#292929]"
+          >
+            Kişisel Bilgiler
+          </Link>
+          <p className="text-base font-normal leading-normal text-[#656565]">
+            Kişisel bilgilerinizi güncelleyin.
+          </p>
+        </div>
+        <div
+          className={cn(
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
+            pathName === "/profile/address" ? "bg-[#F5F6F6]" : ""
+          )}
+        >
+          <Link
+            href={"/profile/address"}
             className="w-full text-xl font-semibold leading-[38px] text-[#292929]"
           >
             Adres Bilgileri
@@ -32,9 +57,14 @@ export const ProfileNavigationBlock = ({
             Yeni adres oluştur veya düzenleyin.
           </p>
         </div>
-        <div className={"flex flex-col items-start justify-center gap-2 p-5"}>
+        <div
+          className={cn(
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
+            pathName === "/profile/password-reset" ? "bg-[#F5F6F6]" : ""
+          )}
+        >
           <Link
-            href={""}
+            href={"/profile/password-reset"}
             className="text-xl font-semibold leading-[38px] text-[#292929]"
           >
             Parola İşlemleri
@@ -44,9 +74,14 @@ export const ProfileNavigationBlock = ({
             belirleyin.
           </p>
         </div>
-        <div className={"flex flex-col items-start justify-center gap-2 p-5"}>
+        <div
+          className={cn(
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
+            pathName === "/profile/orders" ? "bg-[#F5F6F6]" : ""
+          )}
+        >
           <Link
-            href={""}
+            href={"/profile/orders"}
             className="text-xl font-semibold leading-[38px] text-[#292929]"
           >
             Siparişler

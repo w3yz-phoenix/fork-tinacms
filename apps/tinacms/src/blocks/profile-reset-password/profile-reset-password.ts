@@ -9,7 +9,12 @@ export const profileResetPasswordBlockSchema = defineTinaTemplate({
   name: "profileResetPassword",
   label: "Profile Reset Password",
   ui: {
-    previewSrc: "/blocks/profile-reset-password/preview.png",
+    previewSrc: "/blocks/profile-reset-password/preview.png", 
+    defaultItem: {
+      title: "Product Title",
+      subtitle: "Product Subtitle",
+      items: [profileResetPasswordBlockDefaultItem],
+    },
   },
   fields: [
     {
@@ -18,6 +23,11 @@ export const profileResetPasswordBlockSchema = defineTinaTemplate({
       label: "Main Title",
       isTitle: true,
       required: true,
+    },
+    {
+      type: "string",
+      name: "subTitle",
+      label: "Sub Title",
     },
   ],
 });

@@ -19,5 +19,10 @@ export const profileNavigationBlockSchema = defineTinaTemplate({
       isTitle: true,
       required: true,
     },
+    {
+      type: "string",
+      name: "subTitle",
+      label: "Sub Title",
+    },
   ],
 });

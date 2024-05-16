@@ -19,5 +19,10 @@ export const profilePersonalInformationBlockSchema = defineTinaTemplate({
       isTitle: true,
       required: true,
     },
+    {
+      type: "string",
+      name: "subTitle",
+      label: "Sub Title",
+    },
   ],
 });

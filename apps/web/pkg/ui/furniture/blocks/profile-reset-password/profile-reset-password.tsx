@@ -26,8 +26,7 @@ export const ProfileResetPasswordBlock = ({
                 {block.mainTitle}
               </h2>
               <p className="mb-4 text-base font-normal leading-normal text-[#656565] md:mb-8">
-                Parolanızı Güncelleyin, güvenliğiniz için her 6 ayda bir yeni
-                parola belirleyin.
+                {block.subTitle}
               </p>
             </div>
 
