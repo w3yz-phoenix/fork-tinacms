@@ -16,9 +16,7 @@ header:
     - label: İletişim
       page: content/pages/iletisim.mdx
       _template: link
-    - label: Profil
-      page: content/pages/profil.mdx
-      _template: link
+    - _template: profile
     - badgeColor: '#EC4815'
       _template: shoppingCart
 footer:

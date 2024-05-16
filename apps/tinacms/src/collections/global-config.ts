@@ -57,6 +57,28 @@ const shoppingCartTemplate = defineTinaTemplate({
   ],
 });
 
+const profilePageTemplate = defineTinaTemplate({
+  name: "profile",
+  label: "Profile",
+  ui: {
+    itemProps: () => {
+      return {
+        label: "Profile",
+      };
+    },
+    defaultItem: {
+      badgeColor: "#EC4815",
+    },
+  },
+  fields: [
+    {
+      name: "name",
+      label: "Name",
+      type: "string",
+    },
+  ],
+});
+
 export const GlobalConfigCollection: Collection = {
   label: "Global Configurations",
   name: "globalConfig",
@@ -108,7 +130,7 @@ export const GlobalConfigCollection: Collection = {
           list: true,
           name: "links",
           label: "Links",
-          templates: [linkTemplate, shoppingCartTemplate],
+          templates: [linkTemplate, shoppingCartTemplate, profilePageTemplate],
         },
       ],
     },

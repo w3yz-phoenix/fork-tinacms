@@ -11,11 +11,11 @@ import { TrioPhotoTextBlockSchema } from "../blocks/trio-photo-text/trio-photo-t
 import { discountBlockSchema } from "../blocks/discount/discount";
 import { policyBlockSchema } from "../blocks/policy/policy";
 import { productBlockSchema } from "../blocks/product/product";
-import { profileAddressBlockSchema } from "../blocks/profile-address/profile-address";
-import { profileNavigationBlockSchema } from "../blocks/profile-navigation/profile-navigation";
-import { profileResetPasswordBlockSchema } from "../blocks/profile-reset-password/profile-reset-password";
-import { profilePersonalInformationBlockSchema } from "../blocks/profile-personal-information/profile-personal-information";
-import { profileOrdersBlockSchema } from "../blocks/profile-orders/profile-orders";
+// import { profileAddressBlockSchema } from "../blocks/profile-address/profile-address";
+// import { profileNavigationBlockSchema } from "../blocks/profile-navigation/profile-navigation";
+// import { profileResetPasswordBlockSchema } from "../blocks/profile-reset-password/profile-reset-password";
+// import { profilePersonalInformationBlockSchema } from "../blocks/profile-personal-information/profile-personal-information";
+// import { profileOrdersBlockSchema } from "../blocks/profile-orders/profile-orders";
 import { ContactInfoBlockSchema } from "../blocks/contact-info/contact-info";
 
 export const PageCollection: Collection = {
@@ -56,11 +56,11 @@ export const PageCollection: Collection = {
         discountBlockSchema,
         policyBlockSchema,
         productBlockSchema,
-        profileAddressBlockSchema,
-        profileNavigationBlockSchema,
-        profileResetPasswordBlockSchema,
-        profilePersonalInformationBlockSchema,
-        profileOrdersBlockSchema,
+        // profileAddressBlockSchema,
+        // profileNavigationBlockSchema,
+        // profileResetPasswordBlockSchema,
+        // profilePersonalInformationBlockSchema,
+        // profileOrdersBlockSchema,
         ContactInfoBlockSchema,
       ],
     },
