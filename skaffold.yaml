@@ -2,14 +2,16 @@ apiVersion: skaffold/v4beta10
 kind: Config
 
 build:
+  tagPolicy:
+    gitCommit:
+      ignoreChanges: false
   artifacts:
-    - image: w3yz-devbox
+    - image: ghcr.io/w3yz-phoenix/w3yz
       context: .
       sync:
         manual:
           - src: "."
             dest: "/code"
-            strip: "node_modules"
 
 manifests:
   hooks:
