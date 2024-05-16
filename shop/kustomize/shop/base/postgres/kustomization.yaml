@@ -2,3 +2,8 @@ resources:
   - pvc.yaml
   - deployment.yaml
   - service.yaml
+
+configMapGenerator:
+  - name: postgres-init-db
+    files:
+      - init-db.sh

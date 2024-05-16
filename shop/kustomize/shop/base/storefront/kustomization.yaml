@@ -5,3 +5,9 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+configMapGenerator:
+  - name: storefront-scripts
+    files:
+      - start-storefront.sh
+      - start-tinacms.sh

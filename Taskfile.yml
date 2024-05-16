@@ -54,3 +54,10 @@ tasks:
 
   dev:prod:
     deps: [web:dev:prod, tinacms:dev:prod]
+
+  deploy-debug:
+    env:
+      SHOP_NAME: puledro
+    cmds:
+      - kubectl -n w3yz-shop-$SHOP_NAME delete deployment storefront || true
+      - GITHUB_TOKEN=(gh auth token) skaffold render -p shop | kubectl apply -f -

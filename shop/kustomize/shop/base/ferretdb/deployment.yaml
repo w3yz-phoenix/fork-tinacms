@@ -22,5 +22,5 @@ spec:
             - containerPort: 8080
               name: http
           env:
-            - name: FERRETDB_POSTGRES_URL
-              value: postgres://postgres:postgres@postgres/ferretdb
+            - name: FERRETDB_POSTGRESQL_URL
+              value: postgres://saleor:saleor@postgres/ferretdb

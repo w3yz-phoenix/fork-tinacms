@@ -42,6 +42,9 @@
     },
   ],
   "settings": {
+    "vs-kubernetes": {
+      "disable-linters": ["resource-limits"],
+    },
     "vscode-graphql.cacheSchemaFileForLookup": true,
     "tailwindCSS.experimental.configFile": "../apps/web/tailwind.config.ts",
     "bun.debugTerminal.enabled": false,

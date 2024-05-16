@@ -9,5 +9,7 @@ spec:
   selector:
     app: storefront
   ports:
-    - name: http
+    - name: storefront
       port: 3000
+    - name: tinacms
+      port: 3200

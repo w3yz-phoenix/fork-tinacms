@@ -5,7 +5,6 @@ resources:
   - ./saleor
   - ./storefront
   - ./ferretdb
-  - ./tinacms
   - namespace.yaml
 
 buildMetadata: [managedByLabel, originAnnotations, transformerAnnotations]
