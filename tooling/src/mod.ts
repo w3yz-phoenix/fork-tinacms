@@ -1,7 +1,7 @@
 import { Command } from "https://deno.land/x/cliffy@v1.0.0-rc.4/command/mod.ts";
 import * as path from "https://deno.land/std/path/mod.ts";
 
-const GITOPS_DIR = path.resolve(Deno.cwd(), "../gitops");
+const GITOPS_DIR = path.resolve(Deno.cwd(), "../shop");
 
 const generateShopKustomize = new Command()
   .name("generate")
@@ -11,8 +11,11 @@ const generateShopKustomize = new Command()
   })
   .arguments("<shop:string>")
   .action(async ({ domain }, shop) => {
-    const filePath = path.resolve(GITOPS_DIR, `kustomize/shop/current/kustomization.yaml`);
-    
+    const filePath = path.resolve(
+      GITOPS_DIR,
+      `kustomize/shop/current/kustomization.yaml`
+    );
+
     const kustomize = `
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -43,5 +46,7 @@ namespace: w3yz-shop-${shop}
     await Deno.writeTextFile(filePath, kustomize);
   });
 
-export const mainCommand = new Command()
-  .command("generate", generateShopKustomize);
+export const mainCommand = new Command().command(
+  "generate",
+  generateShopKustomize
+);

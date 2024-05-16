@@ -3,16 +3,7 @@ kind: Config
 metadata:
   name: w3yz
 
-build:
-  artifacts:
-    - image: w3yz-base
-      context: ../
-      docker:
-        dockerfile: docker/Dockerfile.base
-
-profiles:
-  - name: shop
-    manifests:
-      kustomize:
-        paths:
-          - ./kustomize/shop/current
+manifests:
+  kustomize:
+    paths:
+      - ./kustomize/shop/current

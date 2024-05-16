@@ -1,6 +1,19 @@
 apiVersion: skaffold/v4beta10
 kind: Config
 
+manifests:
+  hooks:
+    before:
+      - host:
+          command: ["t", "generate", "$SHOP_NAME"]
+          dir: .
+
 requires:
-  # - path: ./shop
   - path: ./apps/web
+
+profiles:
+  - name: dev
+    manifests:
+      kustomize:
+        paths:
+          - ./shop/kustomize/shop/current

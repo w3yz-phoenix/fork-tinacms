@@ -1,52 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dashboard
+  name: web
   labels:
-    app: dashboard
+    app: web
 spec:
   selector:
     matchLabels:
-      app: dashboard
+      app: web
   template:
     metadata:
       labels:
-        app: dashboard
+        app: web
     spec:
       containers:
-        - name: dashboard
+        - name: web
           tty: true
-          image: ghcr.io/saleor/saleor-dashboard:latest
-
-          env:
-            - name: APP_MOUNT_URI
-              value: /
-            - name: STATIC_URL
-              value: /
-            - name: APPS_MARKETPLACE_API_URI
-              value: https://apps.saleor.io/api/v2/saleor-apps
-            - name: DEMO_MODE
-              value: "false"
-            - name: API_URI
-              valueFrom:
-                configMapKeyRef:
-                  name: shop-config
-                  key: API_GRAPHQL_URL
-            - name: API_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: shop-config
-                  key: API_GRAPHQL_URL
-            - name: PUBLIC_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: shop-config
-                  key: DASHBOARD_URL
-            - name: BASE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: shop-config
-                  key: DASHBOARD_URL
+          image: w3yz-prerelease
+          command:
+            - /bin/sh
+            - -c
+            - |
+              bun install;
+              task web:dev;
           ports:
-            - containerPort: 80
-              name: dashboard
+            - containerPort: 3000
+              name: web

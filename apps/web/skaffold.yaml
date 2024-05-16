@@ -1,21 +1,10 @@
 apiVersion: skaffold/v4beta10
 kind: Config
 metadata:
-  name: web-skaffold
+  name: storefront-skaffold
 
 requires:
   - path: ../../base
-build:
-  artifacts:
-    - image: web-image
-      context: ../../
-      docker:
-        dockerfile: apps/web/Dockerfile
-      requires:
-        - image: install-image
-          alias: INSTALL_IMAGE
-        - image: prerelease-image
-          alias: PRERELEASE_IMAGE
 
 manifests:
   kustomize:

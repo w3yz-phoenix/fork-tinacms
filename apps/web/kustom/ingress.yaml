@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dashboard-ingress
+  name: storefront-ingress
 spec:
   tls:
     - hosts:
-        - DASHBOARD_FQDN
-      secretName: dashboard-tls
+        - STOREFRONT_FQDN
+      secretName: storefront-tls
   rules:
-    - host: DASHBOARD_FQDN
+    - host: STOREFRONT_FQDN
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: dashboard
+                name: storefront
                 port:
-                  number: 80
+                  number: 3000
