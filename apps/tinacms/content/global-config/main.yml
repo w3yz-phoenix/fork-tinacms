@@ -4,9 +4,6 @@ header:
     alt: Furniture
     link: content/pages/home.mdx
   links:
-    - label: İletişim
-      page: content/pages/coming-soon.mdx
-      _template: link
     - label: Mağaza
       page: content/pages/shop.mdx
       _template: link
@@ -15,6 +12,12 @@ header:
       _template: link
     - label: Hakkımızda
       page: content/pages/coming-soon.mdx
+      _template: link
+    - label: İletişim
+      page: content/pages/iletisim.mdx
+      _template: link
+    - label: Profil
+      page: content/pages/profil.mdx
       _template: link
     - badgeColor: '#EC4815'
       _template: shoppingCart
