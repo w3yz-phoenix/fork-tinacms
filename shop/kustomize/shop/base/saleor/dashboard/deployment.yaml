@@ -4,6 +4,7 @@ metadata:
   name: dashboard
   labels:
     app: dashboard
+    component: saleor
 spec:
   selector:
     matchLabels:

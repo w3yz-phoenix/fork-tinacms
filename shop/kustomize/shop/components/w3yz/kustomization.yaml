@@ -23,7 +23,6 @@ patches:
         value: "nginx"
     target:
       kind: Ingress
-      labelSelector: component=saleor
 
   - patch: |-
       - op: add

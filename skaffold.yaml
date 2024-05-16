@@ -1,21 +1,12 @@
 apiVersion: skaffold/v4beta10
 kind: Config
 
-build:
-  tagPolicy:
-    gitCommit:
-      ignoreChanges: false
-  artifacts:
-    - image: ghcr.io/w3yz-phoenix/w3yz
-      context: .
-      sync:
-        manual:
-          - src: "."
-            dest: "/code"
-
 manifests:
   hooks:
     before:
+      - host:
+          command: ["./shop/scripts/generate-ghcr-secret.sh"]
+          dir: .
       - host:
           command: ["deno", "task", "-q", "t", "generate"]
           dir: ./tooling

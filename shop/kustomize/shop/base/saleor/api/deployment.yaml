@@ -4,6 +4,7 @@ metadata:
   name: api
   labels:
     app: api
+    component: saleor
 spec:
   selector:
     matchLabels:

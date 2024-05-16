@@ -18,3 +18,19 @@ spec:
                 name: storefront
                 port:
                   name: http
+
+          - pathType: Prefix
+            path: "/admin"
+            backend:
+              service:
+                name: tinacms
+                port:
+                  name: http
+
+          - pathType: Prefix
+            path: "/api/tina"
+            backend:
+              service:
+                name: tinacms
+                port:
+                  name: http

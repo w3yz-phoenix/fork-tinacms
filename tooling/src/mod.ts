@@ -11,6 +11,7 @@ const generateShopKustomize = new Command()
   })
   // .arguments("<shop:string>")
   .action(async ({ domain }) => {
+    const githubToken = Deno.env.get("GITHUB_TOKEN");
     const shop = Deno.env.get("SHOP_NAME") ?? "unknown";
     const filePath = path.resolve(
       GITOPS_DIR,
@@ -23,6 +24,7 @@ kind: Kustomization
 
 resources:
   - ./../base
+  - ./ghcr-secret.yaml
 
 components:
   - ./../components/w3yz
@@ -40,6 +42,31 @@ configMapGenerator:
       - API_GRAPHQL_URL="https://api.${shop}.${domain}/graphql/"
       - DASHBOARD_URL=https://dashboard.${shop}.${domain}
       - STOREFRONT_URL=https://${shop}.${domain}
+
+  - name: storefront-config
+    literals:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_URL="https://${shop}.${domain}"
+      - NEXT_PUBLIC_ECOM_API_URL="https://api.${shop}.${domain}/graphql/"
+      - NEXT_PUBLIC_ECOM_NAME="${shop}"
+      - NEXT_PUBLIC_CMS_BASE_URL="https://${shop}.${domain}"
+      - NEXTAUTH_SECRET="change-me"
+
+  - name: tinacms-config
+    literals:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_URL="https://${shop}.${domain}"
+      - NEXT_PUBLIC_ECOM_API_URL="https://api.${shop}.${domain}/graphql/"
+      - NEXT_PUBLIC_ECOM_NAME="${shop}"
+      - NEXT_PUBLIC_CMS_BASE_URL="https://${shop}.${domain}"
+      - NEXTAUTH_SECRET="change-me"
+      - MONGODB_URI="mongodb://ferretdb:27017/tina"
+      - GITHUB_OWNER=w3yz-phoenix
+      - GITHUB_REPO=live
+      - GITHUB_BRANCH=main
+      - GITHUB_PERSONAL_ACCESS_TOKEN="${githubToken}"
+      - TINA_PUBLIC_IS_LOCAL="false"
+      - NEXT_PUBLIC_TINA_IS_LOCAL="false"
 
 namespace: w3yz-shop-${shop}
     `;

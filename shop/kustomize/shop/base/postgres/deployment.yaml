@@ -4,6 +4,7 @@ metadata:
   name: postgres
   labels:
     app: postgres
+    component: saleor
 spec:
   selector:
     matchLabels:
@@ -16,7 +17,6 @@ spec:
       containers:
         - name: postgres
           image: postgres:alpine
-
           env:
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata

@@ -1,34 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: storefront
+  name: tinacms
   labels:
-    app: storefront
+    app: tinacms
 spec:
   selector:
     matchLabels:
-      app: storefront
+      app: tinacms
   template:
     metadata:
       labels:
-        app: storefront
+        app: tinacms
     spec:
       imagePullSecrets:
         - name: ghcr-secret
       containers:
-        - name: storefront
+        - name: tinacms
           tty: true
           image: ghcr.io/w3yz-phoenix/w3yz:main
           envFrom:
             - configMapRef:
-                name: storefront-config
-          command: ["devbox", "run", "--"]
-          args:
+                name: tinacms-config
+          command:
+            - devbox
+            - run
+            - --
             - bash
             - -c
-            - >
+            - |
               bun install;
               task web:dev;
           ports:
-            - containerPort: 3000
+            - containerPort: 3200
               name: http

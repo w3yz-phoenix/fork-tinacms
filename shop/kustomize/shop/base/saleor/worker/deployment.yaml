@@ -4,6 +4,7 @@ metadata:
   name: worker
   labels:
     app: worker
+    component: saleor
 spec:
   selector:
     matchLabels:
