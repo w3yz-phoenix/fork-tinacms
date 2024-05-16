@@ -9,8 +9,9 @@ const generateShopKustomize = new Command()
   .option("-d, --domain <path:string>", "Specific subdomain", {
     default: "beta.w3yz.dev",
   })
-  .arguments("<shop:string>")
-  .action(async ({ domain }, shop) => {
+  // .arguments("<shop:string>")
+  .action(async ({ domain }) => {
+    const shop = Deno.env.get("SHOP_NAME") ?? "unknown";
     const filePath = path.resolve(
       GITOPS_DIR,
       `kustomize/shop/current/kustomization.yaml`

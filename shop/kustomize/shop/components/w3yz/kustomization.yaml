@@ -72,3 +72,15 @@ replacements:
         fieldPaths:
           - spec.tls.0.hosts.0
           - spec.rules.0.host
+
+  - source:
+      kind: ConfigMap
+      name: shop-config
+      fieldPath: data.STOREFRONT_FQDN
+    targets:
+      - select:
+          kind: Ingress
+          name: storefront-ingress
+        fieldPaths:
+          - spec.tls.0.hosts.0
+          - spec.rules.0.host

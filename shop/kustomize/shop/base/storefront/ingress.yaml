@@ -17,4 +17,4 @@ spec:
               service:
                 name: storefront
                 port:
-                  number: 3000
+                  name: http

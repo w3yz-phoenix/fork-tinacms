@@ -5,14 +5,11 @@ manifests:
   hooks:
     before:
       - host:
-          command: ["t", "generate", "$SHOP_NAME"]
-          dir: .
-
-requires:
-  - path: ./apps/web
+          command: ["deno", "task", "-q", "t", "generate"]
+          dir: ./tooling
 
 profiles:
-  - name: dev
+  - name: shop
     manifests:
       kustomize:
         paths:

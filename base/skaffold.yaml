@@ -6,4 +6,4 @@ build:
       context: ../
       docker:
         dockerfile: base/Dockerfile
-        target: prerelease
+        target: collect-files

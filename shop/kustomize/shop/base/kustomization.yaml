@@ -3,6 +3,7 @@ resources:
   - ./redis
   - ./jaeger
   - ./saleor
+  - ./storefront
   - namespace.yaml
 
 buildMetadata: [managedByLabel, originAnnotations, transformerAnnotations]
