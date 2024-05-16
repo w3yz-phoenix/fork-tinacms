@@ -1,4 +1,4 @@
-FROM jetpackio/devbox:latest
+FROM jetpackio/devbox:latest AS base
 
 # Installing your devbox project
 WORKDIR /code
@@ -13,4 +13,16 @@ COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} ./tooling ./tooling
 
 RUN devbox run -- echo "Installed Packages."
 
+FROM base AS installer
+
+COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} . .
+
+RUN devbox run -- echo "Install packages again"
+
+RUN devbox run -- bun install --frozen-lockfile
+
 CMD ["devbox", "shell"]
+
+FROM installer AS release
+
+COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} --from=installer /code /code

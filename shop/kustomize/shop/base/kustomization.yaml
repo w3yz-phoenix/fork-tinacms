@@ -4,6 +4,7 @@ resources:
   - ./jaeger
   - ./saleor
   - ./storefront
+  - ./ferretdb
   - namespace.yaml
 
 buildMetadata: [managedByLabel, originAnnotations, transformerAnnotations]

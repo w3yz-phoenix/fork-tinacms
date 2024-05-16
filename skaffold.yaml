@@ -1,6 +1,16 @@
 apiVersion: skaffold/v4beta10
 kind: Config
 
+build:
+  artifacts:
+    - image: w3yz-devbox
+      context: .
+      sync:
+        manual:
+          - src: "."
+            dest: "/code"
+            strip: "node_modules"
+
 manifests:
   hooks:
     before:

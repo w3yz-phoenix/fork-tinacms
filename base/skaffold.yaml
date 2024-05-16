@@ -1,9 +1,0 @@
-apiVersion: skaffold/v4beta10
-kind: Config
-build:
-  artifacts:
-    - image: w3yz-prerelease
-      context: ../
-      docker:
-        dockerfile: base/Dockerfile
-        target: collect-files

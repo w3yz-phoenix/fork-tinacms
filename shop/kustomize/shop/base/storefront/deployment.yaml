@@ -16,7 +16,7 @@ spec:
       containers:
         - name: storefront
           tty: true
-          image: jetpackio/devbox:latest
+          image: jetpackio/devbox
           command:
             - devbox
             - run

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ferretdb
+  labels:
+    app: ferretdb
+spec:
+  selector:
+    matchLabels:
+      app: ferretdb
+  template:
+    metadata:
+      labels:
+        app: ferretdb
+    spec:
+      containers:
+        - name: ferretdb
+          image: ghcr.io/ferretdb/ferretdb
+          ports:
+            - containerPort: 27017
+              name: db
+            - containerPort: 8080
+              name: http
+          env:
+            - name: FERRETDB_POSTGRES_URL
+              value: postgres://postgres:postgres@postgres/ferretdb
