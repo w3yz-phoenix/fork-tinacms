@@ -16,6 +16,7 @@ import { profileNavigationBlockSchema } from "../blocks/profile-navigation/profi
 import { profileResetPasswordBlockSchema } from "../blocks/profile-reset-password/profile-reset-password";
 import { profilePersonalInformationBlockSchema } from "../blocks/profile-personal-information/profile-personal-information";
 import { profileOrdersBlockSchema } from "../blocks/profile-orders/profile-orders";
+import { ContactInfoBlockSchema } from "../blocks/contact-info/contact-info";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -60,6 +61,7 @@ export const PageCollection: Collection = {
         profileResetPasswordBlockSchema,
         profilePersonalInformationBlockSchema,
         profileOrdersBlockSchema,
+        ContactInfoBlockSchema,
       ],
     },
   ],

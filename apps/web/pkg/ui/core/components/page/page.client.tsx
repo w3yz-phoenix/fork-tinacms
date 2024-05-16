@@ -25,6 +25,7 @@ import { ProfilePersonalInformationBlock } from "#ui/furniture/blocks/profile-pe
 import { ProfileOrdersBlock } from "#ui/furniture/blocks/profile-orders/profile-orders";
 
 import { useTinaQuery } from "../../hooks";
+import { ContactInfo } from "../../../furniture/blocks/contact-info/contact-info";
 
 export const PageClient = (props: { relativePath: string }) => {
   const { page } = useTinaQuery<TinaGraphql_PageQuery>(usePageQuery, {
@@ -86,6 +87,9 @@ export const PageClient = (props: { relativePath: string }) => {
           }
           case "PageBlocksProfileOrders": {
             return <ProfileOrdersBlock key={index} block={block} />;
+          }
+          case "PageBlocksContactInfo": {
+            return <ContactInfo key={index} block={block} />;
           }
           default: {
             return (
