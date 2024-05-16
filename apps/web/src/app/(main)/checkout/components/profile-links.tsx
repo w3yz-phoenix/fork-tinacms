@@ -19,7 +19,7 @@ export const ProfileNavigationLink = () => {
       <div className="mt-8">
         <div
           className={cn(
-            "flex flex-col items-start justify-center gap-2 p-5",
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
             pathName === "/profile/personal-info" ? "bg-[#F5F6F6]" : ""
           )}
         >
@@ -35,7 +35,7 @@ export const ProfileNavigationLink = () => {
         </div>
         <div
           className={cn(
-            "flex flex-col items-start justify-center gap-2 p-5",
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
             pathName === "/profile/address" ? "bg-[#F5F6F6]" : ""
           )}
         >
@@ -51,7 +51,7 @@ export const ProfileNavigationLink = () => {
         </div>
         <div
           className={cn(
-            "flex flex-col items-start justify-center gap-2 p-5",
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
             pathName === "/profile/password-reset" ? "bg-[#F5F6F6]" : ""
           )}
         >
@@ -68,7 +68,7 @@ export const ProfileNavigationLink = () => {
         </div>
         <div
           className={cn(
-            "flex flex-col items-start justify-center gap-2 p-5",
+            "flex flex-col items-start justify-center gap-2 p-5 hover:bg-[#F5F6F6]",
             pathName === "/profile/orders" ? "bg-[#F5F6F6]" : ""
           )}
         >

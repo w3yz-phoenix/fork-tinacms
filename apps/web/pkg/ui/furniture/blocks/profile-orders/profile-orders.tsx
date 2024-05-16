@@ -22,7 +22,7 @@ export const ProfileOrdersBlock = ({
               {block.mainTitle}
             </h2>
             <p className="mb-4 text-base font-normal leading-normal text-[#656565] md:mb-8">
-              Tüm sipariş geçmişinizi görün ve takip edin.
+              {block.subTitle}
             </p>
           </div>
         </div>

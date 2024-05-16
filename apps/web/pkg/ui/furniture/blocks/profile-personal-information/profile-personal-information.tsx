@@ -23,7 +23,7 @@ export const ProfilePersonalInformationBlock = ({
               {block.mainTitle}
             </h2>
             <p className="mb-4 text-base font-normal leading-normal text-[#656565] md:mb-8">
-              Kişisel bilgilerinizi güncelleyin.
+              {block.subTitle}
             </p>
           </div>
 
