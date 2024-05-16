@@ -17,12 +17,12 @@ import { PolicyBlock } from "#ui/furniture/blocks/policy/policy";
 import { ProductBlock } from "#ui/furniture/blocks/product/product";
 
 // eslint-disable-next-line import/no-unresolved
-import { ProfileAddressBlock } from "#ui/furniture/blocks/profile-address/profile-address";
+//import { ProfileAddressBlock } from "#ui/furniture/blocks/profile-address/profile-address";
 // eslint-disable-next-line import/no-unresolved
-import { ProfileNavigationBlock } from "#ui/furniture/blocks/profile-navigation/profile-navigation";
-import { ProfileResetPasswordBlock } from "#ui/furniture/blocks/profile-reset-password/profile-reset-password";
-import { ProfilePersonalInformationBlock } from "#ui/furniture/blocks/profile-personal-information/profile-personal-information";
-import { ProfileOrdersBlock } from "#ui/furniture/blocks/profile-orders/profile-orders";
+// import { ProfileNavigationBlock } from "#ui/furniture/blocks/profile-navigation/profile-navigation";
+// import { ProfileResetPasswordBlock } from "#ui/furniture/blocks/profile-reset-password/profile-reset-password";
+// import { ProfilePersonalInformationBlock } from "#ui/furniture/blocks/profile-personal-information/profile-personal-information";
+// import { ProfileOrdersBlock } from "#ui/furniture/blocks/profile-orders/profile-orders";
 
 import { useTinaQuery } from "../../hooks";
 import { ContactInfo } from "../../../furniture/blocks/contact-info/contact-info";
@@ -71,23 +71,23 @@ export const PageClient = (props: { relativePath: string }) => {
           case "PageBlocksProduct": {
             return <ProductBlock key={index} block={block} />;
           }
-          case "PageBlocksProfileAddress": {
-            return <ProfileAddressBlock key={index} block={block} />;
-          }
-          case "PageBlocksProfileNavigation": {
-            return <ProfileNavigationBlock key={index} block={block} />;
-          }
-          case "PageBlocksProfileResetPassword": {
-            return <ProfileResetPasswordBlock key={index} block={block} />;
-          }
-          case "PageBlocksProfilePersonalInformation": {
-            return (
-              <ProfilePersonalInformationBlock key={index} block={block} />
-            );
-          }
-          case "PageBlocksProfileOrders": {
-            return <ProfileOrdersBlock key={index} block={block} />;
-          }
+          // case "PageBlocksProfileAddress": {
+          //   return <ProfileAddressBlock key={index} block={block} />;
+          // }
+          // case "PageBlocksProfileNavigation": {
+          //   return <ProfileNavigationBlock key={index} block={block} />;
+          // }
+          // case "PageBlocksProfileResetPassword": {
+          //   return <ProfileResetPasswordBlock key={index} block={block} />;
+          // }
+          // case "PageBlocksProfilePersonalInformation": {
+          //   return (
+          //     <ProfilePersonalInformationBlock key={index} block={block} />
+          //   );
+          // }
+          // case "PageBlocksProfileOrders": {
+          //   return <ProfileOrdersBlock key={index} block={block} />;
+          // }
           case "PageBlocksContactInfo": {
             return <ContactInfo key={index} block={block} />;
           }

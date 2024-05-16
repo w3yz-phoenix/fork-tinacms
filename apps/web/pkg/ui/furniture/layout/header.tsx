@@ -13,6 +13,7 @@ import { tinaField, useTinaQuery } from "#ui/core/hooks";
 import type { Get } from "type-fest";
 
 import { CartIndicator } from "./cart-indicator";
+import { Profile } from "./profile";
 
 const ImageComponent = ({
   image,
@@ -87,6 +88,16 @@ export const Header = ({ globalConfigPath, cartItemCount }: HeaderProps) => {
                       data-tina-field={tinaField(header, "links", index)}
                       block={link}
                       cartItemCount={cartItemCount}
+                    />
+                  );
+                }
+
+                case "GlobalConfigHeaderLinksProfile": {
+                  return (
+                    <Profile
+                      key={`profile-${index}`}
+                      data-tina-field={tinaField(header, "links", index)}
+                      block={link}
                     />
                   );
                 }
