@@ -12,12 +12,6 @@ app.get("/admin/index.html", (req, res) => {
   res.sendFile("public/admin/index.html", { root: __dirname });
 });
 
-app.get("/blocks/:block/preview.png", (req, res) => {
-  res.sendFile(`src/blocks/${req.params.block}/preview.png`, {
-    root: __dirname,
-  });
-});
-
 app.use(
   "/api/tina/gql",
   createProxyMiddleware({

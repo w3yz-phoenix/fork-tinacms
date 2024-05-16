@@ -24,7 +24,10 @@ export const PageCollection: Collection = {
   path: "content/pages",
   format: "mdx",
   ui: {
-    router: ({ document }) => `/${document._sys.breadcrumbs.join("/")}`,
+    router: ({ document }) => {
+      console.log("my-document-unique", document);
+      return `/${document._sys.breadcrumbs.join("/")}`;
+    },
   },
   fields: [
     {

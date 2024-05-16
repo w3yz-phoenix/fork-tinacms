@@ -14,8 +14,8 @@ export const tinaConfig = defineConfig({
     ? new LocalAuthProvider()
     : new UsernamePasswordAuthJSProvider(),
 
-  contentApiUrlOverride: tinaEnvironment.public.cms.graphql,
-  localContentPath: tinaEnvironment.public.cms.contentRootPath,
+  // contentApiUrlOverride: "/api/tina/gql",
+  // localContentPath: tinaEnvironment.public.cms.contentRootPath,
 
   build: {
     publicFolder: "public",
@@ -24,7 +24,7 @@ export const tinaConfig = defineConfig({
 
   media: {
     tina: {
-      mediaRoot: "uploads",
+      mediaRoot: "",
       publicFolder: "public",
       static: true,
     },

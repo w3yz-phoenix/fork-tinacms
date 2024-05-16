@@ -60,3 +60,5 @@ export const tinaEnvironment = {
   private: privateEnvironment,
   public: publicEnvironment,
 };
+
+console.log("tinaEnvironment", tinaEnvironment);

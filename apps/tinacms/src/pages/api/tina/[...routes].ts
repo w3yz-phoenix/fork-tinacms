@@ -3,8 +3,8 @@ import { TinaNodeBackend, LocalBackendAuthProvider } from "@tinacms/datalayer";
 
 import { TinaAuthJSOptions, AuthJsBackendAuthProvider } from "tinacms-authjs";
 
-import databaseClient from "../../../tina/__generated__/databaseClient";
-import { tinaEnvironment } from "../../lib/environment";
+import databaseClient from "../../../../tina/__generated__/databaseClient";
+import { tinaEnvironment } from "../../../lib/environment";
 
 const handler = TinaNodeBackend({
   authProvider: tinaEnvironment.public.cms.isLocal
@@ -19,6 +19,7 @@ const handler = TinaNodeBackend({
 });
 
 export default (req: any, res: any) => {
+  console.log("API ROUTE", req.url, req.method, req.headers);
   // Modify the request here if you need to
   return handler(req, res);
 };
