@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect } from "react";
+import gsap from "gsap";
+
 import { CardSectionLeft, CardSectionRight } from "#landing/icons/card-section";
 
 import { Card, CardProperties } from "./card";
@@ -13,10 +18,46 @@ export const LandingCards = ({
   cardListMiddle,
   cardListBottom,
 }: LandingCardProperties) => {
+  useEffect(() => {
+    const animateLetters = () => {
+      gsap.to("#firstIcon", {
+        duration: 1,
+        y: 15,
+        delay: 0,
+        transform: "translate(0px, 0px) scale(1)",
+        visibility: "inherit",
+        scale: 1,
+        repeat: -1,
+        rotationZ: 500,
+        yoyo: true,
+      });
+      gsap.to("#secondtIcon", {
+        duration: 1,
+        y: 15,
+        x: 10,
+        delay: 0,
+        transform: "translate(0px, 0px) scale(1)",
+        visibility: "inherit",
+        scale: 1,
+        repeat: -1,
+        rotation: 5000,
+        yoyo: true,
+      });
+    };
+
+    animateLetters();
+  }, []);
+
   return (
     <div className="relative flex flex-col gap-4">
-      <CardSectionRight className="absolute right-[-156px] top-[74px] max-4xl:hidden" />
-      <CardSectionLeft className="absolute bottom-[164px] left-[-167px] max-4xl:hidden" />
+      <CardSectionRight
+        id="firstIcon"
+        className="absolute right-[-156px] top-[74px] max-4xl:hidden"
+      />
+      <CardSectionLeft
+        id="secondtIcon"
+        className="absolute bottom-[164px] left-[-167px] max-4xl:hidden"
+      />
       <div className="flex gap-4 max-sm:flex-col ">
         <Card
           size={cardListTop[0].size}

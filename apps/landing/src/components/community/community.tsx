@@ -2,143 +2,165 @@
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export function CommunityComponent() {
+  const animationRef = useRef<any>();
   useEffect(() => {
-    gsap.to("#community-star", {
-      duration: 15,
-      rotate: 360,
-      repeat: -1,
-      ease: "linear",
-    });
-    gsap.to("#community-title", { duration: 1, y: 20 });
-    gsap.to("#w3yz-community", {
-      duration: 2,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 0.5,
-      onComplete: () => {
-        gsap.to("#w3yz-community", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-fikir", {
-      duration: 1,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 1.5,
-      onComplete: () => {
-        gsap.to("#community-fikir", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-deneyim", {
-      duration: 1,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 1.75,
-      onComplete: () => {
-        gsap.to("#community-deneyim", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-ucretsiz", {
-      duration: 3,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 2.3,
-      onComplete: () => {
-        gsap.to("#community-ucretsiz", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-yazi", {
-      duration: 1,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 2.5,
-      onComplete: () => {
-        gsap.to("#community-yazi", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-etiket", {
-      duration: 1,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 3,
-      onComplete: () => {
-        gsap.to("#community-etiket", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-is", {
-      duration: 2,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 4,
-      onComplete: () => {
-        gsap.to("#community-is", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-takip", {
-      duration: 3,
-      color: "#F87C71",
-      transform: "translate(0px, 0px)",
-      delay: 5,
-      onComplete: () => {
-        gsap.to("#community-takip", {
-          duration: 1,
-          color: "#24262D",
-          transform: "translate(0px, 0px)",
-        });
-      },
-    });
-    gsap.to("#community-description", {
-      duration: 1,
-      y: 20,
-      delay: 0.5,
-    });
-    gsap.to("#community-link", { duration: 1, y: 20, delay: 1 });
-    gsap.to("#community-svg", {
-      duration: 1,
-      y: 5,
-      delay: 1,
-      transform: "translate(0px, 0px) scale(1)",
-      visibility: "inherit",
-      scale: 1.2,
-      repeat: -1,
-      yoyo: true,
-    });
+    function startAnimation() {
+      gsap.to("#community-star", {
+        duration: 15,
+        rotate: 360,
+        repeat: -1,
+        ease: "linear",
+      });
+      gsap.to("#community-title", {
+        duration: 1,
+        y: 20,
+      });
+      gsap.to("#w3yz-community", {
+        duration: 2,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 0.5,
+        onComplete: () => {
+          gsap.to("#w3yz-community", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-fikir", {
+        duration: 1,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 1.5,
+        onComplete: () => {
+          gsap.to("#community-fikir", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-deneyim", {
+        duration: 1,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 1.75,
+        onComplete: () => {
+          gsap.to("#community-deneyim", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-ucretsiz", {
+        duration: 3,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 2.3,
+        onComplete: () => {
+          gsap.to("#community-ucretsiz", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-yazi", {
+        duration: 1,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 2.5,
+        onComplete: () => {
+          gsap.to("#community-yazi", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-etiket", {
+        duration: 1,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 3,
+        onComplete: () => {
+          gsap.to("#community-etiket", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-is", {
+        duration: 2,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 4,
+        onComplete: () => {
+          gsap.to("#community-is", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-takip", {
+        duration: 3,
+        color: "#F87C71",
+        transform: "translate(0px, 0px)",
+        delay: 5,
+        onComplete: () => {
+          gsap.to("#community-takip", {
+            duration: 1,
+            color: "#24262D",
+            transform: "translate(0px, 0px)",
+          });
+        },
+      });
+      gsap.to("#community-description", {
+        duration: 1,
+        y: 20,
+        delay: 0.5,
+      });
+      gsap.to("#community-link", { duration: 1, y: 20, delay: 1 });
+      gsap.to("#community-svg", {
+        duration: 1,
+        y: 5,
+        delay: 1,
+        transform: "translate(0px, 0px) scale(1)",
+        visibility: "inherit",
+        scale: 1.2,
+        repeat: -1,
+        yoyo: true,
+      });
+    }
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const animationOffset = animationRef.current.offsetTop - 150;
+
+      if (scrollPosition >= animationOffset) {
+        startAnimation();
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <div
       className="bg-gradient-to-b from-rose-200 via-white to-white py-[130px]"
       id="community"
+      ref={animationRef}
     >
       <div className="px-4 sm:px-6 md:px-10">
         <div className="mx-auto max-w-[1451px]">
