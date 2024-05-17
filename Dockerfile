@@ -10,9 +10,6 @@ USER ${DEVBOX_USER}:${DEVBOX_USER}
 COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} devbox.json devbox.json
 COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} devbox.lock devbox.lock
 
-# Step 6: Copying local flakes directories
-COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} ./tooling ./tooling
-
 RUN devbox run -- echo "Installed Packages."
 
 USER root:root
