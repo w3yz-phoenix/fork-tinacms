@@ -18,6 +18,9 @@ import { productBlockSchema } from "../blocks/product/product";
 // import { profileOrdersBlockSchema } from "../blocks/profile-orders/profile-orders";
 import { ContactInfoBlockSchema } from "../blocks/contact-info/contact-info";
 import { seeCollectionBlockSchema } from "../blocks/fashion-see-collection/fashion-see-collection";
+import { seeCollectionDescBlockSchema } from "../blocks/fashion-see-collection-desc/fashion-see-collection-desc";
+import { fashionStripBlockSchema } from "../blocks/fashion-strip/fashion-strip";
+import { FashionTrioPhotoTextBlockSchema } from "../blocks/fashion-trio-photo-text/fashion-trio-photo-text";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -67,6 +70,9 @@ export const PageCollection: Collection = {
         // profileOrdersBlockSchema,
         ContactInfoBlockSchema,
         seeCollectionBlockSchema,
+        seeCollectionDescBlockSchema,
+        fashionStripBlockSchema,
+        FashionTrioPhotoTextBlockSchema,
       ],
     },
   ],

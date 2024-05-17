@@ -27,6 +27,9 @@ import { ProductBlock } from "#ui/furniture/blocks/product/product";
 import { useTinaQuery } from "../../hooks";
 import { ContactInfo } from "../../../furniture/blocks/contact-info/contact-info";
 import { SeeCollection } from "../../../fashion/blocks/see-collection/see-collection";
+import { SeeCollectionDesc } from "#ui/fashion/blocks/see-collection-desc/see-collection-desc";
+import { FashionStrip } from "#ui/fashion/blocks/strip/strip";
+import { FashionTrioPhotoText } from "../../../fashion/blocks/fashion-trio-photo-text/fashion-trio-photo-text";
 
 export const PageClient = (props: { relativePath: string }) => {
   const { page } = useTinaQuery<TinaGraphql_PageQuery>(usePageQuery, {
@@ -34,7 +37,7 @@ export const PageClient = (props: { relativePath: string }) => {
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-y-[70px]">
       {page?.blocks?.map((block, index) => {
         if (!block) return null;
 
@@ -94,6 +97,15 @@ export const PageClient = (props: { relativePath: string }) => {
           }
           case "PageBlocksSeeCollection": {
             return <SeeCollection key={index} block={block} />;
+          }
+          case "PageBlocksSeeCollectionDesc": {
+            return <SeeCollectionDesc key={index} block={block} />;
+          }
+          case "PageBlocksFashionStrip": {
+            return <FashionStrip key={index} block={block} />;
+          }
+          case "PageBlocksFashionTrioPhotoText": {
+            return <FashionTrioPhotoText key={index} block={block} />;
           }
           default: {
             return (

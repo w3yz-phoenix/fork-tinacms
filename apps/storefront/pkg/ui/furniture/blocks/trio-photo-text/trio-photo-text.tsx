@@ -13,7 +13,7 @@ export const TrioPhotoText = ({
   return (
     <section
       data-tina-field={tinaField(block)}
-      className="flex justify-center bg-[F6F6F6] px-6 py-[8.3%]"
+      className="contiainer flex justify-center bg-[F6F6F6]"
     >
       <div className="flex flex-col items-center">
         <div className="mb-3 text-[#00C48C]"> {block.title}</div>

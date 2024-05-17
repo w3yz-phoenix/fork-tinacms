@@ -3,12 +3,12 @@ import Link from "next/link";
 
 import { tinaField } from "#ui/core/hooks";
 
-import type { TinaGraphql_PageBlocksSeeCollection } from "@w3yz/cms/api";
+import type { TinaGraphql_PageBlocksSeeCollectionDesc } from "@w3yz/cms/api";
 
-export const SeeCollection = ({
+export const SeeCollectionDesc = ({
   block,
 }: {
-  block: TinaGraphql_PageBlocksSeeCollection;
+  block: TinaGraphql_PageBlocksSeeCollectionDesc;
 }) => {
   return (
     <section
@@ -25,9 +25,11 @@ export const SeeCollection = ({
             className="object-cover min-w-full h-2/3"
           />
         )}
-        <div className="max-w-[510px] text-left font-medium flex flex-col gap-2 my-8 text-xl md:text-5xl">
+        <div className="max-w-[510px] break-words text-left font-bold flex flex-col gap-2 my-8 text-xl md:text-5xl">
           <p>{block.title}</p>
-          <p>{block.title2}</p>
+          <p className="text-[20px] font-medium text-[#656565] line-clamp-5 ">
+            {block.subTitle}
+          </p>
           <Link
             href={`${block.link?.href || "/"}`}
             className="max-w-[330px] text-sm underline mt-3"

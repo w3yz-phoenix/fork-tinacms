@@ -2,21 +2,22 @@ import { imageField } from "../../fields/image";
 import { linkField } from "../../fields/link";
 import { defineTinaTemplate } from "../../lib/tina.utils";
 
-export const seeCollectionBlockDefaultItem = {
+export const seeCollectionDescBlockDefaultItem = {
   title: "See Collection",
   text: "See our latest collection of fashion items.",
 };
 
-export const seeCollectionBlockSchema = defineTinaTemplate({
-  name: "seeCollection",
-  label: "See Our Collection",
+export const seeCollectionDescBlockSchema = defineTinaTemplate({
+  name: "seeCollectionDesc",
+  label: "See Our Collection Descrption",
   ui: {
-    previewSrc: "/blocks/fashion-see-collection/preview.png",
+    previewSrc: "/blocks/fashion-see-collection-desc/preview.png",
     defaultItem: {
       title: "Yeni ve Modern",
-      title2: "2024",
+      subTitle:
+        "Yepyeni koleksiyonumuzla sizleri güneşli günlere hazırlamak için sabırsızlanıyoruz. Renkli elbiselerden göz alıcı aksesuarlara kadar her tarza hitap eden parçalarla gardırobunuzu yenilemenin tam zamanı!",
       linkTitle: "Koleksiyonu Gör",
-      items: [seeCollectionBlockDefaultItem],
+      items: [seeCollectionDescBlockDefaultItem],
     },
   },
   fields: [
@@ -29,8 +30,9 @@ export const seeCollectionBlockSchema = defineTinaTemplate({
     },
     {
       type: "string",
-      name: "title2",
-      label: "Title2",
+      name: "subTitle",
+      label: "subTitle",
+      maxlength: 100,
     },
     {
       type: "object",
@@ -47,7 +49,7 @@ export const seeCollectionBlockSchema = defineTinaTemplate({
           };
         },
         defaultItem: {
-          ...seeCollectionBlockDefaultItem,
+          ...seeCollectionDescBlockDefaultItem,
         },
       },
       fields: [imageField as any],
