@@ -17,6 +17,7 @@ import { productBlockSchema } from "../blocks/product/product";
 // import { profilePersonalInformationBlockSchema } from "../blocks/profile-personal-information/profile-personal-information";
 // import { profileOrdersBlockSchema } from "../blocks/profile-orders/profile-orders";
 import { ContactInfoBlockSchema } from "../blocks/contact-info/contact-info";
+import { seeCollectionBlockSchema } from "../blocks/fashion-see-collection/fashion-see-collection";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -65,6 +66,7 @@ export const PageCollection: Collection = {
         // profilePersonalInformationBlockSchema,
         // profileOrdersBlockSchema,
         ContactInfoBlockSchema,
+        seeCollectionBlockSchema,
       ],
     },
   ],

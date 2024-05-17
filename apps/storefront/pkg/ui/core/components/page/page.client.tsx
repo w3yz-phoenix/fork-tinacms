@@ -26,6 +26,7 @@ import { ProductBlock } from "#ui/furniture/blocks/product/product";
 
 import { useTinaQuery } from "../../hooks";
 import { ContactInfo } from "../../../furniture/blocks/contact-info/contact-info";
+import { SeeCollection } from "../../../fashion/blocks/see-collection/see-collection";
 
 export const PageClient = (props: { relativePath: string }) => {
   const { page } = useTinaQuery<TinaGraphql_PageQuery>(usePageQuery, {
@@ -90,6 +91,9 @@ export const PageClient = (props: { relativePath: string }) => {
           // }
           case "PageBlocksContactInfo": {
             return <ContactInfo key={index} block={block} />;
+          }
+          case "PageBlocksSeeCollection": {
+            return <SeeCollection key={index} block={block} />;
           }
           default: {
             return (
