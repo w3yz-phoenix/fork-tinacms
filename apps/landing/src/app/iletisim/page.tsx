@@ -35,8 +35,8 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <div className="flex w-full flex-col items-center bg-white px-4 lg:mx-0">
-        <div className="mt-6 grid grid-cols-1 gap-8 xl:grid-cols-2 xl:flex-row xl:gap-10">
+      <div className="flex flex-col items-center w-full px-4 bg-white lg:mx-0">
+        <div className="grid grid-cols-1 gap-8 mt-6 xl:grid-cols-2 xl:flex-row xl:gap-10">
           <div className="flex max-w-[680px] flex-col">
             <h1 className="max-w-[604px] text-[48px] font-bold text-[#101828] max-sm:text-[32px]">
               Beraber çalışarak işinizi büyütelim
@@ -45,7 +45,7 @@ export default function ContactPage() {
               Bizimle iletişime geçin
             </p>
             <form action={formAction}>
-              <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-2">
                 <FormInput
                   {...register("firstName")}
                   label="Ad"
@@ -215,10 +215,10 @@ export default function ContactPage() {
                   href="mailto:info@fruiceramics.com"
                   className=" pt-5 text-xl font-semibold text-[#6941C6]"
                 >
-                  support@w3yz.com
+                  info@w3yz.com
                 </Link>
               </div>
-              <div>
+              {/* <div>
                 <h1 className="text-[20px] font-semibold text-[#101828]">
                   Satış
                 </h1>
@@ -231,7 +231,7 @@ export default function ContactPage() {
                 >
                   sales@w3yz.com
                 </Link>
-              </div>
+              </div> */}
               <div>
                 <h1 className="text-[20px] font-semibold text-[#101828]">
                   Telefon
@@ -243,7 +243,7 @@ export default function ContactPage() {
                   href="tel:05313803770"
                   className="pt-5 text-xl font-semibold text-[#6941C6]"
                 >
-                  0 (542) 834 64 64
+                  0 (530) 354 74 51
                 </Link>
               </div>
             </div>

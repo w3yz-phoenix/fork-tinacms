@@ -40,7 +40,7 @@ export function Header() {
           >
             Çözümler
           </Link>
-          <Link href="/coming-soon" className="hidden px-2 sm:block md:px-6">
+          <Link href="/blog" className="hidden px-2 sm:block md:px-6">
             Community
           </Link>
         </div>
@@ -81,7 +81,7 @@ export function Header() {
               <Link href="/coming-soon" className="px-2">
                 Çözümler
               </Link>
-              <Link href="/coming-soon" className="px-2">
+              <Link href="/blog" className="px-2">
                 Community
               </Link>
             </div>
@@ -96,12 +96,12 @@ export function Header() {
               </Link>
               <Link
                 href="/coming-soon"
-                className="flex w-full items-center justify-center px-3 py-2"
+                className="flex items-center justify-center w-full px-3 py-2"
                 id="header-button"
               >
                 <button type="button">Hemen Dene</button>
               </Link>
-              <button
+              {/* <button
                 type="button"
                 className="flex w-full items-center justify-center rounded-lg border border-DEFAULT px-3 py-2 font-medium text-[#565E73] hover:border-[#8A94A6] hover:bg-[#F6F6F6] hover:text-[#24262D] hover:shadow-[0px_0px_0px_2px_rgba(215,218,224,0.80)]"
               >
@@ -128,14 +128,14 @@ export function Header() {
                   </defs>
                 </svg>
                 <span className="pl-2 ">Türkçe</span>
-              </button>
+              </button> */}
             </div>
           </div>
         )}
 
         {/* Web */}
         <div className="hidden gap-5 text-[13px] sm:flex md:text-[18px]">
-          <button
+          {/* <button
             type="button"
             className="flex items-center justify-center rounded-lg border border-DEFAULT px-3 py-2 font-medium text-[#565E73] hover:border-[#8A94A6] hover:bg-[#F6F6F6] hover:text-[#24262D] hover:shadow-[0px_0px_0px_2px_rgba(215,218,224,0.80)]"
           >
@@ -163,7 +163,7 @@ export function Header() {
             </svg>
             <span className="hidden pl-2 sm:block">Türkçe</span>
             <span className="pl-2 sm:hidden">TR</span>
-          </button>
+          </button> */}
           <Link
             href="/coming-soon"
             className="flex items-center justify-center px-3 py-1"

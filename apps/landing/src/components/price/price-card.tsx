@@ -1,8 +1,8 @@
-import Link from "next/link";
+// import Link from "next/link";
 
 import { cn } from "#landing/app/lib/utils";
 
-import { ButtonGreen } from "../button";
+// import { ButtonGreen } from "../button";
 
 import { PriceFeature } from "./price-feature";
 
@@ -19,11 +19,11 @@ interface PriceCardProperties {
 export const PriceCard = ({
   plan,
   planType,
-  monthlyPrice,
-  yearlyPrice,
-  isYearly,
+  // monthlyPrice,
+  // yearlyPrice,
+  // isYearly,
   priceFeatures,
-  link,
+  // link,
 }: PriceCardProperties) => {
   return (
     <div className=" h-[503px] w-[381px] rounded p-8 max-sm:border max-sm:border-DEFAULT">
@@ -52,19 +52,19 @@ export const PriceCard = ({
           </div>
         </div>
 
-        <div>
-          <div className="flex h-20 items-center justify-start ">
+        {/* <div>
+          <div className="flex items-center justify-start h-20 ">
             <p className="text-[64px] font-normal leading-[80px] text-[#0A0A0A]">
               ₺{isYearly ? yearlyPrice : monthlyPrice}
             </p>
-            <div className="flex items-center justify-end  ">
+            <div className="flex items-center justify-end ">
               <p className="h-10 text-xl font-normal text-[#404040]">
                 <br />
                 {isYearly ? "/yıllık" : "/aylık"}
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col items-start gap-4">
           {priceFeatures.map((item, index) => (
             <PriceFeature
@@ -74,11 +74,11 @@ export const PriceCard = ({
             />
           ))}
         </div>
-        <div className="flex flex-col items-center justify-center gap-2">
+        {/* <div className="flex flex-col items-center justify-center gap-2">
           <Link href={link}>
             <ButtonGreen name="Planı Seç" />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );
