@@ -5,12 +5,16 @@
       "path": "..",
     },
     {
+      "name": "ops",
+      "path": "../ops",
+    },
+    {
       "name": "@w3yz-app/landing",
       "path": "../apps/landing",
     },
     {
-      "name": "@w3yz-app/web",
-      "path": "../apps/web",
+      "name": "@w3yz-app/storeferont",
+      "path": "../apps/storefront",
     },
     {
       "name": "@w3yz-app/tinacms",
@@ -32,21 +36,13 @@
       "name": "@w3yz/tools",
       "path": "../packages/tools",
     },
-    {
-      "name": "shop",
-      "path": "../shop",
-    },
-    {
-      "name": "tooling",
-      "path": "../tooling",
-    },
   ],
   "settings": {
     "vs-kubernetes": {
       "disable-linters": ["resource-limits"],
     },
     "vscode-graphql.cacheSchemaFileForLookup": true,
-    "tailwindCSS.experimental.configFile": "../apps/web/tailwind.config.ts",
+    "tailwindCSS.experimental.configFile": "../apps/storefront/tailwind.config.ts",
     "bun.debugTerminal.enabled": false,
     "bun.debugTerminal.stopOnEntry": false,
     "debug.javascript.pickAndAttachOptions": {

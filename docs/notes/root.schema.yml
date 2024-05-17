@@ -1,0 +1,10 @@
+version: 1
+imports: []
+schemas:
+  - id: root
+    children:
+      - id: devops
+        title: DevOps
+        parent: root
+    title: root
+    parent: root

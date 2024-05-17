@@ -1,0 +1,11 @@
+apiVersion: skaffold/v4beta10
+kind: Config
+
+profiles:
+  - name: echo-debug
+    manifests:
+      hooks:
+        before:
+          - host:
+              command: ["echo", "03-storefront-build before hook"]
+              dir: .

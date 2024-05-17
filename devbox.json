@@ -13,12 +13,10 @@
     "fish@latest",
     "rsync@latest",
     "alejandra@latest",
-    "tree@latest",
-    "path:./tooling#t",
-    "path:./tooling#td"
+    "tree@latest"
   ],
   "shell": {
-    "init_hook": ["echo 'Welcome to w3yz!' > /dev/null"],
+    "init_hook": [],
     "scripts": {
       "test": ["echo \"Error: no test specified\" && exit 1"]
     }

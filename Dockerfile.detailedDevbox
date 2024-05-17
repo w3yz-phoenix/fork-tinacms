@@ -1,9 +1,23 @@
-ARG DEVBOX_IMAGE
-FROM $DEVBOX_IMAGE AS base
+FROM jetpackio/devbox:latest AS base
+
+# Installing your devbox project
+WORKDIR /code
+USER root:root
+RUN mkdir -p /code && chown ${DEVBOX_USER}:${DEVBOX_USER} /code
+USER ${DEVBOX_USER}:${DEVBOX_USER}
+COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} devbox.json devbox.json
+COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} devbox.lock devbox.lock
+
+# Step 6: Copying local flakes directories
+COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} ./tooling ./tooling
+
+RUN devbox run -- echo "Installed Packages."
 
 USER root:root
 RUN mkdir -p /temp && chown ${DEVBOX_USER}:${DEVBOX_USER} /temp
 USER ${DEVBOX_USER}:${DEVBOX_USER}
+
+SHELL ["devbox", "run", "--", "bash", "-c"]
 
 # this will cache the manifest files
 FROM base AS collect-files
@@ -49,8 +63,8 @@ COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} --from=install /temp/export/node_modu
 ENV NODE_ENV=production
 
 RUN devbox run -- bash -c "\
-task build \
+  task build \
   && mkdir -p /temp/ \
   && mv dist/ /temp/export \
   && rm -rf /code \
-"
+  "

@@ -1,5 +1,5 @@
 query AddressDetails($id: ID!) {
-//     address(id: $id) {
-//       ...AddressFragment
-//     }
-//   }
+  address(id: $id) {
+    ...AddressFragment
+  }
+}

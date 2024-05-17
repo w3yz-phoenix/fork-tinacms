@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tinacms
+  labels:
+    app: tinacms
+spec:
+  type: ClusterIP
+  selector:
+    app: tinacms
+  ports:
+    - name: tinacms
+      port: 80
+      targetPort: tinacms

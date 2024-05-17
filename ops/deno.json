@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "r": "deno run --allow-all --unstable-bare-node-builtins",
+    "t": "deno run --allow-all --unstable-bare-node-builtins t.ts",
+    "td": "deno run --inspect-wait --allow-all --unstable-bare-node-builtins t.ts"
+  }
+}

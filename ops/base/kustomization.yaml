@@ -1,0 +1,15 @@
+resources:
+  - ./ferretdb
+  - ./jaeger
+  - ./postgres
+  - ./redis
+  - ./saleor
+  - ./storefront
+  - namespace.yaml
+
+buildMetadata: [managedByLabel, originAnnotations, transformerAnnotations]
+
+configMapGenerator:
+  - name: static-files-config
+    files:
+      - ./static/service-is-getting-ready.html

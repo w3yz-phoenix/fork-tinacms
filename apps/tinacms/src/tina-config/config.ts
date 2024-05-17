@@ -14,7 +14,7 @@ export const tinaConfig = defineConfig({
     ? new LocalAuthProvider()
     : new UsernamePasswordAuthJSProvider(),
 
-  // contentApiUrlOverride: "/api/tina/gql",
+  contentApiUrlOverride: "/api/tina/gql",
   // localContentPath: tinaEnvironment.public.cms.contentRootPath,
 
   build: {

@@ -1,19 +1,10 @@
 apiVersion: skaffold/v4beta10
 kind: Config
 
-manifests:
-  hooks:
-    before:
-      - host:
-          command: ["./shop/scripts/generate-ghcr-secret.sh"]
-          dir: .
-      - host:
-          command: ["deno", "task", "-q", "t", "generate"]
-          dir: ./tooling
+requires:
+  - path: ./ops/steps/01-saleor
+  - path: ./ops/steps/02-storefront-build
+  - path: ./ops/steps/03-storefront-deploy
 
 profiles:
-  - name: shop
-    manifests:
-      kustomize:
-        paths:
-          - ./shop/kustomize/shop/current
+  - name: 01-saleor

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storefront
+  labels:
+    app: storefront
+spec:
+  selector:
+    matchLabels:
+      app: storefront
+  template:
+    metadata:
+      labels:
+        app: storefront
+    spec:
+      containers:
+        - name: storefront
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+              hostPort: 0
+              name: storefront
+          volumeMounts:
+            - name: static-files
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: service-is-getting-ready.html
+              readOnly: true
+
+      volumes:
+        - name: static-files
+          configMap:
+            name: static-files-config

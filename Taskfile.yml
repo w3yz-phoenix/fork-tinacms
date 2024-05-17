@@ -13,8 +13,8 @@ includes:
     taskfile: ./packages/ecom/Taskfile.yml
   cms:
     taskfile: ./packages/cms/Taskfile.yml
-  web:
-    taskfile: ./apps/web/Taskfile.yml
+  storefront:
+    taskfile: ./apps/storefront/Taskfile.yml
   tinacms:
     taskfile: ./apps/tinacms/Taskfile.yml
 
@@ -35,7 +35,7 @@ tasks:
       - bun "--filter=@w3yz-app/tinacms" run build
       - task: generate
       - bun "--filter=@w3yz-app/tinacms" run start
-      - bun "--filter=@w3yz-app/web" run build
+      - bun "--filter=@w3yz-app/storeferont" run build
 
   build:
     deps: [build-apps]
@@ -50,14 +50,21 @@ tasks:
           apps/ dist/
 
   dev:
-    deps: [web:dev, tinacms:dev]
+    deps: [storefront:dev, tinacms:dev]
 
   dev:prod:
-    deps: [web:dev:prod, tinacms:dev:prod]
+    deps: [storefront:dev:prod, tinacms:dev:prod]
 
   deploy-debug:
     env:
       SHOP_NAME: puledro
     cmds:
       - kubectl -n w3yz-shop-$SHOP_NAME delete deployment storefront || true
+      - GITHUB_TOKEN=(gh auth token) skaffold render -p shop | kubectl apply -f -
+
+  deploy:
+    requires:
+      vars:
+        - "SHOP_NAME"
+    cmds:
       - GITHUB_TOKEN=(gh auth token) skaffold render -p shop | kubectl apply -f -
