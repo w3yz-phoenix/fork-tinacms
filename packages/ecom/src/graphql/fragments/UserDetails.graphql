@@ -1,0 +1,19 @@
+fragment UserDetailsFragment on User {
+  id
+  email
+  firstName
+  lastName
+  avatar {
+    url
+    alt
+  }
+  birthDay: metafield(key: "Doğum Günü Gün")
+  birthMonth: metafield(key: "Doğum Günü Ay")
+  birthYear: metafield(key: "Doğum Günü Yıl")
+  phoneNumber: metafield(key: "Telefon")
+  gender: metafield(key: "Cinsiyet")
+  metadata {
+    key
+    value
+  }
+}

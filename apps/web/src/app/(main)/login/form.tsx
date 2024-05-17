@@ -112,10 +112,7 @@ export function LoginForm(props: {
                 <div className="mt-2 flex flex-col gap-4">
                   <Button
                     className="flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-green-300 px-3 py-1.5 text-2xl font-medium leading-normal text-white hover:bg-green-700 disabled:bg-green-200 "
-                    type="button"
-                    onClick={async () => {
-                      await props.cancelAction();
-                    }}
+                    type="submit"
                     variant="outline"
                   >
                     Giriş Yap

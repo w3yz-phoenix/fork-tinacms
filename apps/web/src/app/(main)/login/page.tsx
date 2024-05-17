@@ -12,19 +12,13 @@ import {
 
 import { LoginForm } from "./form";
 import { LoginFormSchema, type LoginFormType } from "./schemas";
+import { saleorAuthClient } from "./auth-client";
 
-export default async function RegisterPage() {
-  const checkout = await getCurrentCheckout();
-  const cookieValidation = await LoginFormSchema.safeParseAsync(
-    safeJsonParse(cookies().get("LoginForm")?.value)
-  );
-
-  const existingFormValues = cookieValidation.success
-    ? cookieValidation.data
-    : {
-        email: getStringIfNotEmpty(checkout.email),
-        phone: getStringIfNotEmpty(checkout.shippingAddress?.phone),
-      };
+export default async function LoginPage() {
+  const existingFormValues = {
+    email: "",
+    password: "",
+  };
 
   async function submitLoginForm(params: LoginFormType) {
     "use server";
@@ -38,37 +32,32 @@ export default async function RegisterPage() {
           validationError: validation.error.format(),
         };
       }
-
-      const checkout = await getCurrentCheckout();
-
-      invariant(checkout?.id, "Checkout must be defined");
-
-      const { email, password } = validation.data;
-
-      setCookie(
-        "LoginForm",
-        JSON.stringify({
-          email,
-          password,
-        })
+      const { data } = await saleorAuthClient.signIn(
+        {
+          email: params.email,
+          password: params.password,
+        },
+        { cache: "no-store" }
       );
 
-      await useCheckoutEmailUpdateMutation.fetcher({
-        id: checkout.id,
-        email,
-      })();
+      invariant(data.tokenCreate, "Something went wrong1");
 
-      revalidateCheckout();
+      const { token, refreshToken } = data.tokenCreate;
+      console.log(data.tokenCreate);
+
+      invariant(token, "Something went wrong2");
+      invariant(refreshToken, "Something went wrong3");
 
       return {
         success: true,
+        message: undefined,
       };
-    } catch (error) {
+    } catch (error: Error | any) {
       console.error(error);
 
       return {
         success: false,
-        error: (error as any).message,
+        message: error?.message ?? "Something went wrong",
       };
     }
   }

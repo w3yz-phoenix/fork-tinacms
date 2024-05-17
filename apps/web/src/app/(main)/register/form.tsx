@@ -40,7 +40,6 @@ export function RegisterForm(props: {
       firstName: props.values?.firstName ?? "",
       lastName: props.values?.lastName ?? "",
       email: props.values?.email ?? "",
-      phone: props.values?.phone ?? "",
       password: props.values?.password ?? "",
     },
   });
@@ -62,7 +61,7 @@ export function RegisterForm(props: {
               <form
                 onSubmit={form.handleSubmit(async (data) => {
                   const response = await props.completeAction(data);
-                  response?.success && router.push("/login");
+                  response?.success && router.push("/");
                 })}
                 className="flex grow flex-col gap-5"
               >
@@ -143,30 +142,6 @@ export function RegisterForm(props: {
                 <div className="flex w-full">
                   <FormField
                     control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>
-                          {RegisterFormMetadata.phone.label}
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder={RegisterFormMetadata.phone.placeholder}
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormDescription>
-                          {RegisterFormMetadata.phone.description}
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="flex w-full">
-                  <FormField
-                    control={form.control}
                     name="password"
                     render={({ field }) => (
                       <FormItem className="w-full">
@@ -204,10 +179,7 @@ export function RegisterForm(props: {
                 <div className="mt-2 flex flex-col gap-4">
                   <Button
                     className="flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-green-300 px-3 py-1.5 text-2xl font-medium leading-normal text-white hover:bg-green-700 disabled:bg-green-200 "
-                    type="button"
-                    onClick={async () => {
-                      await props.cancelAction();
-                    }}
+                    type="submit"
                     variant="outline"
                   >
                     Kayıt Ol

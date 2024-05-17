@@ -1,30 +1,28 @@
 /* eslint-disable unicorn/consistent-function-scoping */
-import { useCheckoutEmailUpdateMutation } from "@w3yz/ecom/api";
-import { getStringIfNotEmpty, invariant, safeJsonParse } from "@w3yz/tools/lib";
+import {
+  useAccountRegisterMutation,
+  useCurrentUserQuery,
+} from "@w3yz/ecom/api";
+import { safeJsonParse } from "@w3yz/tools/lib";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
-import { setCookie } from "#web/lib/actions/actions.server";
-import {
-  getCurrentCheckout,
-  revalidateCheckout,
-} from "#web/lib/checkout/checkout.query";
 
 import { RegisterForm } from "./form";
 import { RegisterFormSchema, type RegisterFormType } from "./schemas";
 
 export default async function RegisterPage() {
-  const checkout = await getCurrentCheckout();
-  const cookieValidation = await RegisterFormSchema.safeParseAsync(
-    safeJsonParse(cookies().get("RegisterForm")?.value)
-  );
+  const existingFormValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  };
 
-  const existingFormValues = cookieValidation.success
-    ? cookieValidation.data
-    : {
-        email: getStringIfNotEmpty(checkout.email),
-        phone: getStringIfNotEmpty(checkout.shippingAddress?.phone),
-      };
+  const currentUser = await useCurrentUserQuery.fetcher()();
+
+  if (currentUser.me) {
+    return redirect("/");
+  }
 
   async function submitRegisterForm(params: RegisterFormType) {
     "use server";
@@ -39,26 +37,12 @@ export default async function RegisterPage() {
         };
       }
 
-      const checkout = await getCurrentCheckout();
-
-      invariant(checkout?.id, "Checkout must be defined");
-
-      const { email, phone } = validation.data;
-
-      setCookie(
-        "RegisterForm",
-        JSON.stringify({
-          email,
-          phone,
-        })
-      );
-
-      await useCheckoutEmailUpdateMutation.fetcher({
-        id: checkout.id,
-        email,
+      const response = await useAccountRegisterMutation.fetcher({
+        email: params.email,
+        password: params.password,
+        firstname: params.firstName,
+        lastname: params.lastName,
       })();
-
-      revalidateCheckout();
 
       return {
         success: true,
