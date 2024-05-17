@@ -550,8 +550,11 @@ export default function Register() {
               }`}
               ></div>
               <span className="ml-3 text-[14px] font-medium text-[#3D3D3D] dark:text-gray-300">
-                W3yz İnternet Sitesinin Kullanım Koşulları’nı ve Gizlilik
-                Politikası’nı okudum ve kabul ediyorum
+                W3yz İnternet Sitesinin{" "}
+                <Link href="/iletisim" className="text-[#5C97FE]">
+                  Kullanım Koşulları’nı ve Gizlilik Politikası’nı
+                </Link>{" "}
+                okudum ve kabul ediyorum
               </span>
             </label>
             {registerFields.email.length > 0 &&
@@ -607,9 +610,9 @@ export default function Register() {
               Kayıt Ol
             </button>
 
-            <Link
+            {/* <Link
               href={"#"}
-              className="mb-8 flex h-[40px] w-full items-center justify-center gap-2 rounded-lg border border-[#D7DAE0] bg-white text-[16px] font-medium text-[#565E73]"
+              className="flex h-[40px] w-full items-center justify-center gap-2 rounded-lg border border-[#D7DAE0] bg-white text-[16px] font-medium text-[#565E73]"
             >
               <Image
                 src={"/assets/googleIcn.svg"}
@@ -618,9 +621,9 @@ export default function Register() {
                 alt=""
               />
               Google ile Devam Et
-            </Link>
+            </Link> */}
           </form>
-          <div className="text-center">
+          <div className="mt-8 text-center">
             {`Zaten bir hesabınız var mı? `}
             <Link
               href={`/login`}
@@ -632,19 +635,19 @@ export default function Register() {
         </div>
       </div>
 
-      <div className="hidden w-1/2 flex-col justify-between bg-gradient-to-r from-[#D3E9F8] to-[#D0D9DF] pl-[5%] lg:flex">
-        <div className="my-auto mr-10 max-w-[656px] pb-10">
-          <p className="mb-[24px] pt-10 text-[1.5rem] font-medium leading-10 2xl:text-[2rem]">
-            Şablonlarımız her ekrana uyumlu! Siteni kolayca mobil uyumlu hale
-            getirebilirsin.
+      <div className="hidden w-1/2 flex-col justify-between bg-gradient-to-r from-[#f1dad1] to-[#f9b09d] pl-[5%] lg:flex">
+        <div className="my-auto max-w-[656px] py-10 pr-10">
+          <p className="mb-[24px] text-[1.5rem] font-medium leading-10 2xl:text-[2rem]">
+            Profesyonel web siteni oluşturmak ve şık tasarımınla etki alanını
+            genişletmek istiyorsan doğru yerdesin.
           </p>
           <p className="leading-6">
-            Mobil uygulamamız sayesinde konum fark etmeden e-ticaret sitene
-            ürünlerini kolayca ekleyebilir ve yönetebilirsin.
+            Modern şablonlar arasından işine uygun bir şablon seç ve dilediğin
+            gibi özelleştir.
           </p>
         </div>
         <Image
-          src="/assets/registerBg.png"
+          src="/assets/login.png"
           alt="W3yz Login"
           width={880}
           height={638}

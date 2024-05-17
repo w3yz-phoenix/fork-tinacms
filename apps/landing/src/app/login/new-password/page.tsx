@@ -297,19 +297,19 @@ export default function NewPassword() {
         </div>
       </div>
 
-      <div className="hidden w-1/2 flex-col justify-between bg-gradient-to-r from-[#F4C8C1] to-[#F8A3B6] pl-[5%] lg:flex">
+      <div className="hidden w-1/2 flex-col justify-between bg-gradient-to-r from-[#f1dad1] to-[#f9b09d] pl-[5%] lg:flex">
         <div className="my-auto max-w-[656px] py-10 pr-10">
           <p className="mb-[24px] text-[1.5rem] font-medium leading-10 2xl:text-[2rem]">
-            Ürün görsellerini hazırlarken, kolay bir şekilde arka plan
-            oluşturarak zamandan tasarruf etmek senin elinde!
+            Profesyonel web siteni oluşturmak ve şık tasarımınla etki alanını
+            genişletmek istiyorsan doğru yerdesin.
           </p>
           <p className="leading-6">
-            Gelişmiş fotoğraf editörü sayesinde ürünlerinin arka planınını
-            kolayca düzenleyebilirsin.
+            Modern şablonlar arasından işine uygun bir şablon seç ve dilediğin
+            gibi özelleştir.
           </p>
         </div>
         <Image
-          src="/assets/forgot-password.png"
+          src="/assets/login.png"
           alt="W3yz Login"
           width={880}
           height={638}

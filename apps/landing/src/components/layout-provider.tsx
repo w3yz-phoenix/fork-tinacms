@@ -14,7 +14,10 @@ export const LayoutProvider: React.FC<LayoutProviderProperties> = ({
 }) => {
   const pathname = usePathname();
   const isPublicPage =
-    pathname.startsWith("/coming-soon") || pathname.startsWith("/iletisim");
+    pathname.startsWith("/coming-soon") ||
+    pathname.startsWith("/iletisim") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/register");
 
   return (
     <div>

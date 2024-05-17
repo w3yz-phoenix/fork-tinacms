@@ -210,8 +210,9 @@ const Login = () => {
             </div>
             <div className="flex justify-between py-5 text-sm">
               <Checkbx label="Beni Hatırla" />
+              {/* yönlendirme login/forgot-password olarak düzeltilecek. */}
               <Link
-                href={`/login/forgot-password`}
+                href={`/login`}
                 className=" font-medium text-[#1A31B3] hover:cursor-pointer"
               >
                 Parolamı Unuttum
@@ -256,12 +257,12 @@ const Login = () => {
             >
               Giriş Yap
             </button>
-            <button
-              className="mb-[32px] flex w-full items-center justify-center space-x-3 rounded-lg border px-4 py-2 text-center font-bold"
+            {/* <button
+              className="flex items-center justify-center w-full px-4 py-2 space-x-3 font-bold text-center border rounded-lg"
               type="submit"
             >
               <Image
-                src="/assets/icon-google.svg"
+                src="/assets/googleIcn.svg"
                 alt="W3yz Logo"
                 width={22}
                 height={22}
@@ -269,9 +270,9 @@ const Login = () => {
               <p className=" font-medium text-[#565E73]">
                 Google ile Giriş Yap
               </p>
-            </button>
+            </button> */}
           </form>
-          <div className="text-center">
+          <div className="mt-8 text-center">
             {`Hesabınız yok mu ? `}
             <Link
               href={`/register`}
