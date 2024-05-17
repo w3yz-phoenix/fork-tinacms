@@ -139,3 +139,16 @@ export const ProfileAddressFormMetadata: {
     description: "Posta Kodu",
   }),
 } as const;
+
+export const DefaultProfileAddressFormValues: Partial<ProfileAddressFormType> =
+  {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    countryArea: "",
+    district: "",
+    streetAddress1: "",
+    streetAddress2: "",
+    postalCode: "",
+  };

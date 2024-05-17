@@ -1,0 +1,8 @@
+query CurrentUserAddressList {
+  userWithAddresses: me {
+    addresses {
+      id
+      ...AddressFragment
+    }
+  }
+}
