@@ -53,22 +53,6 @@ patches:
       name: tinacms
 `;
 
-    const dockerConfigJson = {
-      auths: {
-        "ghcr.io": {
-          username: "yasinuslu",
-          password: githubToken,
-          email: "nepjua@gmail.com",
-          auth: btoa(`yasinuslu:${githubToken}`),
-        },
-      },
-    };
-
-    await Deno.writeTextFile(
-      path.resolve(currentDir, "../gen/.dockerconfigjson"),
-      JSON.stringify(dockerConfigJson)
-    );
-
     const kustomize = /* yaml */ `
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -81,11 +65,6 @@ components:
   - ./../kustomize-generation/bootstrap
 
 ${shouldPatchStorefront ? patchesString : ""}
-
-secretGenerator:
-  - name: ghcr-secret
-    files:
-      - .dockerconfigjson
 
 configMapGenerator:
   - name: shop-config
@@ -104,9 +83,11 @@ configMapGenerator:
   - name: storefront-config
     literals:
       - NODE_ENV=production
+      - SHOP_DOMAIN="${shopName}.${rootDomain}"
       - NEXT_PUBLIC_URL="https://${shopName}.${rootDomain}"
       - NEXT_PUBLIC_ECOM_API_URL="https://api.${shopName}.${rootDomain}/graphql/"
       - NEXT_PUBLIC_ECOM_NAME="${shopName}"
+      - NEXT_PUBLIC_SHOP_DOMAIN="${shopName}.${rootDomain}"
       - NEXT_PUBLIC_CMS_BASE_URL="https://${shopName}.${rootDomain}"
       - NEXTAUTH_SECRET="change-me"
       - MONGODB_URI="mongodb://ferretdb:27017/${shopName}"

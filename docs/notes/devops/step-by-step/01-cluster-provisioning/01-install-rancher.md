@@ -12,19 +12,19 @@ Following this tutorial to use cert-manager in rancher
 Make sure of the following:
 
 ```
-95.217.166.76 rancher9.w3yz.dev
-95.217.166.76 *.rancher9.w3yz.dev
+135.181.207.97 rancher10.w3yz.dev
+135.181.207.97 *.rancher10.w3yz.dev
 ```
 
 Then make sure your SSH is working
 
 ```bash
-ssh-keygen -R rancher9.w3yz.dev
-ssh-keygen -R 95.217.166.76
-ssh root@rancher9.w3yz.dev
+ssh-keygen -R rancher10.w3yz.dev
+ssh-keygen -R 135.181.207.97
+ssh root@rancher10.w3yz.dev
 ```
 
-[Dashboard](https://dash.rancher9.w3yz.dev)
+[Dashboard](https://dash.rancher10.w3yz.dev)
 
 ### Install required tools
 
@@ -49,7 +49,7 @@ watch kubectl get pods -A
 Then open up another terminal tab and continue:
 
 ```bash
-ssh root@rancher9.w3yz.dev
+ssh root@rancher10.w3yz.dev
 ```
 
 ### Install cert-manager
@@ -112,12 +112,12 @@ EOF
 kubectl create ns cattle-system
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
 helm repo update
-helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=rancher9.w3yz.dev --set bootstrapPassword=i-am-very-much-secure --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=project@w3yz.com --set letsEncrypt.ingress.class=nginx
+helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=dash.rancher10.w3yz.dev --set bootstrapPassword=i-am-very-much-secure --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=project@w3yz.com --set letsEncrypt.ingress.class=nginx
 kubectl -n cattle-system rollout status deploy/rancher
 ```
 
 > Note: You might need to double check your password
 
 ```bash
-echo https://rancher9.w3yz.dev/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
+echo https://dash.rancher10.w3yz.dev/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
 ```
