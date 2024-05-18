@@ -81,7 +81,7 @@ tasks:
       - task ecom:generate -f
       - task tinacms:build -f
       - task cms:generate -f
-      # - task storefront:build -f
+      - task storefront:build -f
       - rm -rf ./fast-build/dist/
       - rm -rf ./fast-build/dist.tgz
 
