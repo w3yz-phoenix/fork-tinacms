@@ -95,11 +95,12 @@ export function Header() {
                 </button>
               </Link>
               <Link
-                href="/coming-soon"
+                href="https://fashion-studio.beta.w3yz.dev/admin#/~"
+                target="_blank"
                 className="flex items-center justify-center w-full px-3 py-2"
                 id="header-button"
               >
-                <button type="button">Hemen Dene</button>
+                <button type="button">Sistemi İncele</button>
               </Link>
               {/* <button
                 type="button"
@@ -165,11 +166,12 @@ export function Header() {
             <span className="pl-2 sm:hidden">TR</span>
           </button> */}
           <Link
-            href="/coming-soon"
+            href="https://fashion-studio.beta.w3yz.dev/admin#/~"
             className="flex items-center justify-center px-3 py-1"
+            target="_blank"
             id="header-button"
           >
-            <button type="button">Hemen Dene</button>
+            <button type="button">Sistemi İncele</button>
           </Link>
         </div>
       </div>
