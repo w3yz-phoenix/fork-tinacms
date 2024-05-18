@@ -4,8 +4,9 @@ export SHOP_DOMAIN="${SHOP_NAME}.${ROOT_DOMAIN}"
 export NAMESPACE="w3yz-shop-${SHOP_NAME}"
 MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)"
 export MY_PERSONAL_GITHUB_TOKEN="${MY_PERSONAL_GITHUB_TOKEN}"
-MONGO_PORT="$(kubectl get -n "${NAMESPACE}" service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort')"
-export MONGO_PORT="${MONGO_PORT}"
+# MONGO_PORT="$(kubectl get -n "${NAMESPACE}" service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort')"
+# export MONGO_PORT="${MONGO_PORT}"
+export MONGO_PORT="32275"
 
 export NODE_ENV=development
 export NEXT_PUBLIC_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}"
