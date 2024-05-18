@@ -3,18 +3,18 @@ import { z } from "zod";
 export const privateEnvironment = z
   .object({
     NODE_ENV: z.string().default("development"),
-    RESEND_API_KEY: z.string().optional(),
+    LANDING_RESEND_API_KEY: z.string().optional(),
   })
   .transform((data) => ({
     _env: data,
     isDevelopment: data.NODE_ENV === "development",
     isProduction: data.NODE_ENV === "production",
     isTest: data.NODE_ENV === "test",
-    resendApiKey: data.RESEND_API_KEY,
+    resendApiKey: data.LANDING_RESEND_API_KEY,
   }))
   .parse({
     NODE_ENV: process.env.NODE_ENV,
-    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    LANDING_RESEND_API_KEY: process.env.LANDING_RESEND_API_KEY,
   });
 
 export const publicEnvironment = z

@@ -1,0 +1,45 @@
+version: "3"
+
+# env:
+#   NEXT_PUBLIC_URL: "http://localhost:3000"
+
+tasks:
+  lint:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
+    dir: apps/landing
+    cmds:
+      - bun x next lint {{.CLI_ARGS}}
+
+  build:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
+    dir: apps/landing
+    cmds:
+      - bun x next build
+
+  dev:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
+    dir: apps/landing
+    cmds:
+      - bun x next dev
+
+  dev:prod:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
+    dir: apps/landing
+    cmds:
+      - bun x next dev
+
+  start:
+    preconditions:
+      - msg: "This task should be run from the root of the monorepo"
+        sh: test -f package.json
+    dir: apps/landing
+    cmds:
+      - bun x next start
