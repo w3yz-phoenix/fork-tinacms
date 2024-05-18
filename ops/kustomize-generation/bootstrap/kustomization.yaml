@@ -48,6 +48,13 @@ patches:
       kind: Deployment
       name: api
 
+  - patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: Always
+    target:
+      kind: Deployment
+
 replacements:
   - source:
       kind: ConfigMap

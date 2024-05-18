@@ -14,7 +14,8 @@ await new Command()
   .option("-p, --profile <string?>", "Run Profile")
   .action(async (params) => {
     const githubToken =
-      (params.githubToken || Deno.env.get("MY_PERSONAL_GITHUB_TOKEN")) ?? "unknown";
+      (params.githubToken || Deno.env.get("MY_PERSONAL_GITHUB_TOKEN")) ??
+      "unknown";
     const rootDomain =
       (params.rootDomain || Deno.env.get("ROOT_DOMAIN")) ?? "unknown";
     const shopName =
@@ -33,7 +34,7 @@ patches:
         value: 3000
       - op: replace
         path: /spec/template/spec/containers/0/workingDir
-        value: /app/storefront
+        value: /apps/storefront
     target:
       kind: Deployment
       name: storefront
@@ -45,8 +46,8 @@ patches:
         path: /spec/template/spec/containers/0/ports/0/containerPort
         value: 3000
       - op: replace
-        path: /spec/template/spec/containers/0/command
-        value: /app/tinacms
+        path: /spec/template/spec/containers/0/workingDir
+        value: /apps/tinacms
     target:
       kind: Deployment
       name: tinacms
