@@ -2,6 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "turbo build --filter=@w3yz/custom-landing",
   "devCommand": "turbo dev --filter=@w3yz/custom-landing",
-  "installCommand": "pnpm install",
+  "installCommand": "bun install",
   "framework": "nextjs"
 }
