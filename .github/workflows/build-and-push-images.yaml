@@ -1,9 +1,9 @@
 name: build-and-push-images
 
 env:
-  SHOP_NAME: "shop1"
   ROOT_DOMAIN: "beta.w3yz.dev"
-  MONGO_PORT: "32508"
+  SHOP_NAME: "hadi-lan"
+  MONGO_PORT: "32275"
   MY_PERSONAL_GITHUB_TOKEN: ${{ secrets.POWERFUL_GITHUB_TOKEN }}
 
 on:
