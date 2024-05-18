@@ -79,6 +79,7 @@ jobs:
 
       - name: Login to Kubernetes
         run: |
+          mkdir -p $HOME/.kube
           echo "${{ secrets.KUBECONFIG_BETA_AMD64 }}" > $HOME/.kube/config
           kubectl get nodes
 
