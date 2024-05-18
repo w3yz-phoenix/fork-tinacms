@@ -13,6 +13,7 @@ const handler = TinaNodeBackend({
         authOptions: TinaAuthJSOptions({
           databaseClient: databaseClient,
           secret: process.env.NEXTAUTH_SECRET!,
+          debug: process.env.NODE_ENV === "development",
         }),
       }),
   databaseClient,

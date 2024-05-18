@@ -1,12 +1,8 @@
 version: "3"
 
-interval: 500ms
+dotenv: [".env", "{{.ENV}}/.env.", "{{.HOME}}/.env"]
 
-# env:
-#   NEXT_PUBLIC_ECOM_API_URL: "https://dev-shop-api.w3yz.dev/graphql/"
-#   NEXT_PUBLIC_ECOM_NAME: "furniture"
-#   NEXT_PUBLIC_CMS_BASE_URL: "http://localhost:3000"
-#   NEXTAUTH_SECRET: "changeme"
+interval: 500ms
 
 includes:
   ecom:
@@ -30,53 +26,57 @@ tasks:
     watch: true
     deps: [generate]
 
-  build:
+  generate-almost-prod-like-env:
     preconditions:
-      - bun version
       - msg: "Please run this command in the root directory of the project"
         sh: "test -f ./Taskfile.yml && test -f ./package.json"
+      - msg: "SHOP_NAME and ROOT_DOMAIN must not be empty"
+        sh: "test -n $SHOP_NAME && test -n $ROOT_DOMAIN && test -n $NODE_ENV"
     requires:
       vars:
         - "ROOT_DOMAIN"
         - "SHOP_NAME"
-        - "MONGO_PORT"
-        - "MY_PERSONAL_GITHUB_TOKEN"
-    vars:
-      NODE_ENV: production
-      SHOP_DOMAIN: "{{.SHOP_NAME}}.{{.ROOT_DOMAIN}}"
-      NEXT_PUBLIC_URL: "https://{{.SHOP_NAME}}.{{.ROOT_DOMAIN}}"
-      NEXT_PUBLIC_ECOM_API_URL: "https://api.{{.SHOP_NAME}}.{{.ROOT_DOMAIN}}/graphql/"
-      NEXT_PUBLIC_ECOM_NAME: "{{.SHOP_NAME}}"
-      NEXT_PUBLIC_CMS_BASE_URL: "https://{{.SHOP_NAME}}.{{.ROOT_DOMAIN}}"
-      NEXTAUTH_SECRET: "change-me"
-      MONGODB_URI: "mongodb://{{.SHOP_DOMAIN}}:{{.MONGO_PORT}}/{{.SHOP_NAME}}"
-      GITHUB_OWNER: w3yz-phoenix
-      GITHUB_REPO: live
-      GITHUB_BRANCH: main
-      GITHUB_PERSONAL_ACCESS_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
-      TINA_PUBLIC_IS_LOCAL: "false"
-      NEXT_PUBLIC_TINA_IS_LOCAL: "false"
+        - "NODE_ENV"
     env:
       ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
       SHOP_NAME: "{{.SHOP_NAME}}"
-      MONGO_PORT: "{{.MONGO_PORT}}"
-      MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
       NODE_ENV: "{{.NODE_ENV}}"
-      SHOP_DOMAIN: "{{.SHOP_DOMAIN}}"
-      NEXT_PUBLIC_URL: "{{.NEXT_PUBLIC_URL}}"
-      NEXT_PUBLIC_ECOM_API_URL: "{{.NEXT_PUBLIC_ECOM_API_URL}}"
-      NEXT_PUBLIC_ECOM_NAME: "{{.NEXT_PUBLIC_ECOM_NAME}}"
-      NEXT_PUBLIC_CMS_BASE_URL: "{{.NEXT_PUBLIC_CMS_BASE_URL}}"
-      NEXT_PUBLIC_SHOP_DOMAIN: "{{.SHOP_NAME}}.{{.ROOT_DOMAIN}}"
-      NEXTAUTH_SECRET: "{{.NEXTAUTH_SECRET}}"
-      MONGODB_URI: "{{.MONGODB_URI}}"
-      GITHUB_OWNER: "{{.GITHUB_OWNER}}"
-      GITHUB_REPO: "{{.GITHUB_REPO}}"
-      GITHUB_BRANCH: "{{.GITHUB_BRANCH}}"
-      GITHUB_PERSONAL_ACCESS_TOKEN: "{{.GITHUB_PERSONAL_ACCESS_TOKEN}}"
-      TINA_PUBLIC_IS_LOCAL: "{{.TINA_PUBLIC_IS_LOCAL}}"
-      NEXT_PUBLIC_TINA_IS_LOCAL: "{{.NEXT_PUBLIC_TINA_IS_LOCAL}}"
     cmds:
+      - bash ./ops/scripts/generate-almost-prod-like-env.sh
+
+  generate-prod-env:
+    preconditions:
+      - msg: "Please run this command in the root directory of the project"
+        sh: "test -f ./Taskfile.yml && test -f ./package.json"
+      - msg: "SHOP_NAME and ROOT_DOMAIN must not be empty"
+        sh: "test -n $SHOP_NAME && test -n $ROOT_DOMAIN && test -n $NODE_ENV"
+    requires:
+      vars:
+        - "ROOT_DOMAIN"
+        - "SHOP_NAME"
+        - "NODE_ENV"
+    env:
+      ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
+      SHOP_NAME: "{{.SHOP_NAME}}"
+      NODE_ENV: "{{.NODE_ENV}}"
+    cmds:
+      - bash ./ops/scripts/generate-prod-env.sh
+
+  build:
+    preconditions:
+      - bun version
+    requires:
+      vars:
+        - "ROOT_DOMAIN"
+        - "SHOP_NAME"
+        - "NODE_ENV"
+    env:
+      ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
+      SHOP_NAME: "{{.SHOP_NAME}}"
+      NODE_ENV: "{{.NODE_ENV}}"
+    deps: [generate-prod-env]
+    cmds:
+      - source .env
       - bun install
       - task ecom:generate -f
       - task tinacms:build -f
@@ -109,8 +109,14 @@ tasks:
   dev:
     deps: [storefront:dev, tinacms:dev]
 
+  storefront-dev:prod:
+    deps: [generate-almost-prod-like-env, storefront:dev:prod]
+
+  tinacms-dev:prod:
+    deps: [generate-almost-prod-like-env, tinacms:dev:prod]
+
   dev:prod:
-    deps: [storefront:dev:prod, tinacms:dev:prod]
+    deps: [storefront-dev:prod, tinacms-dev:prod]
 
   deploy-debug:
     env:

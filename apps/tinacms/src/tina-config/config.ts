@@ -12,7 +12,7 @@ import { tinaEnvironment } from "../lib/environment";
 export const tinaConfig = defineConfig({
   authProvider: tinaEnvironment.public.cms.isLocal
     ? new LocalAuthProvider()
-    : new LocalAuthProvider(),
+    : new UsernamePasswordAuthJSProvider(),
 
   contentApiUrlOverride: "/api/tina/gql",
   // localContentPath: tinaEnvironment.public.cms.contentRootPath,

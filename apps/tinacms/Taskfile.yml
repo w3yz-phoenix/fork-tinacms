@@ -12,21 +12,6 @@ tasks:
     cmds:
       - bun x next lint {{.CLI_ARGS}}
 
-  build:local:
-    env:
-      # MONGODB_URI: "mongodb://localhost:27017/tina"
-      # GITHUB_OWNER: w3yz-phoenix
-      # GITHUB_REPO: live
-      # GITHUB_BRANCH: main
-      TINA_PUBLIC_IS_LOCAL: "true"
-      NEXT_PUBLIC_TINA_IS_LOCAL: "true"
-    preconditions:
-      - msg: "This task should be run from the root of the monorepo"
-        sh: test -f package.json
-    dir: apps/tinacms
-    cmds:
-      - bun run build
-
   build:
     preconditions:
       - msg: "This task should be run from the root of the monorepo"
@@ -52,12 +37,4 @@ tasks:
         sh: test -f package.json
     dir: apps/tinacms
     cmds:
-      - GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) bun run dev
-
-  start:
-    preconditions:
-      - msg: "This task should be run from the root of the monorepo"
-        sh: test -f package.json
-    dir: apps/tinacms
-    cmds:
-      - bun run start
+      - bun run dev
