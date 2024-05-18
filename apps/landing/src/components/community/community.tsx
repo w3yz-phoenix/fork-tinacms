@@ -177,7 +177,7 @@ export function CommunityComponent() {
             <span id="community-deneyim">deneyimlerini</span>{" "}
             <span>paylaşabileceği </span>{" "}
             <span id="community-ucretsiz">ücretsiz bir platform.</span>{" "}
-            {/* <span className=" flex items-center justify-center">
+            {/* <span className="flex items-center justify-center ">
             <Image
               src="/assets/star_flair.svg"
               alt="community-lines"
@@ -203,7 +203,7 @@ export function CommunityComponent() {
           </div>
 
           <Link
-            href="/"
+            href="/blog"
             id="community-link"
             className="mt-5 flex justify-end gap-2 text-[18px] font-medium text-[#24262D]"
           >
@@ -239,7 +239,7 @@ export function CommunityComponent() {
             </span>
           </Link>
         </div>
-        <div className="relative mt-16  hidden scale-75 items-end justify-center sm:flex xl:scale-100">
+        <div className="relative items-end justify-center hidden mt-16 scale-75 sm:flex xl:scale-100">
           <Image
             src="/assets/community-lines.svg"
             alt="community-lines"
