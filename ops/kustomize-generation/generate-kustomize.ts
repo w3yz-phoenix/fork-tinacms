@@ -17,9 +17,10 @@ await new Command()
       (params.githubToken || Deno.env.get("MY_PERSONAL_GITHUB_TOKEN")) ??
       "unknown";
     const rootDomain =
-      (params.rootDomain || Deno.env.get("ROOT_DOMAIN")) ?? "unknown";
+      (params.rootDomain || Deno.env.get("NEXT_PUBLIC_ROOT_DOMAIN")) ??
+      "unknown";
     const shopName =
-      (params.shopName || Deno.env.get("SHOP_NAME")) ?? "unknown";
+      (params.shopName || Deno.env.get("NEXT_PUBLIC_SHOP_NAME")) ?? "unknown";
 
     const shouldPatchStorefront = params.profile === "release";
 
@@ -69,7 +70,7 @@ ${shouldPatchStorefront ? patchesString : ""}
 configMapGenerator:
   - name: shop-config
     literals:
-      - SHOP_NAME=${shopName}
+      - NEXT_PUBLIC_SHOP_NAME=${shopName}
       - API_ALLOWED_CLIENT_HOSTS="localhost,127.0.0.1,dashboard.${shopName}.${rootDomain},${shopName}.${rootDomain}"
       - API_ALLOWED_HOSTS="api,localhost,127.0.0.1,api.${shopName}.${rootDomain}"
       - API_FQDN=api.${shopName}.${rootDomain}

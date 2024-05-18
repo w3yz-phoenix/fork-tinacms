@@ -26,9 +26,9 @@ profiles:
           docker:
             dockerfile: ./fast-build/Dockerfile
             buildArgs:
-              ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
-              SHOP_NAME: "{{.SHOP_NAME}}"
-              MONGO_PORT: "{{.MONGO_PORT}}"
+              NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
+              NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
+              NEXT_PUBLIC_MONGO_PORT: "{{.NEXT_PUBLIC_MONGO_PORT}}"
               MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
       tagPolicy:
         sha256: {}

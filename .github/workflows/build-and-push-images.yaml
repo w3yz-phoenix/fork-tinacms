@@ -1,8 +1,8 @@
 name: build-and-push-images
 
 env:
-  ROOT_DOMAIN: "beta.w3yz.dev"
-  SHOP_NAME: "fashion-studio"
+  NEXT_PUBLIC_ROOT_DOMAIN: "beta.w3yz.dev"
+  NEXT_PUBLIC_SHOP_NAME: "fashion-studio"
   MY_PERSONAL_GITHUB_TOKEN: ${{ secrets.POWERFUL_GITHUB_TOKEN }}
 
 on:
@@ -100,9 +100,9 @@ jobs:
           annotations: ${{ steps.meta.outputs.annotations }}
           build-args: |
             COMMIT_ID=${{ github.sha }}
-            SHOP_NAME=${{ env.SHOP_NAME }}
-            ROOT_DOMAIN=${{ env.ROOT_DOMAIN }}
-            MONGO_PORT=${{ env.MONGO_PORT }}
+            NEXT_PUBLIC_SHOP_NAME=${{ env.NEXT_PUBLIC_SHOP_NAME }}
+            NEXT_PUBLIC_ROOT_DOMAIN=${{ env.NEXT_PUBLIC_ROOT_DOMAIN }}
+            NEXT_PUBLIC_MONGO_PORT=${{ env.NEXT_PUBLIC_MONGO_PORT }}
             MY_PERSONAL_GITHUB_TOKEN=${{ env.MY_PERSONAL_GITHUB_TOKEN }}
 
       - name: Export digest

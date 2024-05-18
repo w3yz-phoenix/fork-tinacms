@@ -30,16 +30,16 @@ tasks:
     preconditions:
       - msg: "Please run this command in the root directory of the project"
         sh: "test -f ./Taskfile.yml && test -f ./package.json"
-      - msg: "SHOP_NAME and ROOT_DOMAIN must not be empty"
-        sh: "test -n $SHOP_NAME && test -n $ROOT_DOMAIN && test -n $NODE_ENV"
+      - msg: "NEXT_PUBLIC_SHOP_NAME and NEXT_PUBLIC_ROOT_DOMAIN must not be empty"
+        sh: "test -n $NEXT_PUBLIC_SHOP_NAME && test -n $NEXT_PUBLIC_ROOT_DOMAIN && test -n $NODE_ENV"
     requires:
       vars:
-        - "ROOT_DOMAIN"
-        - "SHOP_NAME"
+        - "NEXT_PUBLIC_ROOT_DOMAIN"
+        - "NEXT_PUBLIC_SHOP_NAME"
         - "NODE_ENV"
     env:
-      ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
-      SHOP_NAME: "{{.SHOP_NAME}}"
+      NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
+      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
       NODE_ENV: "{{.NODE_ENV}}"
     cmds:
       - bash ./ops/scripts/generate-almost-prod-like-env.sh
@@ -48,16 +48,16 @@ tasks:
     preconditions:
       - msg: "Please run this command in the root directory of the project"
         sh: "test -f ./Taskfile.yml && test -f ./package.json"
-      - msg: "SHOP_NAME and ROOT_DOMAIN must not be empty"
-        sh: "test -n $SHOP_NAME && test -n $ROOT_DOMAIN && test -n $NODE_ENV"
+      - msg: "NEXT_PUBLIC_SHOP_NAME and NEXT_PUBLIC_ROOT_DOMAIN must not be empty"
+        sh: "test -n $NEXT_PUBLIC_SHOP_NAME && test -n $NEXT_PUBLIC_ROOT_DOMAIN && test -n $NODE_ENV"
     requires:
       vars:
-        - "ROOT_DOMAIN"
-        - "SHOP_NAME"
+        - "NEXT_PUBLIC_ROOT_DOMAIN"
+        - "NEXT_PUBLIC_SHOP_NAME"
         - "NODE_ENV"
     env:
-      ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
-      SHOP_NAME: "{{.SHOP_NAME}}"
+      NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
+      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
       NODE_ENV: "{{.NODE_ENV}}"
     cmds:
       - bash ./ops/scripts/generate-prod-env.sh
@@ -67,12 +67,12 @@ tasks:
       - bun version
     requires:
       vars:
-        - "ROOT_DOMAIN"
-        - "SHOP_NAME"
+        - "NEXT_PUBLIC_ROOT_DOMAIN"
+        - "NEXT_PUBLIC_SHOP_NAME"
         - "NODE_ENV"
     env:
-      ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
-      SHOP_NAME: "{{.SHOP_NAME}}"
+      NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
+      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
       NODE_ENV: "{{.NODE_ENV}}"
     deps: [generate-prod-env]
     cmds:
@@ -120,14 +120,14 @@ tasks:
 
   deploy-debug:
     env:
-      SHOP_NAME: puledro
+      NEXT_PUBLIC_SHOP_NAME: puledro
     cmds:
-      - kubectl -n w3yz-shop-$SHOP_NAME delete deployment storefront || true
+      - kubectl -n w3yz-shop-$NEXT_PUBLIC_SHOP_NAME delete deployment storefront || true
       - MY_PERSONAL_GITHUB_TOKEN=(gh auth token) skaffold render -p shop | kubectl apply -f -
 
   deploy:
     requires:
       vars:
-        - "SHOP_NAME"
+        - "NEXT_PUBLIC_SHOP_NAME"
     cmds:
       - MY_PERSONAL_GITHUB_TOKEN=(gh auth token) skaffold render -p shop | kubectl apply -f -
