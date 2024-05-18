@@ -51,3 +51,60 @@ else
   docker run -w /apps/storefront --rm -p 3000:3000 w3yz-release-test
 fi;
 ```
+
+Run Services:
+
+```bash
+export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
+export ROOT_DOMAIN="beta.w3yz.dev";
+export SHOP_NAME="hadi-lan";
+export NAMESPACE="w3yz-shop-$SHOP_NAME";
+
+export MONGO_PORT="$(kubectl get -n w3yz-shop-$SHOP_NAME service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort')";
+
+docker rm --force test-storefront
+docker run --name=test-storefront -d -w /apps/storefront -p 3000:3000 w3yz-release-test \
+  -e MY_PERSONAL_GITHUB_TOKEN="${MY_PERSONAL_GITHUB_TOKEN}" \
+  -e ROOT_DOMAIN="${ROOT_DOMAIN}" \
+  -e SHOP_NAME="${SHOP_NAME}" \
+  -e NAMESPACE="${NAMESPACE}" \
+  -e MONGO_PORT="${MONGO_PORT}" \
+  -e NODE_ENV=production \
+  -e SHOP_DOMAIN="${SHOP_NAME}.${ROOT_DOMAIN}" \
+  -e NEXT_PUBLIC_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}" \
+  -e NEXT_PUBLIC_ECOM_API_URL="https://api.${SHOP_NAME}.${ROOT_DOMAIN}/graphql/" \
+  -e NEXT_PUBLIC_ECOM_NAME="${SHOP_NAME}" \
+  -e NEXT_PUBLIC_SHOP_DOMAIN="${SHOP_DOMAIN}" \
+  -e NEXT_PUBLIC_CMS_BASE_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}" \
+  -e NEXTAUTH_SECRET="change-me" \
+  -e MONGODB_URI="mongodb://${SHOP_DOMAIN}:${MONGO_PORT}/${SHOP_NAME}" \
+  -e GITHUB_OWNER=w3yz-phoenix \
+  -e GITHUB_REPO=live \
+  -e GITHUB_BRANCH=main \
+  -e GITHUB_PERSONAL_ACCESS_TOKEN="${MY_PERSONAL_GITHUB_TOKEN}" \
+  -e TINA_PUBLIC_IS_LOCAL="false" \
+  -e NEXT_PUBLIC_TINA_IS_LOCAL="false"
+
+docker rm --force test-tinacms
+docker run --name=test-tinacms -d -w /apps/tinacms -p 3200:3000 w3yz-release-test \
+  -e MY_PERSONAL_GITHUB_TOKEN="${MY_PERSONAL_GITHUB_TOKEN}" \
+  -e ROOT_DOMAIN="${ROOT_DOMAIN}" \
+  -e SHOP_NAME="${SHOP_NAME}" \
+  -e NAMESPACE="${NAMESPACE}" \
+  -e MONGO_PORT="${MONGO_PORT}" \
+  -e NODE_ENV=production \
+  -e SHOP_DOMAIN="${SHOP_NAME}.${ROOT_DOMAIN}" \
+  -e NEXT_PUBLIC_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}" \
+  -e NEXT_PUBLIC_ECOM_API_URL="https://api.${SHOP_NAME}.${ROOT_DOMAIN}/graphql/" \
+  -e NEXT_PUBLIC_ECOM_NAME="${SHOP_NAME}" \
+  -e NEXT_PUBLIC_SHOP_DOMAIN="${SHOP_DOMAIN}" \
+  -e NEXT_PUBLIC_CMS_BASE_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}" \
+  -e NEXTAUTH_SECRET="change-me" \
+  -e MONGODB_URI="mongodb://${SHOP_DOMAIN}:${MONGO_PORT}/${SHOP_NAME}" \
+  -e GITHUB_OWNER=w3yz-phoenix \
+  -e GITHUB_REPO=live \
+  -e GITHUB_BRANCH=main \
+  -e GITHUB_PERSONAL_ACCESS_TOKEN="${MY_PERSONAL_GITHUB_TOKEN}" \
+  -e TINA_PUBLIC_IS_LOCAL="false" \
+  -e NEXT_PUBLIC_TINA_IS_LOCAL="false"
+```
