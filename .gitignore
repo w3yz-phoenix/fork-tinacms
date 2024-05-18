@@ -136,3 +136,5 @@ __generated__
 *.gen.*
 .task
 .DS_Store
+
+node_modules.all_modules_tmp

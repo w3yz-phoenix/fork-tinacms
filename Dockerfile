@@ -1,76 +1,234 @@
-# use the official Bun image
-# see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM jetpackio/devbox:latest AS base
+FROM jetpackio/devbox:latest AS base_devbox
 
-# Installing your devbox project
-WORKDIR /code
 USER root:root
-RUN mkdir -p /code && chown ${DEVBOX_USER}:${DEVBOX_USER} /code
-USER ${DEVBOX_USER}:${DEVBOX_USER}
-COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} devbox.json devbox.json
-COPY --chown=${DEVBOX_USER}:${DEVBOX_USER} devbox.lock devbox.lock
 
+ARG B_CURRENT="/workspace/current"
+ARG B_INPUTS_ROOT="/workspace/inputs"
+ARG B_OUTPUTS_ROOT="/workspace/outputs"
+
+RUN mkdir -p \
+  "${B_CURRENT}" \
+  "${B_INPUTS_ROOT}" \
+  "${B_OUTPUTS_ROOT}"
+
+WORKDIR "${B_CURRENT}"
+
+# Fix permissions start
+RUN chown -R ${DEVBOX_USER}:${DEVBOX_USER} /workspace
+# Fix permissions end
+
+COPY ./devbox.json /workspace/devbox.json
+COPY ./devbox.lock /workspace/devbox.lock
+
+# Fix permissions start
+RUN chown -R ${DEVBOX_USER}:${DEVBOX_USER} /workspace
+# Fix permissions end
+
+# Devbox session start
+USER ${DEVBOX_USER}:${DEVBOX_USER}
 RUN devbox run -- echo "Installed Packages."
-
 USER root:root
-RUN mkdir -p /temp && chown ${DEVBOX_USER}:${DEVBOX_USER} /temp
-USER ${DEVBOX_USER}:${DEVBOX_USER}
-
-SHELL ["devbox", "run", "--", "bash", "-c"]
-
-# this will cache the manifest files
-FROM base AS collect-files
+# Devbox session end
 
 # copy all project files into the image
-COPY . /temp/all-files
+COPY . .
+# Fix permissions start
+RUN chown -R ${DEVBOX_USER}:${DEVBOX_USER} /workspace
+# Fix permissions end
 
-# copy only the package.json files in every package
-RUN rsync -avm --include='*/' \
+RUN rm -rf ./devbox.json ./devbox.lock
+
+FROM base_devbox AS project_manifest__base
+
+ARG B_CURRENT=/workspace/current
+ARG B_INPUTS_ROOT=/workspace/inputs
+ARG B_OUTPUTS_ROOT=/workspace/outputs
+
+ARG C_OUTPUT="${B_OUTPUTS_ROOT}/project_manifest__base"
+RUN mkdir -p "${C_OUTPUT}"
+
+# Fix permissions start
+RUN chown -R ${DEVBOX_USER}:${DEVBOX_USER} /workspace
+# Fix permissions end
+
+# Devbox session start
+USER ${DEVBOX_USER}:${DEVBOX_USER}
+RUN devbox run -- rsync -avm --include='*/' \
   --include='package.json' \
   --include='bun.lockb' \
   --exclude='*' \
-  /temp/all-files /temp/monorepo \
-  && mkdir -p /temp/export && chown ${DEVBOX_USER}:${DEVBOX_USER} /temp/export \
-  && mv /temp/monorepo/all-files /temp/export/app \
-  && rm -rf /temp/all-files \
-  && rm -rf /temp/monorepo
+  "${B_CURRENT}" "${C_OUTPUT}"
+USER root:root
+# Devbox session end
 
-# install dependencies into temp directory
-# this will cache them and speed up future builds
-FROM base AS install
+FROM busybox AS project_manifest
 
-RUN mkdir -p /temp/export
-RUN mkdir -p /temp/dev
+COPY --from=project_manifest__base /workspace/outputs/project_manifest__base /export
 
-COPY --from=collect-files /temp/export/app /temp/dev
+FROM base_devbox AS install_modules__base
 
-RUN cd /temp/dev && bun install --frozen-lockfile
-RUN mv /temp/dev/node_modules /temp/export/node_modules.dev
+ARG B_CURRENT=/workspace/current
+ARG B_INPUTS_ROOT=/workspace/inputs
+ARG B_OUTPUTS_ROOT=/workspace/outputs
+ARG C_OUTPUT="${B_OUTPUTS_ROOT}/install_modules__base"
 
-RUN cd /temp/dev && bun install --frozen-lockfile --production
-RUN mv /temp/dev/node_modules /temp/export/node_modules.prod
+RUN mkdir -p \
+  "${B_CURRENT}" \
+  "${B_INPUTS_ROOT}" \
+  "${B_OUTPUTS_ROOT}" \
+  "${C_OUTPUT}"
 
-FROM base AS prerelease
+WORKDIR "${B_CURRENT}"
 
-COPY . .
-COPY --from=install /temp/export/node_modules.dev ./node_modules
+COPY --from=project_manifest /export "${B_INPUTS_ROOT}/project_manifest"
 
-FROM prerelease AS final-build
+# Fix permissions start
+RUN chown -R ${DEVBOX_USER}:${DEVBOX_USER} /workspace
+# Fix permissions end
+
+# Devbox session start
+USER ${DEVBOX_USER}:${DEVBOX_USER}
+RUN devbox run -- bash -c "\
+    cd /workspace/current \
+    && bun install --frozen-lockfile \
+    && mv node_modules \"${C_OUTPUT}\"/node_modules.dev \
+    && bun install --frozen-lockfile --production \
+    && mv node_modules \"${C_OUTPUT}\"/node_modules.prod \
+  "
+USER root:root
+# Devbox session end
+
+FROM busybox AS install_modules
+
+COPY --from=install_modules__base /workspace/outputs/install_modules__base /export
+
+FROM base_devbox AS w3yz__base
+
+ARG B_CURRENT=/workspace/current
+ARG B_INPUTS_ROOT=/workspace/inputs
+ARG B_OUTPUTS_ROOT=/workspace/outputs
+ARG C_OUTPUT="${B_OUTPUTS_ROOT}/w3yz"
+
+RUN mkdir -p \
+  "${C_OUTPUT}"
+
+ARG ROOT_DOMAIN
+ARG SHOP_NAME
+ARG MONGO_PORT
+ARG MY_PERSONAL_MY_PERSONAL_GITHUB_TOKEN
+
+ARG NODE_ENV=production
+ARG SHOP_DOMAIN="${SHOP_NAME}.${ROOT_DOMAIN}"
+ARG NEXT_PUBLIC_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}"
+ARG NEXT_PUBLIC_ECOM_API_URL="https://api.${SHOP_NAME}.${ROOT_DOMAIN}/graphql/"
+ARG NEXT_PUBLIC_ECOM_NAME="${SHOP_NAME}"
+ARG NEXT_PUBLIC_CMS_BASE_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}"
+ARG NEXTAUTH_SECRET="change-me"
+ARG MONGODB_URI="mongodb://${SHOP_DOMAIN}:${MONGO_PORT}/${SHOP_NAME}"
+ARG GITHUB_OWNER=w3yz-phoenix
+ARG GITHUB_REPO=live
+ARG GITHUB_BRANCH=main
+ARG GITHUB_PERSONAL_ACCESS_TOKEN="${MY_PERSONAL_MY_PERSONAL_GITHUB_TOKEN}"
+ARG TINA_PUBLIC_IS_LOCAL="false"
+ARG NEXT_PUBLIC_TINA_IS_LOCAL="false"
+
+COPY --from=install_modules /export/node_modules.dev "${B_INPUTS_ROOT}/install_modules/node_modules.dev"
+COPY --from=install_modules /export/node_modules.prod "${B_INPUTS_ROOT}/install_modules/node_modules.prod"
+
+# Fix permissions start
+RUN chown -R ${DEVBOX_USER}:${DEVBOX_USER} /workspace
+# Fix permissions end
+
+# Devbox session start
+USER ${DEVBOX_USER}:${DEVBOX_USER}
+RUN devbox run -- bash -c "\
+  cd /workspace/current \
+  && rm -rf ./node_modules \
+  && mv \"${B_INPUTS_ROOT}/install_modules/node_modules.dev\" ./node_modules \
+  && bun install \
+  && task ecom:generate -f \
+  && task tinacms:build -f \
+  && task cms:generate -f \
+  && task storefront:build -f \
+  "
+
+# Devbox session end
+USER root:root
+
+RUN cd /workspace/current/apps/storefront \
+  && mkdir -p /export/storefront \
+  && mv .next /export/storefront \
+  && mv public /export/storefront \
+  && mv package.json /export/storefront
+
+RUN cd /workspace/current/apps/tinacms \
+  && mkdir -p /export/tinacms \
+  && mv .next /export/tinacms \
+  && mv public /export/tinacms \
+  && mv content /export/tinacms \
+  && mv package.json /export/tinacms
+
+RUN rm -rf /workspace
+
+FROM oven/bun:1-alpine AS storefront__release
+
+COPY --from=w3yz__base /export/storefront /app
+COPY --from=install_modules /export/node_modules.prod /app/node_modules
+
+ARG ROOT_DOMAIN
+ARG SHOP_NAME
+ARG MONGO_PORT
+ARG MY_PERSONAL_MY_PERSONAL_GITHUB_TOKEN
+
+ENV ROOT_DOMAIN=${ROOT_DOMAIN}
+ENV SHOP_NAME=${SHOP_NAME}
 
 ENV NODE_ENV=production
+ENV SHOP_DOMAIN="${SHOP_NAME}.${ROOT_DOMAIN}"
+ENV NEXT_PUBLIC_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}"
+ENV NEXT_PUBLIC_ECOM_API_URL="https://api.${SHOP_NAME}.${ROOT_DOMAIN}/graphql/"
+ENV NEXT_PUBLIC_ECOM_NAME="${SHOP_NAME}"
+ENV NEXT_PUBLIC_CMS_BASE_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}"
+ENV NEXTAUTH_SECRET="change-me"
+ENV MONGODB_URI="mongodb://${SHOP_DOMAIN}:${MONGO_PORT}/${SHOP_NAME}"
+ENV GITHUB_OWNER=w3yz-phoenix
+ENV GITHUB_REPO=live
+ENV GITHUB_BRANCH=main
+ENV GITHUB_PERSONAL_ACCESS_TOKEN="${MY_PERSONAL_MY_PERSONAL_GITHUB_TOKEN}"
+ENV TINA_PUBLIC_IS_LOCAL="false"
+ENV NEXT_PUBLIC_TINA_IS_LOCAL="false"
 
-RUN task build \
-  && mkdir -p /temp/ \
-  && mv dist/ /temp/export \
-  && rm -rf /usr/src/app
-
-# copy production dependencies and source code into final image
-FROM base AS release
-
-COPY --from=prerelease /temp/export/storefront .
-COPY --from=install /temp/export/node_modules.prod ./node_modules
-
-# run the app
 USER bun
-EXPOSE 3000/tcp
-CMD [ "bun", "--bun", "run", "start" ]
+WORKDIR /app
+CMD ["bun", "x", "next", "start"]
+
+FROM oven/bun:1-alpine AS tinacms__release
+
+COPY --from=w3yz__base /export/tinacms /app
+COPY --from=install_modules /export/node_modules.prod /app/node_modules
+
+ARG ROOT_DOMAIN
+ARG SHOP_NAME
+ARG MONGO_PORT
+ARG MY_PERSONAL_MY_PERSONAL_GITHUB_TOKEN
+
+ENV ROOT_DOMAIN=${ROOT_DOMAIN}
+ENV SHOP_NAME=${SHOP_NAME}
+
+ENV NODE_ENV=production
+ENV SHOP_DOMAIN="${SHOP_NAME}.${ROOT_DOMAIN}"
+ENV NEXT_PUBLIC_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}"
+ENV NEXT_PUBLIC_ECOM_API_URL="https://api.${SHOP_NAME}.${ROOT_DOMAIN}/graphql/"
+ENV NEXT_PUBLIC_ECOM_NAME="${SHOP_NAME}"
+ENV NEXT_PUBLIC_CMS_BASE_URL="https://${SHOP_NAME}.${ROOT_DOMAIN}"
+ENV NEXTAUTH_SECRET="change-me"
+ENV MONGODB_URI="mongodb://${SHOP_DOMAIN}:${MONGO_PORT}/${SHOP_NAME}"
+ENV GITHUB_OWNER=w3yz-phoenix
+ENV GITHUB_REPO=live
+ENV GITHUB_BRANCH=main
+ENV GITHUB_PERSONAL_ACCESS_TOKEN="${MY_PERSONAL_MY_PERSONAL_GITHUB_TOKEN}"
+ENV TINA_PUBLIC_IS_LOCAL="false"
+ENV NEXT_PUBLIC_TINA_IS_LOCAL="false"
+
+WORKDIR /app
+CMD ["bun", "x", "next", "start"]

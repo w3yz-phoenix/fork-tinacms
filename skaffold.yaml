@@ -1,10 +1,50 @@
 apiVersion: skaffold/v4beta10
 kind: Config
 
-requires:
-  - path: ./ops/steps/01-saleor
-  - path: ./ops/steps/02-storefront-build
-  - path: ./ops/steps/03-storefront-deploy
+metadata:
+  name: w3yz
 
 profiles:
-  - name: 01-saleor
+  - name: provision
+    manifests:
+      hooks:
+        before:
+          - host:
+              command: ["deno", "run", "-A", "./generate-kustomize.ts"]
+              dir: ./ops/kustomize-generation
+      kustomize:
+        paths: ["./ops/gen"]
+  - name: release
+    build:
+      hooks:
+        before:
+          - command: ["task", "build", "-f"]
+            dir: .
+      artifacts:
+        - image: ghcr.io/w3yz-phoenix/w3yz
+          context: ./fast-build
+          docker:
+            dockerfile: ./fast-build/Dockerfile
+            buildArgs:
+              ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
+              SHOP_NAME: "{{.SHOP_NAME}}"
+              MONGO_PORT: "{{.MONGO_PORT}}"
+              MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
+      tagPolicy:
+        sha256: {}
+    manifests:
+      hooks:
+        before:
+          - host:
+              command:
+                [
+                  "deno",
+                  "run",
+                  "-A",
+                  "./generate-kustomize.ts",
+                  "-p",
+                  "release",
+                ]
+              dir: ./ops/kustomize-generation
+      kustomize:
+        paths: ["./ops/gen"]

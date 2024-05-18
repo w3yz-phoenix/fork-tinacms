@@ -2,7 +2,8 @@
   "name": "@w3yz-app/storeferont",
   "private": true,
   "scripts": {
-    "shadcn": "bun x shadcn-ui@latest"
+    "shadcn": "bun x shadcn-ui@latest",
+    "start": "next start"
   },
   "type": "module",
   "version": "0.1.0",

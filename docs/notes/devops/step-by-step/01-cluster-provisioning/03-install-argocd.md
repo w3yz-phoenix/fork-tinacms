@@ -17,7 +17,7 @@ We will assume that you have a Kubernetes cluster up and running.
 And you can connect to the server with ssh:
 
 ```bash
-ssh root@rancher8.w3yz.dev
+ssh root@rancher9.w3yz.dev
 ```
 
 ## Setting up ArgoCD
@@ -48,7 +48,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: argocd.rancher8.w3yz.dev
+  - host: argocd.rancher9.w3yz.dev
     http:
       paths:
       - path: /
@@ -60,7 +60,7 @@ spec:
               name: https
   tls:
   - hosts:
-    - argocd.rancher8.w3yz.dev
+    - argocd.rancher9.w3yz.dev
     secretName: argocd-server-tls # as expected by argocd-server
 EOF
 ```
@@ -80,7 +80,7 @@ spec:
     name: letsencrypt-prod  # Change to letsencrypt-staging if using the staging environment
     kind: ClusterIssuer
   dnsNames:
-  - argocd.rancher8.w3yz.dev
+  - argocd.rancher9.w3yz.dev
 EOF
 ```
 
@@ -92,10 +92,10 @@ Acquire password
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
-Then open up your browser and go to [https://argocd.rancher8.w3yz.dev](https://argocd.rancher8.w3yz.dev)
+Then open up your browser and go to [https://argocd.rancher9.w3yz.dev](https://argocd.rancher9.w3yz.dev)
 
 - Username: admin
-- Password: 7rDji5S1lPlPQLkW
+- Password: sRkBZR4ORr28at0t
 
 ### Install argocd CLI
 
@@ -103,6 +103,14 @@ Then open up your browser and go to [https://argocd.rancher8.w3yz.dev](https://a
 curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 rm argocd-linux-amd64
+```
+
+### Install argocd CLI arm64
+
+```bash
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
+sudo install -m 555 argocd-linux-arm64 /usr/local/bin/argocd
+rm argocd-linux-arm64
 ```
 
 ### Connect Repository

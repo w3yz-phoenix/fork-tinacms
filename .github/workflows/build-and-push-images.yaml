@@ -1,4 +1,10 @@
-name: build-image
+name: build-and-push-images
+
+env:
+  SHOP_NAME: "shop1"
+  ROOT_DOMAIN: "beta.w3yz.dev"
+  MONGO_PORT: "32508"
+  MY_PERSONAL_GITHUB_TOKEN: ${{ secrets.POWERFUL_GITHUB_TOKEN }}
 
 on:
   push:
@@ -69,12 +75,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.10.0
+
+      - name: Create build artifacts
+        id: create-build-artifacts
+        run: devbox run -- task build -f
+
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v5
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          context: .
+          context: ./fast-build
           platforms: ${{ matrix.platform }}
           outputs: type=image,name=ghcr.io/${{ github.workspace }},push-by-digest=false,name-canonical=true,push=${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
@@ -82,6 +95,10 @@ jobs:
           annotations: ${{ steps.meta.outputs.annotations }}
           build-args: |
             COMMIT_ID=${{ github.sha }}
+            SHOP_NAME=${{ env.SHOP_NAME }}
+            ROOT_DOMAIN=${{ env.ROOT_DOMAIN }}
+            MONGO_PORT=${{ env.MONGO_PORT }}
+            MY_PERSONAL_GITHUB_TOKEN=${{ env.MY_PERSONAL_GITHUB_TOKEN }}
 
       - name: Export digest
         run: |

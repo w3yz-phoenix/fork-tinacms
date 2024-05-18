@@ -67,10 +67,11 @@ async function updateAccountAddress(
         error: "Form validation failed",
       };
     }
-    useCurrentUserAddressUpdateMutation.fetcher({
-      id: id,
-      address: validation.data,
-    });
+    // FIXME: Fix build errors
+    // useCurrentUserAddressUpdateMutation.fetcher({
+    //   id: id,
+    //   address: validation.data,
+    // });
 
     return {
       success: true,
@@ -86,25 +87,27 @@ async function updateAccountAddress(
 export default async function ProfileAddressEditPage(props: {
   params: { id: "create" | string };
 }) {
-  if (props.params.id === "create") {
-    return (
-      <ProfileAddressForm
-        values={DefaultProfileAddressFormValues}
-        cancelAction={goBack}
-        completeAction={submitNewAccountAddressForm}
-      />
-    );
-  }
+  // FIXME: Fix build errors
+  // if (props.params.id === "create") {
+  //   return (
+  //     <ProfileAddressForm
+  //       values={DefaultProfileAddressFormValues}
+  //       cancelAction={goBack}
+  //       completeAction={submitNewAccountAddressForm}
+  //     />
+  //   );
+  // }
 
-  const address = await useAddressDetailsQuery.fetcher({
-    id: props.params.id,
-  });
+  // const address = await useAddressDetailsQuery.fetcher({
+  //   id: props.params.id,
+  // });
 
-  return (
-    <ProfileAddressForm
-      completeAction={updateAccountAddress}
-      values={address}
-      cancelAction={goBack}
-    />
-  );
+  // return (
+  //   <ProfileAddressForm
+  //     completeAction={updateAccountAddress}
+  //     values={address}
+  //     cancelAction={goBack}
+  //   />
+  // );
+  return null;
 }

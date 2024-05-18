@@ -1,5 +1,14 @@
 # Install longhorn
 
+## With Helm
+
+```bash
+helm repo add longhorn https://charts.longhorn.io
+helm repo update
+```
+
+## With Argo
+
 Make sure you are using bash
 
 ```bash

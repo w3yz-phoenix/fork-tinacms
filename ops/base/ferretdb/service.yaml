@@ -10,6 +10,26 @@ spec:
     app: ferretdb
   ports:
     - port: 27017
+      nodePort: 0
+      targetPort: 27017
+      name: db
+    - port: 8080
+      targetPort: 8080
+      name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ferretdb-exposed
+  labels:
+    app: ferretdb
+spec:
+  type: NodePort
+  selector:
+    app: ferretdb
+  ports:
+    - port: 27017
+      nodePort: 0
       targetPort: 27017
       name: db
     - port: 8080

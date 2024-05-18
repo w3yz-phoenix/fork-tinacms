@@ -7,20 +7,22 @@ import { ProfileAddressFormType } from "./schemas";
 
 export default async function ProfileAddressPage() {
   async function fetchAddress() {
-    const response = useCurrentUserAddressListQuery.fetcher({});
+    // FIXME: Fix build errors here
+    // const response = useCurrentUserAddressListQuery.fetcher({});
 
-    invariant(response.userWithAddresses, "User not found");
+    // invariant(response.userWithAddresses, "User not found");
 
-    const addresses = response.userWithAddresses.addresses.map(
-      (address: Partial<ProfileAddressFormType>) => address
-    );
+    // const addresses = response.userWithAddresses.addresses.map(
+    //   (address: Partial<ProfileAddressFormType>) => address
+    // );
 
-    return addresses;
+    // return addresses;
+    return [];
   }
   const addresses = await fetchAddress();
   return (
     <div className="min-h-[calc(100vh-495px)] xl:w-[881px]">
-      <div className="mb-20 flex flex-col items-center justify-between gap-6 md:flex-row">
+      <div className="flex flex-col items-center justify-between gap-6 mb-20 md:flex-row">
         <div className="flex flex-col-reverse gap-[52px] md:flex-col md:gap-0">
           <div>
             <h2 className="mb-3 text-3xl font-semibold leading-[38px] text-[#101828]">

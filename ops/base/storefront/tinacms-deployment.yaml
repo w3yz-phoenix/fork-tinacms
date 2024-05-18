@@ -13,9 +13,14 @@ spec:
       labels:
         app: tinacms
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: tinacms
           image: nginx:alpine
+          envFrom:
+            - configMapRef:
+                name: storefront-config
           ports:
             - containerPort: 80
               hostPort: 0
