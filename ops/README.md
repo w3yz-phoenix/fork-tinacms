@@ -6,34 +6,20 @@ Docker Login:
 echo (gh auth token) | docker login ghcr.io -u yasinuslu --password-stdin
 ```
 
-Render 01:
+Provision or Update:
 
 ```bash
 export ROOT_DOMAIN="rancher9.w3yz.dev";
-export SHOP_NAME="shop1";
-export MONGO_PORT="32508";
+export SHOP_NAME="test1";
+export NAMESPACE="w3yz-shop-$SHOP_NAME";
+export NAMESPACE_EXISTS="$(kubectl get namespace $NAMESPACE 2> /dev/null)";
 export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
-skaffold run -p provision
-```
-
-Run 02:
-
-```bash
-export ROOT_DOMAIN="beta.w3yz.dev";
-export SHOP_NAME="shop1";
-export MONGO_PORT="32508";
-export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
-skaffold render -p release
-```
-
-Local Build:
-
-```bash
-export ROOT_DOMAIN="beta.w3yz.dev";
-export SHOP_NAME="shop1";
-export MONGO_PORT="32508";
-export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
-task build -f
-docker build -t w3yz-release-test ./fast-build
-docker run --rm -p 3000:3000 w3yz-release-test -w /apps/storefront
+if [ -z "$NAMESPACE_EXISTS" ]; then
+  echo "Namespace does not exist, provisioning..."
+  skaffold run -p provision
+else
+  echo "Namespace already exists running update..."
+  skaffold deploy -i ghcr.io/w3yz-phoenix/w3yz:main -p release
+  export MONGO_PORT="$(kubectl get -n w3yz-shop-$SHOP_NAME service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort')";
+fi;
 ```
