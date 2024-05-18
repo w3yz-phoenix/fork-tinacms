@@ -28,6 +28,32 @@ tasks:
     cmds:
       - skaffold -v trace render -p shop-baseline {{.CLI_ARGS}} | code -
 
+  undeploy:
+    requires:
+      vars:
+        - "SHOP_NAME"
+    env:
+      SHOP_NAME: "{{.SHOP_NAME}}"
+    dir: ../
+    cmd: |
+      kubectl delete namespace w3yz-shop-$SHOP_NAME || true;
+
+  render:
+    requires:
+      vars:
+        - "SHOP_NAME"
+    env:
+      SHOP_NAME: "{{.SHOP_NAME}}"
+    dir: ../
+    cmd: |
+      export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
+      export ROOT_DOMAIN="beta.w3yz.dev";
+      export NAMESPACE="w3yz-shop-$SHOP_NAME";
+
+      export MONGO_PORT="$(kubectl get -n w3yz-shop-$SHOP_NAME service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort' || echo 27017)";
+
+      skaffold render -i ghcr.io/w3yz-phoenix/w3yz:main -p release
+
   deploy:
     requires:
       vars:

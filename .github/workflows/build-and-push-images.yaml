@@ -2,8 +2,7 @@ name: build-and-push-images
 
 env:
   ROOT_DOMAIN: "beta.w3yz.dev"
-  SHOP_NAME: "hadi-lan"
-  MONGO_PORT: "32275"
+  SHOP_NAME: "fashion-studio"
   MY_PERSONAL_GITHUB_TOKEN: ${{ secrets.POWERFUL_GITHUB_TOKEN }}
 
 on:
@@ -77,6 +76,11 @@ jobs:
 
       - name: Install devbox
         uses: jetify-com/devbox-install-action@v0.10.0
+
+      - name: Login to Kubernetes
+        run: |
+          echo "${{ secrets.KUBECONFIG_BETA_AMD64 }}" > $HOME/.kube/config
+          kubectl get nodes
 
       - name: Create build artifacts
         id: create-build-artifacts
