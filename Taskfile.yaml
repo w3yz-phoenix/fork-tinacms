@@ -6,13 +6,22 @@ interval: 500ms
 
 includes:
   ecom:
-    taskfile: ./packages/ecom/Taskfile.yml
+    taskfile: ./packages/ecom/Taskfile.yaml
   cms:
-    taskfile: ./packages/cms/Taskfile.yml
+    taskfile: ./packages/cms/Taskfile.yaml
   storefront:
-    taskfile: ./apps/storefront/Taskfile.yml
+    taskfile: ./apps/storefront/Taskfile.yaml
   tinacms:
-    taskfile: ./apps/tinacms/Taskfile.yml
+    taskfile: ./apps/tinacms/Taskfile.yaml
+  ops:
+    taskfile: ./ops/Taskfile.yaml
+    dir: ./ops
+  dashboard:
+    taskfile: ./apps/dashboard/Taskfile.yaml
+    dir: ./apps/dashboard
+  dev:
+    taskfile: ./ops/dev.Taskfile.yaml
+    dir: .
 
 tasks:
   install:
@@ -25,42 +34,6 @@ tasks:
   watch:
     watch: true
     deps: [generate]
-
-  generate-almost-prod-like-env:
-    preconditions:
-      - msg: "Please run this command in the root directory of the project"
-        sh: "test -f ./Taskfile.yml && test -f ./package.json"
-      - msg: "NEXT_PUBLIC_SHOP_NAME and NEXT_PUBLIC_ROOT_DOMAIN must not be empty"
-        sh: "test -n $NEXT_PUBLIC_SHOP_NAME && test -n $NEXT_PUBLIC_ROOT_DOMAIN && test -n $NODE_ENV"
-    requires:
-      vars:
-        - "NEXT_PUBLIC_ROOT_DOMAIN"
-        - "NEXT_PUBLIC_SHOP_NAME"
-        - "NODE_ENV"
-    env:
-      NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
-      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
-      NODE_ENV: "{{.NODE_ENV}}"
-    cmds:
-      - bash ./ops/scripts/generate-almost-prod-like-env.sh
-
-  generate-prod-env:
-    preconditions:
-      - msg: "Please run this command in the root directory of the project"
-        sh: "test -f ./Taskfile.yml && test -f ./package.json"
-      - msg: "NEXT_PUBLIC_SHOP_NAME and NEXT_PUBLIC_ROOT_DOMAIN must not be empty"
-        sh: "test -n $NEXT_PUBLIC_SHOP_NAME && test -n $NEXT_PUBLIC_ROOT_DOMAIN && test -n $NODE_ENV"
-    requires:
-      vars:
-        - "NEXT_PUBLIC_ROOT_DOMAIN"
-        - "NEXT_PUBLIC_SHOP_NAME"
-        - "NODE_ENV"
-    env:
-      NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
-      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
-      NODE_ENV: "{{.NODE_ENV}}"
-    cmds:
-      - bash ./ops/scripts/generate-prod-env.sh
 
   build:
     preconditions:

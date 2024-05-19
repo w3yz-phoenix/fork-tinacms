@@ -5,8 +5,8 @@
       "path": "..",
     },
     {
-      "name": "ops",
-      "path": "../ops",
+      "name": "@w3yz-app/dashboard",
+      "path": "../apps/dashboard",
     },
     {
       "name": "@w3yz-app/landing",
@@ -35,6 +35,10 @@
     {
       "name": "@w3yz/tools",
       "path": "../packages/tools",
+    },
+    {
+      "name": "ops",
+      "path": "../ops",
     },
   ],
   "settings": {

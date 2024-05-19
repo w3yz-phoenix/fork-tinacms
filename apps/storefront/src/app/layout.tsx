@@ -1,6 +1,6 @@
 import "../shadcn.css";
 import { Inter as FontSans } from "next/font/google";
-import { publicEnvironment } from "@w3yz/tools/lib";
+import { publicEnvironment } from "@w3yz/tools/environment";
 
 import { cn } from "#shadcn/lib/utils";
 import { W3YZProvider } from "#ui/core/components/w3yz-provider/w3yz-provider";

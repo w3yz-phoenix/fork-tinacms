@@ -1,4 +1,4 @@
-import { privateEnvironment } from "../lib/environment";
+import { privateEnvironment } from "../environment";
 
 export const createFetcher =
   (endpoint: string) =>
