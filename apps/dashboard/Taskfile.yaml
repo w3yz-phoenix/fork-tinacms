@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+  lint:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - bun x next lint {{.CLI_ARGS}}
+
+  shadcn:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - bun x next shadcn {{.CLI_ARGS}}
+
+  build:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - bun x next build {{.CLI_ARGS}}
+
+  dev:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - bun x next dev {{.CLI_ARGS}}
+
+  dev:prod:
+    dir: "{{.TASKFILE_DIR}}"
+    cmds:
+      - bun x next dev

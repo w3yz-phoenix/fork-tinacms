@@ -7,7 +7,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { type Product, type WithContext } from "schema-dts";
 import { z } from "zod";
-import { formatMoney, invariant, publicEnvironment } from "@w3yz/tools/lib";
+import { formatMoney, invariant } from "@w3yz/tools/lib";
 
 import { ServerActionForm } from "#ui/core/components/server-action-form/server-action-form";
 import {
@@ -26,6 +26,7 @@ import { DangerousSaleorRichText } from "#storefront/components/dangerous-saleor
 import { getShopPageData } from "#storefront/lib/shop.api";
 import { SubmitButton } from "#storefront/components/submit-button";
 import { addItemToCartFormAction } from "#storefront/lib/checkout/actions/add-to-cart/action";
+import { publicEnvironment } from "@w3yz/tools/environment";
 
 const getNonEmptyString = (value: string | null | undefined) =>
   value && value.length > 0 ? value : undefined;
@@ -244,7 +245,7 @@ export default async function ProductDetailPage(props: {
       <div className="mx-auto mt-3 max-w-screen-2xl px-4 sm:px-[52px]">
         <Breadcrumbs breadcrumbs={product.internalMeta.breadcrumbs} />
 
-        <div className="my-6 flex flex-col gap-7 xl:flex-row xl:gap-7">
+        <div className="flex flex-col my-6 gap-7 xl:flex-row xl:gap-7">
           <div className="flex-1">
             <div className="flex">
               <div className="mr-1 flex max-h-[70vw] flex-col gap-2 overflow-y-auto overflow-x-hidden sm:mr-4 sm:gap-6 md:h-full md:gap-2  xl:max-h-[520px] ">
@@ -270,7 +271,7 @@ export default async function ProductDetailPage(props: {
               </div>
               <div className="size-full">
                 <Image
-                  className="size-full object-scale-down object-center"
+                  className="object-scale-down object-center size-full"
                   src={currentImage?.url ?? ""}
                   alt={currentImage?.alt ?? ""}
                   width={500}
@@ -294,7 +295,7 @@ export default async function ProductDetailPage(props: {
                 </div>
               </div>
 
-              <div className="mt-4 flex gap-2">
+              <div className="flex gap-2 mt-4">
                 {
                   <div className="mt-1.5 text-[20px] font-medium text-[#4C4F52]">
                     {formatMoney(
@@ -308,7 +309,7 @@ export default async function ProductDetailPage(props: {
               <div className="flex items-end gap-x-5">
                 <div className="flex flex-col">
                   <div className="mt-5 font-medium text-[#4C4F52]">Adet :</div>
-                  <div className="mt-3 flex  max-w-full items-center gap-2">
+                  <div className="flex items-center max-w-full gap-2 mt-3">
                     <div className="flex h-10 w-[72px] items-center justify-center rounded border border-[#CFD1D2] font-medium text-[#252627]">
                       {pageState.quantity}
                     </div>

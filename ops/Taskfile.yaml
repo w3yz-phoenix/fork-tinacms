@@ -31,9 +31,9 @@ tasks:
   undeploy:
     requires:
       vars:
-        - "NEXT_PUBLIC_SHOP_NAME"
+        - "SHOP_NAME"
     env:
-      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
+      NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
     dir: ../
     cmd: |
       kubectl delete namespace w3yz-shop-$NEXT_PUBLIC_SHOP_NAME || true;
@@ -41,9 +41,9 @@ tasks:
   render:
     requires:
       vars:
-        - "NEXT_PUBLIC_SHOP_NAME"
+        - "SHOP_NAME"
     env:
-      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
+      NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
     dir: ../
     cmd: |
       export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
@@ -57,9 +57,9 @@ tasks:
   deploy:
     requires:
       vars:
-        - "NEXT_PUBLIC_SHOP_NAME"
+        - "SHOP_NAME"
     env:
-      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
+      NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
     dir: ../
     cmd: |
       export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";

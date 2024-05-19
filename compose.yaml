@@ -1,5 +1,5 @@
 name: w3yz
 
 include:
-  - path: custom/postgres-state-city-api/compose.yml
+  - path: custom/postgres-state-city-api/compose.yaml
     project_directory: custom/postgres-state-city-api

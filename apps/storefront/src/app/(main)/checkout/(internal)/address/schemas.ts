@@ -4,11 +4,12 @@ import {
   type SaleorGraphql_AddressInput,
   type SaleorGraphql_CheckoutFindQuery,
 } from "@w3yz/ecom/api";
-import { getStringIfNotEmpty, publicEnvironment } from "@w3yz/tools/lib";
+import { getStringIfNotEmpty } from "@w3yz/tools/lib";
 
 import type { Get } from "type-fest";
 
 import { CheckoutContactFormSchema } from "../contact/schemas";
+import { publicEnvironment } from "@w3yz/tools/environment";
 
 const defineMetadata = <
   const TName extends string,

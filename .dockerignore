@@ -12,6 +12,8 @@
 **/.editorconfig
 **/compose.yml
 **/compose.yml*
+**/compose.yaml
+**/compose.yaml*
 **/skaffold.yaml
 **/kustomization.yaml
 

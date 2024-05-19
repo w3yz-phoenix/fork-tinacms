@@ -1,10 +1,11 @@
 ---
 id: d8mmh59fnm4mzuc6fjtm8pi
 title: File Structure
-desc: ''
-updated: 1715849599864
+desc: ""
+updated: 1716033647430
 created: 1715849599864
 ---
+
 # File Structure
 
 ```
@@ -12,11 +13,11 @@ created: 1715849599864
 ├── Dockerfile
 ├── LICENSE
 ├── README.md
-├── Taskfile.yml # Run tasks from here
+├── Taskfile.yaml # Run tasks from here
 ├── apps
 │   └── storefront
 │       ├── README.md
-│       ├── Taskfile.yml
+│       ├── Taskfile.yaml
 │       ├── next.config.mjs
 │       ├── package.json
 │       ├── postcss.config.mjs
@@ -26,7 +27,7 @@ created: 1715849599864
 │       └── tsconfig.json
 ├── bun.lockb
 ├── bunfig.toml
-├── compose.yml
+├── compose.yaml
 ├── docs
 │   └── intro.md
 ├── flake.lock
@@ -38,14 +39,14 @@ created: 1715849599864
 ├── packages
 │   ├── _template
 │   │   ├── README.md
-│   │   ├── Taskfile.yml
+│   │   ├── Taskfile.yaml
 │   │   ├── exports
 │   │   ├── package.json
 │   │   ├── src
 │   │   └── tsconfig.json
 │   ├── cms
 │   │   ├── README.md
-│   │   ├── Taskfile.yml
+│   │   ├── Taskfile.yaml
 │   │   ├── content
 │   │   ├── exports
 │   │   ├── package.json
@@ -56,7 +57,7 @@ created: 1715849599864
 │   │   └── tsconfig.json
 │   ├── ecom
 │   │   ├── README.md
-│   │   ├── Taskfile.yml
+│   │   ├── Taskfile.yaml
 │   │   ├── exports
 │   │   ├── package.json
 │   │   ├── src
@@ -68,7 +69,7 @@ created: 1715849599864
 │   │   └── tsconfig.json
 │   ├── shadcn
 │   │   ├── README.md
-│   │   ├── Taskfile.yml
+│   │   ├── Taskfile.yaml
 │   │   ├── components.json
 │   │   ├── exports
 │   │   ├── package.json
@@ -76,14 +77,14 @@ created: 1715849599864
 │   │   └── tsconfig.json
 │   ├── tools
 │   │   ├── README.md
-│   │   ├── Taskfile.yml
+│   │   ├── Taskfile.yaml
 │   │   ├── exports
 │   │   ├── package.json
 │   │   ├── src
 │   │   └── tsconfig.json
 │   └── ui
 │       ├── README.md
-│       ├── Taskfile.yml
+│       ├── Taskfile.yaml
 │       ├── exports
 │       ├── package.json
 │       ├── src
