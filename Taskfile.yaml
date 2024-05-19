@@ -47,7 +47,7 @@ tasks:
       NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
       NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
       NODE_ENV: "{{.NODE_ENV}}"
-    deps: [generate-prod-env]
+    deps: [dev:generate-prod-env]
     cmds:
       - source .env
       - bun install
@@ -83,10 +83,10 @@ tasks:
     deps: [storefront:dev, tinacms:dev]
 
   storefront-dev:prod:
-    deps: [generate-almost-prod-like-env, storefront:dev:prod]
+    deps: [dev:generate-almost-prod-like-env, storefront:dev:prod]
 
   tinacms-dev:prod:
-    deps: [generate-almost-prod-like-env, tinacms:dev:prod]
+    deps: [dev:generate-almost-prod-like-env, tinacms:dev:prod]
 
   dev:prod:
     deps: [storefront-dev:prod, tinacms-dev:prod]
