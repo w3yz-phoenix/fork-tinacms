@@ -46,6 +46,29 @@ chmod 400 ~/.kube/config
 watch kubectl get pods -A
 ```
 
+Update max-pods in `/etc/rancher/rke2/config.yaml` to 512
+
+```yaml
+kubelet-arg:
+  - "max-pods=512"
+```
+
+Then set fs.inotify.max_user_watches to a high number like:
+
+```bash
+cat <<EOF >> /etc/sysctl.d/inotify-watches.conf
+fs.inotify.max_queued_events = 16384
+fs.inotify.max_user_instances=8192
+fs.inotify.max_user_watches=524288
+EOF
+```
+
+Then restart the service:
+
+```bash
+systemctl restart rke2-server.service
+```
+
 Then open up another terminal tab and continue:
 
 ```bash

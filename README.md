@@ -37,8 +37,17 @@ bun install
 task watch dev
 ```
 
-## TODOS
+## FAQ
 
-- [ ] Remove path alias for #shadcn and actually use the package
-- [ ] Remove path alias for #storefront and make sure noone depends on web package
-- [ ] Remove path alias for #ui and actually use the package
+### How do I run the project locally against a remote API?
+
+You can run the following command:
+
+> Note: You will probably need to run the command twice to have it effect
+
+```bash
+NEXT_PUBLIC_SHOP_NAME="foot-step" \
+  NEXT_PUBLIC_ROOT_DOMAIN="beta.w3yz.dev" \
+  NODE_ENV="development" \
+  task dev:prod
+```
