@@ -16,7 +16,8 @@ spec:
     spec:
       initContainers:
         - name: init-postgres
-          image: postgres:alpine
+          image: alpine
+          user: root
           command:
             - /bin/sh
             - -c
@@ -30,7 +31,7 @@ spec:
               # replace API_FQDN with $API_FQDN
               sed -i "s/API_FQDN/$API_FQDN/g" /tmp/saleor-dump.sql
 
-              cp -f /tmp/saleor-dump.sql /docker-entrypoint-initdb.d/02-init-saleor-db.sql
+              cp -f /tmp/saleor-dump.sql /tmp-init-db/02-init-saleor-db.sql
           env:
             - name: API_FQDN
               valueFrom:
@@ -38,8 +39,8 @@ spec:
                   name: shop-config
                   key: API_FQDN
           volumeMounts:
-            - name: init-db
-              mountPath: /docker-entrypoint-initdb.d
+            - name: tmp-init-db
+              mountPath: /tmp-init-db
       containers:
         - name: postgres
           image: postgres:alpine
@@ -52,13 +53,20 @@ spec:
           volumeMounts:
             - name: postgres-pv-storage
               mountPath: /var/lib/postgresql/data
+            - name: tmp-init-db
+              mountPath: /docker-entrypoint-initdb.d/02-init-saleor-db.sql
+              subPath: 02-init-saleor-db.sql
+              readOnly: true
             - name: init-db
-              mountPath: /docker-entrypoint-initdb.d
+              mountPath: /docker-entrypoint-initdb.d/01-init-databases.sh
+              subPath: 01-init-databases.sh
               readOnly: true
       volumes:
         - name: postgres-pv-storage
           persistentVolumeClaim:
             claimName: postgres-pvc
+        - name: tmp-init-db
+          emptyDir: {}
         - name: init-db
           configMap:
             name: postgres-init-db
