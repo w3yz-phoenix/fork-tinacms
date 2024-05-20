@@ -14,17 +14,38 @@ spec:
       labels:
         app: postgres
     spec:
+      initContainers:
+        - name: init-postgres
+          image: postgres:alpine
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Generate init sql files"
+
+              apk add --no-cache curl vim
+
+              curl https://gist.githubusercontent.com/yasinuslu/753779df923b1ff70134abcd78ab99bf/raw/38b411b8a982fd12a6c963c874b2aa5fc637d438/gistfile1.txt -o /tmp/saleor-dump.sql
+
+              # replace API_FQDN with $API_FQDN
+              sed -i "s/API_FQDN/$API_FQDN/g" /tmp/saleor-dump.sql
+
+              cp -f /tmp/saleor-dump.sql /docker-entrypoint-initdb.d/02-init-saleor-db.sql
+          env:
+            - name: API_FQDN
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-config
+                  key: API_FQDN
+          volumeMounts:
+            - name: init-db
+              mountPath: /docker-entrypoint-initdb.d
       containers:
         - name: postgres
           image: postgres:alpine
           env:
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
-            - name: API_FQDN
-              valueFrom:
-                configMapKeyRef:
-                  name: shop-config
-                  key: API_FQDN
           ports:
             - containerPort: 5432
               name: postgres
