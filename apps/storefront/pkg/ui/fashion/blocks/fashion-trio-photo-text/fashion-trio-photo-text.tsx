@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { tinaField } from "#ui/core/hooks";
 
@@ -14,7 +13,7 @@ export const FashionTrioPhotoText = ({
     <section data-tina-field={tinaField(block)} className="container flex">
       <div className="flex flex-col font-extrabold">
         <div className="mb-5 text-[#525252]"> {block.title}</div>
-        <div className="mb-3 clamp(1rem, 2.5vw, 2rem) md:text-[2.5rem] ">
+        <div className="clamp(1rem, 2.5vw, 2rem) mb-3 md:text-[2.5rem] ">
           {block.subTitle}
         </div>
 
@@ -28,7 +27,7 @@ export const FashionTrioPhotoText = ({
                     alt={item?.image?.alt || "/"}
                     width={436}
                     height={404}
-                    className="h-[200px] object-cover lg:h-[404px] mb-6"
+                    className="mb-6 h-[200px] object-cover lg:h-[404px]"
                   />
                   <h5 className="mb-2 text-2xl font-extrabold">
                     {item.image?.title}

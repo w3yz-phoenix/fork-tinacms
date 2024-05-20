@@ -24,12 +24,15 @@ import { ProductBlock } from "#ui/furniture/blocks/product/product";
 // import { ProfilePersonalInformationBlock } from "#ui/furniture/blocks/profile-personal-information/profile-personal-information";
 // import { ProfileOrdersBlock } from "#ui/furniture/blocks/profile-orders/profile-orders";
 
+import { SeeCollectionDesc } from "#ui/fashion/blocks/see-collection-desc/see-collection-desc";
+import { FashionStrip } from "#ui/fashion/blocks/strip/strip";
+
 import { useTinaQuery } from "../../hooks";
 import { ContactInfo } from "../../../furniture/blocks/contact-info/contact-info";
 import { SeeCollection } from "../../../fashion/blocks/see-collection/see-collection";
-import { SeeCollectionDesc } from "#ui/fashion/blocks/see-collection-desc/see-collection-desc";
-import { FashionStrip } from "#ui/fashion/blocks/strip/strip";
 import { FashionTrioPhotoText } from "../../../fashion/blocks/fashion-trio-photo-text/fashion-trio-photo-text";
+import { FashionCollectionsPreview } from "../../../fashion/blocks/fashion-collections-preview/fashion-collections-preview";
+import { FashionTextWithPhoto } from "../../../fashion/blocks/fashion-text-with-phono/fashion-text-with-photo";
 
 export const PageClient = (props: { relativePath: string }) => {
   const { page } = useTinaQuery<TinaGraphql_PageQuery>(usePageQuery, {
@@ -106,6 +109,12 @@ export const PageClient = (props: { relativePath: string }) => {
           }
           case "PageBlocksFashionTrioPhotoText": {
             return <FashionTrioPhotoText key={index} block={block} />;
+          }
+          case "PageBlocksFashionCollectionsPreview": {
+            return <FashionCollectionsPreview key={index} block={block} />;
+          }
+          case "PageBlocksFashionTextWithPhoto": {
+            return <FashionTextWithPhoto key={index} block={block} />;
           }
           default: {
             return (

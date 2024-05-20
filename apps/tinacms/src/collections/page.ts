@@ -21,6 +21,8 @@ import { seeCollectionBlockSchema } from "../blocks/fashion-see-collection/fashi
 import { seeCollectionDescBlockSchema } from "../blocks/fashion-see-collection-desc/fashion-see-collection-desc";
 import { fashionStripBlockSchema } from "../blocks/fashion-strip/fashion-strip";
 import { FashionTrioPhotoTextBlockSchema } from "../blocks/fashion-trio-photo-text/fashion-trio-photo-text";
+import { FashionCollectionsPreviewBlockSchema } from "../blocks/fashion-collections-preview/fashion-collections-preview";
+import { FashionTextWithPhotoBlockSchema } from "../blocks/fashion-text-with-photo/fashion-text-with-photo";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -73,6 +75,8 @@ export const PageCollection: Collection = {
         seeCollectionDescBlockSchema,
         fashionStripBlockSchema,
         FashionTrioPhotoTextBlockSchema,
+        FashionCollectionsPreviewBlockSchema,
+        FashionTextWithPhotoBlockSchema,
       ],
     },
   ],
