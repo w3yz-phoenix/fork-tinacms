@@ -67,17 +67,7 @@ tasks:
       docker login https://ghcr.io -u yasinuslu -p "$MY_PERSONAL_GITHUB_TOKEN" || true;
       kubectl -n "$NAMESPACE" create secret docker-registry ghcr-secret --docker-server=https://ghcr.io --docker-username=yasinuslu --docker-password="$MY_PERSONAL_GITHUB_TOKEN" --docker-email="nepjua@gmail.com" || true;
 
-      export NAMESPACE_EXISTS="$(kubectl get namespace $NAMESPACE 2> /dev/null)";
-      if [ -z "$NAMESPACE_EXISTS" ]; then
-        echo "Namespace does not exist, provisioning..."
-        skaffold run -p provision || true;
-      else
-        echo "Namespace already exists running update..."
-        docker login https://ghcr.io -u yasinuslu -p "$MY_PERSONAL_GITHUB_TOKEN" || true;
-        kubectl -n "$NAMESPACE" create secret docker-registry ghcr-secret --docker-server=https://ghcr.io --docker-username=yasinuslu --docker-password="$MY_PERSONAL_GITHUB_TOKEN" --docker-email="nepjua@gmail.com" || true;
-        export NEXT_PUBLIC_MONGO_PORT="$(kubectl get -n w3yz-shop-$NEXT_PUBLIC_SHOP_NAME service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort' || echo 27017)";
-        skaffold deploy -i ghcr.io/w3yz-phoenix/w3yz:main -p release || true;
-      fi;
+      skaffold deploy -i ghcr.io/w3yz-phoenix/w3yz:main -p release;
 
   run:
     cmds:
