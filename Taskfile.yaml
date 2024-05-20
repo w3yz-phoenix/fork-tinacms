@@ -33,7 +33,7 @@ tasks:
 
   watch:
     watch: true
-    deps: [generate]
+    deps: [dev:generate-dev-env, generate]
 
   build:
     preconditions:
