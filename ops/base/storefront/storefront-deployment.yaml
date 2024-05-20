@@ -14,7 +14,7 @@ spec:
         app: storefront
     spec:
       imagePullSecrets:
-        - name: w3yz/ghcr-secret
+        - name: ghcr-secret
       containers:
         - name: storefront
           image: nginx:alpine

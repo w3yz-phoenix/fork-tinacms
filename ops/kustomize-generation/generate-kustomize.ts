@@ -22,6 +22,22 @@ await new Command()
     const shopName =
       (params.shopName || Deno.env.get("NEXT_PUBLIC_SHOP_NAME")) ?? "unknown";
 
+    const dockerConfigJson = {
+      auths: {
+        "ghcr.io": {
+          username: "yasinuslu",
+          password: githubToken,
+          email: "nepjua@gmail.com",
+          auth: btoa(`yasinuslu:${githubToken}`),
+        },
+      },
+    };
+
+    await Deno.writeTextFile(
+      path.resolve(currentDir, "../gen/.dockerconfigjson"),
+      JSON.stringify(dockerConfigJson)
+    );
+
     const shouldPatchStorefront = params.profile === "release";
 
     const patchesString = /* yaml */ `
@@ -66,6 +82,12 @@ components:
   - ./../kustomize-generation/bootstrap
 
 ${shouldPatchStorefront ? patchesString : ""}
+
+secretGenerator:
+  - name: ghcr-secret
+    files:
+      - .dockerconfigjson
+    type: kubernetes.io/dockerconfigjson
 
 configMapGenerator:
   - name: shop-config

@@ -14,7 +14,7 @@ spec:
         app: tinacms
     spec:
       imagePullSecrets:
-        - name: w3yz/ghcr-secret
+        - name: ghcr-secret
       containers:
         - name: tinacms
           image: nginx:alpine
