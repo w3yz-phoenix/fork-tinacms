@@ -13,19 +13,19 @@ manifests:
       - host:
           command: ["deno", "run", "-A", "./generate-kustomize.ts"]
           dir: ./ops/kustomize-generation
-  helm:
-    releases:
-      - name: supabase
-        remoteChart: oci://registry-1.docker.io/bitnamicharts/supabase
-        createNamespace: true
-        recreatePods: true
-        skipBuildDependencies: false
-        useHelmSecrets: false
-        wait: false
-        namespace: w3yz-supabase
-        setValues:
-          global.storageClass: "longhorn"
-          namespaceOverride: "w3yz-supabase"
+  # helm:
+  #   releases:
+  #     - name: supabase
+  #       remoteChart: oci://registry-1.docker.io/bitnamicharts/supabase
+  #       createNamespace: true
+  #       recreatePods: true
+  #       skipBuildDependencies: false
+  #       useHelmSecrets: false
+  #       wait: false
+  #       namespace: w3yz-supabase
+  #       setValues:
+  #         global.storageClass: "longhorn"
+  #         namespaceOverride: "w3yz-supabase"
   kustomize:
     paths: ["./ops/gen"]
 
