@@ -24,7 +24,7 @@ await new Command()
 
     const dockerConfigJson = {
       auths: {
-        "ghcr.io": {
+        "https://ghcr.io": {
           username: "yasinuslu",
           password: githubToken,
           email: "nepjua@gmail.com",
