@@ -2,8 +2,14 @@
 
 export SHOP_DOMAIN="${NEXT_PUBLIC_SHOP_NAME}.${NEXT_PUBLIC_ROOT_DOMAIN}"
 export NAMESPACE="w3yz-shop-${NEXT_PUBLIC_SHOP_NAME}"
-MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)"
-export MY_PERSONAL_GITHUB_TOKEN="${MY_PERSONAL_GITHUB_TOKEN}"
+
+if [ -z "${MY_PERSONAL_GITHUB_TOKEN}" ]; then
+  MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)"
+  export MY_PERSONAL_GITHUB_TOKEN="${MY_PERSONAL_GITHUB_TOKEN}"
+else
+  echo "Github token already set, skipping"
+fi
+
 NEXT_PUBLIC_MONGO_PORT="$(kubectl get -n "${NAMESPACE}" service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort')"
 export NEXT_PUBLIC_MONGO_PORT="${NEXT_PUBLIC_MONGO_PORT}"
 # export NEXT_PUBLIC_MONGO_PORT="32275"
