@@ -144,3 +144,15 @@ kubectl -n cattle-system rollout status deploy/rancher
 ```bash
 echo https://dash.rancher10.w3yz.dev/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
 ```
+
+### Configure Image Pull Secrets
+
+```bash
+export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
+export NAMESPACE="w3yz";
+
+kubectl create namespace "$NAMESPACE" || true;
+
+docker login https://ghcr.io -u yasinuslu -p "$MY_PERSONAL_GITHUB_TOKEN" || true;
+kubectl -n "$NAMESPACE" create secret docker-registry ghcr-secret --docker-server=https://ghcr.io --docker-username=yasinuslu --docker-password="$MY_PERSONAL_GITHUB_TOKEN" --docker-email="nepjua@gmail.com" || true;
+```

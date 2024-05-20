@@ -64,9 +64,6 @@ tasks:
       NAMESPACE: "{{.NAMESPACE}}"
     dir: ../
     cmd: |
-      docker login https://ghcr.io -u yasinuslu -p "$MY_PERSONAL_GITHUB_TOKEN" || true;
-      kubectl -n "$NAMESPACE" create secret docker-registry ghcr-secret --docker-server=https://ghcr.io --docker-username=yasinuslu --docker-password="$MY_PERSONAL_GITHUB_TOKEN" --docker-email="nepjua@gmail.com" || true;
-
       skaffold deploy -i ghcr.io/w3yz-phoenix/w3yz:main -p release;
 
   run:
