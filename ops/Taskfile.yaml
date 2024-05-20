@@ -42,30 +42,28 @@ tasks:
     requires:
       vars:
         - "SHOP_NAME"
+        - "MY_PERSONAL_GITHUB_TOKEN"
+        - "NAMESPACE"
     env:
       NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
+      MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
+      NAMESPACE: "{{.NAMESPACE}}"
     dir: ../
     cmd: |
-      export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
-      export NEXT_PUBLIC_ROOT_DOMAIN="beta.w3yz.dev";
-      export NAMESPACE="w3yz-shop-$NEXT_PUBLIC_SHOP_NAME";
-
-      export NEXT_PUBLIC_MONGO_PORT="$(kubectl get -n w3yz-shop-$NEXT_PUBLIC_SHOP_NAME service ferretdb-exposed -o json | jq '.spec.ports[0].nodePort' || echo 27017)";
-
       skaffold render -i ghcr.io/w3yz-phoenix/w3yz:main -p release
 
   deploy:
     requires:
       vars:
         - "SHOP_NAME"
+        - "MY_PERSONAL_GITHUB_TOKEN"
+        - "NAMESPACE"
     env:
       NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
+      MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
+      NAMESPACE: "{{.NAMESPACE}}"
     dir: ../
     cmd: |
-      export MY_PERSONAL_GITHUB_TOKEN="$(gh auth token)";
-      export NEXT_PUBLIC_ROOT_DOMAIN="beta.w3yz.dev";
-      export NAMESPACE="w3yz-shop-$NEXT_PUBLIC_SHOP_NAME";
-
       docker login https://ghcr.io -u yasinuslu -p "$MY_PERSONAL_GITHUB_TOKEN" || true;
       kubectl -n "$NAMESPACE" create secret docker-registry ghcr-secret --docker-server=https://ghcr.io --docker-username=yasinuslu --docker-password="$MY_PERSONAL_GITHUB_TOKEN" --docker-email="nepjua@gmail.com" || true;
 
