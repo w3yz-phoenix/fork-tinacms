@@ -54,19 +54,12 @@ tasks:
       skaffold render -i ghcr.io/w3yz-phoenix/w3yz:main -p release
 
   deploy:
-    requires:
-      vars:
-        - "SHOP_NAME"
-        - "MY_PERSONAL_GITHUB_TOKEN"
-        - "NAMESPACE"
-    env:
-      SHOP_NAME: "{{.SHOP_NAME}}"
-      NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
-      MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
-      NAMESPACE: "{{.NAMESPACE}}"
     dir: ../
     cmd: |
-      skaffold deploy -i ghcr.io/w3yz-phoenix/w3yz:main -p release;
+      rm -rf .env
+      task dev:generate-prod-env
+      source .env
+      source .env; skaffold deploy -i ghcr.io/w3yz-phoenix/w3yz:main -p release;
 
   run:
     cmds:

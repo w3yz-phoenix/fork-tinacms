@@ -3,41 +3,28 @@ version: "3"
 tasks:
   generate-dev-env:
     vars:
-      ROOT_DOMAIN: "local"
-      SHOP_NAME: "demo"
+      ROOT_DOMAIN_OVERRIDE: "beta.w3yz.dev"
+      SHOP_NAME_OVERRIDE: "demo"
+    env:
+      SHOP_NAME_OVERRIDE: "{{.SHOP_NAME_OVERRIDE}}"
+      ROOT_DOMAIN_OVERRIDE: "{{.ROOT_DOMAIN_OVERRIDE}}"
       NODE_ENV: "development"
-    env:
-      NEXT_PUBLIC_ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
-      NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
-      NODE_ENV: "{{.NODE_ENV}}"
     cmds:
+      - rm -rf .env
       - bash ./ops/scripts/generate-dev-env.sh
-
-  generate-almost-prod-like-env:
-    requires:
-      vars:
-        - "ROOT_DOMAIN"
-        - "SHOP_NAME"
-        - "NODE_ENV"
-    env:
-      NEXT_PUBLIC_ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
-      NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
-      NODE_ENV: "{{.NODE_ENV}}"
-    cmds:
-      - bash ./ops/scripts/generate-almost-prod-like-env.sh
+      - source .env
 
   generate-prod-env:
     requires:
       vars:
-        - "ROOT_DOMAIN"
-        - "SHOP_NAME"
-        - "NODE_ENV"
+        - "ROOT_DOMAIN_OVERRIDE"
+        - "SHOP_NAME_OVERRIDE"
     env:
-      NEXT_PUBLIC_ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
-      NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
-      SHOP_NAME: "{{.SHOP_NAME}}"
-      NODE_ENV: "{{.NODE_ENV}}"
+      SHOP_NAME_OVERRIDE: "{{.SHOP_NAME_OVERRIDE}}"
+      ROOT_DOMAIN_OVERRIDE: "{{.ROOT_DOMAIN_OVERRIDE}}"
+      NODE_ENV: "production"
     cmds:
       - rm -rf .env
+      - echo "Generating production environment for {{.SHOP_NAME_OVERRIDE}}"
       - bash ./ops/scripts/generate-prod-env.sh
       - source .env
