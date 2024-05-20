@@ -60,7 +60,8 @@ spec:
             - /bin/sh
             - -c
             - |
-              python3 manage.py migrate --noinput;
+              echo "Initializing API container..."
+              # python3 manage.py migrate --noinput;
               # python3 manage.py populatedb --createsuperuser --superuser_password=demo --staff_password=demo --user_password=demo;
               # python3 manage.py createsuperuser --noinput --email demo@w3yz.dev || true;
           tty: true

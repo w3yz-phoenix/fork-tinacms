@@ -23,7 +23,7 @@ spec:
             - name: API_FQDN
               valueFrom:
                 configMapKeyRef:
-                  name: saleor-config
+                  name: shop-config
                   key: API_FQDN
           ports:
             - containerPort: 5432
