@@ -91,16 +91,11 @@ tasks:
   dev:prod:
     deps: [storefront-dev:prod, tinacms-dev:prod]
 
-  deploy-debug:
-    env:
-      NEXT_PUBLIC_SHOP_NAME: puledro
-    cmds:
-      - kubectl -n w3yz-shop-$NEXT_PUBLIC_SHOP_NAME delete deployment storefront || true
-      - MY_PERSONAL_GITHUB_TOKEN=(gh auth token) skaffold render -p shop | kubectl apply -f -
-
   deploy:
     requires:
       vars:
-        - "NEXT_PUBLIC_SHOP_NAME"
+        - "SHOP_NAME"
     cmds:
-      - MY_PERSONAL_GITHUB_TOKEN=(gh auth token) skaffold render -p shop | kubectl apply -f -
+      - task dev:generate-prod-env -f
+      - source .env
+      - task ops:deploy -f
