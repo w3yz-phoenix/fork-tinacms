@@ -15,9 +15,22 @@ spec:
         app: postgres
     spec:
       initContainers:
+        - name: init-volume
+          image: alpine
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Create /var/lib/postgresql/data directory"
+
+              echo "Initialized" > /var/lib/postgresql/data/initialized
+
+          volumeMounts:
+            - name: postgres-pv-storage
+              mountPath: /var/lib/postgresql/data
+
         - name: init-postgres
           image: alpine
-          user: root
           command:
             - /bin/sh
             - -c
