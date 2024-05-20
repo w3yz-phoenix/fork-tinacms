@@ -14,11 +14,6 @@ tasks:
       - bash ./ops/scripts/generate-dev-env.sh
 
   generate-almost-prod-like-env:
-    preconditions:
-      - msg: "Please run this command in the root directory of the project"
-        sh: "test -f ./Taskfile.yml && test -f ./package.json"
-      - msg: "SHOP_NAME and ROOT_DOMAIN must not be empty"
-        sh: "test -n $SHOP_NAME && test -n $ROOT_DOMAIN && test -n $NODE_ENV"
     requires:
       vars:
         - "ROOT_DOMAIN"
@@ -32,11 +27,6 @@ tasks:
       - bash ./ops/scripts/generate-almost-prod-like-env.sh
 
   generate-prod-env:
-    preconditions:
-      - msg: "Please run this command in the root directory of the project"
-        sh: "test -f ./Taskfile.yml && test -f ./package.json"
-      - msg: "SHOP_NAME and ROOT_DOMAIN must not be empty"
-        sh: "test -n $SHOP_NAME && test -n $ROOT_DOMAIN && test -n $NODE_ENV"
     requires:
       vars:
         - "ROOT_DOMAIN"
@@ -45,6 +35,9 @@ tasks:
     env:
       NEXT_PUBLIC_ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
       NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
+      SHOP_NAME: "{{.SHOP_NAME}}"
       NODE_ENV: "{{.NODE_ENV}}"
     cmds:
+      - rm -rf .env
       - bash ./ops/scripts/generate-prod-env.sh
+      - source .env

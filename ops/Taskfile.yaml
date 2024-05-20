@@ -45,6 +45,7 @@ tasks:
         - "MY_PERSONAL_GITHUB_TOKEN"
         - "NAMESPACE"
     env:
+      SHOP_NAME: "{{.SHOP_NAME}}"
       NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
       MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
       NAMESPACE: "{{.NAMESPACE}}"
@@ -59,6 +60,7 @@ tasks:
         - "MY_PERSONAL_GITHUB_TOKEN"
         - "NAMESPACE"
     env:
+      SHOP_NAME: "{{.SHOP_NAME}}"
       NEXT_PUBLIC_SHOP_NAME: "{{.SHOP_NAME}}"
       MY_PERSONAL_GITHUB_TOKEN: "{{.MY_PERSONAL_GITHUB_TOKEN}}"
       NAMESPACE: "{{.NAMESPACE}}"

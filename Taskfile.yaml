@@ -91,11 +91,26 @@ tasks:
   dev:prod:
     deps: [storefront-dev:prod, tinacms-dev:prod]
 
+  render:
+    requires:
+      vars:
+        - "SHOP_NAME"
+    env:
+      SHOP_NAME: "{{.SHOP_NAME}}"
+    cmds:
+      - rm -rf .env
+      - SHOP_NAME=${SHOP_NAME} task dev:generate-prod-env -f
+      - source .env
+      - task ops:render -f
+
   deploy:
     requires:
       vars:
         - "SHOP_NAME"
+    env:
+      SHOP_NAME: "{{.SHOP_NAME}}"
     cmds:
-      - task dev:generate-prod-env -f
+      - rm -rf .env
+      - SHOP_NAME=${SHOP_NAME} task dev:generate-prod-env -f
       - source .env
       - task ops:deploy -f

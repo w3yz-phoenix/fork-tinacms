@@ -6,4 +6,4 @@ resources:
 configMapGenerator:
   - name: postgres-init-db
     files:
-      - init-db.sh
+      - 01-init-databases.sh
