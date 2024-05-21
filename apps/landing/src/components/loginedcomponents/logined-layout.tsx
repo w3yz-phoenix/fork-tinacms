@@ -7,7 +7,7 @@ export default function LoginedLaylout({ children }: any) {
   return (
     <div className="bg-[#FCFCFD]">
       <Header />
-      <section className="flex">
+      <section className="lg:flex">
         <LeftNavigation />
         {children}
       </section>

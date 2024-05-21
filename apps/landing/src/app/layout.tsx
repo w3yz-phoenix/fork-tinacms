@@ -1,5 +1,6 @@
 import { type Metadata, type Viewport } from "next";
 import { Poppins } from "next/font/google";
+import { IconAbc } from "@tabler/icons-react";
 
 import { LayoutProvider } from "#landing/components/layout-provider";
 import "./globals.css";
@@ -30,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth bg-gray-100">
+    <html lang="en" className="bg-gray-100 scroll-smooth">
       <body className={poppins.className}>
         <LayoutProvider>{children}</LayoutProvider>
       </body>
