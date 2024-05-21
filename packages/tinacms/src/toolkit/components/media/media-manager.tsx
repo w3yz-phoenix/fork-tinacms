@@ -89,18 +89,18 @@ export function MediaManager() {
   return (
     <Modal>
       <FullscreenModal>
-        <div className="w-full bg-gray-50 flex items-center justify-between px-5 pt-3 m-0">
-          <h2 className="text-gray-500 font-sans font-medium text-base leading-none m-0 block truncate">
+        <div className="flex items-center justify-between w-full px-5 pt-3 m-0 bg-gray-50">
+          <h2 className="block m-0 font-sans text-base font-medium leading-none text-gray-500 truncate">
             Media Manager
           </h2>
           <div
             onClick={close}
-            className="flex items-center fill-gray-400 cursor-pointer transition-colors duration-100 ease-out hover:fill-gray-700"
+            className="flex items-center transition-colors duration-100 ease-out cursor-pointer fill-gray-400 hover:fill-gray-700"
           >
             <CloseIcon className="w-6 h-auto" />
           </div>
         </div>
-        <ModalBody className="flex h-full flex-col">
+        <ModalBody className="flex flex-col h-full">
           <MediaPicker {...request} close={close} />
         </ModalBody>
       </FullscreenModal>
@@ -372,8 +372,8 @@ export function MediaPicker({
 
       <MediaPickerWrap>
         <SyncStatusContainer>
-          <div className="flex flex-wrap items-center bg-gray-50 border-b border-gray-150 gap-4 py-3 px-5 shadow-sm flex-shrink-0">
-            <div className="flex flex-1 items-center gap-4">
+          <div className="flex flex-wrap items-center flex-shrink-0 gap-4 px-5 py-3 border-b shadow-sm bg-gray-50 border-gray-150">
+            <div className="flex items-center flex-1 gap-4">
               <ViewModeToggle viewMode={viewMode} setViewMode={setViewMode} />
               <Breadcrumb directory={directory} setDirectory={setDirectory} />
             </div>
@@ -387,7 +387,7 @@ export function MediaPicker({
                   className="whitespace-nowrap"
                 >
                   Refresh
-                  <IoMdRefresh className="w-6 h-full ml-2 opacity-70 text-blue-500" />
+                  <IoMdRefresh className="w-6 h-full ml-2 text-blue-500 opacity-70" />
                 </Button>
                 <Button
                   busy={false}
@@ -398,7 +398,7 @@ export function MediaPicker({
                   className="whitespace-nowrap"
                 >
                   New Folder
-                  <BiFolder className="w-6 h-full ml-2 opacity-70 text-blue-500" />
+                  <BiFolder className="w-6 h-full ml-2 text-blue-500 opacity-70" />
                 </Button>
                 <UploadButton onClick={onClick} uploading={uploading} />
               </div>
@@ -446,7 +446,7 @@ export function MediaPicker({
                   ))}
               </ul>
 
-              <div className="bg-gradient-to-r to-gray-50/50 from-gray-50 shrink-0 grow-0 border-t border-gray-150 py-3 px-5 shadow-sm z-10">
+              <div className="z-10 px-5 py-3 border-t shadow-sm bg-gradient-to-r to-gray-50/50 from-gray-50 shrink-0 grow-0 border-gray-150">
                 <CursorPaginator
                   hasNext={hasNext}
                   navigateNext={navigateNext}
@@ -490,8 +490,8 @@ const ActiveItemPreview = ({
     >
       {activeItem && (
         <>
-          <div className="flex grow-0 shrink-0 gap-2 w-full items-center justify-between">
-            <h3 className="text-lg text-gray-600 w-full max-w-full break-words block truncate flex-1">
+          <div className="flex items-center justify-between w-full gap-2 grow-0 shrink-0">
+            <h3 className="flex-1 block w-full max-w-full text-lg text-gray-600 break-words truncate">
               {activeItem.filename}
             </h3>
             <IconButton
@@ -507,20 +507,20 @@ const ActiveItemPreview = ({
           {isImage(thumbnail) ? (
             <div className="w-full max-h-[75%]">
               <img
-                className="block border border-gray-100 rounded-md overflow-hidden object-center object-contain max-w-full max-h-full m-auto shadow"
+                className="block object-contain object-center max-w-full max-h-full m-auto overflow-hidden border border-gray-100 rounded-md shadow"
                 src={thumbnail}
                 alt={activeItem.filename}
               />
             </div>
           ) : (
-            <span className="p-3 border border-gray-100 rounded-md overflow-hidden bg-gray-50 shadow">
-              <BiFile className="w-14 h-auto fill-gray-300" />
+            <span className="p-3 overflow-hidden border border-gray-100 rounded-md shadow bg-gray-50">
+              <BiFile className="h-auto w-14 fill-gray-300" />
             </span>
           )}
-          <div className="grow h-full w-full shrink flex flex-col gap-3 items-start justify-start">
+          <div className="flex flex-col items-start justify-start w-full h-full gap-3 grow shrink">
             <CopyField value={absoluteImgURL(activeItem.src)} label="URL" />
           </div>
-          <div className="shrink-0 w-full flex flex-col justify-end items-start">
+          <div className="flex flex-col items-start justify-end w-full shrink-0">
             <div className="flex w-full gap-3">
               {selectMediaItem && (
                 <Button
@@ -557,7 +557,7 @@ const UploadButton = ({ onClick, uploading }: any) => {
     <Button
       variant="primary"
       size="custom"
-      className="text-sm h-10 px-6"
+      className="h-10 px-6 text-sm"
       busy={uploading}
       onClick={onClick}
     >
@@ -576,7 +576,7 @@ const LoadingMediaList = (props) => {
   const { extraText, ...rest } = props
   return (
     <div
-      className="w-full h-full flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center w-full h-full"
       {...rest}
     >
       {extraText && <p>{props}</p>}
@@ -587,7 +587,7 @@ const LoadingMediaList = (props) => {
 
 const MediaPickerWrap = ({ children }) => {
   return (
-    <div className="h-full flex-1 text-gray-700 flex flex-col relative bg-gray-50 outline-none active:outline-none focus:outline-none">
+    <div className="relative flex flex-col flex-1 h-full text-gray-700 outline-none bg-gray-50 active:outline-none focus:outline-none">
       {children}
     </div>
   )
@@ -629,9 +629,9 @@ const SyncStatusContainer = ({ children }) => {
   }, [])
 
   return syncStatus == 'needs-sync' ? (
-    <div className="h-full flex items-center justify-center p-6 bg-gradient-to-t from-gray-200 to-transparent">
-      <div className="rounded-lg border shadow-sm px-4 lg:px-6 py-3 lg:py-4 bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-200 mx-auto mb-12">
-        <div className="flex items-start sm:items-center gap-2">
+    <div className="flex items-center justify-center h-full p-6 bg-gradient-to-t from-gray-200 to-transparent">
+      <div className="px-4 py-3 mx-auto mb-12 border border-yellow-200 rounded-lg shadow-sm lg:px-6 lg:py-4 bg-gradient-to-r from-yellow-50 to-yellow-100">
+        <div className="flex items-start gap-2 sm:items-center">
           <BiError
             className={`w-7 h-auto flex-shrink-0 text-yellow-400 -mt-px`}
           />
@@ -640,7 +640,7 @@ const SyncStatusContainer = ({ children }) => {
           >
             Media needs to be turned on for this project.
             <a
-              className="transition-all duration-150 ease-out text-blue-500 hover:text-blue-400 hover:underline underline decoration-blue-200 hover:decoration-blue-400 font-medium flex items-center justify-start gap-1"
+              className="flex items-center justify-start gap-1 font-medium text-blue-500 underline transition-all duration-150 ease-out hover:text-blue-400 hover:underline decoration-blue-200 hover:decoration-blue-400"
               target="_blank"
               href={`${cms.api.tina.appDashboardLink}/media`}
             >
@@ -677,14 +677,14 @@ const EmptyMediaList = () => {
 
 const DocsLink = ({ title, message, docsLink, ...props }) => {
   return (
-    <div className="h-3/4 text-center flex flex-col justify-center" {...props}>
+    <div className="flex flex-col justify-center text-center h-3/4" {...props}>
       <h2 className="mb-3 text-xl text-gray-600">{title}</h2>
       <div className="mb-3 text-base text-gray-700">{message}</div>
       <a
         href={docsLink}
         target="_blank"
         rel="noreferrer noopener"
-        className="font-bold text-blue-500 hover:text-blue-600 hover:underline transition-all ease-out duration-150"
+        className="font-bold text-blue-500 transition-all duration-150 ease-out hover:text-blue-600 hover:underline"
       >
         Learn More
       </a>
