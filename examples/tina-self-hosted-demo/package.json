@@ -23,8 +23,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "tinacms": "workspace:*",
-    "tinacms-gitprovider-github": "workspace:*",
-    "tinacms-authjs": "workspace:*"
+    "tinacms-authjs": "workspace:*",
+    "tinacms-gitprovider-github": "workspace:*"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",

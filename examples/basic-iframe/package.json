@@ -25,6 +25,5 @@
     "@tinacms/cli": "workspace:*",
     "@types/node": "^17.0.21",
     "eslint": "7"
-  },
-  "version": null
+  }
 }

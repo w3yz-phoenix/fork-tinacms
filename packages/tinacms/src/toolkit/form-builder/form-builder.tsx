@@ -37,7 +37,7 @@ interface FormKeyBindingsProps {
 
 const NoFieldsPlaceholder = () => (
   <div
-    className="relative flex flex-col items-center justify-center text-center p-5 pb-16 w-full h-full overflow-y-auto"
+    className="relative flex flex-col items-center justify-center w-full h-full p-5 pb-16 overflow-y-auto text-center"
     style={{
       animationName: 'fade-in',
       animationDelay: '300ms',
@@ -48,7 +48,7 @@ const NoFieldsPlaceholder = () => (
     }}
   >
     <Emoji className="block pb-5">🤔</Emoji>
-    <h3 className="font-sans font-normal text-lg block pb-5">
+    <h3 className="block pb-5 font-sans text-lg font-normal">
       Hey, you don't have any fields added to this form.
     </h3>
     <p className="block pb-5">
@@ -58,7 +58,7 @@ const NoFieldsPlaceholder = () => (
         target="_blank"
       >
         <Emoji
-          className="absolute left-5 top-1/2 origin-center -translate-y-1/2 transition-all duration-100 ease-out"
+          className="absolute transition-all duration-100 ease-out origin-center -translate-y-1/2 left-5 top-1/2"
           style={{ fontSize: 24 }}
         >
           📖
@@ -233,8 +233,8 @@ export const FormBuilder: FC<FormBuilderProps> = ({
                 </FormWrapper>
               </FormPortalProvider>
               {!hideFooter && (
-                <div className="relative flex-none w-full h-16 px-6 bg-white border-t border-gray-100	flex items-center justify-center">
-                  <div className="flex-1 w-full flex justify-between gap-4 items-center max-w-form">
+                <div className="relative flex items-center justify-center flex-none w-full h-16 px-6 bg-white border-t border-gray-100">
+                  <div className="flex items-center justify-between flex-1 w-full gap-4 max-w-form">
                     {tinaForm.reset && (
                       <ResetForm
                         pristine={pristine}
@@ -276,19 +276,19 @@ export const FormBuilder: FC<FormBuilderProps> = ({
 
 export const FormStatus = ({ pristine }) => {
   return (
-    <div className="flex flex-0 items-center">
+    <div className="flex items-center flex-0">
       {!pristine && (
         <>
-          <span className="w-3 h-3 flex-0 rounded-full bg-yellow-300 border border-yellow-400 mr-2"></span>{' '}
-          <p className="text-gray-500 text-xs leading-tight whitespace-nowrap">
+          <span className="w-3 h-3 mr-2 bg-yellow-300 border border-yellow-400 rounded-full flex-0"></span>{' '}
+          <p className="text-xs leading-tight text-gray-500 whitespace-nowrap">
             Unsaved Changes
           </p>
         </>
       )}
       {pristine && (
         <>
-          <span className="w-3 h-3 flex-0 rounded-full bg-green-300 border border-green-400 mr-2"></span>{' '}
-          <p className="text-gray-500 text-xs leading-tight whitespace-nowrap">
+          <span className="w-3 h-3 mr-2 bg-green-300 border border-green-400 rounded-full flex-0"></span>{' '}
+          <p className="text-xs leading-tight text-gray-500 whitespace-nowrap">
             No Changes
           </p>
         </>
@@ -309,11 +309,11 @@ export const FormWrapper = ({
   return (
     <div
       data-test={`form:${id?.replace(/\\/g, '/')}`}
-      className="h-full overflow-y-auto max-h-full bg-gray-50"
+      className="h-full max-h-full overflow-y-auto bg-gray-50"
     >
       {header}
-      <div className="py-5 px-6">
-        <div className="w-full flex justify-center">
+      <div className="px-6 py-5">
+        <div className="flex justify-center w-full">
           <div className="w-full max-w-form">{children}</div>
         </div>
       </div>
@@ -362,7 +362,7 @@ const PanelHeader = (props: { label?: string; name?: string; id: string }) => {
       }}
       tabIndex={-1}
     >
-      <div className="flex items-center justify-between gap-3 text-xs tracking-wide font-medium text-gray-700 group-hover:text-blue-400 uppercase max-w-form mx-auto">
+      <div className="flex items-center justify-between gap-3 mx-auto text-xs font-medium tracking-wide text-gray-700 uppercase group-hover:text-blue-400 max-w-form">
         {props.label || props.name || 'Back'}
         <IoMdClose className="h-auto w-5 inline-block opacity-70 -mt-0.5 -mx-0.5" />
       </div>
@@ -447,7 +447,7 @@ export const CreateBranchModel = ({
           Create Branch
         </ModalHeader>
         <ModalBody padded={true}>
-          <p className="text-base text-gray-700 mb-2">
+          <p className="mb-2 text-base text-gray-700">
             This branch is <strong>protected</strong>. Create a new branch to
             save your changes.
           </p>
@@ -515,13 +515,13 @@ export const CreateBranchModel = ({
 
 export const PrefixedTextField = ({ prefix = 'tina/', ...props }) => {
   return (
-    <div className="border border-gray-200 focus-within:border-blue-200 bg-gray-100 focus-within:bg-blue-100 rounded-md shadow-sm focus-within:shadow-outline overflow-hidden flex items-stretch divide-x divide-gray-200 focus-within:divide-blue-100 w-full transition-all ease-out duration-150">
-      <span className="pl-3 pr-2 py-2 font-medium text-base text-gray-700 opacity-50">
+    <div className="flex items-stretch w-full overflow-hidden transition-all duration-150 ease-out bg-gray-100 border border-gray-200 divide-x divide-gray-200 rounded-md shadow-sm focus-within:border-blue-200 focus-within:bg-blue-100 focus-within:shadow-outline focus-within:divide-blue-100">
+      <span className="py-2 pl-3 pr-2 text-base font-medium text-gray-700 opacity-50">
         {prefix}
       </span>
       <input
         type="text"
-        className="shadow-inner focus:outline-none block text-base placeholder:text-gray-300 px-3 py-2 text-gray-600 flex-1 bg-white focus:text-gray-900"
+        className="flex-1 block px-3 py-2 text-base text-gray-600 bg-white shadow-inner focus:outline-none placeholder:text-gray-300 focus:text-gray-900"
         {...props}
       />
     </div>
