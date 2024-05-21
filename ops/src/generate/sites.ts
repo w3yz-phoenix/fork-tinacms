@@ -6,7 +6,7 @@ import jsYaml from "npm:js-yaml";
 const currentDir = path.dirname(path.fromFileUrl(import.meta.url));
 const glob = path.resolve(currentDir, "../../live/sites/**/w3yz.yaml");
 
-await new Command()
+export const sites = new Command()
   .name("sites")
   .description("Commands for sites")
   .action(async (params) => {
@@ -22,5 +22,4 @@ await new Command()
     }
 
     console.log(JSON.stringify(sites));
-  })
-  .parse(Deno.args);
+  });

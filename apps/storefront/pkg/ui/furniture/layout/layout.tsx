@@ -31,7 +31,7 @@ async function getCheckoutItemCount() {
 }
 
 export async function Layout({
-  globalConfigPath = "main.yml",
+  globalConfigPath = "main.yaml",
   children,
 }: {
   globalConfigPath?: string;

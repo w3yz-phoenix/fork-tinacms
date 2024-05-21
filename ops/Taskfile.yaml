@@ -55,10 +55,9 @@ tasks:
 
   deploy:
     dir: ../
+    dotenv:
+      - ".env.prod"
     cmd: |
-      rm -rf .env
-      task dev:generate-prod-env
-      source .env
       source .env; skaffold deploy -i ghcr.io/w3yz-phoenix/w3yz:main -p release;
 
   run:

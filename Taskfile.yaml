@@ -1,6 +1,10 @@
 version: "3"
 
-dotenv: [".env", "{{.ENV}}/.env.", "{{.HOME}}/.env"]
+dotenv:
+  - ".env"
+  - ".env.production.local"
+  - ".env.staging.local"
+  - ".env.development.local"
 
 interval: 500ms
 
@@ -19,37 +23,51 @@ includes:
   dashboard:
     taskfile: ./apps/dashboard/Taskfile.yaml
     dir: ./apps/dashboard
-  dev:
-    taskfile: ./ops/dev.Taskfile.yaml
-    dir: .
 
 tasks:
+  install-deno-task:
+    run: always
+    dir: ./ops
+    cmds:
+      - deno task install-self
+
   install:
+    aliases:
+      - "i"
+    deps:
+      - install-deno-task
     cmds:
       - bun install
+      - task generate-dev-env -f
+
+  generate-dev-env:
+    deps: [install-deno-task]
+    cmds:
+      - t generate environment -t development
 
   generate:
     deps: [ecom:generate, cms:generate]
 
   watch:
     watch: true
-    deps: [dev:generate-dev-env, generate]
+    deps: [generate]
 
   build:
     preconditions:
       - bun version
     requires:
       vars:
-        - "NEXT_PUBLIC_ROOT_DOMAIN"
-        - "NEXT_PUBLIC_SHOP_NAME"
+        - "SHOP_NAME"
+        - "ROOT_DOMAIN"
         - "NODE_ENV"
     env:
-      NEXT_PUBLIC_ROOT_DOMAIN: "{{.NEXT_PUBLIC_ROOT_DOMAIN}}"
-      NEXT_PUBLIC_SHOP_NAME: "{{.NEXT_PUBLIC_SHOP_NAME}}"
+      SHOP_NAME: "{{.SHOP_NAME}}"
+      ROOT_DOMAIN: "{{.ROOT_DOMAIN}}"
       NODE_ENV: "{{.NODE_ENV}}"
-    deps: [dev:generate-prod-env]
+    deps: [install]
     cmds:
-      - source .env
+      - t generate environment -t production
+      - source .env.local
       - bun install
       - task ecom:generate -f
       - task tinacms:build -f
@@ -94,7 +112,7 @@ tasks:
   render:
     cmds:
       - rm -rf .env
-      - SHOP_NAME=${SHOP_NAME} task dev:generate-prod-env -f
+      - task dev:generate-prod-env -f
       - source .env
       - task ops:render -f
 

@@ -83,7 +83,7 @@ export const GlobalConfigCollection: Collection = {
   label: "Global Configurations",
   name: "globalConfig",
   path: "content/global-config",
-  format: "yml",
+  format: "yaml",
   ui: {
     allowedActions: {
       create: false,

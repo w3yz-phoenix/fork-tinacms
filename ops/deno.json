@@ -1,7 +1,5 @@
 {
   "tasks": {
-    "r": "deno run --allow-all --unstable-bare-node-builtins",
-    "t": "deno run --allow-all --unstable-bare-node-builtins t.ts",
-    "td": "deno run --inspect-wait --allow-all --unstable-bare-node-builtins t.ts"
+    "install-self": "deno install -g -A --unstable-bare-node-builtins -f t.ts"
   }
 }
