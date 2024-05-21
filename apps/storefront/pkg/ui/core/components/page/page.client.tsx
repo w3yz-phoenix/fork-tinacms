@@ -32,6 +32,7 @@ import { ContactInfo } from "../../../furniture/blocks/contact-info/contact-info
 import { SeeCollection } from "../../../fashion/blocks/see-collection/see-collection";
 import { FashionTrioPhotoText } from "../../../fashion/blocks/fashion-trio-photo-text/fashion-trio-photo-text";
 import { FashionCollectionsPreview } from "../../../fashion/blocks/fashion-collections-preview/fashion-collections-preview";
+import { FashionAboutUs } from "../../../fashion/blocks/about-us/about-us";
 import { FashionTextWithPhoto } from "../../../fashion/blocks/fashion-text-with-phono/fashion-text-with-photo";
 
 export const PageClient = (props: { relativePath: string }) => {
@@ -115,6 +116,9 @@ export const PageClient = (props: { relativePath: string }) => {
           }
           case "PageBlocksFashionTextWithPhoto": {
             return <FashionTextWithPhoto key={index} block={block} />;
+          }
+          case "PageBlocksFashionAboutUs": {
+            return <FashionAboutUs key={index} block={block} />;
           }
           default: {
             return (

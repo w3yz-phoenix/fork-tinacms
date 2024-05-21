@@ -23,6 +23,7 @@ import { fashionStripBlockSchema } from "../blocks/fashion-strip/fashion-strip";
 import { FashionTrioPhotoTextBlockSchema } from "../blocks/fashion-trio-photo-text/fashion-trio-photo-text";
 import { FashionCollectionsPreviewBlockSchema } from "../blocks/fashion-collections-preview/fashion-collections-preview";
 import { FashionTextWithPhotoBlockSchema } from "../blocks/fashion-text-with-photo/fashion-text-with-photo";
+import { FashionAboutUsBlockSchema } from "../blocks/fashion-about-us/fashion-about-us";
 
 export const PageCollection: Collection = {
   name: "page",
@@ -77,6 +78,7 @@ export const PageCollection: Collection = {
         FashionTrioPhotoTextBlockSchema,
         FashionCollectionsPreviewBlockSchema,
         FashionTextWithPhotoBlockSchema,
+        FashionAboutUsBlockSchema,
       ],
     },
   ],
