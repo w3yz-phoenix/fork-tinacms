@@ -4,8 +4,19 @@ const currentDir = path.dirname(path.fromFileUrl(import.meta.url));
 
 export const PROJECT_ROOT = path.resolve(currentDir, "../../");
 
+export const getStringIfNotEmpty = (a: string | null | undefined) => {
+  if (a && a.length > 0) {
+    return a;
+  }
+
+  return;
+};
+
 export const getGithubAuthToken = async (required = false) => {
-  const githubTokenFromEnv = Deno.env.get("GITHUB_TOKEN");
+  const githubTokenFromEnv =
+    getStringIfNotEmpty(Deno.env.get("MY_PERSONAL_GITHUB_TOKEN")) ??
+    getStringIfNotEmpty(Deno.env.get("GITHUB_TOKEN"));
+
   if (githubTokenFromEnv && githubTokenFromEnv.length > 0) {
     return githubTokenFromEnv;
   }

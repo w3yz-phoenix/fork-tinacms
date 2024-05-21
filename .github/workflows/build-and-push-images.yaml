@@ -1,8 +1,8 @@
 name: build-and-push-images
 
 env:
-  NEXT_PUBLIC_ROOT_DOMAIN: "beta.w3yz.dev"
-  NEXT_PUBLIC_SHOP_NAME: "fashion-studio"
+  ROOT_DOMAIN: "beta.w3yz.dev"
+  SHOP_NAME: "fashion-studio"
   MY_PERSONAL_GITHUB_TOKEN: ${{ secrets.POWERFUL_GITHUB_TOKEN }}
 
 on:
@@ -87,6 +87,8 @@ jobs:
 
       - name: Create build artifacts
         id: create-build-artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.POWERFUL_GITHUB_TOKEN }}
         run: devbox run -- task build -f
 
       - name: Build and push by digest
