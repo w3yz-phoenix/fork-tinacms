@@ -5,12 +5,12 @@ import { getImageUri } from "#landing/app/api/strapi/image";
 
 export function BlogCard({ blogData }: any) {
   return (
-    <div className="mx-auto w-full md:max-w-[361px]">
+    <div className="w-full mx-auto">
       <Link
         href={`/blog/${blogData?.attributes.slug}`}
-        className="mb-12 w-full"
+        className="w-full mb-12"
       >
-        <div className="h-[280px] w-full md:max-w-[361px]">
+        <div className="h-[280px] w-full ">
           <Image
             src={getImageUri(
               blogData.attributes?.blogcardimage?.data?.attributes?.url
@@ -18,7 +18,7 @@ export function BlogCard({ blogData }: any) {
             alt=""
             height={280}
             width={405}
-            className="size-full object-cover"
+            className="object-cover size-full"
           />
         </div>
         <div className="mt-6 text-sm text-[#525252]">

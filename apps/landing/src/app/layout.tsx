@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-gray-100 scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <body className={poppins.className}>
         <LayoutProvider>{children}</LayoutProvider>
       </body>

@@ -34,7 +34,7 @@ export default async function BlogList() {
           </div>
         </div>
       </div>
-      <div className="mx-auto my-20 grid max-w-screen-2xl grid-cols-1 justify-items-center gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 px-5 my-20 sm:px-10 lg:mx-auto max-w-screen-2xl justify-items-center lg:grid-cols-2 xl:grid-cols-3">
         {blogData.data?.map((blog: any, index: number) => (
           <BlogCard blogData={blog} key={index} />
         ))}

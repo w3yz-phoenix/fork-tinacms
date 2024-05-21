@@ -29,10 +29,10 @@ export default async function BlogDetail({ params }: any) {
           alt="blog"
           height={280}
           width={405}
-          className="size-full object-cover"
+          className="object-cover size-full"
         />
         <div className="absolute inset-0 bg-[#292929] opacity-50"></div>
-        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute z-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
           <h1 className="mb-4 text-7xl text-[#D9D9D9]">Blog</h1>
           <div className="text-[#B3B9C6] ">
             <Link href="/">Ana Sayfa / </Link>
@@ -43,7 +43,7 @@ export default async function BlogDetail({ params }: any) {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-20 max-w-[916px]">
+      <div className="mx-auto mt-20 max-w-[916px] container">
         <h3 className="mb-1 text-7xl text-[#292929]">{blogDetail?.title}</h3>
         <div className="flex items-center gap-2 font-light text-[656565]">
           <div>{blogDetail?.date}</div>
@@ -74,7 +74,7 @@ export default async function BlogDetail({ params }: any) {
                         alt="blog"
                         height={515}
                         width={916}
-                        className="size-full flex-1 object-cover"
+                        className="flex-1 object-cover size-full"
                       />
                     </div>
                   ))}
